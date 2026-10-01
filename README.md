@@ -1,14 +1,17 @@
 # Aurora Forge Converter Releases
 
-Compiled Windows previews and public release notes for Aurora Forge Converter.
+Compiled Windows and Linux previews and public release notes for Aurora Forge Converter.
 
-## Release Candidate: Aurora Forge Beta2
+## Release Candidate: Aurora Forge Beta3
 
-`Aurora Forge Beta2` is the integrated main-app release. The converter is launched from the signed-in Aurora Forge shell, which owns the access check and passes the verified session into the bundled capability.
+`Aurora Forge Beta3` is the integrated main-app release for Windows x64 and Linux x64. The converter is launched from the signed-in Aurora Forge shell, which owns the access check and passes the verified session into the bundled capability. Linux runs without a GPU (software rendering is the default on Linux; `AURORA_FORGE_GPU=1` re-enables hardware acceleration on desktop machines).
 
-Download candidate:
+Downloads (big files are self-hosted):
 
-- `Aurora-Forge-Beta2-Preview.exe` (attached to the `v2.0.0-beta2` GitHub Release)
+- https://auroraforge.live - Downloads section (primary)
+- This repository's GitHub Releases (public mirror; SHA-256 published in `SHA256SUMS.txt`)
+
+Every release embeds a fresh random verification challenge; the hosted Patreon verifier echoes it back and stored sessions are bound to it, so a session or cracked build for one release does not unlock the next.
 
 Verify downloads against `SHA256SUMS.txt` before running them.
 
