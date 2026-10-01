@@ -1,7 +1,7 @@
 # Aurora Forge Beta3 Testing
 
 1. Download from https://auroraforge.live (Downloads) or this release page's links. Verify SHA-256 against `SHA256SUMS.txt`.
-2. Extract `AuroraForge-NT100-Beta3-Windows-x64.zip` (Windows) or `AuroraForge-NT100-Beta3-Linux-x64.tar.gz` (Linux) to a writable folder.
+2. Extract `AuroraForge-NT100-2.0-Windows-x64.zip` (Windows) or `AuroraForge-NT100-2.0-Linux-x64.tar.gz` (Linux) to a writable folder.
 3. Windows: launch the AuroraForge NT100 executable. Linux: `chmod +x` the binary and launch it; on VPS/headless hosts no extra flags are needed (software rendering is automatic).
 4. Complete the main-app access check once (active Patreon tier plus your linked Discord VIP role).
 5. Open the converter from Tools.

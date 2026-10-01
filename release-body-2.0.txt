@@ -1,0 +1,21 @@
+AuroraForge NT100 2.0 - integrated main-app build for Windows x64 and Linux x64 with the WWE 2K19 to WWE 2K25/2K26 converter capability.
+
+Version scheme: major releases are plain (1.8.0, 2.0, ...); every fix/update gets the next letter (2.0.a, 2.0.b, ...). Each download filename carries its version so you can tell exactly which day's work you have.
+
+Downloads (big files are self-hosted at auroraforge.live/downloads):
+
+- Windows - main app: https://auroraforge.live/downloads/AuroraForge-NT100-2.0-Windows-x64.zip
+- Linux - main app (GPU-less OK): https://auroraforge.live/downloads/AuroraForge-NT100-2.0-Linux-x64.tar.gz
+- Windows - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0-Preview.exe
+- Linux - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0-Preview.tar.gz
+- SHA-256 hashes: https://auroraforge.live/downloads/SHA256SUMS.txt
+
+This release page is the public mirror; SHA256SUMS.txt is attached below.
+
+Linux: runs on GPU-less hosts such as VPS servers - software rendering is the default on Linux; set AURORA_FORGE_GPU=1 on desktop machines to re-enable hardware acceleration.
+
+Protection: access is verified in-app on every release - active Patreon tier plus a linked Discord VIP role, two-tier check through the hardened hosted verifier (rev 2026-10-01-secure3). Every release embeds a fresh verification challenge bound through the whole sign-in flow.
+
+Free subscription links: https://www.patreon.com/dgranletmwo/redeem/0C242 - the $3 tier exists strictly to support future development, and major milestone releases are intended to become free public releases.
+
+See RELEASE_NOTES_Beta3.md and TESTING_Beta3.md in this repository for details. Independent modding software; contains no copyrighted game assets.

@@ -8,10 +8,10 @@ Compiled Windows and Linux previews and public release notes for Aurora Forge Co
 
 Downloads (big files are self-hosted at auroraforge.live/downloads):
 
-- Windows - main app: https://auroraforge.live/downloads/AuroraForge-NT100-Beta3-Windows-x64.zip
-- Linux - main app (GPU-less OK): https://auroraforge.live/downloads/AuroraForge-NT100-Beta3-Linux-x64.tar.gz
-- Windows - converter only: https://auroraforge.live/downloads/Aurora-Forge-Beta3-Preview.exe
-- Linux - converter only: https://auroraforge.live/downloads/Aurora-Forge-Beta3-Preview.tar.gz
+- Windows - main app: https://auroraforge.live/downloads/AuroraForge-NT100-2.0-Windows-x64.zip
+- Linux - main app (GPU-less OK): https://auroraforge.live/downloads/AuroraForge-NT100-2.0-Linux-x64.tar.gz
+- Windows - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0-Preview.exe
+- Linux - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0-Preview.tar.gz
 - SHA-256 hashes: https://auroraforge.live/downloads/SHA256SUMS.txt
 
 This repository's GitHub Releases page is the public mirror.
@@ -42,11 +42,11 @@ See `TESTING_Beta2.md` for the release-gate procedure and `RELEASE_NOTES_Beta2.m
 
 ## WWE 2K25 Test Deployment and CAK Manager
 
-Aurora Forge v2.0.0-beta.3 adds a dedicated, ownership-aware test manager that backs up and installs the exact verified loader pair, stages a controlled test CAK, manages direct-child CAKs without moving files, and restores only files it recorded.
+Aurora Forge v2.0 adds a dedicated, ownership-aware test manager that backs up and installs the exact verified loader pair, stages a controlled test CAK, manages direct-child CAKs without moving files, and restores only files it recorded.
 
 ## Umbrella App
 
-Aurora Forge v2.0.0-beta.3 bundles this converter, the verified WWE 2K25 loader pair, the 33-project catalog, and the existing flagship tools.
+Aurora Forge v2.0 bundles this converter, the verified WWE 2K25 loader pair, the 33-project catalog, and the existing flagship tools.
 
 ## Repository Scope
 

@@ -1,6 +1,6 @@
 # Aurora Forge Beta2 Testing
 
-1. Extract `Aurora-Forge-v2.0.0-beta.3-Windows-x64.zip` to a writable folder.
+1. Extract `Aurora-Forge-v2.0-Windows-x64.zip` to a writable folder.
 2. Launch the Aurora Forge Beta2 executable.
 3. Complete the main-app access check once.
 4. Open the converter from the Projects or integrated capability view.
