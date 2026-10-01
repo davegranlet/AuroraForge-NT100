@@ -6,10 +6,15 @@ Compiled Windows and Linux previews and public release notes for Aurora Forge Co
 
 `Aurora Forge Beta3` is the integrated main-app release for Windows x64 and Linux x64. The converter is launched from the signed-in Aurora Forge shell, which owns the access check and passes the verified session into the bundled capability. Linux runs without a GPU (software rendering is the default on Linux; `AURORA_FORGE_GPU=1` re-enables hardware acceleration on desktop machines).
 
-Downloads (big files are self-hosted):
+Downloads (big files are self-hosted at auroraforge.live/downloads):
 
-- https://auroraforge.live - Downloads section (primary)
-- This repository's GitHub Releases (public mirror; SHA-256 published in `SHA256SUMS.txt`)
+- Windows - main app: https://auroraforge.live/downloads/AuroraForge-NT100-v1.8.0-beta.1-Windows-x64.zip
+- Linux - main app (GPU-less OK): https://auroraforge.live/downloads/Aurora-Forge-v1.8.0-beta.1-Linux-x64.tar.gz
+- Windows - converter only: https://auroraforge.live/downloads/Aurora-Forge-Beta3-Preview.exe
+- Linux - converter only: https://auroraforge.live/downloads/Aurora-Forge-Beta3-Preview.tar.gz
+- SHA-256 hashes: https://auroraforge.live/downloads/SHA256SUMS.txt
+
+This repository's GitHub Releases page is the public mirror.
 
 Every release embeds a fresh random verification challenge; the hosted Patreon verifier echoes it back and stored sessions are bound to it, so a session or cracked build for one release does not unlock the next.
 
