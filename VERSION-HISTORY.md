@@ -29,6 +29,20 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.d — 2026-10-02
+
+Fifth published build on the 2.0 line. Supersedes 2.0.c (do not use 2.0.c builds).
+
+- **Converter is zero-config now.** The Advanced section no longer shows a registration-skeleton path or a "change skeleton folder" button — nothing about the skeleton is manual. The wizard asks only for your own WWE 2K19 install and your own WWE 2K25/2K26 install; the registration skeleton is rebuilt from your own game files on your PC. (The path that used to show was the bundled template extracted by the portable build, not a developer path, but exposing it made the flow look manual. It is gone, and the packaged UI is verified to contain no skeleton path or button.)
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.d:
+
+```
+AuroraForge-NT100-2.0.d-Windows-x64.zip
+AuroraForge-NT100-2.0.d-Linux-x64.tar.gz
+```
+
 ## 2.0.c — 2026-10-02
 
 Fourth published build on the 2.0 line.
@@ -74,7 +88,7 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.d** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+- **2.0.e** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
   - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
   - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.

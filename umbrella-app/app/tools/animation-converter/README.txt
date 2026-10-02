@@ -1,10 +1,10 @@
 AuroraForge NT100 2.0 Animation Converter
 
 Preferred bundled portable converter:
-  Aurora-Forge-2.0.b-Preview.exe
+  Aurora-Forge-2.0.d-Preview.exe
 
 SHA-256:
-  7D5DC5B9F1AF68F3F4E90857F1FE327D59A1ED813093AAF2D9CE02FC43070529
+  6E3729DDE74DCCD0C1C9D6CA31C9BDC810F30EAE6F82D1D8423EEDB80374E05F
 
 Rollback builds (kept on disk, NOT shipped in the package):
   ..\..\..\rollback\converters\Aurora-Forge-Beta3-Preview.exe

@@ -7,7 +7,6 @@ const $ = id => document.getElementById(id);
 const DEFAULTS = {
   game19: '',
   game26: '',
-  skeleton: '',
   output: '',
   extractAll: '',
 };
@@ -18,7 +17,6 @@ const state = {
   game19Picked: false,
   game26: DEFAULTS.game26,
   game26Picked: false,
-  skeleton: DEFAULTS.skeleton,
   output: DEFAULTS.output,
   extractFolder: DEFAULTS.extractAll,
   task: 'convert',
@@ -121,7 +119,7 @@ function applyTaskUi() {
   } else {
     setText('task-label', 'New 2K25 entries');
     setText('task-output', 'Loader-ready CAK');
-    setText('task-registration', 'Solved skeleton');
+    setText('task-registration', 'Auto from your game');
     if (registration) registration.className = 'green';
     setText('convert-title', 'One click builds the whole new-entry library');
     setText('convert-sub', 'This runs the full Aurora Forge ecosystem: decode 2K19 animations \u2192 build new 2K26 entry clips \u2192 write every registration table \u2192 bake + verify the loader-ready CAK. This can take several minutes.');
@@ -213,12 +211,6 @@ async function chooseGame26Folder() {
   } catch (error) {
     log('Folder picker failed: ' + (error && error.message ? error.message : error));
   }
-}
-
-function setSkeletonFolder(folder) {
-  if (!folder) return;
-  state.skeleton = folder;
-  setText('skeleton-name', folder);
 }
 
 function setOutputCak(file) {
@@ -336,7 +328,6 @@ async function runConversion() {
         game19Folder: state.game19,
         game26Folder: state.game26,
         scope: 'all',
-        skeleton: state.skeleton || undefined,
         outputCak: state.output,
         foundryRoot: null,
       });
@@ -437,18 +428,6 @@ function wireUi() {
   const game26Btn = $('game26-btn');
   if (game26Btn) game26Btn.onclick = chooseGame26Folder;
 
-  const skeletonBtn = $('skeleton-btn');
-  if (skeletonBtn) {
-    skeletonBtn.onclick = async () => {
-      const folder = await window.aurora.pickDirectory();
-      if (folder) {
-        setSkeletonFolder(folder);
-        log(`14000 skeleton BakeMe folder selected: ${folder}`);
-      }
-    };
-  }
-
-  const outputBtn = $('output-btn');
   if (outputBtn) {
     outputBtn.onclick = async () => {
       const file = await window.aurora.pickCakSave();
@@ -505,7 +484,6 @@ async function init() {
       if (d) {
         if (d.game19) setGameFolder(d.game19);
         if (d.game26) setGame26Folder(d.game26);
-        if (d.skeleton) setSkeletonFolder(d.skeleton);
         if (d.output) setOutputCak(d.output);
         if (d.extractFolder) {
           state.extractFolder = d.extractFolder;
@@ -518,7 +496,6 @@ async function init() {
   }
   setText('game19-name', state.game19 || 'Choose your WWE 2K19 game folder');
   setText('game26-name', state.game26 || 'Choose your WWE 2K25/2K26 game folder');
-  setText('skeleton-name', state.skeleton || 'Built from your game files');
   setText('output-name', state.output || 'Choose an output CAK');
   setText('extract-folder-name', state.extractFolder || 'Choose an extraction folder');
   setText('summary-output', basename(state.output));
