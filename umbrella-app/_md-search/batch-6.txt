@@ -1,0 +1,12 @@
+C:\AuroraForge-Aug26\_archive\legacy-workspaces\Aurora-Forge-1.6.0m-Complete-Dual-Platform\Documentation\AURORA_FORGE_HANDOFF.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Basic_Queries.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\A4-MachineState.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\GPL\DemanglerGnu\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\GPL\DMG\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\server\svrREADME.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-CAK-Mod-Loader-WWE2K25\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\AURORA_FORGE_ACTIVE_STATE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\ACTIVE-LOG-BACKUP-20260917.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\HANDOFF-2026-09-18-2K20-SLOTS-DEAD.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-GITHUB.md

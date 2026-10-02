@@ -120,7 +120,7 @@ function applyTaskUi() {
     setText('task-registration', 'Solved skeleton');
     if (registration) registration.className = 'green';
     setText('convert-title', 'One click builds the whole new-entry library');
-    setText('convert-sub', 'This runs the full Aurora Forge ecosystem: decode 2K19 animations \u2192 build new 2K25 entry clips \u2192 write every registration table \u2192 bake + verify the loader-ready CAK. This can take several minutes.');
+    setText('convert-sub', 'This runs the full Aurora Forge ecosystem: decode 2K19 animations \u2192 build new 2K26 entry clips \u2192 write every registration table \u2192 bake + verify the loader-ready CAK. This can take several minutes.');
     if (convertButton) convertButton.textContent = 'Convert all 2K19 Victory + Entrance animations to new 2K25 entries';
     document.querySelectorAll('.adv-convert').forEach(el => el.classList.remove('hidden'));
     document.querySelectorAll('.adv-extract').forEach(el => el.classList.add('hidden'));

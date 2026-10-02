@@ -1,0 +1,122 @@
+C:\AuroraForge-Aug26\_archive\handoffs\Aurora-WWE-Project-Knowledge-Pack-2026-09-05\knowledge\PROJECT_PATHS.md
+C:\AuroraForge-Aug26\_archive\handoffs\packages\(1) Prepare Aurora Forge....md
+C:\AuroraForge-Aug26\_archive\README.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\broken-worktrees\datactrl-cak-collision\README.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\duplicate-repo-copies\standalone-repos\Aurora-Forge-2K19-to-2K20-Converter\README.md
+C:\AuroraForge-Aug26\_research\bakery-2.0.1\extracted\win-x64\LICENSES\NuGetLicenses.md
+C:\AuroraForge-Aug26\_work\Aurora-Forge-WWE2K19-Animation-Research-Public\README.md
+C:\AuroraForge-Aug26\_worktrees\cak-mod-loader-override\README.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\docs\AURORA_CAK_FOUNDRY_v1.7.6c_BUG_REPORT.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\docs\AURORA_CAK_FOUNDRY_v1.7.7_FIX_REPORT.md
+C:\AuroraForge-Aug26\_worktrees\knowledgebase-override-status\handoffs\AURORA-FORGE-COMPLETE-GAME-VERIFICATION-HANDOFF-2026-09-09.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Filters.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Intro.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\A5-Navigation.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Extensions\Ghidra\Skeleton\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\AnnotationValidator\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-dbgeng\pypkg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-dbgeng\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-drgn\pypkg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-drgn\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-gdb\pypkg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-gdb\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-lldb\pypkg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-lldb\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-x64dbg\pypkg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-agent-x64dbg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-api\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-importers\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-isf\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-jpda\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-rmi-trace\pypkg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-rmi-trace\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Framework-TraceModeling\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\Base\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\BSim\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\BSimFeatureVisualizer\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\BytePatterns\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\CodeCompare\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\DebugUtils\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\Decompiler\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\DecompilerDependent\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\FileFormats\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\FunctionGraph\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\FunctionGraphDecompilerExtension\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\FunctionID\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\GhidraGo\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\GhidraServer\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\GnuDemangler\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\GraphFunctionCalls\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\GraphServices\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\PyGhidra\pypkg\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\DB\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Docking\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Emulation\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\FileSystem\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Generic\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Gui\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Help\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\8051\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\8085\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\ARM\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\BPF\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\CR16\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\Dalvik\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\eBPF\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\HCS08\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\HCS12\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\JVM\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\Loongarch\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\M16C\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\M8C\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\MC6800\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\MCS96\README.md
+C:\AuroraForge-Aug26\allfiles-05-flagship.md
+C:\AuroraForge-Aug26\allfiles-08-misc-toolchains.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-DDS-Converter\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-WWE2K19-Animation-Research-Public\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\docs\ARCHITECTURE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\docs\RELEASE-NOTES-1.7.7.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\TESTING.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\release-only-repo\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Sanitized-Research\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Sanitized-Research\STATUS-SUMMARY.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\docs\EXPLAIN-LIKE-IM-FIVE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\THIRD_PARTY_NOTICES.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\wwecrap\README.md
+C:\AuroraForge-Aug26\AURORA-FORGE-PROJECT-PRIORITIES.md
+C:\AuroraForge-Aug26\AURORA-FORGE-QUICK-HANDOFF-2026-09-06.md
+C:\AuroraForge-Aug26\AURORA-FORGE-TOOL-MAP.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\_forge2-merged-20260924\Secure-DataCtrlLink-WWE2K26\docs\DEVELOPMENT-AND-PROVENANCE-FAQ.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\_forge2-merged-20260924\Secure-DataCtrlLink-WWE2K26\TESTING.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\entitlements\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\hidden-references-final-20260906-2330\AURORA_CAK_FOUNDRY_v1.7.7_FIX_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\select-all-final-20260906-2312\asar-audit\AURORA_CAK_FOUNDRY_v1.7.7_BUG_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-CAK-Mod-Loader-WWE2K25\docs\BUGS-AND-FIXES.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-Knowledgebase\handoffs\AURORA-FORGE-COMPLETE-GAME-VERIFICATION-HANDOFF-2026-09-09.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\BUILDING.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\docs\ADR-002-standalone-tools-sdcl-addons-and-build-profiles.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\RELEASE_NOTES_1.7_MAJOR_RC1.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Secure-DataCtrlLink-WWE2K25\docs\ADDON-MANAGEMENT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Secure-DataCtrlLink-WWE2K25\SECURITY.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Sept18th-2026\SESSION-SUMMARY.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\analysis\2k25-tribute-entry-14000-findings.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\app\dist\win-unpacked\resources\aurora-tools\blender_addon\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\AURORA_FORGE_ACCOUNT_TRANSFER_HANDOFF_2026-09-14-CURRENT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\2026-09-13-active-codec-blockers.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\2026-09-14-2k22-update-checkpoint.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\ACTIVE-2K20-PACKAGE-RESEARCH-LOG.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\BETA1.0.0a-PATREON-PREVIEW-2026-09-19.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\HANDOFF-2026-09-19-CHATGPT-CODEX.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\HANDOFF-2026-09-20-CURRENT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-CAK.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-CONVERSATIONS.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\third_party\CakeTools-AlphaPreview\README.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-generated-2026-09-07\dist\Aurora CAK Foundry-win32-x64\CAK_FOUNDRY_RELEASE_NOTES_1.7.7.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-generated-2026-09-07\dist\Aurora CAK Foundry-win32-x64\INSTALLATION_AND_ROLLBACK.md
+C:\AuroraForge-Aug26\PROJECT-REPOSITORY-MAP.md
+C:\AuroraForge-Aug26\PROMPT-FINISH-READING.md

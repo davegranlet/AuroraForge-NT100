@@ -1,0 +1,59 @@
+C:\AuroraForge-Aug26\_archive\handoffs\Aurora-Forge-Fun-Features-Handoff-2026-08-31\AURORA-FORGE-INTEGRATION-HANDOFF.md
+C:\AuroraForge-Aug26\_archive\handoffs\Aurora-WWE-Project-Knowledge-Pack-2026-09-05\knowledge\wwe-modding.context.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Handoff-2026-08-26-2K22-Start\START-HERE.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Handoff-2026-08-27-2K22-Payload-Key-Checkpoint\EXACT-CHECKPOINT.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Handoff-2026-08-27-2K22-Payload-Key-Checkpoint\START-HERE.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Knowledge-Handoff-2026-08-20\START-HERE.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Knowledge-Handoff-2026-08-25\CURRENT-WORKTREE.md
+C:\AuroraForge-Aug26\_archive\releases\release-metadata\GITHUB_RELEASE_BODY_v1.7.5a.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\dirty-repo-cleanup\DIRTY-REPO-CODE-INVENTORY.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\temp-generated\tmp-ilspy\.store\ilspycmd\8.2.0.7535\ilspycmd\8.2.0.7535\README.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\temp-generated\tmp-sfextract\.store\sfextract\2.0.0\sfextract\2.0.0\NuGet.md
+C:\AuroraForge-Aug26\_toolchains\dotnet9\sdk\9.0.317\Sdks\NuGet.Build.Tasks.Pack\README.md
+C:\AuroraForge-Aug26\_work\upstream-caketools\README.md
+C:\AuroraForge-Aug26\_worktrees\cak-mod-loader-override\docs\BUGS-AND-FIXES.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\build\standalone-cak\CAK_FOUNDRY_RELEASE_NOTES_1.7.8.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\build\standalone-cak\THIRD-PARTY-NOTICES\Nenkai-Bakery-Aurora-Integration-Notice.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\docs\AURORA_CAK_FOUNDRY_v1.7.6c_FIX_REPORT.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\docs\CAK_FOUNDRY_RELEASE_NOTES_1.7.7.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Enabling.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Evaluating_Matches.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\A6-MemoryMap.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\B2-Emulation.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\ByteViewer\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\6502\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\68000\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\8048\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\AARCH64\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\Atmel\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\CP1600\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\DATA\README.md
+C:\AuroraForge-Aug26\allfiles-03-worktrees.md
+C:\AuroraForge-Aug26\allfiles-06-sept20.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Blender-Animation-Tools\blender_addon\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Blender-Animation-Tools\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader-WWE2K25\docs\BUGS-AND-FIXES.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader-WWE2K25\docs\METHODOLOGY-AND-PROVENANCE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Patreon-Verifier\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\docs\METHODOLOGY-AND-PROVENANCE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0-provenance-check\EXPLAIN-LIKE-IM-FIVE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0-readability-auto-check\EXPLAIN-LIKE-IM-FIVE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0-readability-auto-check\SECURITY.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser\doc\EXAMPLES.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\docs\ADDON-MANAGEMENT.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\docs\METHODOLOGY-AND-PROVENANCE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\docs\CAK_FOUNDRY_RELEASE_NOTES_1.7.6c.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\docs\CAK_FOUNDRY_RELEASE_NOTES_1.7.7.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\hidden-references-final-20260906-2330\CAK_FOUNDRY_RELEASE_NOTES_1.7.7.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\resolved-folder-final-20260906-2320\asar-audit\AURORA_CAK_FOUNDRY_v1.7.7_BUG_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-Clips-Tools\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Secure-DataCtrlLink-WWE2K25\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Sept18th-2026\HANDOFF-2026-09-19-2K25-DIRECT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\AURORA_FORGE_CONVERSATION_LEDGER_2026-09-19.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\HANDOFF-2026-09-17-MOUNT-PROVEN.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-2K19-2K25-TRANSFER.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\REPO-CONTENTS-AUDIT-2026-09-20.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\REPO-FUNCTION-INVENTORY.md
+C:\AuroraForge-Aug26\FINAL-GOAL-UMBRELLA.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-generated-2026-09-07\build\release-test-aurora-forge-final\resources\app.asar.unpacked\app\tools\pac19-helper\THIRD-PARTY-NOTICES.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-portable-release-2026-09-07\Aurora-CAK-Foundry-v1.7.5a-Windows-x64\FAQ.md

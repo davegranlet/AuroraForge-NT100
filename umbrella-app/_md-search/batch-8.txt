@@ -1,0 +1,73 @@
+C:\AuroraForge-Aug26\_archive\handoffs\Aurora-WWE-Project-Knowledge-Pack-2026-09-05\aurora\WWE2K19-PROJECT.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Handoff-2026-08-26-2K22-Start\WWE2K22-START-PLAN.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Handoff-2026-08-27-2K22-Payload-Key-Checkpoint\VERIFICATION-AND-COMMANDS.md
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Knowledge-Handoff-2026-08-25\START-HERE.md
+C:\AuroraForge-Aug26\_archive\handoffs\packages\CLAUDE_AI_HANDOFF_2026-08-31.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\chatgpt-backups\Chat Gpt backups-Sept7th\OpenAI\Codex\runtimes\cua_node\2fb562745e6d66f0\bin\README.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\FLAGSHIP-CONSOLIDATION.md
+C:\AuroraForge-Aug26\_untracked-repo\KNOWLEDGE-FINDINGS.md
+C:\AuroraForge-Aug26\_untracked-repo\README.md
+C:\AuroraForge-Aug26\_work\aurora-patreon-verifier\README.md
+C:\AuroraForge-Aug26\_worktrees\cak-mod-loader-override\TESTING.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\build\standalone-cak\FAQ.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\docs\CAK_FOUNDRY_RELEASE_NOTES_1.7.6c.md
+C:\AuroraForge-Aug26\_worktrees\knowledgebase-override-status\README.md
+C:\AuroraForge-Aug26\_worktrees\knowledgebase-override-status\status\REPOSITORY-SCOPE-AUDIT-2026-09-09.md
+C:\AuroraForge-Aug26\_worktrees\knowledgebase-override-status\status\WWE2K25-V123-OVERRIDE-TEST-CHECKPOINT-2026-09-08.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\ChangeHistory.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\VersionTracking\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\VersionTrackingBSim\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\WildcardAssembler\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Utility\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\tricore\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\V850\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\x86\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\Xtensa\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\Z80\README.md
+C:\AuroraForge-Aug26\allfiles-02-work.md
+C:\AuroraForge-Aug26\allfiles-07-archive.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader-WWE2K25\docs\RELEASE-NOTES-1.0.01-RC1.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader\docs\METHODOLOGY-AND-PROVENANCE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader\docs\RELEASE-NOTES-1.0.01-RC1.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\docs\DEVELOPMENT-AND-PROVENANCE-FAQ.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0-provenance-check\METHODOLOGY-AND-PROVENANCE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0-readability-auto-check\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0\THIRD_PARTY_NOTICES.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\bnkextr\LICENSE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser-utils\wstrings\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser\doc\DEV.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\README.md
+C:\AuroraForge-Aug26\AURORA-FORGE-CONSOLIDATED-MASTER-HANDOFF.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\_forge2-merged-20260924\sdcl-release\Secure-DataCtrlLink-WWE2K26-1.7.6 sorry i hurt your feelings edition\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\_forge2-merged-20260924\Secure-DataCtrlLink-WWE2K26\docs\EXPLAIN-LIKE-IM-FIVE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\_forge2-merged-20260924\Secure-DataCtrlLink-WWE2K26\SECURITY.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\build\clean-package-test-v1.7.7-20260906-1740\AURORA_CAK_FOUNDRY_v1.7.7_FIX_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\build\standalone-cak\CAK_FOUNDRY_RELEASE_NOTES_1.7.9.a.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\build\standalone-cak\CAK_FOUNDRY_RELEASE_NOTES_1.7.9.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\dist\Aurora CAK Foundry-win32-x64\resources\app.asar.unpacked\app\tools\cak-v93\AURORA-INTEGRATION-NOTICE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\resolved-folder-final-20260906-2320\asar-audit\FAQ.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\select-all-final-20260906-2312\asar-audit\AURORA_CAK_FOUNDRY_v1.7.7_FIX_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-CAK-Mod-Loader-WWE2K25\docs\CHANGED-CONTENT-OVERRIDE-TEST.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-CAK-Mod-Loader-WWE2K25\release\Aurora-Forge-CAK-Mod-Loader-v1.0.02\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-Converter-Releases\TESTING_Beta1.0.0c.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-Knowledgebase\status\REPOSITORY-SCOPE-AUDIT-2026-09-09.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Secure-DataCtrlLink-WWE2K25\release\Secure-DataCtrlLink-WWE2K25-1.0.02\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Sept18th-2026\ARTIFACT-INDEX.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Sept18th-2026\AUDIT-2026-09-19-WORKSPACE-CODE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Sept18th-2026\README.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\DEEPSEEK_V4_1_HANDOFF_2026-09-19.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\docs\REPOSITORY-VERSIONING-AUDIT-2026-09-14.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\2026-09-11-extraction-checkpoint.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\2026-09-12-animation-converter-source-map.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\HANDOFF-2026-09-19-BETA100A-LOADER-CRASH.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\HANDOFF-2026-09-20-BOBNOBOB-TEST-CAK.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-2K20-2K22-CONVERTER.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-SOURCES.md
+C:\AuroraForge-Aug26\GAME-INSTALL-LOCATIONS.md
+C:\AuroraForge-Aug26\latest\Aurora-Forge-CAK-Mod-Loader-WWE2K25\docs\CHANGED-CONTENT-OVERRIDE-TEST.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-generated-2026-09-07\dist\Aurora CAK Foundry-win32-x64\CAK_FOUNDRY_RELEASE_NOTES_1.7.5.md
+C:\AuroraForge-Aug26\reverse-analysis\FIRST_RUN_REPORT.md
+C:\AuroraForge-Aug26\reverse-analysis\reconstructed\EXPLAINED_LIKE_IM_FIVE.md
+C:\AuroraForge-Aug26\reverse-analysis\reconstructed\README.md

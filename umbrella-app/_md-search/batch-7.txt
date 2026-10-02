@@ -1,0 +1,54 @@
+C:\AuroraForge-Aug26\_archive\handoffs\Aurora-WWE-Project-Knowledge-Pack-2026-09-05\knowledge\BOOTSTRAP_PROMPT.md
+C:\AuroraForge-Aug26\_archive\handoffs\Aurora-WWE-Project-Knowledge-Pack-2026-09-05\knowledge\README.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\open-project-wrappers\Forgeproject\WWE2K19-to-2K26-Entrance-Prototype\AURORA_FORGE_ACTIVE_STATE.md
+C:\AuroraForge-Aug26\_work\Aurora-Forge-Research\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Creating_Database_From_GUI.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Ghidra_Command_Line.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\BSim\BSimTutorial_Scripting.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\A1-GettingStarted.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\B1-RemoteTargets.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\FileSystem\data\serialFilterREADME.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\support\analyzeHeadlessREADME.md
+C:\AuroraForge-Aug26\allfiles-04-release-archive.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-2K19-PAC-Tools\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-2K19-to-2K20-Converter\docs\2K19-TO-2K20-CONVERTER-TUTORIAL.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-CAK-Mod-Loader\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-CAK-Mod-Loader\release\Aurora-Forge-CAK-Mod-Loader-v1.0.01\THIRD_PARTY_NOTICES.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Converter-App\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader-WWE2K25\docs\DEVELOPMENT-AND-PROVENANCE-FAQ.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader-WWE2K25\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Custom-Music-Loader\release\Aurora-Forge-Custom-Music-Loader-v1.0.01-RC1\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\docs\RELEASE-NOTES-TEMPLATE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.7.7\THIRD_PARTY_NOTICES.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser\doc\WWISER.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\docs\BUGS-AND-FIXES-1.7.7.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\docs\RELEASE-NOTES-1.7.7.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\docs\RELEASE-NOTES-TEMPLATE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\TESTING.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\build\clean-package-test-v1.7.7-final\AURORA_CAK_FOUNDRY_v1.7.7_FIX_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\build\standalone-cak\AURORA_CAK_FOUNDRY_v1.7.8_FIX_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\build\standalone-cak\INSTALLATION_AND_ROLLBACK.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\docs\SOURCE-SEPARATION-BUGS-AND-FIXES.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\hidden-references-final-20260906-2330\AURORA_CAK_FOUNDRY_v1.7.7_BUG_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-CAK-Mod-Loader-WWE2K25\docs\RELEASE-NOTES-1.0.02.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-CAK-Mod-Loader-WWE2K25\TESTING.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-Knowledgebase\status\WWE2K25-V123-OVERRIDE-TEST-CHECKPOINT-2026-09-08.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\docs\CAK-EXTRACT-REBUILD.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\FAQ.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\PUBLIC_POSTS_v1.7.5.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\RELEASE_NOTES_1.6.0_RC1.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\RELEASE_NOTES_1.8.0-beta.1.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Secure-DataCtrlLink-WWE2K25\docs\ARCHITECTURE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\AURORA_FORGE_ACCOUNT_TRANSFER_HANDOFF_2026-09-13-CURRENT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\CHAT_TRANSCRIPT_FOR_TRAE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\knowledge.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\2026-09-12-extracted-animation-catalog-sources.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\2026-09-12-wwe2k-mdl-source-audit.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-TOOL-CATALOG.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\STATUS-SUMMARY.md
+C:\AuroraForge-Aug26\HANDOFF-2026-09-22-1.0.0d-OWNER-BRANCH.md
+C:\AuroraForge-Aug26\latest\Aurora-Forge-WWE2K19-Animation-Research\AURORA_FORGE_ACTIVE_STATE.md
+C:\AuroraForge-Aug26\latest\LATEST-CONSOLIDATION-REPORT.md
+C:\AuroraForge-Aug26\latest\Secure-DataCtrlLink-WWE2K25\README.md
+C:\AuroraForge-Aug26\local-release-archive\WWE2K25-loader-pre-v1001-20260906-1955\ROLLBACK-INSTRUCTIONS.md

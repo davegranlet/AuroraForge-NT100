@@ -1,0 +1,95 @@
+name: Verify and build Aurora Forge
+
+on:
+  push:
+    branches: [main, "agent/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify source (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+      - run: npm run verify:repack
+      - name: Verify Windows DDS conversion
+        if: runner.os == 'Windows'
+        run: npm run verify:dds
+
+  windows-package:
+    name: Build Windows x64
+    needs: verify
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build:portable
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Aurora-Forge-Windows-x64
+          path: |
+            portable-release/Aurora-Forge-v1.8.0-beta.1-Windows-x64.zip
+            portable-release/Aurora-Forge-v1.8.0-beta.1-Windows-x64.zip.sha256.txt
+          if-no-files-found: error
+
+  windows-standalones:
+    name: Build Windows standalone tools
+    needs: verify
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run prepare:runtime
+      - run: npm run build:standalones
+      - run: npm run verify:standalones
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Aurora-Forge-Windows-Standalone-Tools
+          path: |
+            portable-release/Aurora-CAK-Foundry-v1.7.5-Windows-x64.zip
+            portable-release/Aurora-Forge-DDS-Converter-v1.7.5-Windows-x64.zip
+            portable-release/Aurora-Forge-WWE2K19-PAC-Explorer-Rebuilder-v1.7.5-Windows-x64.zip
+            portable-release/Aurora-Forge-WWE2K20-CAK-Workbench-v1.7.5-Windows-x64.zip
+          if-no-files-found: error
+
+  linux-package:
+    name: Build Linux x64
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build:linux
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Aurora-Forge-Linux-x64
+          path: |
+            portable-release/Aurora-Forge-v1.8.0-beta.1-Linux-x64.tar.gz
+            portable-release/Aurora-Forge-v1.8.0-beta.1-Linux-x64.tar.gz.sha256.txt
+          if-no-files-found: error

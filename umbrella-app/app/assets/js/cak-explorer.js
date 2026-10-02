@@ -67,7 +67,8 @@
     byId('cakOpenArchive').disabled = true;
     byId('cakBrowseAll').disabled = true;
     try {
-      const result = openEveryArchive ? await api.openAllCakArchives() : await api.openCakArchive(state.archivePath);
+      const gameVersion = byId('cakGameVersion') ? byId('cakGameVersion').value : '';
+      const result = openEveryArchive ? await api.openAllCakArchives(gameVersion) : await api.openCakArchive(state.archivePath, gameVersion);
       applyOpen(result);
       if (browseAll || openEveryArchive) {
         state.scope = 'all';
@@ -84,7 +85,7 @@
         ? `${result.archiveCount} CAKs are open together with ${result.summary.fileCount.toLocaleString()} total entries; ${rejectedCount} archive(s) were rejected by safety checks. Search and extract across the accepted archives from this list.`
         : browseAll
         ? `${result.summary.archiveName} is open with all ${result.summary.fileCount.toLocaleString()} entries: ${result.summary.rawHashPayloads.toLocaleString()} extractable raw-hash payload(s) and ${result.summary.externalReferences.toLocaleString()} external reference(s) with no payload in this archive.`
-        : `${result.summary.archiveName} is ready with ${result.summary.readyFiles.toLocaleString()} named payload file(s).`, rejectedCount ? 'bad' : 'good');
+        : `${result.summary.archiveName} is ready with ${result.summary.readyFiles.toLocaleString()} named payload file(s).${result.detected && (result.detected.game || result.detected.format) ? ` Detected: ${result.detected.game || result.detected.format}${result.detected.format && result.detected.game ? ` (${result.detected.format})` : ''}.` : ''}`, rejectedCount ? 'bad' : 'good');
     } catch (error) {
       message('cakOpenMessage', error.message, 'bad');
     } finally {

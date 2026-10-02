@@ -7,6 +7,8 @@ const http = require('http');
 const { pathToFileURL } = require('url');
 const cakReader = require('./cak-reader');
 const cak20Reader = require('./cak20-reader');
+const cakBackend = require('./cak-v93-backend');
+const { GAME_CAK_ENGINES, titleForFdir } = require('./cak-engines');
 const archiveRepackager = require('./archive-repackager');
 const { createGameInstallRegistry } = require('./services/game-install-registry');
 const { createOperationJournal } = require('./services/operation-journal');
@@ -500,6 +502,106 @@ function loadAppPage(window, page) {
 
 function cakHelperPath() {
   return bundledToolPath('cak-helper', 'AuroraCakHelper.exe');
+}
+
+function cakV93ToolPath() {
+  return bundledToolPath('cak-v93', 'FTribTool.exe');
+}
+
+function cakV93OodlePath() {
+  const candidate = bundledToolPath('cak-v93', 'oo2core_9_win64.dll');
+  return fs.existsSync(candidate) ? candidate : '';
+}
+
+// The native FDIR 9.3 backend returns its own catalog shape; adapt it to the
+// same session shape the explorer UI and its search/summary helpers consume.
+function adaptV93Session(native, version) {
+  const files = (native.files || []).map((file, index) => {
+    const name = String(file.nativeName || file.name || '').replace(/\\/g, '/');
+    const storedSize = Number(file.storedSize ?? file.size ?? file.compressedSize ?? 0) || 0;
+    const expandedSize = Number(file.expandedSize ?? file.decompressedSize ?? file.uncompressedSize ?? storedSize) || 0;
+    const offset = Number(file.offset ?? file.dataOffset ?? 0) || 0;
+    const type = String(file.type || (name.includes('.') ? name.split('.').pop() : '')).toLowerCase();
+    const extractable = file.extractable !== false && file.availability !== 'external-reference';
+    return {
+      id: Number.isInteger(file.id) ? file.id : index,
+      folderIndex: Number(file.folderIndex) || 0,
+      storedSize,
+      expandedSize,
+      offset: String(offset),
+      type,
+      chunkCount: 0,
+      chunks: [],
+      compressed: Boolean(file.compressed),
+      protected: Boolean(file.protected ?? file.protectedPayload),
+      flags: [],
+      hash: String(file.hash || ''),
+      name: name || `Unresolved/entry_${index}`,
+      nameResolved: Boolean(name),
+      folderName: String(file.folderName || ''),
+      availability: extractable ? 'ready' : 'external-reference',
+      extractable,
+      sourceBackend: 'v93',
+      sourceArchivePath: native.archivePath,
+      sourceArchiveName: native.archiveName,
+      sourceArchiveKey: native.key,
+      nativeName: name
+    };
+  });
+  const folders = (native.folders || []).map((folder, index) => ({
+    id: Number.isInteger(folder.id) ? folder.id : index,
+    stringOffset: 0,
+    children: [],
+    files: [],
+    hash: String(folder.hash || ''),
+    name: String(folder.name || folder.path || ''),
+    nameResolved: true
+  }));
+  return {
+    archivePath: native.archivePath,
+    archiveName: native.archiveName,
+    archiveSize: native.archiveSize,
+    magic: 'FDIR',
+    key: native.key,
+    keyRecovered: false,
+    payloadStart: 0,
+    header: [],
+    files,
+    folders,
+    fileHashes: [],
+    folderHashes: [],
+    warnings: native.warnings || [],
+    backend: 'v93',
+    format: native.format,
+    game: native.game,
+    versionMajor: version.major,
+    versionMinor: version.minor
+  };
+}
+
+// Version-aware opener: detects the FDIR generation in the archive header and
+// routes to the right engine. 9.3 (2K25) uses the bundled native backend,
+// everything else the built-in JavaScript reader.
+function openCakAny(archivePath, options = {}) {
+  const selected = path.resolve(String(archivePath || ''));
+  const version = cakBackend.detectFdirVersion(selected);
+  if (!version) throw new Error('Not a valid FDIR CAK archive.');
+  const title = titleForFdir(version.major, version.minor);
+  const selectedGame = options.gameVersion ? GAME_CAK_ENGINES[String(options.gameVersion)] : null;
+  if (selectedGame && selectedGame.kind === 'pac') {
+    throw new Error('WWE 2K19 stores PAC archives, not CAK files. Use the PAC Explorer for 2K19.');
+  }
+  if (version.major === 9 && version.minor === 3) {
+    const tool = cakV93ToolPath();
+    if (!fs.existsSync(tool)) throw new Error('The bundled FDIR 9.3 backend (cak-v93/FTribTool.exe) is missing from this build.');
+    const native = cakBackend.openArchive(selected, tool);
+    return adaptV93Session(native, version);
+  }
+  try {
+    return cakReader.openArchive(selected, readCakDictionary());
+  } catch (error) {
+    throw new Error(`${title} archive (FDIR ${version.major}.${version.minor}): ${error.message}`);
+  }
 }
 
 function pac19HelperPath() {
@@ -1068,25 +1170,36 @@ ipcMain.handle('desktop:cak-explorer-choose-archive', async () => {
   return { ok: true, path: path.resolve(result.filePaths[0]) };
 });
 
-ipcMain.handle('desktop:cak-explorer-open', async (_event, archivePath) => {
+ipcMain.handle('desktop:cak-explorer-open', async (_event, archivePath, gameVersion) => {
   const selected = path.resolve(String(archivePath || ''));
-  currentCakSession = cakReader.openArchive(selected, readCakDictionary());
-  return { ok: true, summary: cakReader.publicSummary(currentCakSession), results: cakReader.searchFiles(currentCakSession, { scope: 'resolved' }) };
+  currentCakSession = openCakAny(selected, { gameVersion });
+  return {
+    ok: true,
+    backend: currentCakSession.backend || 'js-reader',
+    detected: {
+      format: currentCakSession.format || (currentCakSession.versionMajor ? `FDIR ${currentCakSession.versionMajor}.${currentCakSession.versionMinor}` : ''),
+      game: currentCakSession.game || '',
+      versionMajor: currentCakSession.versionMajor,
+      versionMinor: currentCakSession.versionMinor
+    },
+    summary: cakReader.publicSummary(currentCakSession),
+    results: cakReader.searchFiles(currentCakSession, { scope: 'resolved' })
+  };
 });
 
-ipcMain.handle('desktop:cak-explorer-open-all', async () => {
+ipcMain.handle('desktop:cak-explorer-open-all', async (_event, gameVersion) => {
   const gameFolder = readToolConfig().gameFolder || '';
-  if (!gameFolder || !fs.existsSync(gameFolder) || !fs.statSync(gameFolder).isDirectory()) throw new Error('Choose the WWE 2K26 game folder at the top of the extractor first.');
+  if (!gameFolder || !fs.existsSync(gameFolder) || !fs.statSync(gameFolder).isDirectory()) throw new Error('Choose your game folder at the top of the extractor first.');
   const archivePaths = fs.readdirSync(gameFolder, { withFileTypes: true })
     .filter((entry) => entry.isFile() && /\.cak$/i.test(entry.name))
     .map((entry) => path.join(gameFolder, entry.name))
     .sort((left, right) => path.basename(left).localeCompare(path.basename(right), undefined, { numeric: true }));
-  if (!archivePaths.length) throw new Error('No .cak archives were found in the configured WWE 2K26 game folder.');
+  if (!archivePaths.length) throw new Error('No .cak archives were found in the configured game folder.');
   const dictionary = readCakDictionary();
   const sessions = [];
   const rejectedArchives = [];
   for (const archivePath of archivePaths) {
-    try { sessions.push(cakReader.openArchive(archivePath, dictionary)); }
+    try { sessions.push(openCakAny(archivePath, { gameVersion })); }
     catch (error) { rejectedArchives.push({ archive: path.basename(archivePath), error: error.message }); }
   }
   if (!sessions.length) throw new Error('Every CAK archive was rejected by the safety checks. No archive was opened.');
@@ -1149,6 +1262,8 @@ ipcMain.handle('desktop:cak-explorer-extract', async (_event, payload) => {
   const files = ids.map((id) => currentCakSession.files[id]).filter(Boolean);
   if (files.length !== ids.length) throw new Error('One or more selected entries no longer exist. Reopen the archive.');
   if (files.some((file) => !file.extractable)) throw new Error('One or more selected catalog entries store their payload in another archive and cannot be extracted from this CAK alone.');
+  const v93Files = files.filter((file) => file.sourceBackend === 'v93');
+  const helperFiles = files.filter((file) => file.sourceBackend !== 'v93');
   const totalBytes = files.reduce((sum, file) => sum + file.expandedSize, 0);
   if (!(payload && payload.all) && totalBytes > 20 * 1024 * 1024 * 1024) throw new Error('This extraction job is larger than 20 GB. Choose a smaller group.');
   if (typeof fs.statfsSync === 'function') {
@@ -1156,17 +1271,52 @@ ipcMain.handle('desktop:cak-explorer-extract', async (_event, payload) => {
     const freeBytes = Number(storage.bavail) * Number(storage.bsize);
     if (freeBytes < totalBytes + 64 * 1024 * 1024) throw new Error('The output drive does not have enough free space for this extraction job.');
   }
-  const oodlePath = resolveOodlePath(files[0].sourceArchivePath || currentCakSession.archivePath);
-  if (files.some((file) => file.compressed) && !oodlePath) throw new Error('oo2core_9_win64.dll was not found. Choose the WWE 2K26 game folder at the top of the extractor.');
+  const oodlePath = helperFiles.length ? resolveOodlePath(helperFiles[0].sourceArchivePath || currentCakSession.archivePath) : '';
+  if (helperFiles.some((file) => file.compressed) && !oodlePath) throw new Error('oo2core_9_win64.dll was not found. Choose the game folder at the top of the extractor.');
   const helper = cakHelperPath();
-  if (!fs.existsSync(helper)) throw new Error('The included AuroraForge NT100 extraction helper is missing.');
+  if (helperFiles.length && !fs.existsSync(helper)) throw new Error('The included AuroraForge NT100 extraction helper is missing.');
   const groups = new Map();
-  for (const file of files) {
+  for (const file of helperFiles) {
     const archivePath = file.sourceArchivePath || currentCakSession.archivePath;
     if (!groups.has(archivePath)) groups.set(archivePath, []);
     groups.get(archivePath).push(file);
   }
   const results = [];
+  if (v93Files.length) {
+    const nativeTool = cakV93ToolPath();
+    if (!fs.existsSync(nativeTool)) throw new Error('The bundled FDIR 9.3 backend is missing from this build.');
+    const nativeOodle = cakV93OodlePath();
+    const v93Groups = new Map();
+    for (const file of v93Files) {
+      const key = file.sourceArchivePath || currentCakSession.archivePath;
+      if (!v93Groups.has(key)) v93Groups.set(key, []);
+      v93Groups.get(key).push(file);
+    }
+    for (const [archivePath, archiveFiles] of v93Groups) {
+      const fullArchive = Boolean(payload && payload.all);
+      if (fullArchive) {
+        try {
+          cakBackend.extractAll(archivePath, outputRoot, nativeTool, nativeOodle);
+          for (const file of archiveFiles) {
+            results.push({ ok: true, id: file.id, archive: path.basename(archivePath), path: path.join(outputRoot, ...String(file.nativeName || file.name).split('/')), bytes: file.expandedSize });
+          }
+        } catch (error) {
+          for (const file of archiveFiles) {
+            results.push({ ok: false, id: file.id, archive: path.basename(archivePath), path: '', bytes: 0, error: String((error && error.message) || error) });
+          }
+        }
+      } else {
+        for (const file of archiveFiles) {
+          try {
+            cakBackend.extractFile(archivePath, String(file.nativeName || file.name), outputRoot, nativeTool, nativeOodle);
+            results.push({ ok: true, id: file.id, archive: path.basename(archivePath), path: path.join(outputRoot, ...String(file.nativeName || file.name).split('/')), bytes: file.expandedSize });
+          } catch (error) {
+            results.push({ ok: false, id: file.id, archive: path.basename(archivePath), path: '', bytes: 0, error: String((error && error.message) || error) });
+          }
+        }
+      }
+    }
+  }
   for (const [archivePath, archiveFiles] of groups) {
     const request = {
       archivePath,

@@ -1,0 +1,77 @@
+C:\AuroraForge-Aug26\_archive\handoffs\AuroraForge-WWE-Modding-Knowledge-Handoff-2026-08-25\EVIDENCE-AND-RESEARCH-STATE.md
+C:\AuroraForge-Aug26\_archive\handoffs\Secure-DataCtrlLink-Handoff-2026-08-31\FUTURE_IDEAS.md
+C:\AuroraForge-Aug26\_archive\legacy-workspaces\Aurora-Forge-1.6.0-prompt-workspace\FAQ.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\duplicate-repo-copies\standalone-repos\Aurora-Forge-2K19-PAC-Tools\README.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\duplicate-repo-copies\standalone-repos\Aurora-Forge-Converter-App\app\PATREON_ACCESS.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\duplicate-repo-copies\standalone-repos\Aurora-Forge-Converter-App\README.md
+C:\AuroraForge-Aug26\_archive\workspace-consolidation-2026-09-20\duplicate-repo-copies\standalone-repos\Aurora-Forge-Patreon-Verifier\README.md
+C:\AuroraForge-Aug26\_work\external-sources\WrestleMINUS\README.md
+C:\AuroraForge-Aug26\_worktrees\cak-mod-loader-override\docs\CHANGED-CONTENT-OVERRIDE-TEST.md
+C:\AuroraForge-Aug26\_worktrees\cak-mod-loader-override\docs\RELEASE-NOTES-1.0.01-RC1.md
+C:\AuroraForge-Aug26\_worktrees\foundry-v93-verify\docs\SOURCE-SEPARATION-BUGS-AND-FIXES.md
+C:\AuroraForge-Aug26\_worktrees\knowledgebase-override-status\handoffs\CHATGPT-WEB-AURORA-FORGE-HANDOFF-2026-09-07.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GettingStarted.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\docs\GhidraClass\Debugger\B5-AddingDebuggers.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Extensions\Eclipse\GhidraDev\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Configurations\Public_Release\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\ProposedUtils\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\TaintAnalysis\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\MicrosoftCodeAnalyzer\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\MicrosoftDemangler\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\MicrosoftDmang\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\PDB\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\ProgramDiff\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\ProgramGraph\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\PyGhidra\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\Recognizers\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\Sarif\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\SourceCodeLookup\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\SwiftDemangler\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\SystemEmulation\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Project\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\Pty\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Framework\SoftwareModeling\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\MIPS\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\PA-RISC\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\PIC\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\PowerPC\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\RISCV\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\Sparc\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\SuperH\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\SuperH4\README.md
+C:\AuroraForge-Aug26\.tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\TI_MSP430\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-2K19-to-2K20-Converter\docs\BATCH-2K19-TO-2K20-VICTORY-PACKAGES.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-2K19-to-2K20-Converter\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-Animation-Probes\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Aurora-Forge-CAK-Mod-Loader\release\Aurora-Forge-CAK-Mod-Loader-v1.0.01-RC1\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\docs\BUGS-AND-FIXES-1.7.7.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\docs\EXPLAIN-LIKE-IM-FIVE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0-provenance-check\DEVELOPMENT-AND-PROVENANCE-FAQ.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0-readability-auto-check\DEVELOPMENT-AND-PROVENANCE-FAQ.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\release\Secure-DataCtrlLink-WWE2K26-1.0.0\SECURITY.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\bnkextr\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser-utils\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser-utils\words\README.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\DataCtrlLink-MusicOnly\third_party_reference\wwiser\doc\EDITOR.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\docs\ARCHITECTURE.md
+C:\AuroraForge-Aug26\Aurora Forge Sept 20\Secure-DataCtrlLink-WWE2K26\SECURITY.md
+C:\AuroraForge-Aug26\AURORA-FORGE-COMPLETE-CONTINUATION-PROMPT-2026-09-13.md
+C:\AuroraForge-Aug26\AURORA-FORGE-CONTINUATION-PROMPT-2026-09-21.md
+C:\AuroraForge-Aug26\AURORA-FORGE-OVERNIGHT-PROGRESS-2026-09-06.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\build\clean-package-test-v1.7.7-redesign\AURORA_CAK_FOUNDRY_v1.7.7_BUG_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\docs\AURORA_CAK_FOUNDRY_v1.7.6c_BUG_REPORT.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\resolved-folder-final-20260906-2320\asar-audit\CAK_FOUNDRY_RELEASE_NOTES_1.7.7.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-CAK-Foundry\package-tests\resolved-folder-final-20260906-2320\asar-audit\INSTALLATION_AND_ROLLBACK.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\Aurora-Forge-Knowledgebase\handoffs\CHATGPT-WEB-AURORA-FORGE-HANDOFF-2026-09-07.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\ghidra-nativeaot\LICENSE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\CURRENT-STATUS-AND-REPOSITORY-CAPABILITIES.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\docs\VERSIONING-AUDIT-2026-09-14.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\ENTRANCE_EXPORTER_FINDINGS.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\notes\LOG-2K19-2K20-BRIDGE.md
+C:\AuroraForge-Aug26\AuroraForge_WWE_PC-Game_Modding_Tool\WWE2K19-to-2K26-Entrance-Prototype\PIPELINE_ARCHITECTURE.md
+C:\AuroraForge-Aug26\examples\MyGM-StartingCash-50M\analysis\CAKEVIEW_BUILD_VERIFICATION.md
+C:\AuroraForge-Aug26\latest\Aurora-Forge-CAK-Mod-Loader-WWE2K25\README.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-generated-2026-09-07\dist\Aurora CAK Foundry-win32-x64\AURORA_CAK_FOUNDRY_v1.7.7_BUG_REPORT.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-generated-2026-09-07\dist\Aurora CAK Foundry-win32-x64\RELEASE_NOTES_1.7.5.md
+C:\AuroraForge-Aug26\local-release-archive\AuroraForge-desktop-portable-release-2026-09-07\Aurora-CAK-Foundry-v1.7.5a-Windows-x64\INSTALLATION_AND_ROLLBACK.md
+C:\AuroraForge-Aug26\WORKSPACE-CLEANUP-REPORT.md

@@ -33,6 +33,9 @@ Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
 - The next **published** build takes the next letter: **2.0.a**. Already queued for it (committed in source, deliberately not republished - internal-only):
   - Converter window copy fixes: the per-build labels no longer say "BETA2"/"BETA3" anywhere - the status banner and page titles now read 2.0.
+  - **CAK Foundry: multi-version archive support.** New game-version dropdown in the extractor (WWE 2K20 through 2K26, auto-detect by default) with header-based routing: FDIR 9.3 (2K25) opens through the bundled native FTribTool backend, FDIR 9.9 (2K26) and 8.3 (2K22/2K23) through the built-in readers, 2K19 points at the PAC Explorer. Browse, search, and extraction all route per archive; the bundled 9.3 backend round-trip is verified (pack -> detect -> catalog -> extract).
+  - Converter copy now reads "WWE 2K19 -> 2K26 Entry Forge" (2K25/2K26 targets supported).
+  - Restored the bundled 2K26 registration skeleton (`umbrella-app/app/skeletons/14000-base/BakeMe`).
   - Standing work: in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding.
 
 ### Rule reminder

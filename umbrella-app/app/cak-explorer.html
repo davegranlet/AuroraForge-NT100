@@ -34,8 +34,9 @@
 
       <section class="ai-panel app-panel">
         <div class="section-label" style="margin-top:0;">Setup - Locate your installed game</div>
-        <h2>Choose your WWE 2K26 game folder</h2>
-        <p>The extractor uses this folder to find every <code>.cak</code> archive and the game-provided <code>oo2core_9_win64.dll</code> decompressor. You only need to choose it once.</p>
+        <h2>Choose your WWE 2K game folder</h2>
+        <p>The extractor uses this folder to find every <code>.cak</code> archive and the game-provided Oodle decompressor. You only need to choose it once. Pick the version you are working on below, or leave auto-detect on: WWE 2K25 opens through the bundled native backend, 2K22-2K26 through the built-in readers, and WWE 2K19 archives are PAC files handled by the PAC Explorer.</p>
+        <div class="cak-path-row"><label for="cakGameVersion" style="min-width:110px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a7b0b8">Game version</label><select id="cakGameVersion" style="flex:1;max-width:360px;background:rgba(8,9,11,.85);border:1px solid rgba(215,221,224,.2);border-radius:9px;color:inherit;padding:8px 10px;font:inherit"><option value="">Auto-detect from archive</option><option value="2k19">WWE 2K19 (PAC files - use PAC Explorer)</option><option value="2k20">WWE 2K20 (CAK)</option><option value="2k22">WWE 2K22 (FDIR 8.3)</option><option value="2k23">WWE 2K23 (FDIR 8.3)</option><option value="2k24">WWE 2K24 (FDIR 9.x)</option><option value="2k25">WWE 2K25 (FDIR 9.3 - native backend)</option><option value="2k26">WWE 2K26 (FDIR 9.9)</option></select></div>
         <div class="cak-path-row"><code id="cakGameFolderPath">No game folder selected.</code><button id="cakChooseGameFolder" class="ai-btn" type="button">Choose Game Folder</button></div>
         <p id="cakSetupMessage" class="cak-message" role="status"></p>
       </section>

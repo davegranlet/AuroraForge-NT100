@@ -1,0 +1,29 @@
+.hero-note{max-width:650px;margin:16px 0 0;padding-left:13px;border-left:3px solid var(--red);color:#c1c9cc;font-size:13px}.hero-note strong{color:var(--red-soft);letter-spacing:.08em}
+
+/* Beta 3 long-form page */
+.lf-hero{padding-bottom:8px}
+.lf-copy{max-width:880px;margin:0 auto}
+.lf-copy h2{font-size:clamp(26px,3.2vw,40px);line-height:1.12;margin:10px 0 14px}
+.lf-copy h3{font-size:22px;margin:22px 0 8px}
+.lf-copy p{color:#c4cbcf;line-height:1.75;font-size:16px;margin:12px 0}
+.lf-copy strong{color:#eef1f3}
+.lf-list{list-style:none;padding:0;margin:14px 0}
+.lf-list li{position:relative;padding:10px 0 10px 26px;color:#d3d9dc;line-height:1.6;border-bottom:1px solid rgba(255,255,255,.06)}
+.lf-list li::before{content:"";position:absolute;left:4px;top:18px;width:8px;height:8px;background:linear-gradient(180deg,#ff5252,#8a1722);transform:rotate(45deg)}
+.lf-list-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0 28px}
+.lf-loop{font-weight:600;color:#eef1f3;border-left:3px solid var(--red);padding:6px 0 6px 14px;letter-spacing:.2px}
+.lf-toc{max-width:880px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;color:#8b9297;font-size:13px}
+.lf-toc a{color:#d6dcdf;text-decoration:none;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 12px;font-size:12.5px}
+.lf-toc a:hover{border-color:var(--red);color:#fff}
+.lf-table-wrap{overflow-x:auto;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.02)}
+.lf-table{width:100%;border-collapse:collapse;min-width:720px}
+.lf-table th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#e9edef;padding:16px 18px;border-bottom:1px solid rgba(224,49,49,.55)}
+.lf-table td{padding:14px 18px;color:#c4cbcf;border-bottom:1px solid rgba(255,255,255,.07);line-height:1.55;font-size:15px}
+.lf-table tr:last-child td{border-bottom:0}
+.lf-table td:last-child{color:#e9edef}
+.lf-table tbody tr:hover{background:rgba(224,49,49,.05)}
+.lf-cta .lf-copy{max-width:760px}
+.lf-center{text-align:center}
+.lf-center-actions{justify-content:center}
+
+main a{color:#d6dcdf}main a:hover{color:#ff5252}

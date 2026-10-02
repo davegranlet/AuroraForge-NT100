@@ -1,0 +1,5 @@
+# Release binaries live on the cPanel host (public_html/downloads/), not in git.
+# Only README.txt and SHA256SUMS.txt stay tracked here.
+*.exe
+*.zip
+*.tar.gz
