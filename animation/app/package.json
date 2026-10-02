@@ -12,7 +12,7 @@
     "package:linux": "npm run prestage && electron-builder --linux tar.gz"
   },
   "build": {
-    "artifactName": "Aurora-Forge-2.0.a-Preview.${ext}",
+    "artifactName": "Aurora-Forge-2.0.b-Preview.${ext}",
     "extraResources": [
       {
         "from": "./public-tools",

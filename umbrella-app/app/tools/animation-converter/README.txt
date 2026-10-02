@@ -1,10 +1,10 @@
 AuroraForge NT100 2.0 Animation Converter
 
 Preferred bundled portable converter:
-  Aurora-Forge-2.0.a-Preview.exe
+  Aurora-Forge-2.0.b-Preview.exe
 
 SHA-256:
-  2E1AE3101FABEE2AF37E3D86A436F9AE11855B49CF229EB59C599A59FBAC3314
+  7D5DC5B9F1AF68F3F4E90857F1FE327D59A1ED813093AAF2D9CE02FC43070529
 
 Rollback builds (kept on disk, NOT shipped in the package):
   ..\..\..\rollback\converters\Aurora-Forge-Beta3-Preview.exe
@@ -12,7 +12,7 @@ Rollback builds (kept on disk, NOT shipped in the package):
   ..\..\..\rollback\converters\Aurora-Forge-Beta1.0.0c-Preview.exe
 
 Version scheme: major releases are plain (1.8.0, 2.0, ...); every fix/update gets
-the next letter (2.0.a, 2.0.b, ...). See VERSION-HISTORY.md at the repo root.
+the next letter (2.0.b, 2.0.b, ...). See VERSION-HISTORY.md at the repo root.
 
 Current verified scope:
 - Reads decoded WWE 2K19 motion.

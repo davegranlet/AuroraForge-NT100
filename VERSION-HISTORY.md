@@ -29,6 +29,24 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.b — 2026-10-02
+
+Third published build on the 2.0 line. Ships all queued 2.0.b fixes together.
+
+- **Navigation consistency (owner-approved workspace look).** The workspace sidebar (Forge Home / Projects / Prompt Builders / Inspect & Convert / Package & Test / Rebuilding / Setup / About) is now the single canonical menu on all 38 app pages; package/test pages highlight their own "Package & Test" item.
+- **Entry Studio runs as an in-app tool — no local server.** The legacy standalone Node server (127.0.0.1:7878 + browser) is retired inside the app: new `app/entry-studio.html` page + renderer, new in-process `electron/services/entry-studio-service.js`, IPC + preload bridge, folder settings persisted to app data, converter toolchain staged into packaged builds, converter core honors `AURORA_FTRIB`/`AURORA_GAME_ROOT`. The tools-hub card links to the page.
+- **Converter wizard uses only the user's own folders.** Dev-machine defaults removed; the wizard auto-detects both installs (2K19 + 2K25/2K26, picker for each), suggests output under `Documents\AuroraForge NT100 Exports`, and the registration skeleton is rebuilt from the user's own game files via `refresh-2k26-skeleton.js` (bundled base template). Library build fails closed with an actionable message instead of running against a missing skeleton path.
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.b:
+
+```
+AuroraForge-NT100-2.0.b-Windows-x64.zip
+AuroraForge-NT100-2.0.b-Linux-x64.tar.gz
+Aurora-Forge-2.0.b-Preview.exe
+Aurora-Forge-2.0.b-Preview.tar.gz
+```
+
 ## 2.0.a — 2026-10-01
 
 Second build on the 2.0 line (source-level version; artifacts publish with the next build run).
@@ -41,10 +59,11 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.b** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
-  - Queued: **navigation consistency fix** - the owner-approved workspace sidebar (Forge Home / Projects / Prompt Builders / Inspect & Convert / Package & Test / Rebuilding / Setup / About) is now the single canonical menu on all 38 app pages; the package/test pages (mod-suite, mod-workshop, mod-file-inspector) highlight their own "Package & Test" item; `verify-package` navigation checks updated and passing.
-  - Queued: **Entry Studio runs as an in-app tool** - the legacy standalone Node server (127.0.0.1:7878 + browser) is retired inside the app: new `app/entry-studio.html` page + renderer, new in-process `electron/services/entry-studio-service.js`, IPC + preload bridge, folder settings persisted to user data, converter toolchain staged into packaged builds, converter core honors `AURORA_FTRIB`/`AURORA_GAME_ROOT`. The tools-hub card links to the page; `verify-package` checks updated and passing. (Owner's live click-through still to be done.)
-  - Queued: **converter wizard uses only the user's own folders** - removed the dev-machine defaults from the 2K19→2K25/2K26 library wizard (owner's `D:\...\WWE 2K19`, `C:\AuroraForge-Aug26\_work\...` skeleton/output paths); the wizard now auto-detects both installs (2K19 + 2K25/2K26, with a picker for each), suggests output under `Documents\AuroraForge NT100 Exports`, and the registration skeleton is rebuilt from the user's own game files via `refresh-2k26-skeleton.js` (bundled base template; dev foundry fallback fixed for the umbrella). Library build now fails closed with an actionable message instead of running against a missing skeleton path.
+- **2.0.c** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+  - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
+  - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
+  - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.
+  - Queued: **Entry Studio live click-through** - owner-run pass over the new in-app page (scan → convert → edit → bake → stage).
 
 ### Rule reminder
 

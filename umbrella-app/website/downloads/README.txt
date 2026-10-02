@@ -1,39 +1,38 @@
-AuroraForge NT100 2.0 - downloads folder
+AuroraForge NT100 2.0.b - downloads folder
 
 Live once uploaded at https://auroraforge.live/downloads/<name>:
 
-  AuroraForge-NT100-2.0-Windows-x64.zip     448 MB  main app, Windows x64
-  AuroraForge-NT100-2.0-Linux-x64.tar.gz    428 MB  main app, Linux x64 (GPU-less OK)
-  Aurora-Forge-2.0-Preview.exe              198 MB  converter only, Windows
-  Aurora-Forge-2.0-Preview.tar.gz           289 MB  converter only, Linux
+  AuroraForge-NT100-2.0.b-Windows-x64.zip    507 MB  main app, Windows x64
+  AuroraForge-NT100-2.0.b-Linux-x64.tar.gz   486 MB  main app, Linux x64 (GPU-less OK)
+  Aurora-Forge-2.0.b-Preview.exe             170 MB  converter only, Windows
+  Aurora-Forge-2.0.b-Preview.tar.gz          243 MB  converter only, Linux
 
 Upload these four files to cPanel public_html/downloads/ (keep the same names -
-the site's download buttons point at these URLs), then upload SHA256SUMS.txt
-alongside them.
+the site links must point at these URLs), then upload SHA256SUMS.txt alongside.
 
-CLEANUP on the server: delete the previous Beta 3-named files:
-  AuroraForge-NT100-Beta3-Windows-x64.zip
-  AuroraForge-NT100-Beta3-Linux-x64.tar.gz
-  Aurora-Forge-Beta3-Preview.exe
-  Aurora-Forge-Beta3-Preview.tar.gz
+CLEANUP on the server: delete the previous 2.0.a-named files:
+  AuroraForge-NT100-2.0.a-Windows-x64.zip
+  AuroraForge-NT100-2.0.a-Linux-x64.tar.gz
+  Aurora-Forge-2.0.a-Preview.exe
+  Aurora-Forge-2.0.a-Preview.tar.gz
+(If any 2.0-named files are still on the server, delete those too.)
 
 Verify the uploads against these hashes (also in SHA256SUMS.txt):
 
-  48BEB714968F365DFE124E0420C0616E0FB246D9C8E0C9B36040B4B9E9463D56  AuroraForge-NT100-2.0-Windows-x64.zip
-  A8E2C9870688ED74C7C2ACAC90475731ECBCBA17ADFD26CC2BF52C109BEAC354  AuroraForge-NT100-2.0-Linux-x64.tar.gz
-  E2CC5A3F0B5FBCCC614C487E179C3D7D798968578FA5886B8941E7F9A37B1FC1  Aurora-Forge-2.0-Preview.exe
-  318B4187359B3FE2CB2150F2AB0C6D073A41BB25CAB1E80F8FB8A212EC30C3AA  Aurora-Forge-2.0-Preview.tar.gz
+  89BC450A2BD473C708392F9BBE30A24257ADBB90A124B64B2C6ACE049D08C336  AuroraForge-NT100-2.0.b-Windows-x64.zip
+  8D59B2B0AF457885C9BE2F50AB4753783BFD2B5E4950E1A263510897FF708AD5  AuroraForge-NT100-2.0.b-Linux-x64.tar.gz
+  7D5DC5B9F1AF68F3F4E90857F1FE327D59A1ED813093AAF2D9CE02FC43070529  Aurora-Forge-2.0.b-Preview.exe
+  E510FFEDDABD30F030D1A64CA6982E43EF9AE0B684FC30AA5B70926596EAC  Aurora-Forge-2.0.b-Preview.tar.gz
 
-Version scheme (locked): major releases are plain (1.8.0, 2.0, ...); every
-fix/update gets the next letter (2.0.a, 2.0.b, ...). Each download filename
-carries its version, and VERSION-HISTORY.md in the repo maps every version to
-that build's changes. Old builds are kept under rollback/ and are never shipped.
+What changed in 2.0.b: the workspace sidebar is now consistent on every page,
+Entry Studio runs inside the app (no local server / no browser), and the
+converter wizard no longer uses anyone's local paths - you point it at your own
+WWE 2K19 folder and your own WWE 2K25/2K26 folder, and the registration skeleton
+is rebuilt from your own game files on your PC. See VERSION-HISTORY.md for the
+full list.
 
-Protection: every build verifies access in-app before tools unlock - active
-Patreon tier plus a linked Discord VIP role (two-tier check through the hardened
-hosted verifier, rev 2026-10-01-secure3). Each release embeds a fresh random
-verification challenge; the verifier binds it through the whole sign-in flow.
-Free subscription links: https://www.patreon.com/dgranletmwo/redeem/0C242
+Version scheme: majors are plain (2.0, 2.1, ...); every fix/update gets the next
+letter (2.0.a, 2.0.b, ...). Free subscription links: https://www.patreon.com/dgranletmwo/redeem/0C242
 
 The GitHub release at https://github.com/davegranlet/AuroraForge-NT100/releases
 is the public mirror with the same published SHA-256 hashes.
