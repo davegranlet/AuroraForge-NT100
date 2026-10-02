@@ -15,7 +15,7 @@ for (let n = 2; fs.existsSync(packDir); n++) {
   }
 }
 const releaseDir = path.join(root, 'portable-release', 'Owner-Build');
-const zipName = 'AuroraForge-NT100-Owner-2.0-Windows-x64.zip';
+const zipName = 'AuroraForge-NT100-Owner-2.0.a-Windows-x64.zip';
 const zipPath = path.join(releaseDir, zipName);
 
 function run(command, args, label) {
@@ -36,7 +36,7 @@ run(process.execPath, ['scripts/prepare-runtime-staging.js']);
 const marker = {
   format: 'aurora-owner-build',
   product: 'AuroraForge NT100',
-  release: '2.0',
+  release: '2.0.a',
   releaseTitle: 'Beta3',
   owner: true,
   generatedAt: new Date().toISOString(),

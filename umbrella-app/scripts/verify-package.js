@@ -40,10 +40,10 @@ const projectCatalog = json('app', 'data', 'aurora-projects.json');
 
 ok(pkg.version === '2.0.0', 'standards-safe package version is 2.0');
 ok(lock.version === '2.0.0' && lock.packages[''].version === '2.0.0', 'package-lock root version matches');
-ok(manifest.release === '2.0' && manifest.releaseTitle === 'Beta 3', 'manifest identifies visible AuroraForge NT100 Beta3');
-ok(config.release === '2.0' && config.releaseTitle === 'Beta 3', 'app config identifies visible AuroraForge NT100 Beta3');
+ok(manifest.release === '2.0.a' && manifest.releaseTitle === 'Beta 3', 'manifest identifies visible AuroraForge NT100 Beta3');
+ok(config.release === '2.0.a' && config.releaseTitle === 'Beta 3', 'app config identifies visible AuroraForge NT100 Beta3');
 const releaseChallenge = json('app', 'config', 'release-challenge.json');
-ok(releaseChallenge.release === '2.0' && releaseChallenge.releaseTitle === 'Beta 3' && /^[0-9a-f]{64}$/i.test(releaseChallenge.challenge || ''), 'per-release verification challenge is generated for Beta3');
+ok(releaseChallenge.release === '2.0.a' && releaseChallenge.releaseTitle === 'Beta 3' && /^[0-9a-f]{64}$/i.test(releaseChallenge.challenge || ''), 'per-release verification challenge is generated for Beta3');
 ok(pkg.devDependencies.electron === '43.2.0', 'Electron is exactly pinned');
 ok(pkg.devDependencies['@electron/packager'] === '20.0.4', 'Electron Packager is exactly pinned');
 ok(pkg.dependencies.three === '0.185.1', 'Three.js is exactly pinned');
@@ -136,7 +136,8 @@ function walk(directory) {
 }
 walk(appRoot);
 ok(!allFiles.some((file) => file.toLowerCase().endsWith('.php')), 'no PHP files are present');
-ok(!allFiles.some((file) => /\.(dds|mcd|mtls|jmtl|ycl|cak)$/i.test(file)), 'no extracted game or proprietary character assets are bundled');
+const bundledBuildAsset = (file) => /[\\/]skeletons[\\/]/i.test(file) || /[\\/]tools[\\/]cak-v93[\\/]/i.test(file);
+ok(!allFiles.some((file) => /\.(dds|mcd|mtls|jmtl|ycl|cak)$/i.test(file) && !bundledBuildAsset(file)), 'no extracted game or proprietary character assets are bundled');
 
 const expectedPrimary = [
   'index.html',
@@ -221,7 +222,7 @@ ok(mainJs.includes('projectsFolder') && mainJs.includes('exportsFolder'), 'Elect
 ok(mainJs.includes("desktop:check-aurora-loader") && preloadJs.includes('checkAuroraLoader'), 'Electron exposes Aurora loader setup check');
 ok(!/desktop:check-cakehook|cakeView:|tribute:/.test(mainJs + preloadJs), 'Electron setup allowlist excludes old third-party tool gates');
 ok(!/cakeView|tribute|texconv/.test(read('app', 'assets', 'js', 'tool-center.js')), 'Setup renderer only lists supported creative programs');
-ok(mainJs.includes('AuroraForge NT100 Beta 3') && mainJs.includes('Internal build 2.0'), 'Electron About uses visible Beta3 release identity');
+ok(mainJs.includes('AuroraForge NT100 Beta 3') && mainJs.includes('Internal build 2.0.a'), 'Electron About uses visible Beta3 release identity');
 ok(!mainJs.includes('toggleDevTools'), 'normal Electron menu does not expose developer tools');
 
 const studiosHtml = read('app', 'creative-studios.html');

@@ -1,6 +1,6 @@
 param(
   [string]$AppFolder = "dist\AuroraForge NT100-win32-x64",
-  [string]$ZipName = "AuroraForge-NT100-2.0-Windows-x64.zip"
+  [string]$ZipName = "AuroraForge-NT100-2.0.a-Windows-x64.zip"
 )
 
 $ErrorActionPreference = "Stop"
@@ -44,7 +44,7 @@ Recommended workflow:
 5. Use Tutorials for short lessons, animated videos, troubleshooting, and advanced reference downloads.
 6. Take the exported prompt to your chosen compatible AI, then validate the resulting files in CakeView and in game.
 
-Version: 2.0 (Beta 3)
+Version: 2.0.a (Beta 3)
 Edition: Umbrella Beta
 
 AuroraForge NT100 prepares instructions and supporting files. It is not an AI chatbot

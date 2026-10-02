@@ -22,7 +22,7 @@ const record = {
 
 const targets = [
   path.join(root, 'app', 'config', 'release-challenge.json'),
-  path.join(root, 'WWE2K19-to-2K26-Entrance-Prototype', 'config', 'release-challenge.json'),
+  path.join(root, '..', 'animation', 'config', 'release-challenge.json'),
 ];
 for (const target of targets) {
   fs.mkdirSync(path.dirname(target), { recursive: true });

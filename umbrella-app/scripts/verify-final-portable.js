@@ -5,7 +5,7 @@ const crypto = require('crypto');
 
 const root = path.join(__dirname, '..');
 const appFolder = path.join(root, 'dist', 'AuroraForge NT100-win32-x64');
-const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.0-Windows-x64.zip');
+const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.0.a-Windows-x64.zip');
 const asarPath = path.join(appFolder, 'resources', 'app.asar');
 const unpackedTools = path.join(appFolder, 'resources', 'app.asar.unpacked', 'app', 'tools');
 

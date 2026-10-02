@@ -1,7 +1,7 @@
 {
-  "release": "2.0",
+  "release": "2.0.a",
   "releaseTitle": "Beta 3",
-  "challenge": "2447521f2e3ecaafe37e1d358e3a960648c522152d015906be590919c9e5e21c",
-  "generatedAt": "2026-10-01T21:53:04.279Z",
+  "challenge": "fb6abc4bc2801f4bc4114aba0cda8febff91d4f28c23127ec36033b388b643bc",
+  "generatedAt": "2026-10-02T03:02:15.833Z",
   "note": "Per-release verification challenge. Regenerate for every release; the hosted verifier echoes it and every stored session is bound to it."
 }

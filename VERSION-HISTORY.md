@@ -29,14 +29,19 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.a — 2026-10-01
+
+Second build on the 2.0 line (source-level version; artifacts publish with the next build run).
+
+- **CAK Foundry: multi-version archive support.** New game-version dropdown in the extractor (WWE 2K20 through 2K26, auto-detect by default) with header-based routing: FDIR 9.3 (2K25) opens through the bundled native FTribTool backend, FDIR 9.9 (2K26) and 8.3 (2K22/2K23) through the built-in readers, 2K19 points at the PAC Explorer. Browse, search, and extraction all route per archive; the bundled 9.3 backend round-trip is verified (pack -> detect -> catalog -> extract).
+- **Verifier rev `2026-10-01-secure4`:** `/health` now includes a live Discord probe (`discord: { bot, guild }`) and failures distinguish server-side bot problems from real account problems.
+- Converter copy now reads **"WWE 2K19 -> 2K26 Entry Forge"** (2K25/2K26 targets supported); per-build labels no longer say BETA2/BETA3 anywhere.
+- Restored the bundled 2K26 registration skeleton (`umbrella-app/app/skeletons/14000-base/BakeMe`).
+- Full umbrella repository import completed (app, 100% Not TRIBUTE, CAK Foundry, Animation, Loaders, Research, Tutorials).
+
 ## Next
 
-- The next **published** build takes the next letter: **2.0.a**. Already queued for it (committed in source, deliberately not republished - internal-only):
-  - Converter window copy fixes: the per-build labels no longer say "BETA2"/"BETA3" anywhere - the status banner and page titles now read 2.0.
-  - **CAK Foundry: multi-version archive support.** New game-version dropdown in the extractor (WWE 2K20 through 2K26, auto-detect by default) with header-based routing: FDIR 9.3 (2K25) opens through the bundled native FTribTool backend, FDIR 9.9 (2K26) and 8.3 (2K22/2K23) through the built-in readers, 2K19 points at the PAC Explorer. Browse, search, and extraction all route per archive; the bundled 9.3 backend round-trip is verified (pack -> detect -> catalog -> extract).
-  - Converter copy now reads "WWE 2K19 -> 2K26 Entry Forge" (2K25/2K26 targets supported).
-  - Restored the bundled 2K26 registration skeleton (`umbrella-app/app/skeletons/14000-base/BakeMe`).
-  - Standing work: in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding.
+- **2.0.b** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
 
 ### Rule reminder
 
