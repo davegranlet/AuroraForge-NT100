@@ -42,7 +42,8 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 ## Next
 
 - **2.0.b** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
-  - Queued: **navigation consistency fix** - the owner-approved workspace sidebar (Forge Home / Projects / Prompt Builders / Inspect & Convert / Package & Test / Rebuilding / Setup / About) is now the single canonical menu on all 37 app pages; the package/test pages (mod-suite, mod-workshop, mod-file-inspector) highlight their own "Package & Test" item; `verify-package` navigation checks updated and passing.
+  - Queued: **navigation consistency fix** - the owner-approved workspace sidebar (Forge Home / Projects / Prompt Builders / Inspect & Convert / Package & Test / Rebuilding / Setup / About) is now the single canonical menu on all 38 app pages; the package/test pages (mod-suite, mod-workshop, mod-file-inspector) highlight their own "Package & Test" item; `verify-package` navigation checks updated and passing.
+  - Queued: **Entry Studio runs as an in-app tool** - the legacy standalone Node server (127.0.0.1:7878 + browser) is retired inside the app: new `app/entry-studio.html` page + renderer, new in-process `electron/services/entry-studio-service.js`, IPC + preload bridge, folder settings persisted to user data, converter toolchain staged into packaged builds, converter core honors `AURORA_FTRIB`/`AURORA_GAME_ROOT`. The tools-hub card links to the page; `verify-package` checks updated and passing. (Owner's live click-through still to be done.)
 
 ### Rule reminder
 

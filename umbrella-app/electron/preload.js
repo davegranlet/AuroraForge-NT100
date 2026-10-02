@@ -5,7 +5,6 @@ contextBridge.exposeInMainWorld('WWE2K26Desktop', {
   getAccessStatus: () => ipcRenderer.invoke('desktop:access-status'),
   verifyAccess: () => ipcRenderer.invoke('desktop:verify-access'),
   openAnimationConverter: () => ipcRenderer.invoke('desktop:open-animation-converter'),
-  openEntryStudio: () => ipcRenderer.invoke('desktop:open-entry-studio'),
   chooseProjectFolder: () => ipcRenderer.invoke('desktop:choose-project-folder'),
   openDefaultProjectsFolder: () => ipcRenderer.invoke('desktop:open-default-projects-folder'),
   openDefaultExportsFolder: () => ipcRenderer.invoke('desktop:open-default-exports-folder'),
@@ -69,4 +68,19 @@ contextBridge.exposeInMainWorld('WWE2K26Desktop', {
   ,getCakCollisionReport: () => ipcRenderer.invoke('desktop:workshop-cak-collisions')
   ,getModManifest: () => ipcRenderer.invoke('desktop:workshop-mod-manifest')
   ,saveModManifest: (request) => ipcRenderer.invoke('desktop:workshop-save-mod-manifest', request)
+  ,entryStudio: {
+    getDefaults: () => ipcRenderer.invoke('desktop:entry-studio-defaults'),
+    saveConfig: (patch) => ipcRenderer.invoke('desktop:entry-studio-save-config', patch),
+    chooseFolder: () => ipcRenderer.invoke('desktop:entry-studio-choose-folder'),
+    scan: (folder) => ipcRenderer.invoke('desktop:entry-studio-scan', folder),
+    addFiles: () => ipcRenderer.invoke('desktop:entry-studio-add-files'),
+    convert: (payload) => ipcRenderer.invoke('desktop:entry-studio-convert', payload),
+    listEntries: () => ipcRenderer.invoke('desktop:entry-studio-entries'),
+    createEntry: (payload) => ipcRenderer.invoke('desktop:entry-studio-create', payload),
+    getEntry: (entryId) => ipcRenderer.invoke('desktop:entry-studio-get-entry', entryId),
+    writeEntry: (payload) => ipcRenderer.invoke('desktop:entry-studio-write-entry', payload),
+    music: () => ipcRenderer.invoke('desktop:entry-studio-music'),
+    bake: (payload) => ipcRenderer.invoke('desktop:entry-studio-bake', payload),
+    stage: (payload) => ipcRenderer.invoke('desktop:entry-studio-stage', payload)
+  }
 });

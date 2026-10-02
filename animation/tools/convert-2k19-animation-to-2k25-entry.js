@@ -250,8 +250,8 @@ function stageRegistration(treeRoot, { entryId, name, nameId, motionId, kind, mo
   return proof;
 }
 
-const FTRIB = 'C:\\AuroraForge-Aug26\\AuroraForge_WWE_PC-Game_Modding_Tool\\Aurora-CAK-Foundry\\app\\tools\\cak-v93\\FTribTool.exe';
-const GAME_ROOT = 'C:\\WWE 2K25 Saturday Nights Main Event';
+const FTRIB = process.env.AURORA_FTRIB || 'C:\\AuroraForge-Aug26\\AuroraForge_WWE_PC-Game_Modding_Tool\\Aurora-CAK-Foundry\\app\\tools\\cak-v93\\FTribTool.exe';
+const GAME_ROOT = process.env.AURORA_GAME_ROOT || 'C:\\WWE 2K25 Saturday Nights Main Event';
 
 // Minimal tree: ONLY the registration files the entry flow writes.
 // (Dire appears in EntranceListData + VictoryListData + SDB; SDB comes from

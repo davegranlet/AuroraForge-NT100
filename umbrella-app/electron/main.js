@@ -18,6 +18,7 @@ const { createSecureLoaderReleaseService } = require('./services/secure-loader-r
 const { createLoaderDiagnostics } = require('./services/loader-diagnostics');
 const { createCakCollisionService } = require('./services/cak-collision-service');
 const { createModManifestManager } = require('./services/mod-manifest-manager');
+const { createEntryStudioService } = require('./services/entry-studio-service');
 const { isOwnerBuild, ownerSession } = require('./owner-build');
 
 // GPU-less hosts (VPS/Docker/headless): on Linux the app defaults to software
@@ -165,6 +166,17 @@ function workshopServices() {
   const modManifest = createModManifestManager({ installRegistry: registry, journal, isGameRunning: isWwe2K26Running });
   workshopServiceCache = { registry, journal, capabilities, loader, releases, diagnostics, collisions, modManifest };
   return workshopServiceCache;
+}
+
+let entryStudioServiceCache = null;
+function entryStudioService() {
+  if (entryStudioServiceCache) return entryStudioServiceCache;
+  entryStudioServiceCache = createEntryStudioService({
+    appRoot: APP_ROOT,
+    userDataDir: app.getPath('userData'),
+    bundledToolPath
+  });
+  return entryStudioServiceCache;
 }
 
 function auditModSuiteFolder(selectedPath) {
@@ -1027,24 +1039,80 @@ ipcMain.handle('desktop:open-animation-converter', async () => {
   return { ok: false, error: 'No gated animation converter build found in app/tools/animation-converter.' };
 });
 
-ipcMain.handle('desktop:open-entry-studio', async () => {
+ipcMain.handle('desktop:entry-studio-defaults', () => {
   requireVerifiedAccess();
-  const serverPath = path.join(APP_ROOT, '..', 'entry-studio', 'server.js');
-  if (!fs.existsSync(serverPath)) return { ok: false, error: 'Entry Studio server.js was not found at ' + serverPath };
-  try {
-    const child = cp.spawn('node', [serverPath], {
-      cwd: path.dirname(serverPath),
-      detached: true,
-      stdio: 'ignore',
-      windowsHide: true
-    });
-    child.unref();
-  } catch (error) {
-    return { ok: false, error: String(error && error.message ? error.message : error) };
-  }
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-  await shell.openExternal('http://127.0.0.1:7878');
-  return { ok: true, url: 'http://127.0.0.1:7878' };
+  return entryStudioService().getDefaults();
+});
+
+ipcMain.handle('desktop:entry-studio-save-config', (_event, patch) => {
+  requireVerifiedAccess();
+  return entryStudioService().saveConfig(patch);
+});
+
+ipcMain.handle('desktop:entry-studio-choose-folder', async () => {
+  requireVerifiedAccess();
+  const result = await dialog.showOpenDialog({
+    title: 'Choose Entry Studio folder',
+    properties: ['openDirectory', 'createDirectory']
+  });
+  if (result.canceled || !result.filePaths[0]) return { ok: false, canceled: true };
+  return { ok: true, path: result.filePaths[0] };
+});
+
+ipcMain.handle('desktop:entry-studio-scan', (_event, folder) => {
+  requireVerifiedAccess();
+  return entryStudioService().scanBins(folder);
+});
+
+ipcMain.handle('desktop:entry-studio-add-files', async () => {
+  requireVerifiedAccess();
+  const result = await dialog.showOpenDialog({
+    title: 'Add 2K19 animation .bin files',
+    properties: ['openFile', 'multiSelections'],
+    filters: [{ name: '2K19 animation', extensions: ['bin'] }, { name: 'All files', extensions: ['*'] }]
+  });
+  if (result.canceled || !result.filePaths.length) return { ok: false, canceled: true, files: [] };
+  return entryStudioService().addFiles(result.filePaths);
+});
+
+ipcMain.handle('desktop:entry-studio-convert', (_event, payload) => {
+  requireVerifiedAccess();
+  return entryStudioService().convertFiles(payload || {});
+});
+
+ipcMain.handle('desktop:entry-studio-entries', () => {
+  requireVerifiedAccess();
+  return entryStudioService().listEntries();
+});
+
+ipcMain.handle('desktop:entry-studio-create', (_event, payload) => {
+  requireVerifiedAccess();
+  return entryStudioService().createEntry(payload || {});
+});
+
+ipcMain.handle('desktop:entry-studio-get-entry', (_event, entryId) => {
+  requireVerifiedAccess();
+  return entryStudioService().getEntry(entryId);
+});
+
+ipcMain.handle('desktop:entry-studio-write-entry', (_event, payload) => {
+  requireVerifiedAccess();
+  return entryStudioService().writeEntry(payload || {});
+});
+
+ipcMain.handle('desktop:entry-studio-music', () => {
+  requireVerifiedAccess();
+  return entryStudioService().musicList();
+});
+
+ipcMain.handle('desktop:entry-studio-bake', (_event, payload) => {
+  requireVerifiedAccess();
+  return entryStudioService().bake(payload || {});
+});
+
+ipcMain.handle('desktop:entry-studio-stage', (_event, payload) => {
+  requireVerifiedAccess();
+  return entryStudioService().stage(payload || {});
 });
 
 ipcMain.handle('desktop:choose-project-folder', async () => {

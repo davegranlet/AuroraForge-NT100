@@ -177,6 +177,14 @@ ok(mainJs.includes("desktop:verify-access") && preloadJs.includes('verifyAccess'
 ok(mainJs.includes("access-gate.html") && mainJs.includes("hasVerifiedAccess"), 'umbrella routes unverified users to the access gate');
 ok(read('app', 'tools', 'access-gate', 'patreon-access.js').includes('aurora-patreon-verifier.rd741904.chatgpt.site'), 'main app access gate uses the established verifier host');
 
+const entryStudioHtml = read('app', 'entry-studio.html');
+const entryStudioPageJs = read('app', 'assets', 'js', 'entry-studio-page.js');
+ok(entryStudioHtml.includes('entry-studio-page.js') && entryStudioPageJs.includes('entryStudio'), 'Entry Studio page runs in-app through the preload bridge');
+ok(mainJs.includes('desktop:entry-studio-bake') && mainJs.includes('desktop:entry-studio-stage') && preloadJs.includes('entryStudio:'), 'Electron exposes the Entry Studio service without a local server');
+ok(!/127\.0\.0\.1:7878/.test(mainJs + preloadJs + entryStudioHtml + read('app', 'tools.html')), 'Entry Studio no longer references the legacy local server');
+ok(!read('app', 'tools.html').includes('openEntryStudio'), 'tools hub links Entry Studio to its in-app page');
+ok(read('scripts', 'prepare-runtime-staging.js').includes('entry-studio'), 'runtime staging copies the Entry Studio toolchain');
+
 const compatibilityPages = new Set(['access-gate.html', 'desktop-dashboard.html', 'tool-center.html', 'knowledgebase.html']);
 const normalHtmlFiles = fs.readdirSync(appRoot).filter((name) =>
   name.endsWith('.html') && !compatibilityPages.has(name)

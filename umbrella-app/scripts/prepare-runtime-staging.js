@@ -8,13 +8,14 @@ function remove(target) {
   if (fs.existsSync(target)) fs.rmSync(target, { recursive: true, force: true });
 }
 
-function copyDir(src, dest) {
+function copyDir(src, dest, skip) {
   if (!fs.existsSync(src)) throw new Error(`Missing source directory: ${src}`);
   fs.mkdirSync(dest, { recursive: true });
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    if (skip && skip.has(entry.name)) continue;
     const from = path.join(src, entry.name);
     const to = path.join(dest, entry.name);
-    if (entry.isDirectory()) copyDir(from, to);
+    if (entry.isDirectory()) copyDir(from, to, skip);
     else fs.copyFileSync(from, to);
   }
 }
@@ -28,6 +29,7 @@ fs.mkdirSync(staging, { recursive: true });
 
 copyDir(path.join(root, 'app'), path.join(staging, 'app'));
 copyDir(path.join(root, 'electron'), path.join(staging, 'electron'));
+copyDir(path.join(root, '..', 'animation', 'tools'), path.join(staging, 'app', 'tools', 'entry-studio', 'tools'), new Set(['__pycache__', 'ghidra']));
 
 const pkg = readJson(path.join(root, 'package.json'));
 const runtimePackage = {
