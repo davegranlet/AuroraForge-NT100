@@ -65,12 +65,18 @@
 
     <section class="workspace wiz" id="step-2">
       <article class="card source" style="width:100%">
-        <div class="card-title"><span class="cyan">2</span><h3><span class="wiz-num">2</span>Point to your WWE 2K19 game folder</h3><label>Input</label></div>
+        <div class="card-title"><span class="cyan">2</span><h3><span class="wiz-num">2</span>Point to your game folders</h3><label>Input</label></div>
         <div class="drop">
           <div class="file-icon">&#128193;</div>
           <strong id="game19-name">Auto-detecting your WWE 2K19 install...</strong>
           <small>Your installed WWE 2K19 folder (must contain <span class="kbd">pac\evt</span> and <span class="kbd">oo2core_6_win64.dll</span>). Victory + Entrance motion PACs are decoded from here automatically.</small>
           <button id="choose-game">Choose WWE 2K19 Game Folder</button>
+        </div>
+        <div class="drop" style="margin-top:12px">
+          <div class="file-icon">&#128193;</div>
+          <strong id="game26-name">Auto-detecting your WWE 2K25/2K26 install...</strong>
+          <small>Your own WWE 2K25 or 2K26 game folder. The registration skeleton is rebuilt from this game's own files on your PC — nothing from anyone else's machine is used.</small>
+          <button id="game26-btn">Choose WWE 2K25/2K26 Game Folder</button>
         </div>
       </article>
     </section>
@@ -113,8 +119,8 @@
           <div class="bar" id="job-bar"><i></i></div>
           <small class="phase" id="job-phase"></small>
           <details class="adv">
-            <summary>Advanced (defaults are already correct for this machine)</summary>
-            <div class="row adv-convert">14000 skeleton (known-good solved registration BakeMe folder):<br><code id="skeleton-name">-</code><br><button id="skeleton-btn">Change skeleton folder</button></div>
+            <summary>Advanced (optional — defaults are set automatically)</summary>
+            <div class="row adv-convert">Registration skeleton (built from your own game automatically; pick a folder only to override):<br><code id="skeleton-name">-</code><br><button id="skeleton-btn">Change skeleton folder</button></div>
             <div class="row adv-convert">Output loader-ready CAK:<br><code id="output-name">-</code><br><button id="output-btn">Change output CAK</button></div>
             <div class="row adv-extract hidden">Extraction folder (must not already exist):<br><code id="extract-folder-name">-</code><br><button id="extract-folder-btn">Change extraction folder</button></div>
           </details>

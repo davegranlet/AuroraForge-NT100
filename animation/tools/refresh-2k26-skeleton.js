@@ -30,7 +30,16 @@ const path = require('node:path');
 const cp = require('node:child_process');
 const crypto = require('node:crypto');
 
-const DEFAULT_FOUNDRY = path.resolve(__dirname, '..', '..', 'Aurora-CAK-Foundry');
+const DEFAULT_FOUNDRY = (() => {
+  const candidates = [
+    path.resolve(__dirname, '..', '..', 'Aurora-CAK-Foundry'),
+    path.resolve(__dirname, '..', '..', 'cak-foundry')
+  ];
+  for (const candidate of candidates) {
+    try { if (fs.existsSync(candidate)) return candidate; } catch (_error) { /* ignore */ }
+  }
+  return candidates[0];
+})();
 
 // Scan cache: opening all 15 stock CAKs takes minutes; the result only depends
 // on the game file set and the wanted path set, so cache it per machine.

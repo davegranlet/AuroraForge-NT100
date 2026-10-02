@@ -2,19 +2,22 @@
 
 const $ = id => document.getElementById(id);
 
-// Beta2 defaults (this machine). The wizard pre-fills them so the owner can go
-// from launch to converted CAK with zero pickers; every one can be changed.
+// End-user defaults: no machine-specific paths. Everything is auto-detected or
+// chosen by the user; the registration skeleton is built from the user's own game.
 const DEFAULTS = {
-  game19: 'D:\\Program Files (x86)\\Steam\\steamapps\\common\\WWE 2K19',
-  skeleton: 'C:\\AuroraForge-Aug26\\_work\\14000-compat-v103\\BakeMe',
-  output: 'C:\\AuroraForge-Aug26\\_work\\beta2-output\\aurora-beta2-library.cak',
-  extractAll: 'C:\\AuroraForge-Aug26\\_work\\beta2-output\\aurora-2k19-extract-all',
+  game19: '',
+  game26: '',
+  skeleton: '',
+  output: '',
+  extractAll: '',
 };
 
 const state = {
   accessOk: false,
   game19: DEFAULTS.game19,
   game19Picked: false,
+  game26: DEFAULTS.game26,
+  game26Picked: false,
   skeleton: DEFAULTS.skeleton,
   output: DEFAULTS.output,
   extractFolder: DEFAULTS.extractAll,
@@ -91,7 +94,8 @@ function friendlyPatreonMessage(result) {
 function refreshReady() {
   const btn = $('convert');
   if (!btn) return;
-  btn.disabled = !(state.accessOk && state.game19 && !state.running);
+  const need26 = currentTask() !== 'extract-all';
+  btn.disabled = !(state.accessOk && state.game19 && (!need26 || state.game26) && !state.running);
 }
 
 function currentTask() {
@@ -191,6 +195,26 @@ async function chooseGameFolder() {
   }
 }
 
+function setGame26Folder(folder) {
+  if (!folder) return;
+  state.game26 = folder;
+  setText('game26-name', folder);
+  refreshReady();
+}
+
+async function chooseGame26Folder() {
+  try {
+    const folder = await window.aurora.pickDirectory();
+    if (folder) {
+      state.game26Picked = true;
+      setGame26Folder(folder);
+      log(`WWE 2K25/2K26 game folder selected: ${folder}`);
+    }
+  } catch (error) {
+    log('Folder picker failed: ' + (error && error.message ? error.message : error));
+  }
+}
+
 function setSkeletonFolder(folder) {
   if (!folder) return;
   state.skeleton = folder;
@@ -273,7 +297,7 @@ async function runConversion() {
   if (task === 'extract-all') {
     if (!state.extractFolder) return log('Step 4: choose an extraction folder.');
   } else {
-    if (!state.skeleton) return log('Step 4: choose the known-good 14000 skeleton BakeMe folder.');
+    if (!state.game26) return log('Step 2: choose your WWE 2K25/2K26 game folder — the registration skeleton is built from your own game files.');
     if (!state.output) return log('Step 4: choose an output mod .cak path.');
   }
 
@@ -310,8 +334,9 @@ async function runConversion() {
     } else {
       result = await window.aurora.build2k25LibraryFromGame({
         game19Folder: state.game19,
+        game26Folder: state.game26,
         scope: 'all',
-        skeleton: state.skeleton,
+        skeleton: state.skeleton || undefined,
         outputCak: state.output,
         foundryRoot: null,
       });
@@ -409,6 +434,9 @@ function wireUi() {
   const choose = $('choose-game');
   if (choose) choose.onclick = chooseGameFolder;
 
+  const game26Btn = $('game26-btn');
+  if (game26Btn) game26Btn.onclick = chooseGame26Folder;
+
   const skeletonBtn = $('skeleton-btn');
   if (skeletonBtn) {
     skeletonBtn.onclick = async () => {
@@ -465,18 +493,36 @@ function wireUi() {
   }
 }
 
-function init() {
+async function init() {
   wireUi();
-  setText('game19-name', state.game19);
-  setText('skeleton-name', state.skeleton);
-  setText('output-name', state.output);
-  setText('extract-folder-name', state.extractFolder);
-  setText('summary-output', basename(state.output));
   setPill(1, false, true);
   setPill(2, true, false);
   setPill(3, true, false);
   setPill(4, false, false);
-  log('Defaults ready: 2K19 folder pre-filled (change it any time), 14000 skeleton and output CAK set.');
+  try {
+    if (window.aurora && window.aurora.wizardDefaults) {
+      const d = await window.aurora.wizardDefaults();
+      if (d) {
+        if (d.game19) setGameFolder(d.game19);
+        if (d.game26) setGame26Folder(d.game26);
+        if (d.skeleton) setSkeletonFolder(d.skeleton);
+        if (d.output) setOutputCak(d.output);
+        if (d.extractFolder) {
+          state.extractFolder = d.extractFolder;
+          setText('extract-folder-name', d.extractFolder);
+        }
+      }
+    }
+  } catch (error) {
+    log('Default setup failed: ' + (error && error.message ? error.message : error));
+  }
+  setText('game19-name', state.game19 || 'Choose your WWE 2K19 game folder');
+  setText('game26-name', state.game26 || 'Choose your WWE 2K25/2K26 game folder');
+  setText('skeleton-name', state.skeleton || 'Built from your game files');
+  setText('output-name', state.output || 'Choose an output CAK');
+  setText('extract-folder-name', state.extractFolder || 'Choose an extraction folder');
+  setText('summary-output', basename(state.output));
+  log('Ready: point to your WWE 2K19 folder and your WWE 2K25/2K26 folder. The registration skeleton is rebuilt from your own game files on this PC.');
   applyTaskUi();
   refreshAccess();
 }

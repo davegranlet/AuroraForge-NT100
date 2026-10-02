@@ -125,7 +125,7 @@ function buildLibrary(options) {
   if (fs.existsSync(outputCak)) throw new Error(`refusing to overwrite existing CAK: ${outputCak}`);
 
   const baseClips = path.join(skeletonRoot, 'Animation', 'Victory');
-  if (!fs.existsSync(baseClips)) throw new Error(`skeleton Animation/Victory not found: ${baseClips}`);
+  if (!fs.existsSync(baseClips)) throw new Error(`skeleton Animation/Victory not found: ${baseClips}. Choose your WWE 2K25/2K26 game folder in the app so the registration skeleton is rebuilt from your own game files.`);
   const baseId = detectBaseId(skeletonRoot);
 
   const victoryMotions = listMotions('victory', options.victoryFolder);

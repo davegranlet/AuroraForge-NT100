@@ -71,6 +71,23 @@ function detect2k26Folder() {
   return null;
 }
 
+function detect2k19Folder() {
+  const detected = detectGameFolder('2k19');
+  if (detected) return detected;
+  const candidates = [
+    'C:\\Program Files (x86)\\Steam\\steamapps\\common\\WWE 2K19',
+    'D:\\Program Files (x86)\\Steam\\steamapps\\common\\WWE 2K19',
+    'E:\\Program Files (x86)\\Steam\\steamapps\\common\\WWE 2K19',
+    'C:\\SteamLibrary\\steamapps\\common\\WWE 2K19',
+    'D:\\SteamLibrary\\steamapps\\common\\WWE 2K19',
+    'E:\\SteamLibrary\\steamapps\\common\\WWE 2K19'
+  ];
+  for (const candidate of candidates) {
+    try { if (fs.existsSync(path.join(candidate, 'pac', 'evt'))) return candidate; } catch (_error) { /* ignore */ }
+  }
+  return null;
+}
+
 function detectGameInstalls() {
   const registry = gameRegistry();
   if (registry) {
@@ -83,6 +100,7 @@ function detectGameInstalls() {
 function bundledSkeleton() {
   const candidates = [
     path.join(process.resourcesPath, 'aurora-tools', 'skeletons', '14000-base', 'BakeMe'),
+    path.resolve(__dirname, '..', '..', 'umbrella-app', 'app', 'skeletons', '14000-base', 'BakeMe'),
     path.resolve(__dirname, '..', '..', '..', '_work', '14000-compat-v103', 'BakeMe')
   ];
   for (const candidate of candidates) {
@@ -94,7 +112,7 @@ function bundledSkeleton() {
 async function refresh2k26Skeleton(repo, event, options) {
   const settings = options || {};
   const game26 = settings.game26Folder || detect2k26Folder();
-  if (!game26) return { ok: false, err: 'WWE 2K26 install folder was not found.' };
+  if (!game26) return { ok: false, err: 'Choose your WWE 2K25/2K26 game folder so the registration skeleton can be built from your own game files.' };
   const template = settings.template || bundledSkeleton() || settings.skeleton || null;
   if (!template) return { ok: false, err: 'No base skeleton is available to refresh.' };
   const out = path.join(app.getPath('userData'), 'skeletons', '14000-2k26', 'BakeMe');
@@ -664,6 +682,10 @@ ipcMain.handle('build-2k25-library-from-game', async (e, args) => {
     });
     if (skeletonRefresh.ok) skeleton = skeletonRefresh.skeleton;
   }
+  const skeletonUsable = Boolean(skeleton) && fs.existsSync(path.join(skeleton, 'Entrances', 'VictoryListData.jsfb'));
+  if (!skeletonUsable) {
+    return { ok: false, stage: 'skeleton', skeletonRefresh, err: 'The registration skeleton could not be prepared. Choose your WWE 2K25/2K26 game folder and try again — the skeleton is built from that game on your PC.' };
+  }
   const extracted = path.join(path.dirname(outputCak), `${path.basename(outputCak, '.cak')}-2k19-extracted`);
 
   const ex = await runNode(repo, [
@@ -701,6 +723,22 @@ ipcMain.handle('refresh-2k26-skeleton', async (e, args) => {
     return { ok: false, code: 'access_denied', err: error.message };
   }
   return refresh2k26Skeleton(repoRoot(), e, args || {});
+});
+
+ipcMain.handle('wizard-defaults', async () => {
+  let game19 = null;
+  let game26 = null;
+  try { game19 = detect2k19Folder(); } catch (_error) { /* ignore */ }
+  try { game26 = detect2k26Folder(); } catch (_error) { /* ignore */ }
+  const exportsDir = path.join(app.getPath('documents'), 'AuroraForge NT100 Exports');
+  return {
+    ok: true,
+    game19: game19 || '',
+    game26: game26 || '',
+    skeleton: bundledSkeleton() || '',
+    output: path.join(exportsDir, 'aurora-library.cak'),
+    extractFolder: path.join(exportsDir, '2k19-extract-all')
+  };
 });
 
 ipcMain.handle('detect-games', async () => {

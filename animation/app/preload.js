@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld('aurora', {
   pickDirectory: () => ipcRenderer.invoke('pick-directory'),
   pickFbxSave: () => ipcRenderer.invoke('pick-fbx-save'),
   patreonStatus: () => ipcRenderer.invoke('patreon-status'),
+  wizardDefaults: () => ipcRenderer.invoke('wizard-defaults'),
   editorSuiteStatus: () => ipcRenderer.invoke('editor-suite-status'),
   verifyPatreon: args => ipcRenderer.invoke('verify-patreon', args),
   convert: args => ipcRenderer.invoke('convert', args),
