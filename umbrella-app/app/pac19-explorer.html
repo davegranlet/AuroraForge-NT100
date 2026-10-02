@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 - WWE 2K19 PAC Explorer and Rebuilder</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260825-pac19">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell pac19-page">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">H</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">P</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">C</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">T</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">?</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">S</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">i</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Safety rule</div><strong>Open - Copy - Test</strong><span>AuroraForge NT100 always saves a rebuilt PAC as a separate file.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 - WWE 2K19 tools</div><h1>WWE 2K19 PAC Explorer and Rebuilder</h1><p class="sub">Inspect PACs, extract entries, or build a separate PAC with one supported replacement.</p></div></section>
+    <div class="wrap app-wrap pac19-wrap">
+      <section class="ai-hero app-hero pac19-hero">
+        <div><div class="part-label">Standalone archive tool</div><h2>See what is inside before you change anything.</h2><p>The tool reads HSPC, SHDC, EPAC, EPK8, and PACH containers. It uses the Oodle library from your own WWE 2K19 installation when an entry needs Oodle decompression or recompression.</p></div>
+        <div class="cak-hero-status"><span id="pac19ReadyBadge" class="cak-status-badge">Checking...</span><small id="pac19ReadyText">Looking for WWE 2K19.</small></div>
+      </section>
+
+      <section class="ai-panel app-panel pac19-setup-panel">
+        <div class="section-label" style="margin-top:0;">Tool setup</div>
+        <h2>Set the WWE 2K19 install folder</h2>
+        <p>Choose the folder that contains <code>WWE2K19_x64.exe</code> and <code>oo2core_6_win64.dll</code>. AuroraForge NT100 saves this for the extractor and uses your installed Oodle DLL without copying it into the app.</p>
+        <div class="pac19-setup-grid" aria-label="PAC tool setup status">
+          <div><span>Runtime</span><strong id="pac19RuntimeMode">Checking...</strong></div>
+          <div><span>Game folder</span><code id="pac19GamePath">Checking...</code></div>
+          <div><span>Oodle DLL</span><code id="pac19OodlePath">Checking...</code></div>
+          <div><span>PAC helper</span><strong id="pac19HelperStatus">Checking...</strong></div>
+        </div>
+        <div class="cak-path-row"><button id="pac19ChooseGame" class="ai-btn secondary" type="button">Set WWE 2K19 Folder</button></div>
+        <p id="pac19SetupMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">1 - Open a PAC</div>
+        <h2>Choose the archive you want to inspect</h2>
+        <div class="cak-path-row"><code id="pac19ArchivePath">No PAC selected.</code><button id="pac19ChooseArchive" class="ai-btn secondary" type="button">Choose PAC</button><button id="pac19OpenArchive" class="ai-btn" type="button" disabled>Open PAC</button></div>
+        <p id="pac19OpenMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section id="pac19Browser" class="ai-panel app-panel" hidden>
+        <div class="cak-summary-grid">
+          <div><strong id="pac19EntryCount">0</strong><span>Entries</span></div>
+          <div><strong id="pac19ContainerType">-</strong><span>Container</span></div>
+          <div><strong id="pac19ArchiveSize">0 B</strong><span>PAC size</span></div>
+          <div><strong id="pac19ReplaceableCount">0</strong><span>Replaceable</span></div>
+        </div>
+        <div class="section-label">2 - Choose files</div>
+        <p class="cak-message">If a PAC only stores raw numeric identifiers, AuroraForge NT100 shows generated names and keeps the original entry ID under each row.</p>
+        <div class="cak-search-row pac19-search"><input id="pac19Search" type="search" placeholder="Search by entry name or type"><select id="pac19Type"><option value="">All file types</option></select></div>
+        <div class="cak-table-shell pac19-table-shell">
+          <table class="cak-table pac19-table">
+            <thead><tr><th><input id="pac19SelectAll" type="checkbox" aria-label="Select every visible entry"></th><th>Entry</th><th>Type</th><th>Compression</th><th>Stored</th><th>Expanded</th><th>Replace</th></tr></thead>
+            <tbody id="pac19Rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="pac19ExtractPanel" class="ai-panel good-panel app-panel" hidden>
+        <div class="section-label" style="margin-top:0;">3 - Extract selected files</div>
+        <h2><span id="pac19SelectedCount">0</span> file(s) selected</h2>
+        <div class="cak-path-row"><code id="pac19OutputPath">Choose a separate output folder.</code><button id="pac19ChooseOutput" class="ai-btn secondary" type="button">Choose Output Folder</button></div>
+        <label class="cak-check"><input id="pac19Overwrite" type="checkbox"> Replace same-name files already in the output folder</label>
+        <div class="ai-actions"><button id="pac19Extract" class="ai-btn" type="button" disabled>Extract Selected Files</button><button id="pac19OpenOutput" class="ai-btn secondary" type="button" disabled>Open Output Folder</button></div>
+        <p id="pac19ExtractMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section id="pac19ReplacePanel" class="ai-panel app-panel" hidden>
+        <div class="section-label" style="margin-top:0;">4 - Build a replacement PAC</div>
+        <h2>Replace one supported entry</h2>
+        <p>Select one <strong>Replace</strong> option in the table. Choose the edited, uncompressed file you want stored in its place. AuroraForge NT100 keeps the original PAC untouched and asks where to save the rebuilt copy.</p>
+        <div class="pac19-replace-grid"><div><span>Entry being replaced</span><code id="pac19ReplaceEntry">None selected.</code></div><div><span>Replacement file</span><code id="pac19ReplacementPath">None selected.</code></div></div>
+        <div class="ai-actions"><button id="pac19ChooseReplacement" class="ai-btn secondary" type="button" disabled>Choose Replacement File</button><button id="pac19BuildReplacement" class="ai-btn" type="button" disabled>Build New PAC</button></div>
+        <p id="pac19ReplaceMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section class="ai-panel warn-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Current safety limits</div>
+        <h2>Unsupported writes stay unavailable</h2>
+        <p>This release rebuilds existing entries through HSPC and SHDC containers. It does not add entries, overwrite the selected PAC, rebuild BPE data, or write through EPAC, EPK8, and PACH parents. BPE entries can still be copied out in their original compressed form.</p>
+        <p>WWE 2K20 is a separate CAK-based target. Use the WWE 2K20 CAK Workbench to check the install and track extractor/rebuilder readiness.</p>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="assets/js/pac19-explorer.js"></script>
+</body>
+</html>

@@ -1,0 +1,463 @@
+{
+  "schema": "aurora-forge-project-catalog-v1",
+  "release": "Beta 3",
+  "projects": [
+    {
+      "id": "aurora-forge",
+      "title": "AuroraForge NT100 Umbrella App",
+      "kind": "app",
+      "pillar": "App Shell",
+      "status": "experimental",
+      "games": [
+        "2K19",
+        "2K20",
+        "2K22",
+        "2K23",
+        "2K24",
+        "2K25",
+        "2K26"
+      ],
+      "description": "The portable desktop home for AuroraForge NT100 projects, tools, documentation, and releases.",
+      "repository": "https://github.com/davegranlet/AuroraForge_WWE_PC-Game_Modding_Tool",
+      "workspaceRelativePath": ".",
+      "integratedPage": "index.html"
+    },
+    {
+      "id": "animation-converter",
+      "title": "WWE 2K19 to WWE 2K25/2K26 Animation Converter",
+      "kind": "converter",
+      "pillar": "Animation",
+      "status": "experimental",
+      "games": [
+        "2K19",
+        "2K25",
+        "2K26"
+      ],
+      "description": "AuroraForge NT100 converts decoded 2K19 motion into modern 2K25/2K26 clips output and can build a loader-ready CAK. Additive menu entries and final pose alignment remain test-gated.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-WWE2K19-Animation-Research",
+      "workspaceRelativePath": "WWE2K19-to-2K26-Entrance-Prototype",
+      "featured": true
+    },
+    {
+      "id": "cak-foundry",
+      "title": "Aurora CAK Foundry",
+      "kind": "tool",
+      "pillar": "Archives",
+      "status": "ready",
+      "games": [
+        "2K25",
+        "2K26"
+      ],
+      "description": "Reads, extracts, builds, reopens, and verifies CAK archives without overwriting stock archives.",
+      "repository": "https://github.com/davegranlet/Aurora-CAK-Foundry",
+      "workspaceRelativePath": "Aurora-CAK-Foundry",
+      "integratedPage": "cak-explorer.html"
+    },
+    {
+      "id": "cak-loader-2k25",
+      "title": "AuroraForge NT100 CAK Mod Loader - WWE 2K25",
+      "kind": "loader",
+      "pillar": "Game Serving",
+      "status": "ready",
+      "games": [
+        "2K25"
+      ],
+      "description": "Verified boot-thread mount injection that registers mod CAK menu data before WWE 2K25 reads its tables.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-CAK-Mod-Loader-WWE2K25",
+      "workspaceRelativePath": "Aurora-Forge-CAK-Mod-Loader-WWE2K25"
+    },
+    {
+      "id": "secure-datacrtllink-2k25",
+      "title": "Secure DataCtrlLink - WWE 2K25",
+      "kind": "loader",
+      "pillar": "Game Serving",
+      "status": "ready",
+      "games": [
+        "2K25"
+      ],
+      "description": "Fail-closed loader core paired with the approved WWE 2K25 CAK loader addon.",
+      "repository": "https://github.com/davegranlet/Secure-DataCtrlLink-WWE2K25",
+      "workspaceRelativePath": "Secure-DataCtrlLink-WWE2K25"
+    },
+    {
+      "id": "clips-tools",
+      "title": "AuroraForge NT100 Clips Tools",
+      "kind": "tool",
+      "pillar": "Animation",
+      "status": "retired",
+      "games": [
+        "2K25",
+        "2K26"
+      ],
+      "description": "Historical clips-tool home. Current codec work lives in the animation research repository.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Clips-Tools",
+      "workspaceRelativePath": "Aurora-Forge-Clips-Tools"
+    },
+    {
+      "id": "knowledgebase",
+      "title": "AuroraForge NT100 Knowledgebase",
+      "kind": "documentation",
+      "pillar": "Knowledge",
+      "status": "documentation",
+      "games": [
+        "2K19",
+        "2K25",
+        "2K26"
+      ],
+      "description": "Evidence-backed project status, proven facts, and research boundaries.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Knowledgebase",
+      "workspaceRelativePath": "Aurora-Forge-Knowledgebase"
+    },
+    {
+      "id": "sept18-evidence",
+      "title": "September 18 Research Capsule",
+      "kind": "evidence",
+      "pillar": "Knowledge",
+      "status": "documentation",
+      "games": [
+        "2K25"
+      ],
+      "description": "Preserved animation research log and missing-motion evidence capsule.",
+      "repository": "https://github.com/davegranlet/Sept18th-2026",
+      "workspaceRelativePath": "Sept18th-2026"
+    },
+    {
+      "id": "pac-tools-2k19",
+      "title": "AuroraForge NT100 2K19 PAC Tools",
+      "kind": "tool",
+      "pillar": "Archives",
+      "status": "ready",
+      "games": [
+        "2K19"
+      ],
+      "description": "Explores, extracts, and rebuilds supported WWE 2K19 PAC containers.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-2K19-PAC-Tools",
+      "workspaceRelativePath": "Aurora-Forge-2K19-PAC-Tools",
+      "integratedPage": "pac19-explorer.html"
+    },
+    {
+      "id": "converter-19-20",
+      "title": "AuroraForge NT100 2K19 to 2K20 Converter",
+      "kind": "converter",
+      "pillar": "Animation",
+      "status": "ready",
+      "games": [
+        "2K19",
+        "2K20"
+      ],
+      "description": "Verified bridge for supported WWE 2K19 YANM motion into WWE 2K20 packages.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-2K19-to-2K20-Converter",
+      "workspaceRelativePath": "Aurora-Forge-2K19-to-2K20-Converter"
+    },
+    {
+      "id": "animation-probes",
+      "title": "AuroraForge NT100 Animation Probes",
+      "kind": "research",
+      "pillar": "Animation",
+      "status": "research",
+      "games": [
+        "2K19",
+        "2K25",
+        "2K26"
+      ],
+      "description": "Focused probes and evidence for cross-generation animation formats.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Animation-Probes",
+      "workspaceRelativePath": "Aurora-Forge-Animation-Probes"
+    },
+    {
+      "id": "blender-animation-tools",
+      "title": "AuroraForge NT100 Blender Animation Tools",
+      "kind": "tool",
+      "pillar": "Content Creation",
+      "status": "experimental",
+      "games": [
+        "2K19",
+        "2K25"
+      ],
+      "description": "Blender and 3ds Max helpers for animation inspection and interchange.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Blender-Animation-Tools",
+      "workspaceRelativePath": "Aurora-Forge-Blender-Animation-Tools"
+    },
+    {
+      "id": "cak-loader",
+      "title": "AuroraForge NT100 CAK Mod Loader",
+      "kind": "loader",
+      "pillar": "Game Serving",
+      "status": "experimental",
+      "games": [
+        "2K26"
+      ],
+      "description": "General CAK mod-loader line used for current-generation loader research.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-CAK-Mod-Loader",
+      "workspaceRelativePath": "Aurora-Forge-CAK-Mod-Loader"
+    },
+    {
+      "id": "converter-app",
+      "title": "AuroraForge NT100 Converter App",
+      "kind": "app",
+      "pillar": "App Shell",
+      "status": "experimental",
+      "games": [
+        "2K19",
+        "2K20",
+        "2K25"
+      ],
+      "description": "Focused converter interface and packaging shell.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Converter-App",
+      "workspaceRelativePath": "Aurora-Forge-Converter-App"
+    },
+    {
+      "id": "converter-releases",
+      "title": "AuroraForge NT100 Converter Releases",
+      "kind": "release",
+      "pillar": "Distribution",
+      "status": "release",
+      "games": [
+        "2K19",
+        "2K20",
+        "2K25"
+      ],
+      "description": "Compiled beta artifacts, release notes, and checksums for the converter and umbrella release set.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Converter-Releases",
+      "workspaceRelativePath": "Aurora-Forge-Converter-Releases"
+    },
+    {
+      "id": "music-loader",
+      "title": "AuroraForge NT100 Custom Music Loader",
+      "kind": "loader",
+      "pillar": "Audio",
+      "status": "experimental",
+      "games": [
+        "2K26"
+      ],
+      "description": "Custom-music loader and supporting bank tooling.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Custom-Music-Loader",
+      "workspaceRelativePath": "Aurora-Forge-Custom-Music-Loader"
+    },
+    {
+      "id": "music-loader-2k25",
+      "title": "AuroraForge NT100 Custom Music Loader - WWE 2K25",
+      "kind": "loader",
+      "pillar": "Audio",
+      "status": "experimental",
+      "games": [
+        "2K25"
+      ],
+      "description": "WWE 2K25-specific custom-music loader line.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Custom-Music-Loader-WWE2K25",
+      "workspaceRelativePath": "Aurora-Forge-Custom-Music-Loader-WWE2K25"
+    },
+    {
+      "id": "dds-converter",
+      "title": "AuroraForge NT100 DDS Converter",
+      "kind": "tool",
+      "pillar": "Textures",
+      "status": "ready",
+      "games": [
+        "2K19",
+        "2K20",
+        "2K22",
+        "2K23",
+        "2K24",
+        "2K25",
+        "2K26"
+      ],
+      "description": "Safe DDS and PNG conversion using the included DirectXTex command-line tool.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-DDS-Converter",
+      "workspaceRelativePath": "Aurora-Forge-DDS-Converter",
+      "integratedPage": "dds-converter.html"
+    },
+    {
+      "id": "patreon-verifier",
+      "title": "AuroraForge NT100 Patreon Verifier",
+      "kind": "service",
+      "pillar": "Identity",
+      "status": "experimental",
+      "games": [],
+      "description": "Remote Patreon and Discord entitlement verification for protected previews.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Patreon-Verifier",
+      "workspaceRelativePath": "Aurora-Forge-Patreon-Verifier"
+    },
+    {
+      "id": "research",
+      "title": "AuroraForge NT100 Research",
+      "kind": "research",
+      "pillar": "Knowledge",
+      "status": "research",
+      "games": [
+        "2K19",
+        "2K20",
+        "2K25",
+        "2K26"
+      ],
+      "description": "General clean-room research notes and evidence.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-Research",
+      "workspaceRelativePath": "Aurora-Forge-Research"
+    },
+    {
+      "id": "animation-research-public",
+      "title": "AuroraForge NT100 WWE 2K19 Animation Research - Public",
+      "kind": "research",
+      "pillar": "Animation",
+      "status": "research",
+      "games": [
+        "2K19",
+        "2K20",
+        "2K25"
+      ],
+      "description": "Sanitized public-facing animation research record.",
+      "repository": "https://github.com/davegranlet/Aurora-Forge-WWE2K19-Animation-Research-Public",
+      "workspaceRelativePath": "Aurora-Forge-WWE2K19-Animation-Research-Public"
+    },
+    {
+      "id": "sanitized-research",
+      "title": "Sanitized Research",
+      "kind": "research",
+      "pillar": "Knowledge",
+      "status": "research",
+      "games": [
+        "2K19",
+        "2K20",
+        "2K25",
+        "2K26"
+      ],
+      "description": "Public-safe research extracts prepared for eventual open-source publication.",
+      "repository": "https://github.com/davegranlet/Sanitized-Research",
+      "workspaceRelativePath": "Sanitized-Research"
+    },
+    {
+      "id": "secure-datacrtllink-2k26",
+      "title": "Secure DataCtrlLink - WWE 2K26",
+      "kind": "loader",
+      "pillar": "Game Serving",
+      "status": "experimental",
+      "games": [
+        "2K26"
+      ],
+      "description": "Fail-closed loader core and addon manager for WWE 2K26.",
+      "repository": "https://github.com/davegranlet/Secure-DataCtrlLink-WWE2K26",
+      "workspaceRelativePath": "Secure-DataCtrlLink-WWE2K26"
+    },
+    {
+      "id": "wwecrap",
+      "title": "wwecrap Research Stub",
+      "kind": "research",
+      "pillar": "Knowledge",
+      "status": "research",
+      "games": [
+        "2K25",
+        "2K26"
+      ],
+      "description": "Preserved experimental research stub.",
+      "repository": "https://github.com/davegranlet/wwecrap",
+      "workspaceRelativePath": "wwecrap"
+    },
+    {
+      "id": "bakery",
+      "title": "Bakery",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [
+        "2K25",
+        "2K26"
+      ],
+      "description": "Third-party CAK tooling reference by Nenkai.",
+      "repository": "https://github.com/Nenkai/Bakery",
+      "workspaceRelativePath": "Bakery"
+    },
+    {
+      "id": "ghidra-nativeaot",
+      "title": "Ghidra NativeAOT",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [],
+      "description": "Third-party Ghidra NativeAOT analysis support.",
+      "repository": "https://github.com/Washi1337/ghidra-nativeaot",
+      "workspaceRelativePath": "ghidra-nativeaot"
+    },
+    {
+      "id": "wrestleminus",
+      "title": "WrestleMINUS",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [
+        "2K19"
+      ],
+      "description": "Third-party WWE archive research and tooling reference.",
+      "repository": "https://github.com/pozzum/WrestleMINUS",
+      "workspaceRelativePath": "WrestleMINUS"
+    },
+    {
+      "id": "caketools",
+      "title": "CakeTools Alpha Preview",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [
+        "2K20",
+        "2K25"
+      ],
+      "description": "Third-party CAK format reference.",
+      "repository": "https://github.com/San847/CakeTools-AlphaPreview",
+      "workspaceRelativePath": "CakeTools-AlphaPreview"
+    },
+    {
+      "id": "dnmodtools",
+      "title": "DNModTools",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [],
+      "description": "Third-party modding-tools reference retained with attribution.",
+      "repository": "https://github.com/Fadreus/DNModTools",
+      "workspaceRelativePath": "DNModTools"
+    },
+    {
+      "id": "bnkextr",
+      "title": "bnkextr",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [],
+      "description": "Third-party Wwise soundbank extraction reference.",
+      "repository": "https://github.com/eXpl0it3r/bnkextr",
+      "workspaceRelativePath": "bnkextr"
+    },
+    {
+      "id": "wwise-parser",
+      "title": "WwiseParser",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [],
+      "description": "Third-party Wwise parsing reference.",
+      "repository": "https://github.com/xyx0826/WwiseParser",
+      "workspaceRelativePath": "WwiseParser"
+    },
+    {
+      "id": "wwiser",
+      "title": "wwiser",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [],
+      "description": "Third-party Wwise bank research and conversion reference.",
+      "repository": "https://github.com/bnnm/wwiser",
+      "workspaceRelativePath": "wwiser"
+    },
+    {
+      "id": "wwiser-utils",
+      "title": "wwiser-utils",
+      "kind": "reference",
+      "pillar": "Third Party",
+      "status": "reference",
+      "games": [],
+      "description": "Third-party utility collection used alongside wwiser.",
+      "repository": "https://github.com/bnnm/wwiser-utils",
+      "workspaceRelativePath": "wwiser-utils"
+    }
+  ]
+}

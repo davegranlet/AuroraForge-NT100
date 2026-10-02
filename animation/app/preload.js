@@ -1,0 +1,24 @@
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('aurora', {
+  pickFile: filters => ipcRenderer.invoke('pick-file', filters),
+  pickSave: () => ipcRenderer.invoke('pick-save'),
+  pickClipsSave: () => ipcRenderer.invoke('pick-clips-save'),
+  pickCakSave: () => ipcRenderer.invoke('pick-cak-save'),
+  pickDirectory: () => ipcRenderer.invoke('pick-directory'),
+  pickFbxSave: () => ipcRenderer.invoke('pick-fbx-save'),
+  patreonStatus: () => ipcRenderer.invoke('patreon-status'),
+  editorSuiteStatus: () => ipcRenderer.invoke('editor-suite-status'),
+  verifyPatreon: args => ipcRenderer.invoke('verify-patreon', args),
+  convert: args => ipcRenderer.invoke('convert', args),
+  buildPackage: args => ipcRenderer.invoke('build-package', args),
+  build2k25Replace: args => ipcRenderer.invoke('build-2k25-replace', args),
+  build2k25ReplaceCak: args => ipcRenderer.invoke('build-2k25-replace-cak', args),
+  build2k25NewEntry: args => ipcRenderer.invoke('build-2k25-new-entry', args),
+  build2k25Library: args => ipcRenderer.invoke('build-2k25-library', args),
+  build2k25LibraryFromGame: args => ipcRenderer.invoke('build-2k25-library-from-game', args),
+  extract2k19Animations: args => ipcRenderer.invoke('extract-2k19-animations', args),
+  exportModels: args => ipcRenderer.invoke('export-models', args),
+  exportFbx: args => ipcRenderer.invoke('export-fbx', args),
+  onLog: fn => ipcRenderer.on('convert-log', (_, text) => fn(text)),
+});

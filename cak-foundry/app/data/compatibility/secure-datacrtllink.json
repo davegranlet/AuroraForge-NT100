@@ -1,0 +1,38 @@
+{
+  "schema": "aurora-forge-secure-datacrtllink-compatibility-v1",
+  "loaderVersion": "1.0.0",
+  "hostExecutable": "WWE2K26_x64.exe",
+  "gameExeSha256": "7F558607BD6881C4547D752EA107FB03282A2980E47EF19ADE597E096DE4A0E9",
+  "testedSteamBuildId": "24193653",
+  "dllSha256": "7816CB3312EE3F826638F9E17135A4BA85163D6A51E876F7128BADAA2E5C4870",
+  "releaseZipSha256": "60614287559A9FAE8E9A9F07309FB5D6115DC1DCF65FB34DF10BBE0AF93AB9F6",
+  "releaseUrl": "https://github.com/davegranlet/Secure-DataCtrlLink-WWE2K26/releases/tag/v1.0.0",
+  "directDownloadUrl": "https://github.com/davegranlet/Secure-DataCtrlLink-WWE2K26/releases/download/v1.0.0/Secure-DataCtrlLink-WWE2K26-1.0.0.zip",
+  "_notes": "CAK format works across all WWE 2K26 content builds regardless of executable version. Secure DataCtrlLink hooks are ABI-specific and fail-closed. Adding a new executable hash below requires a complete RVA/signature/ABI profile validation, never a hash-only edit.",
+  "observedExecutableProfiles": [
+    {
+      "sha256": "7F558607BD6881C4547D752EA107FB03282A2980E47EF19ADE597E096DE4A0E9",
+      "size": 901875480,
+      "label": "v1.14 content build",
+      "sdclStatus": "allowlisted",
+      "observedAt": "2026-09-03",
+      "notes": "Only profile with a reviewed and allowlisted Secure DataCtrlLink hook RVA/ABI/signature set in this release."
+    },
+    {
+      "sha256": "DFB08C59F547CCD9C2A5820DD7520AF064CA93D8642959B9F005E0C6F2958466",
+      "size": 701742552,
+      "label": "Original-release content build (confirmed C:\\SteamLibrary\\steamapps\\common\\WWE 2K26-ORIG)",
+      "sdclStatus": "allowlisted",
+      "observedAt": "2026-09-04",
+      "notes": "Verified compatibility profile (RVA/signature/ABI) implemented in v1.0.1. Supports full game file coverage (45 archives)."
+    },
+    {
+      "sha256": "5F82C813E905CEB96053280CF3488F7F54BC35258C1A0EB027355D45F6C56DA7",
+      "size": 1025127200,
+      "label": "v1.16/latest-DLC content build (confirmed D:\\games\\WWE 2K26)",
+      "sdclStatus": "allowlisted",
+      "observedAt": "2026-09-04",
+      "notes": "Verified compatibility profile (RVA/signature/ABI) implemented in v1.0.1. Supports full game file coverage (45 archives)."
+    }
+  ]
+}

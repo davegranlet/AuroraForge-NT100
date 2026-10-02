@@ -1,0 +1,1658 @@
+{
+  "status": "Research hypothesis; not native-reader confirmed",
+  "source": {
+    "directory": "D:\\AuroraForge-Aug26\\Extracted Files\\2k22\\Root\\Animation\\Victory",
+    "files": 743
+  },
+  "inspected": 510,
+  "skipped": 233,
+  "subgroups": {
+    "expandedRange": 23,
+    "descriptorOnly": 3
+  },
+  "offsetHypotheses": {
+    "usualGap": {
+      "total": 487,
+      "hypotheses": {
+        "absolute": {
+          "inBounds": 487,
+          "aligned": 487,
+          "firstWordZero": 122,
+          "startHeaderMatchesAt48Count": 3,
+          "startHeaderCountMatches": {
+            "prefix": 3,
+            "at48": 3,
+            "at60": 3,
+            "at60Tail": 3
+          },
+          "containsMatchingHeader": 0
+        },
+        "recordRelative": {
+          "inBounds": 487,
+          "aligned": 487,
+          "firstWordZero": 467,
+          "startHeaderMatchesAt48Count": 0,
+          "startHeaderCountMatches": {
+            "prefix": 0,
+            "at48": 0,
+            "at60": 0,
+            "at60Tail": 0
+          },
+          "containsMatchingHeader": 0
+        },
+        "fieldRelative": {
+          "inBounds": 487,
+          "aligned": 487,
+          "firstWordZero": 487,
+          "startHeaderMatchesAt48Count": 485,
+          "startHeaderCountMatches": {
+            "prefix": 487,
+            "at48": 485,
+            "at60": 487,
+            "at60Tail": 486
+          },
+          "containsMatchingHeader": 487
+        }
+      },
+      "equalDescriptorCounts": 485
+    },
+    "expandedGap": {
+      "total": 23,
+      "hypotheses": {
+        "absolute": {
+          "inBounds": 23,
+          "aligned": 23,
+          "firstWordZero": 1,
+          "startHeaderMatchesAt48Count": 0,
+          "startHeaderCountMatches": {
+            "prefix": 0,
+            "at48": 0,
+            "at60": 0,
+            "at60Tail": 0
+          },
+          "containsMatchingHeader": 1
+        },
+        "recordRelative": {
+          "inBounds": 23,
+          "aligned": 23,
+          "firstWordZero": 3,
+          "startHeaderMatchesAt48Count": 0,
+          "startHeaderCountMatches": {
+            "prefix": 0,
+            "at48": 0,
+            "at60": 0,
+            "at60Tail": 0
+          },
+          "containsMatchingHeader": 1
+        },
+        "fieldRelative": {
+          "inBounds": 23,
+          "aligned": 23,
+          "firstWordZero": 8,
+          "startHeaderMatchesAt48Count": 0,
+          "startHeaderCountMatches": {
+            "prefix": 0,
+            "at48": 0,
+            "at60": 0,
+            "at60Tail": 0
+          },
+          "containsMatchingHeader": 1
+        }
+      },
+      "equalDescriptorCounts": 11
+    },
+    "otherGap": {
+      "total": 0,
+      "hypotheses": {
+        "absolute": {
+          "inBounds": 0,
+          "aligned": 0,
+          "firstWordZero": 0,
+          "startHeaderMatchesAt48Count": 0,
+          "startHeaderCountMatches": {
+            "prefix": 0,
+            "at48": 0,
+            "at60": 0,
+            "at60Tail": 0
+          },
+          "containsMatchingHeader": 0
+        },
+        "recordRelative": {
+          "inBounds": 0,
+          "aligned": 0,
+          "firstWordZero": 0,
+          "startHeaderMatchesAt48Count": 0,
+          "startHeaderCountMatches": {
+            "prefix": 0,
+            "at48": 0,
+            "at60": 0,
+            "at60Tail": 0
+          },
+          "containsMatchingHeader": 0
+        },
+        "fieldRelative": {
+          "inBounds": 0,
+          "aligned": 0,
+          "firstWordZero": 0,
+          "startHeaderMatchesAt48Count": 0,
+          "startHeaderCountMatches": {
+            "prefix": 0,
+            "at48": 0,
+            "at60": 0,
+            "at60Tail": 0
+          },
+          "containsMatchingHeader": 0
+        }
+      },
+      "equalDescriptorCounts": 0
+    }
+  },
+  "expandedSamples": [
+    {
+      "file": "6103.acts",
+      "descriptorCounts": {
+        "prefix": 92,
+        "at48": 92,
+        "at60": 122
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 8368,
+          "end": 8520,
+          "inBounds": true,
+          "bytes": 152,
+          "aligned": true,
+          "sha256": "D6046B3438C7DAA23A3F843F543C21FD1F7733BB39B503E4E51C76C9FDB1C974",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8508,
+            "bytes": 12,
+            "sha256": "CD66F9B943EF2C60A86E7F202B44997D633D85105260A9FB2569E5DA78445158"
+          }
+        },
+        "recordRelative": {
+          "start": 8600,
+          "end": 8772,
+          "inBounds": true,
+          "bytes": 172,
+          "aligned": true,
+          "sha256": "098BF7FFCDB90B158ADC5D0B66EFCE1B507A9E051E4357440B2B9FE5BF90F0E0",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8760,
+            "bytes": 12,
+            "sha256": "75E5038E8CEE3DE4B84F46F2467C3F7F5663DCA049F8BE50EC21658281EEC575"
+          }
+        },
+        "fieldRelative": {
+          "start": 8616,
+          "end": 8780,
+          "inBounds": true,
+          "bytes": 164,
+          "aligned": true,
+          "sha256": "4F9416278697B0395EB6F73F9CEA9309104989FAAA4C209C23BA418343E9D90C",
+          "zeroU32": 3,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8776,
+            "bytes": 4,
+            "sha256": "A87A94DD67CAF2415CC1CD4C2CF7671D108A92716E940203B4920DC0BB2AEFB7"
+          }
+        }
+      }
+    },
+    {
+      "file": "6152.acts",
+      "descriptorCounts": {
+        "prefix": 39,
+        "at48": 52,
+        "at60": 65
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 4216,
+          "end": 4320,
+          "inBounds": true,
+          "bytes": 104,
+          "aligned": true,
+          "sha256": "3E4EF74D6467D7CD6F517B45D87F4C6F21846D6029DC5BF8156E950AA9E7501F",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4316,
+            "bytes": 4,
+            "sha256": "063E0109DD9D0A76D1D8FEBF26690F7CC0F284CFE99639381D72B5983FC4B875"
+          }
+        },
+        "recordRelative": {
+          "start": 4512,
+          "end": 4636,
+          "inBounds": true,
+          "bytes": 124,
+          "aligned": true,
+          "sha256": "1ADA04DB62D02363FFF7BC27A41CFBD0A8005AE740801EFBC0FB9E1441EB491B",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4632,
+            "bytes": 4,
+            "sha256": "8203A790D109CF3876B45E4C899BC4815D3559EBE30FE309BC00CE57B4FF3C22"
+          }
+        },
+        "fieldRelative": {
+          "start": 4528,
+          "end": 4644,
+          "inBounds": true,
+          "bytes": 116,
+          "aligned": true,
+          "sha256": "91D8331DD225A560AD662021A497810CB846DD63923F02F18F80367148505ACE",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4628,
+            "bytes": 16,
+            "sha256": "F907DC2E39FECE2E6EB30C1BC2CA2212906BBC41CD07890EB110E7670235E93A"
+          }
+        }
+      }
+    },
+    {
+      "file": "6169.acts",
+      "descriptorCounts": {
+        "prefix": 80,
+        "at48": 80,
+        "at60": 80
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 7960,
+          "end": 8068,
+          "inBounds": true,
+          "bytes": 108,
+          "aligned": true,
+          "sha256": "75F15DD7B6789629EFF8CA98891062F61BBD86DB5158B46413005A8AC28331E1",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8060,
+            "bytes": 8,
+            "sha256": "334F1997C0868464458CC109F8485740B5BE08774DDA8E9182CA0261533F8903"
+          }
+        },
+        "recordRelative": {
+          "start": 8192,
+          "end": 8320,
+          "inBounds": true,
+          "bytes": 128,
+          "aligned": true,
+          "sha256": "BA0EC1CD0DFA0C266FAB62EA4BDB1B6D10124EB05B7D3D125E05CCB79ACB25C6",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8312,
+            "bytes": 8,
+            "sha256": "55D9E78AE7FA66A44EA715CA6166708BA1260824284AA220DC08ACFAFE0606CC"
+          }
+        },
+        "fieldRelative": {
+          "start": 8208,
+          "end": 8328,
+          "inBounds": true,
+          "bytes": 120,
+          "aligned": true,
+          "sha256": "D16EE884B0078656DDDBF257D59CBCDB4E20886C64DEFB676F54F8495FAACB1B",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8328,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        }
+      }
+    },
+    {
+      "file": "6185.acts",
+      "descriptorCounts": {
+        "prefix": 76,
+        "at48": 76,
+        "at60": 125
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 8344,
+          "end": 8500,
+          "inBounds": true,
+          "bytes": 156,
+          "aligned": true,
+          "sha256": "291E930E5ECAE8E53337DAACC16D03B5B3A1BFC07CDF5125142DDC1F9FEEF534",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8484,
+            "bytes": 16,
+            "sha256": "4AA2FB12C79D76ED047AC29448610A51BA2DBFE9658BA1FD6516A22E975B28B7"
+          }
+        },
+        "recordRelative": {
+          "start": 8640,
+          "end": 8816,
+          "inBounds": true,
+          "bytes": 176,
+          "aligned": true,
+          "sha256": "B6786FD3C0D3B3A396EA142B1F924AF6C8FE08DFB27E0DB0E6691AAACA7A81B1",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8800,
+            "bytes": 16,
+            "sha256": "5BCDB3CB47E89384ACB89A965C1DB64A4ADE90008E73D4144266A976DA5EABE1"
+          }
+        },
+        "fieldRelative": {
+          "start": 8656,
+          "end": 8824,
+          "inBounds": true,
+          "bytes": 168,
+          "aligned": true,
+          "sha256": "A78258222077182626CEE3B9BA3C0AE3A849DBC122F3771CB47D9A121F1827F9",
+          "zeroU32": 3,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 8816,
+            "bytes": 8,
+            "sha256": "2F20734FBB6D8C57962B64E2A8514F943E812100FA97D2ADCB695F83AE22840A"
+          }
+        }
+      }
+    },
+    {
+      "file": "6186.acts",
+      "descriptorCounts": {
+        "prefix": 70,
+        "at48": 70,
+        "at60": 70
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 3632,
+          "end": 3736,
+          "inBounds": true,
+          "bytes": 104,
+          "aligned": true,
+          "sha256": "994931923488A897813E8760F7B8EAEB7CFDA26CB071CBC147F09B350ADA1E17",
+          "zeroU32": 4,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 3732,
+            "bytes": 4,
+            "sha256": "56E579F6D5D9162AFD3D72CF00FBBA3C4540FE6D6DAB6D0A47D819966027A5A2"
+          }
+        },
+        "recordRelative": {
+          "start": 3928,
+          "end": 4052,
+          "inBounds": true,
+          "bytes": 124,
+          "aligned": true,
+          "sha256": "0C061C7B6970CFB1A5862CC1C2174D8F90AB52154FE8682141A29B6D97F4D0EA",
+          "zeroU32": 4,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4048,
+            "bytes": 4,
+            "sha256": "113D1FD0ADAACA2ED7D0D927B98A7C50C2DC40AFD01B331395B09B7CF3D42E17"
+          }
+        },
+        "fieldRelative": {
+          "start": 3944,
+          "end": 4060,
+          "inBounds": true,
+          "bytes": 116,
+          "aligned": true,
+          "sha256": "C5B6EFF45E9D990816DD5A2051A1824852FF3579DD73DA26E63646BFEA7378CD",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4044,
+            "bytes": 16,
+            "sha256": "B42A5AC289807AF6106F913A927E5D3CED0E6978DE2D467E58E432FD8C8D34D0"
+          }
+        }
+      }
+    },
+    {
+      "file": "6296.acts",
+      "descriptorCounts": {
+        "prefix": 50,
+        "at48": 50,
+        "at60": 50
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 3660,
+          "end": 3744,
+          "inBounds": true,
+          "bytes": 84,
+          "aligned": true,
+          "sha256": "3644997B274DB38690A710D88677C4885896FD0C36F694F281A6B55922222CA5",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 1,
+          "matchingHeaderSamples": [
+            {
+              "offset": 3684,
+              "relativeOffset": 24,
+              "countMatches": [
+                "prefix",
+                "at48",
+                "at60",
+                "at60Tail"
+              ],
+              "sha256": "9F3DC8FD98536791B3A3B22BE1CED4E1A94452B54081AD1E8CB5E5943FA4DB55"
+            }
+          ],
+          "trailingTwentyByteWindow": {
+            "start": 3740,
+            "bytes": 4,
+            "sha256": "BE39C25480E0018E8541F8C585721689E604B6F022AF121F6132399DCB5A57FE"
+          }
+        },
+        "recordRelative": {
+          "start": 3956,
+          "end": 4060,
+          "inBounds": true,
+          "bytes": 104,
+          "aligned": true,
+          "sha256": "B083CC02E8E8D3631CBCD9296316B180751E7943F79385C7B6618D8A69BBD895",
+          "zeroU32": 1,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4056,
+            "bytes": 4,
+            "sha256": "0E76B99A6986B18D477B62D32C299D661299C74A7A9E6C151D9F6A57AEFFAC7D"
+          }
+        },
+        "fieldRelative": {
+          "start": 3972,
+          "end": 4068,
+          "inBounds": true,
+          "bytes": 96,
+          "aligned": true,
+          "sha256": "8B7861F6BAE2FB607B927BACC368E6D7FDC83535DEBAFDB4E2C2113BE3CA1025",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4052,
+            "bytes": 16,
+            "sha256": "BADA08E428EC598712DCE5948FDEF7C0E158ABD5B23E9B6D73AB333B98A7313C"
+          }
+        }
+      }
+    },
+    {
+      "file": "6361.acts",
+      "descriptorCounts": {
+        "prefix": 74,
+        "at48": 74,
+        "at60": 245
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 5776,
+          "end": 6128,
+          "inBounds": true,
+          "bytes": 352,
+          "aligned": true,
+          "sha256": "850736AD7BDA9B0567FE8BECE11472539240EBFE1E51C048BE5162B61AAC2255",
+          "zeroU32": 8,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6116,
+            "bytes": 12,
+            "sha256": "9AE709FD42B6780FC9749B9258BE12CB50D2333828D44BFB5F5D83DFFFBDE2F6"
+          }
+        },
+        "recordRelative": {
+          "start": 6008,
+          "end": 6380,
+          "inBounds": true,
+          "bytes": 372,
+          "aligned": true,
+          "sha256": "00E248A5231610B6C5A100F7784732A2073D14A48CB8099897C89EB44D6CB289",
+          "zeroU32": 13,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6368,
+            "bytes": 12,
+            "sha256": "7C9EB9862AC2ABD92A2F51E44CAD986B18B91D0D6B028D46C5AEF67FA39D3809"
+          }
+        },
+        "fieldRelative": {
+          "start": 6024,
+          "end": 6388,
+          "inBounds": true,
+          "bytes": 364,
+          "aligned": true,
+          "sha256": "3C9DE97DEC60D48A90B7246C019E17DFFA8BF3247B95DD44DDC43CE6B38E9FAE",
+          "zeroU32": 12,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6384,
+            "bytes": 4,
+            "sha256": "B93418ED9EAFE7909B1A74E7048D45C4F387DFFD1992BA3E00D7004A1F0BCB57"
+          }
+        }
+      }
+    },
+    {
+      "file": "6373.acts",
+      "descriptorCounts": {
+        "prefix": 75,
+        "at48": 100,
+        "at60": 100
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 7220,
+          "end": 7336,
+          "inBounds": true,
+          "bytes": 116,
+          "aligned": true,
+          "sha256": "5567CD9D7005DCC860EC063500A1CA3DDA16D0F997E4BCB6939013B023727805",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 7320,
+            "bytes": 16,
+            "sha256": "F950A1EF3F1A8B0D8535556A7F369838AE9A50900D95EFAC16D7F657D442382A"
+          }
+        },
+        "recordRelative": {
+          "start": 7516,
+          "end": 7652,
+          "inBounds": true,
+          "bytes": 136,
+          "aligned": true,
+          "sha256": "BD5197737AF148C04F75A3D16391ACF3096A8C8226EEE3F450B65ABEDE30BC70",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 7636,
+            "bytes": 16,
+            "sha256": "12311B4D5DE699C7E5BDE206BB55170E503CC072BB3E565DF7D8E7E1E8BAAC0A"
+          }
+        },
+        "fieldRelative": {
+          "start": 7532,
+          "end": 7660,
+          "inBounds": true,
+          "bytes": 128,
+          "aligned": true,
+          "sha256": "3A22DC36A1C4041460CC8526E817EE35EDD7FBA4724C6FB3C8E36356CADA7ACD",
+          "zeroU32": 3,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 7652,
+            "bytes": 8,
+            "sha256": "6D9BC7E384FDD9056CDB158EBA10BBB808EB1402FD93840B9CA4BCCEF91BBD8C"
+          }
+        }
+      }
+    },
+    {
+      "file": "6378.acts",
+      "descriptorCounts": {
+        "prefix": 60,
+        "at48": 60,
+        "at60": 60
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 6084,
+          "end": 6172,
+          "inBounds": true,
+          "bytes": 88,
+          "aligned": true,
+          "sha256": "C82EF8074DF3D16D41EE766D33E2A61892570806138693B69BD78FD09AFBFB95",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6164,
+            "bytes": 8,
+            "sha256": "AF5570F5A1810B7AF78CAF4BC70A660F0DF51E42BAF91D4DE5B2328DE0E83DFC"
+          }
+        },
+        "recordRelative": {
+          "start": 6380,
+          "end": 6488,
+          "inBounds": true,
+          "bytes": 108,
+          "aligned": true,
+          "sha256": "EBD0FECF5A7CD9FABBEE18F19F3F8DDD3D95563C7B4A4FB91227AAD5B1D64960",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6480,
+            "bytes": 8,
+            "sha256": "6FB5A11436A25E1A1CFA4FC7D706AF97F23920C51FBAC92C34D4AD0EB889EDE8"
+          }
+        },
+        "fieldRelative": {
+          "start": 6396,
+          "end": 6496,
+          "inBounds": true,
+          "bytes": 100,
+          "aligned": true,
+          "sha256": "7065CDFE35187C262EE1A60E8A6E6B98A8FFE2ADD047A7896483B49ED20BDCCC",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6496,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        }
+      }
+    },
+    {
+      "file": "6381.acts",
+      "descriptorCounts": {
+        "prefix": 42,
+        "at48": 42,
+        "at60": 83
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 4436,
+          "end": 4552,
+          "inBounds": true,
+          "bytes": 116,
+          "aligned": true,
+          "sha256": "3F1EE473EACAD7595DBE657EA21F7D65E8BB7193DC499417A699C1DA2FED605F",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4536,
+            "bytes": 16,
+            "sha256": "1FE188A2451FF29A9D8531BCB1715446714BCE181B09B0D5FE1CCB80AE7FBFD3"
+          }
+        },
+        "recordRelative": {
+          "start": 4732,
+          "end": 4868,
+          "inBounds": true,
+          "bytes": 136,
+          "aligned": true,
+          "sha256": "52A4024CAD1ED4F9BCA65847ED5EF0F4936F6919A392C1209975411A07C175AF",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 1,
+          "matchingHeaderSamples": [
+            {
+              "offset": 4780,
+              "relativeOffset": 48,
+              "countMatches": [
+                "prefix",
+                "at48",
+                "at60Tail"
+              ],
+              "sha256": "E843EE32A358A0FC6E0D7B23CF82D5C63C63EABA3034198D382C2A171F1CEC35"
+            }
+          ],
+          "trailingTwentyByteWindow": {
+            "start": 4852,
+            "bytes": 16,
+            "sha256": "C77441030E6BA419CF0C98C351F1CBA635C0E582C12A67689676A6254C3F896D"
+          }
+        },
+        "fieldRelative": {
+          "start": 4748,
+          "end": 4876,
+          "inBounds": true,
+          "bytes": 128,
+          "aligned": true,
+          "sha256": "7758459905F77E4DF7A4EF1628B3E40A6A52140EACFCC5F898E1A3D305ABE027",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 1,
+          "matchingHeaderSamples": [
+            {
+              "offset": 4780,
+              "relativeOffset": 32,
+              "countMatches": [
+                "prefix",
+                "at48",
+                "at60Tail"
+              ],
+              "sha256": "E843EE32A358A0FC6E0D7B23CF82D5C63C63EABA3034198D382C2A171F1CEC35"
+            }
+          ],
+          "trailingTwentyByteWindow": {
+            "start": 4868,
+            "bytes": 8,
+            "sha256": "DD6BDCE3D2CA7668A2244DC36D411004886477434706C8255EDFD2C065A85758"
+          }
+        }
+      }
+    },
+    {
+      "file": "6396.acts",
+      "descriptorCounts": {
+        "prefix": 55,
+        "at48": 55,
+        "at60": 180
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 4564,
+          "end": 4816,
+          "inBounds": true,
+          "bytes": 252,
+          "aligned": true,
+          "sha256": "DD05CB9CDEFD0F2F9FED56821BBE1ED428429978F491EEB2C41546C3F8D290D8",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4804,
+            "bytes": 12,
+            "sha256": "1E24260DE86A0892CE903273A347DC400600297324C4E03BFE10AE234F6C5C69"
+          }
+        },
+        "recordRelative": {
+          "start": 4860,
+          "end": 5132,
+          "inBounds": true,
+          "bytes": 272,
+          "aligned": true,
+          "sha256": "1B0FACC370A7B2FDF7D8229B5A1F6F2ED26219200107C5F48E221B258EE4B619",
+          "zeroU32": 6,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5120,
+            "bytes": 12,
+            "sha256": "4AA679E1A8EA7840204A71F3D609E88CA27C7AF3EB3EA53300742D59FA916CDC"
+          }
+        },
+        "fieldRelative": {
+          "start": 4876,
+          "end": 5140,
+          "inBounds": true,
+          "bytes": 264,
+          "aligned": true,
+          "sha256": "683D40F29833A74A6D6306989599720AA5322C87EEEC283AB8093F742A09F090",
+          "zeroU32": 6,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5136,
+            "bytes": 4,
+            "sha256": "9303B6BD00A8440077BAFD9F4A30C392C4290CCFAEA0120B36654003A88C4F96"
+          }
+        }
+      }
+    },
+    {
+      "file": "6406.acts",
+      "descriptorCounts": {
+        "prefix": 57,
+        "at48": 57,
+        "at60": 57
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 5988,
+          "end": 6068,
+          "inBounds": true,
+          "bytes": 80,
+          "aligned": true,
+          "sha256": "23A34B03F26A420CE77E8BF5EE56E192EEA912A09B15B32EF2F65EF289C355B1",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6068,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        },
+        "recordRelative": {
+          "start": 6284,
+          "end": 6384,
+          "inBounds": true,
+          "bytes": 100,
+          "aligned": true,
+          "sha256": "A95B2F100B5E1744991962DB0F994C66CACD44C658DEF9FC7A8C58DC2A601D07",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6384,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        },
+        "fieldRelative": {
+          "start": 6300,
+          "end": 6392,
+          "inBounds": true,
+          "bytes": 92,
+          "aligned": true,
+          "sha256": "FE1562FD7B3395F5DDAED8FFFF0A968EB17314C7355F36E21F9CAD2D9941102A",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6380,
+            "bytes": 12,
+            "sha256": "F2D79267EC69D0EDCE343786E613358C3D84D4298D8DA8C4CE93CE6267522326"
+          }
+        }
+      }
+    },
+    {
+      "file": "6416.acts",
+      "descriptorCounts": {
+        "prefix": 47,
+        "at48": 47,
+        "at60": 47
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 5164,
+          "end": 5244,
+          "inBounds": true,
+          "bytes": 80,
+          "aligned": true,
+          "sha256": "5117AD323FE91602ACA9A331FB1E9AE4FABE93D0AF003D1C242CC0E6CAB54BC8",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5244,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        },
+        "recordRelative": {
+          "start": 5396,
+          "end": 5496,
+          "inBounds": true,
+          "bytes": 100,
+          "aligned": true,
+          "sha256": "FAA4FC31F376043745D0EE6ECEE7F6C1227E9C507593058CEA52E20395E72DEE",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5496,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        },
+        "fieldRelative": {
+          "start": 5412,
+          "end": 5504,
+          "inBounds": true,
+          "bytes": 92,
+          "aligned": true,
+          "sha256": "EFD73D087049DDC2B2A07641C65EFECF1EC60BBF09709477E1D630735E8A7A41",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5492,
+            "bytes": 12,
+            "sha256": "3AB069BC62CB520F795DBF83384D34724653A580B298555F044374A6BCE6EAA1"
+          }
+        }
+      }
+    },
+    {
+      "file": "6425.acts",
+      "descriptorCounts": {
+        "prefix": 56,
+        "at48": 56,
+        "at60": 219
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 4152,
+          "end": 4420,
+          "inBounds": true,
+          "bytes": 268,
+          "aligned": true,
+          "sha256": "B439DFFB162C0217298998A46E71909A7A1F9FB324DCD7300BD34AF472E0B9B8",
+          "zeroU32": 7,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4412,
+            "bytes": 8,
+            "sha256": "75D4B155CF0F7D9D7C0FA79C0C7FA78259A3B71F612B4D23F5DB94009E1F9F15"
+          }
+        },
+        "recordRelative": {
+          "start": 4448,
+          "end": 4736,
+          "inBounds": true,
+          "bytes": 288,
+          "aligned": true,
+          "sha256": "7AE5BFD5263D3301F33EFF182D096189632CD162739A93E2B9E2154B01FA7BE8",
+          "zeroU32": 9,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4728,
+            "bytes": 8,
+            "sha256": "AFD981BA1F7CAA6FEE93B5856653C902754CBD0FFA411876845A4F457B076CD1"
+          }
+        },
+        "fieldRelative": {
+          "start": 4464,
+          "end": 4744,
+          "inBounds": true,
+          "bytes": 280,
+          "aligned": true,
+          "sha256": "6F11DD3200D8BD0863BE96D15B7B7AB35D20A07ED049EE7A0D978421925F6B11",
+          "zeroU32": 9,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4744,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        }
+      }
+    },
+    {
+      "file": "6456.acts",
+      "descriptorCounts": {
+        "prefix": 45,
+        "at48": 45,
+        "at60": 176
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 5576,
+          "end": 5748,
+          "inBounds": true,
+          "bytes": 172,
+          "aligned": true,
+          "sha256": "A06613702933B9F829144A302E6B54E50241C4A95B884BFEEB5B1FD79EAC60AC",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5736,
+            "bytes": 12,
+            "sha256": "9D3B27312B49487BBACCEB422962C656821250907C0663D5F9126046A736CC7C"
+          }
+        },
+        "recordRelative": {
+          "start": 5808,
+          "end": 6000,
+          "inBounds": true,
+          "bytes": 192,
+          "aligned": true,
+          "sha256": "3851F92D91BF4881F36409672D0EB6BF061F38411EA0F8D20785F9CD1E176F92",
+          "zeroU32": 7,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5988,
+            "bytes": 12,
+            "sha256": "5FF8852DE3ECBEE9B892A3779D6EC4C65FA830BCC340DCFC4E7A91E153233835"
+          }
+        },
+        "fieldRelative": {
+          "start": 5824,
+          "end": 6008,
+          "inBounds": true,
+          "bytes": 184,
+          "aligned": true,
+          "sha256": "EB596DA49A881E32EF6CE935919C735CC980EAD4D1A699147451152129B94E9B",
+          "zeroU32": 6,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6004,
+            "bytes": 4,
+            "sha256": "046CF1C5DC9788988878A610A8A2181437F96D196FBA2869A647423DD4FDFC4D"
+          }
+        }
+      }
+    },
+    {
+      "file": "6458.acts",
+      "descriptorCounts": {
+        "prefix": 51,
+        "at48": 68,
+        "at60": 68
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 5480,
+          "end": 5576,
+          "inBounds": true,
+          "bytes": 96,
+          "aligned": true,
+          "sha256": "82769AD5AF9E7754973227DEE6CC4317AD9F88E077AFC6B56A5473C80A13AE70",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5560,
+            "bytes": 16,
+            "sha256": "0063D489DC45EC7E516991A9694A8BB8C4C9F6105EFB58EEBE12822D114B0DFF"
+          }
+        },
+        "recordRelative": {
+          "start": 5776,
+          "end": 5892,
+          "inBounds": true,
+          "bytes": 116,
+          "aligned": true,
+          "sha256": "D310B3C26D7354B3204A264F19C83B9EBC58DB833A281BF70D2A60D2583163D3",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5876,
+            "bytes": 16,
+            "sha256": "12311B4D5DE699C7E5BDE206BB55170E503CC072BB3E565DF7D8E7E1E8BAAC0A"
+          }
+        },
+        "fieldRelative": {
+          "start": 5792,
+          "end": 5900,
+          "inBounds": true,
+          "bytes": 108,
+          "aligned": true,
+          "sha256": "499C7B35FAFDD1DA01014CA7C0839FAE5B8C26BCBA5021B12D3D2A120AE2875B",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5892,
+            "bytes": 8,
+            "sha256": "6D9BC7E384FDD9056CDB158EBA10BBB808EB1402FD93840B9CA4BCCEF91BBD8C"
+          }
+        }
+      }
+    },
+    {
+      "file": "6506.acts",
+      "descriptorCounts": {
+        "prefix": 48,
+        "at48": 48,
+        "at60": 156
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 4304,
+          "end": 4580,
+          "inBounds": true,
+          "bytes": 276,
+          "aligned": true,
+          "sha256": "8CB6578C649D6C735B919127CD9E1E3766ACD182A1BE4DC51806B29CC10F7B45",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4564,
+            "bytes": 16,
+            "sha256": "EF481FB500D2812D4B2B8470EFCB0D76F8F3A4E3EA3C7B2CD9ED85AF4F7BD8C9"
+          }
+        },
+        "recordRelative": {
+          "start": 4536,
+          "end": 4832,
+          "inBounds": true,
+          "bytes": 296,
+          "aligned": true,
+          "sha256": "FB7AD8A39E79A1DC36B3B661B623D99DC659B84D0BAFBCF06C1BE159E1D3CA35",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4816,
+            "bytes": 16,
+            "sha256": "0B38B81F036BBF7800D7C0EB9F988151E145C00C5478DEEF8247126905A939B8"
+          }
+        },
+        "fieldRelative": {
+          "start": 4552,
+          "end": 4840,
+          "inBounds": true,
+          "bytes": 288,
+          "aligned": true,
+          "sha256": "A27E2F42346D90016351C809FEF6897247F4A5007A2C002E8CD30D1BE2124DD3",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4832,
+            "bytes": 8,
+            "sha256": "0961170DF4BB47C312E71151A37F1A9967929641525D60355F97BE6A411B3634"
+          }
+        }
+      }
+    },
+    {
+      "file": "6508.acts",
+      "descriptorCounts": {
+        "prefix": 60,
+        "at48": 60,
+        "at60": 60
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 6056,
+          "end": 6144,
+          "inBounds": true,
+          "bytes": 88,
+          "aligned": true,
+          "sha256": "8131EFFC94860C22AD27573D949D8691C19035D9FF656A84472DAC96820699E5",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6136,
+            "bytes": 8,
+            "sha256": "AF5570F5A1810B7AF78CAF4BC70A660F0DF51E42BAF91D4DE5B2328DE0E83DFC"
+          }
+        },
+        "recordRelative": {
+          "start": 6352,
+          "end": 6460,
+          "inBounds": true,
+          "bytes": 108,
+          "aligned": true,
+          "sha256": "EBD0FECF5A7CD9FABBEE18F19F3F8DDD3D95563C7B4A4FB91227AAD5B1D64960",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6452,
+            "bytes": 8,
+            "sha256": "6FB5A11436A25E1A1CFA4FC7D706AF97F23920C51FBAC92C34D4AD0EB889EDE8"
+          }
+        },
+        "fieldRelative": {
+          "start": 6368,
+          "end": 6468,
+          "inBounds": true,
+          "bytes": 100,
+          "aligned": true,
+          "sha256": "7065CDFE35187C262EE1A60E8A6E6B98A8FFE2ADD047A7896483B49ED20BDCCC",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 6468,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        }
+      }
+    },
+    {
+      "file": "6574.acts",
+      "descriptorCounts": {
+        "prefix": 65,
+        "at48": 65,
+        "at60": 215
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 5212,
+          "end": 5416,
+          "inBounds": true,
+          "bytes": 204,
+          "aligned": true,
+          "sha256": "3198C60752E002C7814D768B28E55E08122A533FF710A11052D41DB102EA783C",
+          "zeroU32": 6,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5412,
+            "bytes": 4,
+            "sha256": "B18950F7369C7AC46A5CAAEDEF5985D376A8E6137BA639C66DDBF2C091A7B4E5"
+          }
+        },
+        "recordRelative": {
+          "start": 5508,
+          "end": 5732,
+          "inBounds": true,
+          "bytes": 224,
+          "aligned": true,
+          "sha256": "854EC3A5D82AF88065CB27BC97BCF98FC50494C1A04927573E65EE41BDFA4090",
+          "zeroU32": 6,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5728,
+            "bytes": 4,
+            "sha256": "48C9B0A4367E6A713F64F6138E04530DF1A9E4C8C6FB770BEF03CCC1B9D321DC"
+          }
+        },
+        "fieldRelative": {
+          "start": 5524,
+          "end": 5740,
+          "inBounds": true,
+          "bytes": 216,
+          "aligned": true,
+          "sha256": "9629BA1B2339B2EBAFDC25825C75D8F1C2D764358254FBEC5A73A82CEC06730F",
+          "zeroU32": 6,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5724,
+            "bytes": 16,
+            "sha256": "491B559192D82B1DB7738E9B56EC92E1843F3BC26DDF650E94D71E147F77F1AA"
+          }
+        }
+      }
+    },
+    {
+      "file": "6627.acts",
+      "descriptorCounts": {
+        "prefix": 46,
+        "at48": 46,
+        "at60": 46
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 3852,
+          "end": 3920,
+          "inBounds": true,
+          "bytes": 68,
+          "aligned": true,
+          "sha256": "D043DEB586AB953058C3999E641B7DB5DCDEC6DD1DFDAC1C06C1E065857FF637",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 3912,
+            "bytes": 8,
+            "sha256": "2E3674BA20BF4397AC39CC45D9EFCF3B9341B3123F9356858A32F76430DDD227"
+          }
+        },
+        "recordRelative": {
+          "start": 4084,
+          "end": 4172,
+          "inBounds": true,
+          "bytes": 88,
+          "aligned": true,
+          "sha256": "1FC1F9BAE59F569E219BF0F3BD79E1CC348C8A075739FA11D4CD471E153D0484",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4164,
+            "bytes": 8,
+            "sha256": "D75D03EA427337E09BA4CA1D7C7DE71807ADB81615B07E0364544321079DDCA7"
+          }
+        },
+        "fieldRelative": {
+          "start": 4100,
+          "end": 4180,
+          "inBounds": true,
+          "bytes": 80,
+          "aligned": true,
+          "sha256": "7F2CC67FB10471ACAE94B1E68EDE81F78D6B4C473BF6864EE509DC386D93A217",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 4180,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        }
+      }
+    },
+    {
+      "file": "8004.acts",
+      "descriptorCounts": {
+        "prefix": 63,
+        "at48": 63,
+        "at60": 63
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 2344,
+          "end": 2420,
+          "inBounds": true,
+          "bytes": 76,
+          "aligned": true,
+          "sha256": "3E98933D3606DEED4456E1EE0DF7BB516E73825317E963F09A457A82D9980455",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 2404,
+            "bytes": 16,
+            "sha256": "D45B4F03A719F8D5256AE89884EC7371F2D7B325FA5058DF52787F855E2DCCB6"
+          }
+        },
+        "recordRelative": {
+          "start": 2576,
+          "end": 2672,
+          "inBounds": true,
+          "bytes": 96,
+          "aligned": true,
+          "sha256": "1C1DB9A8A92F484E48EB9DD1648E1378611E6443725737B78BE062A37630F543",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 2656,
+            "bytes": 16,
+            "sha256": "2C6743CA0AA8BCBACA5A4075BC079C993D947AA0260B222176516391967EA2B7"
+          }
+        },
+        "fieldRelative": {
+          "start": 2592,
+          "end": 2680,
+          "inBounds": true,
+          "bytes": 88,
+          "aligned": true,
+          "sha256": "1703E697041AB4147528399891512168D105A3390FE98F3CBCA9F97D31AF2B30",
+          "zeroU32": 0,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 2672,
+            "bytes": 8,
+            "sha256": "5B91DADCDCBF8DA9927228A416037DB71E83AA3B152CA76E0E89A47C01B7F9C3"
+          }
+        }
+      }
+    },
+    {
+      "file": "8709.acts",
+      "descriptorCounts": {
+        "prefix": 48,
+        "at48": 48,
+        "at60": 79
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 5008,
+          "end": 5116,
+          "inBounds": true,
+          "bytes": 108,
+          "aligned": true,
+          "sha256": "B52CAD401F2B268D8811882039FB3CDAA8ED65BEF4F1B08DA6A75C289D1391EC",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5108,
+            "bytes": 8,
+            "sha256": "72CF3E94D8DE57930C53836928CC5674D526052EBE0FE88C853BFB807A43D4E9"
+          }
+        },
+        "recordRelative": {
+          "start": 5240,
+          "end": 5368,
+          "inBounds": true,
+          "bytes": 128,
+          "aligned": true,
+          "sha256": "1F309C0A03E819018E0C6049A9B934BA9EBE25048E5BB1131B61007C5A63E20A",
+          "zeroU32": 3,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5360,
+            "bytes": 8,
+            "sha256": "CE62DD4AAA8EC0D5F3EB481201ED6BC9B44391EF29E864578D8BCBD6590FAD4A"
+          }
+        },
+        "fieldRelative": {
+          "start": 5256,
+          "end": 5376,
+          "inBounds": true,
+          "bytes": 120,
+          "aligned": true,
+          "sha256": "7912DB39A1D949FDBB1CA7DB679A5FE27C9F906668E847570DA05526902699CB",
+          "zeroU32": 3,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 5376,
+            "bytes": 0,
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          }
+        }
+      }
+    },
+    {
+      "file": "9103.acts",
+      "descriptorCounts": {
+        "prefix": 71,
+        "at48": 71,
+        "at60": 141
+      },
+      "hypotheses": {
+        "absolute": {
+          "start": 7440,
+          "end": 7604,
+          "inBounds": true,
+          "bytes": 164,
+          "aligned": true,
+          "sha256": "31845883FDEC8748AC201D23A3669D3D447EBCA462EE8ECDED31072BA2793426",
+          "zeroU32": 4,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 7600,
+            "bytes": 4,
+            "sha256": "C7F407E711D524503BB90B4724B6096E57495EE30262B0731227B4462C62C7CB"
+          }
+        },
+        "recordRelative": {
+          "start": 7672,
+          "end": 7856,
+          "inBounds": true,
+          "bytes": 184,
+          "aligned": true,
+          "sha256": "2A9419B7BBCFD179989737F44071CD37459E4F1D535C05FD9110B0658D78610F",
+          "zeroU32": 6,
+          "firstWordZero": false,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 7852,
+            "bytes": 4,
+            "sha256": "B755ED9ABE86B93A7D41F2FCF12399A59B3446C1BD08C31D260B1FF31976DA8C"
+          }
+        },
+        "fieldRelative": {
+          "start": 7688,
+          "end": 7864,
+          "inBounds": true,
+          "bytes": 176,
+          "aligned": true,
+          "sha256": "7B377473ED725A495C82A3A476AFCA4743DF9EEA3E4088D20388A912C886E7A2",
+          "zeroU32": 6,
+          "firstWordZero": true,
+          "startHeaderCountMatches": [],
+          "matchingHeaderCount": 0,
+          "matchingHeaderSamples": [],
+          "trailingTwentyByteWindow": {
+            "start": 7848,
+            "bytes": 16,
+            "sha256": "B4BC338A69AFC7AA5DCE5C36BB4F00CAEACFE94C00A4740FB95AA651E7424ED4"
+          }
+        }
+      }
+    }
+  ]
+}

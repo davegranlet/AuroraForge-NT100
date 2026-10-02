@@ -1,0 +1,38 @@
+**Readability note:** I ran this document through an “explain like I am five” chatbot to improve readability, explainability, and usability. The chatbot helped present the material; it did not originate AuroraForge NT100, DataCtrlLink, their functionality, or the underlying development work.
+
+Rey Mysterio 2019 Luchador Mask Layout Legend
+
+Purpose:
+Upload this layout reference with the final handoff prompt, selected profile JSON, and bundled/default mask texture.
+
+Rules:
+- The layout reference is a placement guide only.
+- Do not copy guide colors, labels, or grid lines into the final mask texture.
+- The default/stock mask texture remains the visual authority for the exact UV footprint.
+- Final production outputs are mask_color.png, mask_mask1.png, and mask_nrm.png.
+- Default production canvas is 2048 x 2048.
+
+128x128 grid:
+Each grid cell equals exactly 16 px on a 2048 x 2048 texture.
+Heavy grid lines appear every 16 cells, matching 256 px blocks.
+
+Zones:
+- full_canvas: columns 1-128, rows 1-128 — Full mask_color canvas; keep 2048 x 2048 square.
+- background_padding: columns 1-128, rows 1-128 — Dark/opaque UV padding and non-feature areas. Do not make transparent unless the actual source alpha proves it.
+- upper_left_crown_island: columns 10-43, rows 1-35 — Upper-left curved crown/strap island from stock texture.
+- upper_right_crown_island: columns 86-119, rows 1-35 — Upper-right curved crown/strap island from stock texture.
+- left_side_mask_island: columns 19-47, rows 28-83 — Left tall curved side mask island with main color/trim.
+- right_side_mask_island: columns 82-110, rows 28-83 — Right tall curved side mask island with main color/trim.
+- center_forehead_spine: columns 59-70, rows 33-87 — Central vertical forehead/spine design strip.
+- center_front_emblem: columns 49-80, rows 35-83 — Central front emblem/forehead/chin identity zone.
+- left_eye_opening_zone: columns 27-43, rows 45-61 — Left eye/opening and trim-safe zone.
+- right_eye_opening_zone: columns 86-102, rows 45-61 — Right eye/opening and trim-safe zone.
+- left_wing_cheek_panel: columns 40-60, rows 50-85 — Left cheek/wing flow panel.
+- right_wing_cheek_panel: columns 69-89, rows 50-85 — Right cheek/wing flow panel.
+- lower_left_bib_panel: columns 5-44, rows 100-128 — Lower-left bib/front panel island.
+- lower_right_bib_panel: columns 85-124, rows 100-128 — Lower-right bib/front panel island.
+- left_name_tag: columns 1-14, rows 34-72 — Far-left vertical name/text island on stock texture. Avoid text unless intentionally requested.
+- lower_center_padding: columns 45-84, rows 90-128 — Lower center dark/padding area. Do not place main identity here unless the selected stock item uses it.
+- outer_corner_padding: columns 1-128, rows 1-128 — Outer corner UV padding/bleed. Keep compatible colors; avoid major artwork in corners.
+
+Do not add reference-map files to the game. They are only for generation handoff.

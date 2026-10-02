@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 - WWE 2K26 Modding Hub</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260825-real-tools">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">WWE 2K26 Modding Hub</div><strong>Choose · Build · Check</strong><span>Find the right AuroraForge NT100 tool for every part of your mod.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · WWE 2K26</div><h1>WWE 2K26 Modding Hub</h1><p class="sub">Working AuroraForge NT100 tools and the Beta3 replacement roadmap. If a tool says Ready to Use, it performs the operation now.</p></div><div class="topbar-badges"><span class="app-runtime-badge" id="suiteRuntime">Checking desktop tools</span><span class="version-badge">Real tools only</span></div></section>
+    <div class="wrap app-wrap mod-suite-wrap">
+      <section class="mod-suite-command-band">
+        <div><div class="part-label">Working now</div><h2>Start with a real tool</h2><p>Create a clean project, inspect a BakeMe folder, browse or build CAK archives, compare mod files, preview a wrestler, or convert textures. Tutorials are kept in Tutorials, not presented here as tools.</p></div>
+        <div class="mod-suite-command-actions">
+          <button class="ai-btn" id="suiteCreateWorkspace" type="button">Start a New Mod</button>
+          <button class="ai-btn secondary" id="suiteChooseAudit" type="button">Check a BakeMe Folder</button>
+          <a class="ai-btn secondary" href="cak-explorer.html">Open CAK Tools</a>
+        </div>
+        <div id="suiteStatus" class="copy-status" role="status"></div>
+      </section>
+
+      <section class="mod-suite-summary" aria-label="Tool status summary">
+        <div><strong id="suiteActiveCount">0</strong><span>Ready to use</span></div>
+        <div><strong id="suiteComingCount">0</strong><span>Coming soon</span></div>
+        <div><strong id="suiteCategoryCount">0</strong><span>Modding areas</span></div>
+        <div><strong>2K26</strong><span>Game version</span></div>
+      </section>
+
+      <section class="mod-suite-layout">
+        <aside class="mod-suite-filter-panel" aria-label="Modding Hub filters">
+          <div class="section-label">Show me</div>
+          <div class="mod-suite-segmented" id="suiteStatusFilters">
+            <button type="button" class="active" data-status="all">All</button>
+            <button type="button" data-status="active">Ready to Use</button>
+            <button type="button" data-status="coming-soon">Coming Soon</button>
+          </div>
+          <label class="mod-suite-search"><span>What do you want to do?</span><input id="suiteSearch" type="search" placeholder="Wrestler, arena, music..."></label>
+          <div class="section-label">Type of work</div>
+          <div class="mod-suite-category-list" id="suiteCategories"></div>
+          <div class="mod-suite-legend"><span><i class="is-active"></i>Works now in AuroraForge NT100</span><span><i class="is-coming"></i>Still being built</span></div>
+        </aside>
+        <div class="mod-suite-main-panel">
+          <div class="mod-suite-panel-head"><div><div class="section-label">Tool center</div><h2 id="suiteViewTitle">Everything</h2></div><span id="suiteResultCount">0 tools</span></div>
+          <div class="mod-suite-groups" id="suiteCapabilityGrid"></div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel mod-suite-audit" id="suiteAuditPanel" hidden>
+        <div class="mod-suite-panel-head"><div><div class="section-label">Your folder was not changed</div><h2>Your BakeMe Folder Report</h2></div><button class="ai-btn ghost" id="suiteCloseAudit" type="button">Close</button></div>
+        <div id="suiteAuditSummary" class="mod-suite-audit-summary"></div>
+        <div id="suiteAuditRoots" class="mod-suite-root-grid"></div>
+        <div class="ai-actions"><button class="ai-btn secondary" id="suiteOpenAuditedFolder" type="button">Open This Folder</button><button class="ai-btn secondary" id="suiteSaveAudit" type="button">Save This Report</button></div>
+      </section>
+
+      <section class="ai-panel good-panel app-panel">
+        <div class="section-label">Clear, honest status</div>
+        <h2>“Ready to Use” means it works now</h2>
+        <p>Ready to Use means the button opens a functioning AuroraForge NT100 tool or performs the named action. Coming Soon means the actual editor is not implemented and tested yet. Planning forms and tutorials do not count as replacement tools.</p>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · WWE 2K26 Modding Hub</footer>
+  </main>
+</div>
+<script src="assets/js/app-config-loader.js?v=20260825-real-tools"></script>
+<script src="assets/js/desktop-bridge.js?v=20260825-real-tools"></script>
+<script src="assets/js/mod-suite-data.js?v=20260825-real-tools"></script>
+<script src="assets/js/mod-suite.js?v=20260825-real-tools"></script>
+</body>
+</html>

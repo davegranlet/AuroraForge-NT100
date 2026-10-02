@@ -1,0 +1,57 @@
+{
+  "name": "aurora-forge-converter",
+  "productName": "Aurora Forge Beta3",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Aurora Forge Beta3 converter: WWE 2K19 to 2K25/2K26 entry builder with per-release verification.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "prestage": "node ../scripts/stage-public-tools.js",
+    "package": "npm run prestage && electron-builder --win portable",
+    "package:linux": "npm run prestage && electron-builder --linux tar.gz"
+  },
+  "build": {
+    "artifactName": "Aurora-Forge-2.0-Preview.${ext}",
+    "extraResources": [
+      {
+        "from": "./public-tools",
+        "to": "aurora-tools/tools"
+      },
+      {
+        "from": "../blender_addon",
+        "to": "aurora-tools/blender_addon"
+      },
+      {
+        "from": "../../app/tools/pac19-helper",
+        "to": "pac19-helper"
+      },
+      {
+        "from": "../../Aurora-CAK-Foundry",
+        "to": "Aurora-CAK-Foundry",
+        "filter": [
+          "scripts/bake-v93-cli.js",
+          "electron/cak-v93-backend.js",
+          "electron/cak-reader.js",
+          "electron/archive-repackager.js",
+          "electron/cak-v99-key.js",
+          "electron/game-versions.js",
+          "app/tools/cak-v93/**",
+          "app/tools/cak-helper/**"
+        ]
+      },
+      {
+        "from": "./skeletons",
+        "to": "aurora-tools/skeletons"
+      }
+    ]
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "allowScripts": {
+    "electron@35.7.5": true,
+    "electron-winstaller@5.4.0": true
+  }
+}

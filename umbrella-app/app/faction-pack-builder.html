@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Faction Pack Builder</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell" data-active-studio="faction">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div><div class="eyebrow">AuroraForge NT100 · Prompt Builders</div><h1>Faction Pack Builder</h1><p class="sub">Create a shared faction identity while keeping every member visually distinct and readable.</p></div>
+    </section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Connected identity workflow</div>
+        <h2>Shared branding without copy-and-paste wrestlers</h2>
+        <p>Define the faction’s non-negotiable identity rules, then record which shapes, colors, materials, and presentation details change for each member.</p>
+      </section>
+      <section class="ai-panel app-panel active-studio-workflow-panel">
+        <div class="section-label" style="margin-top:0;">Faction details</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="projectName">Faction name</label><input id="projectName" value="The Northern Crown"></div>
+          <div class="ai-field"><label for="primaryType">Faction type / alignment</label><select id="primaryType"><option>Championship unit</option><option>Heel power faction</option><option>Face alliance</option><option>Tag team and manager</option><option>Legacy family</option><option>Supernatural collective</option></select></div>
+          <div class="ai-field"><label for="secondaryType">Members and roles</label><textarea id="secondaryType">Leader, powerhouse, technician, high flyer, manager; note entrance order and visual rank</textarea></div>
+          <div class="ai-field"><label for="styleTheme">Shared identity / theme</label><textarea id="styleTheme">Regal northern-warrior presentation with modern premium sports styling</textarea></div>
+          <div class="ai-field"><label for="colorPalette">Shared color palette</label><input id="colorPalette" value="Black, antique gold, ice blue, member-specific accent color"></div>
+          <div class="ai-field"><label for="materials">Shared materials / finishes</label><textarea id="materials">Matte black fabric, antique-metal trim, raised embroidery, restrained gemstone accents for leadership</textarea></div>
+          <div class="ai-field"><label for="logoNotes">Primary and secondary logo rules</label><textarea id="logoNotes">One crown-rune master mark, simplified chest mark, monochrome mask version, member initials only as secondary elements</textarea></div>
+          <div class="ai-field"><label for="frontNotes">Per-member identity plan</label><textarea id="frontNotes">Keep silhouette and accent color unique; document each member’s logo placement, gear cut, and rank cue</textarea></div>
+          <div class="ai-field"><label for="backNotes">Entrance / presentation plan</label><textarea id="backNotes">Coordinated entrance palette, shared stage graphic, leader enters last, individual name cards retain faction frame</textarea></div>
+          <div class="ai-field"><label for="sideNotes">Expanded brand plan</label><textarea id="sideNotes">Tag attire, manager version, championship side plates, faction arena assets, merchandise-safe logo variants</textarea></div>
+          <div class="ai-field"><label for="seamNotes">Consistency and readability rules</label><textarea id="seamNotes">Shared marks must remain identical; do not place member-specific text where the main faction mark should be</textarea></div>
+          <div class="ai-field"><label for="outputNotes">Pack and handoff notes</label><textarea id="outputNotes">Create master identity rules, member matrix, shared asset inventory, per-member notes, and final consistency checklist</textarea></div>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="buildActiveStudioPrompt()">Refresh Project Brief</button>
+          <button class="ai-btn" type="button" onclick="downloadActiveStudioHandoffPack()">Download Complete Faction Pack</button>
+        </div>
+        <div id="activeStudioStatus" class="copy-status"></div>
+      </section>
+      <section class="ai-panel app-panel"><div class="section-label" style="margin-top:0;">Generated identity prompt</div><textarea id="activeStudioPrompt" class="ai-textarea ai-output" readonly></textarea></section>
+      <section class="ai-panel app-panel"><div class="section-label" style="margin-top:0;">Faction brief and consistency checklist</div><div class="project-preview-grid"><textarea id="activeStudioBrief" class="ai-textarea ai-output studio-output-preview" readonly></textarea><pre id="activeStudioChecklist" class="code-block studio-output-preview"></pre></div></section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Prompt Builders</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/active-studio-workflow.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

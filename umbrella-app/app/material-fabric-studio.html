@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Material / Fabric Studio</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell" data-active-studio="material">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div><div class="eyebrow">AuroraForge NT100 · Prompt Builders</div><h1>Material / Fabric Studio</h1><p class="sub">Build reusable material and surface texture prompts for leather, spandex, mesh, satin, denim, rubber, metal, carbon fiber, embroidery, and worn fabric.</p></div>
+    </section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Guided workflow</div>
+        <h2>Material / Fabric Studio</h2>
+        <p>Create reusable material directions that can support gear, masks, belts, entrance gear, logos, and shader and normal-map work.</p>
+        <div class="change-notice"><strong>Workflow status:</strong> This is now an active starter studio. It builds prompts, project briefs, JSON project files, checklists, and handoff packs.</div>
+      </section>
+      <section class="ai-panel app-panel active-studio-workflow-panel">
+        <div class="section-label" style="margin-top:0;">Project details</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="projectName">Project name</label><input id="projectName" value="Material / Fabric Studio Project"></div>
+          <div class="ai-field"><label for="primaryType">Material type</label><select id="primaryType"><option value="Black leather" selected>Black leather</option><option value="Spandex / lycra">Spandex / lycra</option><option value="Mesh fabric">Mesh fabric</option><option value="Denim">Denim</option><option value="Satin / silk">Satin / silk</option><option value="Velvet">Velvet</option><option value="Rubber">Rubber</option><option value="Carbon fiber">Carbon fiber</option><option value="Brushed metal">Brushed metal</option><option value="Embroidery / patch material">Embroidery / patch material</option></select></div>
+          <div class="ai-field"><label for="secondaryType">Secondary / variants</label><input id="secondaryType" value="Gear panels, entrance jacket panels, mask trim, belt strap detail, logo patch variants"></div>
+          <div class="ai-field"><label for="styleTheme">Style / theme</label><textarea id="styleTheme">Premium worn black leather surface with subtle grain, stitching, raised trim, and arena-safe contrast</textarea></div>
+          <div class="ai-field"><label for="colorPalette">Color palette</label><input id="colorPalette" value="Black, charcoal, gunmetal grey, subtle cyan/orange highlight accents"></div>
+          <div class="ai-field"><label for="materials">Materials / finish</label><textarea id="materials">Surface grain, stitching, embossed trim, subtle edge wear, controlled shine, no noisy micro-detail</textarea></div>
+          <div class="ai-field"><label for="logoNotes">Logo / symbol placement</label><textarea id="logoNotes">Optional embossed runes, stitched panel borders, raised logo patch areas, subtle worn seams</textarea></div>
+          <div class="ai-field"><label for="frontNotes">Front notes</label><textarea id="frontNotes">Tile or repeat cleanly without obvious seams; keep texture usable as a reusable surface</textarea></div>
+          <div class="ai-field"><label for="backNotes">Back notes</label><textarea id="backNotes">Add believable wear, dirt, polish variation, and softened aging without making it muddy</textarea></div>
+          <div class="ai-field"><label for="sideNotes">Side / secondary view notes</label><textarea id="sideNotes">Include raised/recessed detail guidance for later normal map or shader support</textarea></div>
+          <div class="ai-field"><label for="seamNotes">Risk / readability notes</label><textarea id="seamNotes">Avoid single-pixel scratches, noisy grain, pure white highlights, and details too small for DDS/game camera readability</textarea></div>
+          <div class="ai-field"><label for="outputNotes">Output notes</label><textarea id="outputNotes">Create a clean material review image first, plus notes for tile/repeat behavior, normal map guidance, shader finish, and DDS-safe detail limits.</textarea></div>
+        </div>
+        <div class="workflow-mini-grid">
+          <div class="workflow-mini-card"><strong>1. Define</strong><span>Pick the type, theme, colors, materials, and placement details.</span></div>
+          <div class="workflow-mini-card"><strong>2. Build prompt</strong><span>Generate a focused prompt that avoids poster art and keeps the result texture-useful.</span></div>
+          <div class="workflow-mini-card"><strong>3. Review</strong><span>Use the project brief and checklist before approving final artwork.</span></div>
+          <div class="workflow-mini-card"><strong>4. Export</strong><span>Download a handoff pack for use with your chosen AI or image tool.</span></div>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn" type="button" onclick="buildActiveStudioPrompt()">Build Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="copyActiveStudioPrompt()">Copy Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioPrompt()">Download Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioProjectJson()">Download Project JSON</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioHandoffPack()">Download Handoff Pack</button>
+        </div>
+        <div id="activeStudioStatus" class="copy-status"></div>
+      </section>
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Generated prompt</div>
+        <textarea id="activeStudioPrompt" class="ai-textarea ai-output" readonly></textarea>
+      </section>
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project brief and checklist</div>
+        <div class="project-preview-grid">
+          <textarea id="activeStudioBrief" class="ai-textarea ai-output studio-output-preview" readonly></textarea>
+          <pre id="activeStudioChecklist" class="code-block studio-output-preview"></pre>
+        </div>
+        <div class="studio-pack-note">The handoff pack includes the prompt, project brief, checklist, project JSON, and a README.</div>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/active-studio-workflow.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

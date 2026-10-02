@@ -1,0 +1,23 @@
+{
+  "schema": "aurora-forge-wwe2k25-cak-loader-v1",
+  "loaderVersion": "1.0.0",
+  "hostExecutable": "WWE2K25_x64.exe",
+  "gameExeSha256": "C6BC0459D4D29667C9E8F1DCACA013AE4691D615E4C79D069AD272F70E2CEE01",
+  "coreFilename": "dinput8.dll",
+  "coreSha256": "E600D04F2E1A9AF3C23A358462E8B5C25064D6C08411819377E278581EF0ED2F",
+  "addonFilename": "AuroraForge.CAKModLoader.ftrib",
+  "addonSha256": "8DF85F88EF117CAE07D9BA3788AB255C5986E3E460F905EDAB7C5972918E3E33",
+  "notes": "Only reviewed native loader profiles can be enabled. Foundry CAK catalog browsing, BakeMe validation, baking, and manifest editing are independent of this native-loader gate.",
+  "observedBuilds": [
+    {
+      "sha256": "C6BC0459D4D29667C9E8F1DCACA013AE4691D615E4C79D069AD272F70E2CEE01",
+      "label": "WWE 2K25 Saturday Night's Main Event",
+      "loaderStatus": "supported"
+    },
+    {
+      "sha256": "B608E7ED18BFB6291CA195532ACCF40081CBF1A1F4850E63943906D155B9AC98",
+      "label": "WWE 2K25 v1.23",
+      "loaderStatus": "supported"
+    }
+  ]
+}

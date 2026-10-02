@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Luchador Mask Studio</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div>
+      <div>
+        <div class="app-brand-title">AuroraForge NT100</div>
+        <div class="app-brand-sub">by VikingStudios</div>
+      </div>
+    </div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div>
+        <div class="eyebrow">AuroraForge NT100 · Prompt Builders</div>
+        <h1>Luchador Mask Studio</h1>
+        <p class="sub">Choose the mask profile, set the original mask details, and download one complete handoff pack with the prompt, profile JSON, layout reference, 128×128 grid, legend, and bundled default texture when available.</p>
+      </div>
+    </section>
+<div class="wrap app-wrap">
+  <div class="pipeline-flow studio-flow">
+    <div class="flow-step active-flow"><span>1</span><strong>Profile</strong><small>Pick mask profile and size</small></div>
+    <div class="flow-step"><span>2</span><strong>Details</strong><small>Choose idea and design notes</small></div>
+    <div class="flow-step"><span>3</span><strong>Download</strong><small>Get one complete handoff pack</small></div>
+    <div class="flow-step"><span>4</span><strong>Generate</strong><small>Use the pack with your chosen compatible AI tool</small></div>
+    <div class="flow-step"><span>5</span><strong>Test</strong><small>Convert to DDS and test in game</small></div>
+  </div>
+
+  <section class="ai-panel app-panel" id="lmask-project-builder">
+    <div class="section-label" style="margin-top:0;">Luchador mask project builder</div>
+    <h2>Mask details and texture choices</h2>
+    <p>Work from top to bottom. Choose the mask profile, keep the output at 2048×2048 by default, pick or randomize an original mask idea, then download one Final Handoff Pack that contains the prompt, profile JSON, layout reference, 128×128 grid, legend, project notes, and bundled default texture when available.</p>
+
+    <div class="section-label">Project details</div>
+    <div class="ai-grid">
+      <div class="ai-field">
+        <label for="projectName">Project name</label>
+        <input id="projectName" value="WWE 2K26 Luchador Mask Project" placeholder="Example: Rey Style Mask Test">
+      </div>
+      <div class="ai-field">
+        <label for="mappingProfile">Mask profile</label>
+        <select id="mappingProfile"><option value="">Loading profiles…</option></select>
+      </div>
+      <div class="ai-field">
+        <label for="handoffSize">Output size</label>
+        <select id="handoffSize">
+          <option value="1024">1024 × 1024</option>
+          <option value="2048" selected>2048 × 2048</option>
+          <option value="4096">4096 × 4096</option>
+        </select>
+      </div>
+    </div>
+
+    <input id="promptMode" type="hidden" value="compact">
+    <input id="handoffPackMode" type="hidden" value="complete_handoff_pack">
+
+    <div class="section-label">Mask idea</div>
+    <div class="app-two-col">
+      <div>
+        <div class="ai-field">
+          <label for="designIdeaPreset">Mask idea preset</label>
+          <select id="designIdeaPreset"><option value="">Loading default ideas…</option></select>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="applySelectedStage2Idea()">Use This Idea</button>
+          <button class="ai-btn secondary" type="button" onclick="chooseRandomIdea('designIdeaPreset', 'designIdeaPreview')">Random Idea</button>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-top:0;">Mask idea details</h3>
+        <pre id="designIdeaPreview" class="mini-output">Loading default design idea…</pre>
+      </div>
+    </div>
+
+    
+    <div class="section-label">Mask detail options</div>
+    <p class="muted">Choose the visible mask details here. AuroraForge NT100 adds these selections to the finished prompt automatically.</p>
+    <div class="ai-grid">
+      <div class="ai-field">
+        <label for="lmaskPalette">Color palette</label>
+        <select id="lmaskPalette"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskBaseMaterial">Base material</label>
+        <select id="lmaskBaseMaterial"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskTrimStyle">Trim style</label>
+        <select id="lmaskTrimStyle"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskEyeTrim">Eye trim</label>
+        <select id="lmaskEyeTrim"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskForehead">Forehead / center identity</label>
+        <select id="lmaskForehead"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskCheekJaw">Cheek / jaw panels</label>
+        <select id="lmaskCheekJaw"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskSidePanels">Side panels</label>
+        <select id="lmaskSidePanels"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskChinMouth">Chin / mouth area</label>
+        <select id="lmaskChinMouth"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskSeams">Seams / stitching</label>
+        <select id="lmaskSeams"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskFinish">Finish / wear level</label>
+        <select id="lmaskFinish"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskMotif">Motif / character cue</label>
+        <select id="lmaskMotif"></select>
+      </div>
+      <div class="ai-field">
+        <label for="lmaskReadability">Arena readability</label>
+        <select id="lmaskReadability"></select>
+      </div>
+    </div>
+    <div class="ai-actions">
+      <button class="ai-btn secondary" type="button" onclick="randomizeLmaskDetails()">Randomize Details</button>
+      <button class="ai-btn secondary" type="button" onclick="applyLmaskDetailDefaults()">Reset Detail Defaults</button>
+    </div>
+
+<div id="lmaskHiddenPromptNotes" style="display:none;">
+    <div class="section-label">Original mask texture notes</div>
+    <div class="ai-grid">
+      <div class="ai-field">
+        <label for="handoffTheme">Original mask concept</label>
+        <textarea id="handoffTheme">Original premium luchador mask texture using the selected mask profile layout. Keep it arena-readable, symmetrical where needed, and compatible with the bundled/default mask texture footprint.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="handoffPreserve">Preserve</label>
+        <textarea id="handoffPreserve">Preserve the selected profile footprint, mask island placement, eye opening placement, trim, seams, stitching, material feel, and strong front identity.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="handoffChanges">Change / add</label>
+        <textarea id="handoffChanges">Generate a production-ready original WWE 2K26 luchador mask texture set. Use the bundled/default texture as the UV footprint authority. Do not change the layout footprint. Keep all important artwork inside the selected profile zones.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="handoffPriority">Priority elements</label>
+        <textarea id="handoffPriority">Front identity must land in the safe front zones. Eye trim must match mapped eye zones. Side islands and lower panels must follow the profile reference. Top, rear, and padding areas must stay compatible with the stock/default texture footprint.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="projectGoal">Project goal</label>
+        <textarea id="projectGoal">Create the final WWE 2K26 lmask texture set: mask_color.png, mask_mask1.png, and mask_nrm.png.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="projectNotes">Private notes</label>
+        <textarea id="projectNotes" placeholder="Optional notes for this mask project"></textarea>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="change-notice face-builder-next-step-note"><strong>Next:</strong> download the Final Handoff Pack below. It includes the prompt, selected profile JSON, layout reference PNG, 128×128 grid PNG, layout legend, project notes, and bundled default texture when available.</div>
+  </section>
+
+  <section class="ai-panel app-panel" id="prompt-review">
+    <div class="section-label" style="margin-top:0;">Review before export</div>
+    <h2>Your finished mask prompt</h2>
+    <p>Review the instructions AuroraForge NT100 assembled before downloading the handoff pack. The same prompt is included inside the ZIP.</p>
+    <div class="ai-actions">
+      <button class="ai-btn secondary" type="button" onclick="copyById('handoffRequestOutput', 'projectStudioStatus')">Copy Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadProfileAwareStage1Prompt()">Download Design Prompt</button>
+    </div>
+    <label for="handoffRequestOutput">Production and mapping prompt</label>
+    <textarea id="handoffRequestOutput" class="ai-textarea ai-output" readonly></textarea>
+    <details><summary>Show initial design prompt</summary><textarea id="stage1ProfileAwarePrompt" class="ai-textarea ai-output" readonly></textarea></details>
+  </section>
+
+  <section class="ai-panel app-panel" id="handoff-output">
+    <div class="section-label" style="margin-top:0;">Final export and handoff</div>
+    <h2>Download one complete mask handoff pack</h2>
+    <p>The Final Handoff Pack is the only end-user download needed from this studio. It includes the final prompt, selected profile JSON, layout reference PNG, 128×128 grid PNG, layout legend, upload checklist, project brief, output file notes, and bundled default mask texture when available.</p>
+    <div class="change-notice"><strong>One download only:</strong> upload this ZIP with your chosen compatible AI tool to generate <code>mask_color.png</code>, <code>mask_mask1.png</code>, and <code>mask_nrm.png</code>.</div>
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="downloadAppHandoffPack()">Download Final Handoff Pack</button>
+      <button class="ai-btn secondary" type="button" onclick="saveProjectSettings()">Save Settings Locally</button>
+      <button class="ai-btn secondary" type="button" onclick="resetProjectSettings()">Reset Settings</button>
+    </div>
+    <div id="projectStudioStatus" class="copy-status"></div>
+    <div id="profileLoadStatus" class="copy-status"></div>
+  </section>
+
+  <section class="ai-panel app-panel">
+    <div class="section-label" style="margin-top:0;">Need another pass?</div>
+    <h2>Test in game, then correct placement</h2>
+    <p>After the generated PNG files are converted to DDS and tested in game, use screenshots and notes to adjust the mapping/profile instructions for the next generation pass.</p>
+    <div class="ai-actions">
+      <a class="ai-btn secondary" href="lmask-mapping-handoff.html">Open LMASK Mapping Handoff</a>
+      <a class="ai-btn secondary" href="lmask-idea-library.html">Open LMASK Idea Library</a>
+    </div>
+  </section>
+
+  <pre id="uploadChecklistPreview" class="mini-output" style="display:none;"></pre>
+  <pre id="profileFamilySummary" class="mini-output" style="display:none;"></pre>
+</div>
+
+<footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+      <script src="assets/js/lmask-profile-loader.js?v=20260726-r160d"></script>
+      <script src="assets/js/lmask-prompt-compiler.js?v=20260726-r160d"></script>
+      <script src="assets/js/lmask-project-studio.js?v=20260726-r160d"></script>
+  <script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

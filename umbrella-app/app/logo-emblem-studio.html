@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Logo / Emblem Studio</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell" data-active-studio="logo">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div><div class="eyebrow">AuroraForge NT100 · Prompt Builders</div><h1>Logo / Emblem Studio</h1><p class="sub">Create wrestler logos, faction marks, gear emblems, transparent PNG assets, and patch-style variants.</p></div>
+    </section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Guided workflow</div>
+        <h2>Logo / Emblem Studio</h2>
+        <p>Build clear logo prompts that avoid poster art and focus on usable transparent symbols for gear, arena branding, faction packs, and CAW identity.</p>
+        <div class="change-notice"><strong>Workflow status:</strong> This is now an active starter studio. It builds prompts, project briefs, JSON project files, checklists, and handoff packs.</div>
+      </section>
+      <section class="ai-panel app-panel active-studio-workflow-panel">
+        <div class="section-label" style="margin-top:0;">Project details</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="projectName">Project name</label><input id="projectName" value="Logo / Emblem Studio Project"></div>
+          <div class="ai-field"><label for="primaryType">Main type</label><select id="primaryType"><option value="Wrestler logo">Wrestler logo</option><option value="Faction logo">Faction logo</option><option value="Gear emblem">Gear emblem</option><option value="Patch / crest">Patch / crest</option><option value="Arena branding mark">Arena branding mark</option></select></div>
+          <div class="ai-field"><label for="secondaryType">Secondary / variants</label><input id="secondaryType" value="Transparent version, black/white mask version, embroidered patch version, metallic version"></div>
+          <div class="ai-field"><label for="styleTheme">Style / theme</label><textarea id="styleTheme">Sharp Viking-inspired angular A mark with modern metallic finish</textarea></div>
+          <div class="ai-field"><label for="colorPalette">Color palette</label><input id="colorPalette" value="Silver, black, teal glow, forge orange accent"></div>
+          <div class="ai-field"><label for="materials">Materials / finish</label><textarea id="materials">Flat vector base, metallic variant, embroidered patch variant</textarea></div>
+          <div class="ai-field"><label for="logoNotes">Logo / symbol placement</label><textarea id="logoNotes">Main icon should be readable without text; optional wordmark version below</textarea></div>
+          <div class="ai-field"><label for="frontNotes">Front notes</label><textarea id="frontNotes">Transparent PNG version with clean alpha edges</textarea></div>
+          <div class="ai-field"><label for="backNotes">Back notes</label><textarea id="backNotes">Black and white mask version for shader/support work</textarea></div>
+          <div class="ai-field"><label for="sideNotes">Side / secondary view notes</label><textarea id="sideNotes">Patch / embroidery version for jackets or gear</textarea></div>
+          <div class="ai-field"><label for="seamNotes">Risk / readability notes</label><textarea id="seamNotes">No tiny unreadable letters, no fake poster background, no watermark</textarea></div>
+          <div class="ai-field"><label for="outputNotes">Output notes</label><textarea id="outputNotes">Create transparent logo assets plus black/white and patch-style variants.</textarea></div>
+        </div>
+        <div class="workflow-mini-grid">
+          <div class="workflow-mini-card"><strong>1. Define</strong><span>Pick the type, theme, colors, materials, and placement details.</span></div>
+          <div class="workflow-mini-card"><strong>2. Build prompt</strong><span>Generate a focused prompt that avoids poster art and keeps the result texture-useful.</span></div>
+          <div class="workflow-mini-card"><strong>3. Review</strong><span>Use the project brief and checklist before approving final artwork.</span></div>
+          <div class="workflow-mini-card"><strong>4. Export</strong><span>Download a handoff pack for use with your chosen AI or image tool.</span></div>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn" type="button" onclick="buildActiveStudioPrompt()">Build Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="copyActiveStudioPrompt()">Copy Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioPrompt()">Download Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioProjectJson()">Download Project JSON</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioHandoffPack()">Download Handoff Pack</button>
+        </div>
+        <div id="activeStudioStatus" class="copy-status"></div>
+      </section>
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Generated prompt</div>
+        <textarea id="activeStudioPrompt" class="ai-textarea ai-output" readonly></textarea>
+      </section>
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project brief and checklist</div>
+        <div class="project-preview-grid">
+          <textarea id="activeStudioBrief" class="ai-textarea ai-output studio-output-preview" readonly></textarea>
+          <pre id="activeStudioChecklist" class="code-block studio-output-preview"></pre>
+        </div>
+        <div class="studio-pack-note">The handoff pack includes the prompt, project brief, checklist, project JSON, and a README.</div>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/active-studio-workflow.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

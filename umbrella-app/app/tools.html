@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Tools</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Built-in tools</div><h1>Tools</h1><p class="sub">Preview, correct, and inspect your own project files without changing the originals.</p></div></section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Check before you install</div>
+        <h2>Built-in Beta3 tools for the main AuroraForge NT100 app</h2>
+        <p>Run the converter, inspect files, prepare archives, and validate outputs from one desktop workspace. Supporting repos are folded into these tools instead of shown as separate products.</p>
+        <div class="ai-actions"><a class="ai-btn" href="tools.html#animation-converter">Open Animation Converter Beta</a><a class="ai-btn secondary" href="mod-suite.html">Open Modding Hub</a><a class="ai-btn secondary" href="setup.html#external-programs">Set Up External Programs</a></div>
+      </section>
+      <section class="hub-card-grid tools-hub-grid">
+        <article class="hub-feature-card tool-hub-card featured" id="animation-converter">
+          <span class="hub-card-icon">19→25</span>
+          <div><div class="section-label" style="margin-top:0;">Bundled Beta3 · gated preview</div><h2>WWE 2K19 to WWE 2K25/2K26 Animation Converter</h2><p>Convert decoded WWE 2K19 motion into a modern WWE 2K25/2K26 clips replacement and build a loader-ready CAK. The codec and loader paths work; additive entries and final pose alignment remain test-gated.</p></div>
+          <div class="ai-actions"><button class="ai-btn" id="openAnimationConverter" type="button">Launch Converter</button><a class="ai-btn secondary" href="tutorials.html#test-fix">Testing Notes</a></div>
+          <div id="animationConverterStatus" class="copy-status"></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card featured">
+          <span class="hub-card-icon">25</span>
+          <div><div class="section-label" style="margin-top:0;">Additive entry studio · beta</div><h2>WWE 2K19 to WWE 2K25/2K26 Entry Studio</h2><p>Create a new Create-an-Entrance entry, convert a WWE 2K19 motion into the 2K25/2K26 clips format, edit its fields, bake a loader-ready CAK, and stage it. Runs locally at 127.0.0.1:7878.</p></div>
+          <div class="ai-actions"><button class="ai-btn" id="openEntryStudio" type="button">Start Entry Studio</button></div>
+          <div id="entryStudioStatus" class="copy-status"></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card featured">
+          <span class="hub-card-icon">▦</span>
+          <div><div class="section-label" style="margin-top:0;">Your complete modding workspace</div><h2>WWE 2K26 Modding Hub</h2><p>Start a mod, check a BakeMe folder, open tools that work now, and see which editors are still being built. Every option explains what it does in plain language.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="mod-suite.html">Open Modding Hub</a><a class="ai-btn secondary" href="tutorials.html">Tutorials</a></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card">
+          <span class="hub-card-icon">◇</span>
+          <div><div class="section-label" style="margin-top:0;">Preview</div><h2>Character Viewer</h2><p>Load local OBJ meshes, apply local textures, rotate the model, compare before and after, and take screenshots.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="character-viewer.html">Open Tool</a><a class="ai-btn secondary" href="tutorials.html#viewer">Tutorial</a></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card">
+          <span class="hub-card-icon">⊕</span>
+          <div><div class="section-label" style="margin-top:0;">Correction</div><h2>Face Calibration</h2><p>Compare the source face with an in-game screenshot and turn visible problems into simple correction notes.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="face-calibration-workflow.html">Open Tool</a><a class="ai-btn secondary" href="tutorials.html#face-calibration">Tutorial</a></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card">
+          <span class="hub-card-icon">⌕</span>
+          <div><div class="section-label" style="margin-top:0;">Inspection</div><h2>Mod File Inspector</h2><p>Compare original and modified folders, inspect DDS details, and report what changed without editing either folder.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="mod-file-inspector.html">Open Tool</a><a class="ai-btn secondary" href="tutorials.html#inspector">Tutorial</a></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card">
+          <span class="hub-card-icon">CAK</span>
+          <div><div class="section-label" style="margin-top:0;">Archive access and CAK baking</div><h2>Aurora CAK Foundry</h2><p>Find and extract files from existing archives, or choose a BakeMe folder and build its contents into a brand-new CAK. Existing archives and source folders stay unchanged.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="cak-explorer.html">Open Tool</a><a class="ai-btn secondary" href="tutorials.html#cak-explorer">Tutorial</a></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card">
+          <span class="hub-card-icon">19</span>
+          <div><div class="section-label" style="margin-top:0;">WWE 2K19 archive access</div><h2>WWE 2K19 PAC Explorer and Rebuilder</h2><p>Open a WWE 2K19 PAC, copy files out, or replace one supported entry and save a separate rebuilt PAC for testing.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="pac19-explorer.html">Open Tool</a></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card">
+          <span class="hub-card-icon">20</span>
+          <div><div class="section-label" style="margin-top:0;">WWE 2K20 archive prep</div><h2>WWE 2K20 CAK Workbench</h2><p>Check your 2K20 install, confirm the Oodle 7 DLL, and list the bakedfile CAKs. Extraction and rebuilding stay locked until the 2K20 catalog format is verified.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="cak20-explorer.html">Open Tool</a></div>
+        </article>
+        <article class="hub-feature-card tool-hub-card">
+          <span class="hub-card-icon">⇄</span>
+          <div><div class="section-label" style="margin-top:0;">Conversion</div><h2>DDS Converter</h2><p>Convert individual DDS or PNG files—or an entire folder—with buttons. AuroraForge NT100 automatically matches same-name original DDS settings and stops unsafe size or output-folder mistakes.</p></div>
+          <div class="ai-actions"><a class="ai-btn" href="dds-converter.html">Open Tool</a><a class="ai-btn secondary" href="tutorials.html#dds-without-photoshop">Tutorial</a></div>
+        </article>
+      </section>
+      <section class="ai-panel good-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Safety rule</div>
+        <h2>Your files stay yours</h2>
+        <p>AuroraForge NT100 does not bundle WWE assets. These tools read only the files and folders you select. Always keep an untouched backup before replacing game or mod files.</p>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Tools</footer>
+  </main>
+</div>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+<script src="assets/js/entry-studio.js?v=20260925"></script>
+</body>
+</html>
+

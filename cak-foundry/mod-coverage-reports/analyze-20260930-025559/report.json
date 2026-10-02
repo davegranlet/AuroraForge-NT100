@@ -1,0 +1,764 @@
+{
+  "when": "2026-09-30T06:56:06.866Z",
+  "gamePid": "0x00006c54",
+  "csv": "C:\\Users\\dgran\\AppData\\Local\\Temp\\opencode\\kfile-run2.csv",
+  "gameReads": 32962,
+  "cakReads": 469,
+  "cakMetaReads": 335,
+  "unlocalized": 0,
+  "catalogFailures": 1297,
+  "catalogErrors": [
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile62.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\bakedfile62.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile70.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\bakedfile70.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/CF12B29E6F1844B2681CC430F2604975/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\CF12B29E6F1844B2681CC430F2604975\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/BAA27DC502854FA3689DF224838C1CBB/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\BAA27DC502854FA3689DF224838C1CBB\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/F0F254EE0A06464655937CCB1337544F/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\F0F254EE0A06464655937CCB1337544F\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/C24DD60E80934C8C52A027E4D003845C/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\C24DD60E80934C8C52A027E4D003845C\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/E8A21D7909A9423949A38FCFB78D1E33/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\E8A21D7909A9423949A38FCFB78D1E33\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/B9FC83FF38694C7D7C54F9D585B7967B/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\B9FC83FF38694C7D7C54F9D585B7967B\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/5CFFC7B7670044F07936E42A55759517/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\5CFFC7B7670044F07936E42A55759517\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/D542FEB1CABA469E4726ED5DA2DA3846/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\D542FEB1CABA469E4726ED5DA2DA3846\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/D34FEEB72F5D46E4652AC50532403892/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\D34FEEB72F5D46E4652AC50532403892\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/CD03884FBBB0464A7D18959089A0003E/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\CD03884FBBB0464A7D18959089A0003E\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/EA7F4970A3A2445A5B66078FA4CF9895/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\EA7F4970A3A2445A5B66078FA4CF9895\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/5C730BBF5259497B67947208A9226D53/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\5C730BBF5259497B67947208A9226D53\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/2C5FC6E9C10C4F055058CA6F8B3CACF8/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\2C5FC6E9C10C4F055058CA6F8B3CACF8\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/5E3030191B1E4AF869D503F4567D6DDC/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\5E3030191B1E4AF869D503F4567D6DDC\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/B9D6F23A7A474114501B6E89D5D96592/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\B9D6F23A7A474114501B6E89D5D96592\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/A844DCA9A01B433E72A9C3003EDEF82C/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\A844DCA9A01B433E72A9C3003EDEF82C\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/14BC3A44500C412361944E9F3A26B88C/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\14BC3A44500C412361944E9F3A26B88C\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/CF931E24A1574248553A2A883218EDB3/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\CF931E24A1574248553A2A883218EDB3\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/A890C99BD2E1468071D22DEC69E69CB2/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\A890C99BD2E1468071D22DEC69E69CB2\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/C202CC3C1FD746BA5E9AF21DF7E1BEC2/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\C202CC3C1FD746BA5E9AF21DF7E1BEC2\\rs.cak'"
+    },
+    {
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/ResourceSync/91BB5B1A54E6445A6E5B223CF2373F2F/rs.cak",
+      "error": "ENOENT: no such file or directory, stat 'C:\\SteamLibrary\\steamapps\\common\\WWE 2K26\\ResourceSync\\91BB5B1A54E6445A6E5B223CF2373F2F\\rs.cak'"
+    }
+  ],
+  "caksTouched": [
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile00.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile01.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile02.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile03.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile50.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile60.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile61.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile51.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile52.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile56.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile57.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile58.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile100.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile80.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/mods/3rdtest-cv.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/bakedfile90.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/mods/2ndtest-cv.cak"
+  ],
+  "activeMods": [
+    "c:/steamlibrary/steamapps/common/wwe 2k26/mods/2ndtest-cv.cak",
+    "c:/steamlibrary/steamapps/common/wwe 2k26/mods/3rdtest-cv.cak"
+  ],
+  "counts": {
+    "modHits": 30,
+    "critical": 2,
+    "attention": 338,
+    "focusAttention": 25
+  },
+  "modHits": [
+    {
+      "path": "_textures.tdb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak",
+      "kind": "mod",
+      "reads": 4,
+      "bytes": 4400,
+      "first": 134352223458948830,
+      "last": 134352223605195710
+    },
+    {
+      "path": "CAS/Body_Paint_Arm/00007/02.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak",
+      "kind": "mod",
+      "reads": 2,
+      "bytes": 131088,
+      "first": 134352223459158580,
+      "last": 134352223488386930
+    },
+    {
+      "path": "Logo/COMMON/LGC1_Logo_Design/00002/Textures/design_mask.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 1,
+      "bytes": 131072,
+      "first": 134352223488513090,
+      "last": 134352223488513090
+    },
+    {
+      "path": "Logo/COMMON/LGC1_Logo_Design/00001/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 7,
+      "bytes": 9832305,
+      "first": 134352223587069310,
+      "last": 134352223609050030
+    },
+    {
+      "path": "Logo/COMMON/LGC1_Logo_Design/00001/Textures/design_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 7,
+      "bytes": 9836337,
+      "first": 134352223588219460,
+      "last": 134352223609050030
+    },
+    {
+      "path": "_textures.tdb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 12,
+      "bytes": 13876375,
+      "first": 134352223588614050,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00000/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 9,
+      "bytes": 13867414,
+      "first": 134352223588614050,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/COMMON/LGC1_Logo_Design/00002/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 4,
+      "bytes": 14992,
+      "first": 134352223588686850,
+      "last": 134352223589157140
+    },
+    {
+      "path": "CAS/Body_Paint_Arm/00012/02.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak",
+      "kind": "mod",
+      "reads": 1,
+      "bytes": 4096,
+      "first": 134352223606036740,
+      "last": 134352223606036740
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00000/Textures/design_blur.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 6,
+      "bytes": 13847557,
+      "first": 134352223608622820,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00000/Textures/design_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 6,
+      "bytes": 13847557,
+      "first": 134352223608622820,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00001/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 6,
+      "bytes": 13847557,
+      "first": 134352223608622820,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00001/Textures/design_blur.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 6,
+      "bytes": 13847557,
+      "first": 134352223608622820,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00001/Textures/design_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 6,
+      "bytes": 13847557,
+      "first": 134352223608622820,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00002/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 5,
+      "bytes": 13462842,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00002/Textures/design_blur.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 5,
+      "bytes": 13462842,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00002/Textures/design_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 5,
+      "bytes": 13462842,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00004/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 5,
+      "bytes": 13462842,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00004/Textures/design_blur.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 5,
+      "bytes": 13462842,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00004/Textures/design_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 5,
+      "bytes": 13462842,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00005/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 3,
+      "bytes": 11851709,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00005/Textures/design_blur.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 3,
+      "bytes": 11851709,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00005/Textures/design_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 3,
+      "bytes": 11851709,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00007/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 2,
+      "bytes": 10865437,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00007/Textures/design_blur.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 2,
+      "bytes": 10865437,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/CAS/Logo_FacePhoto/00007/Textures/design_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 2,
+      "bytes": 10865437,
+      "first": 134352223609050030,
+      "last": 134352223609691710
+    },
+    {
+      "path": "Logo/COMMON/LGC1_Logo_Design/00001/Textures/design.mskinfo",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 1,
+      "bytes": 9823073,
+      "first": 134352223609050030,
+      "last": 134352223609050030
+    },
+    {
+      "path": "Logo/COMMON/LGC1_Logo_Design/00001/Textures/design_blur.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 1,
+      "bytes": 9823073,
+      "first": 134352223609050030,
+      "last": 134352223609050030
+    },
+    {
+      "path": "CAS/Body_Paint_Arm/00007/01.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak",
+      "kind": "mod",
+      "reads": 2,
+      "bytes": 5164,
+      "first": 134352223725737820,
+      "last": 134352223725781070
+    },
+    {
+      "path": "Logo/COMMON/LGC1_Logo_Design/00003/design_thum.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak",
+      "kind": "mod",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078580,
+      "last": 134352224016078580
+    }
+  ],
+  "critical": [
+    {
+      "path": "Arena/ArenaData.jsfb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile02.cak",
+      "kind": "stock",
+      "reads": 4,
+      "bytes": 210120,
+      "first": 134352223415815260,
+      "last": 134352223487940110
+    },
+    {
+      "path": "Belts/_Jtables/BeltDataTable.jsfb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile02.cak",
+      "kind": "stock",
+      "reads": 2,
+      "bytes": 146612,
+      "first": 134352223461444220,
+      "last": 134352223487928560
+    }
+  ],
+  "focusAttention": [
+    {
+      "path": "Arena/Parts/Shoes_01615/Textures/shoes_01615_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 4096,
+      "first": 134352223442928350,
+      "last": 134352223442928350
+    },
+    {
+      "path": "CAS/Bottoms/01361/Textures/bottoms_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 6299,
+      "first": 134352223459157660,
+      "last": 134352223459157660
+    },
+    {
+      "path": "CAS/Bottoms/11361/Textures/bottoms_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 6299,
+      "first": 134352223459157660,
+      "last": 134352223459157660
+    },
+    {
+      "path": "Arena/Parts/Shelf_03/Textures/Shelf_03_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 80,
+      "first": 134352223459159870,
+      "last": 134352223459159870
+    },
+    {
+      "path": "Arena/Parts/Cliff_Atlantic_Coastline/Textures/Cliff_Large_04_01_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 1837016,
+      "first": 134352223459166320,
+      "last": 134352223459166320
+    },
+    {
+      "path": "Arena/Parts/Cliff_Atlantic_Coastline/Textures/Cliff_Large_04_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 1837016,
+      "first": 134352223459166320,
+      "last": 134352223459166320
+    },
+    {
+      "path": "Arena/Parts/Anarchy_Sign/Textures/Anarchy_Sign_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 11828,
+      "first": 134352223459179840,
+      "last": 134352223459179840
+    },
+    {
+      "path": "Arena/Parts/Building_AshukaArcade/Textures/AsukaMasks_01_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 5,
+      "bytes": 2719,
+      "first": 134352223459199890,
+      "last": 134352223459204750
+    },
+    {
+      "path": "Arena/Parts/SheetMetal_01/Textures/SheetMetal_01_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 21,
+      "bytes": 6401,
+      "first": 134352223459201570,
+      "last": 134352223459221170
+    },
+    {
+      "path": "CAS/H_Other/01124/Textures/h_other_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 376,
+      "first": 134352223459230060,
+      "last": 134352223459230060
+    },
+    {
+      "path": "CAS/H_Other/11124/Textures/h_other_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 376,
+      "first": 134352223459230060,
+      "last": 134352223459230060
+    },
+    {
+      "path": "Arena/ArenaList_DefaultDisplayedArenas.jsfb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile02.cak",
+      "kind": "stock",
+      "reads": 3,
+      "bytes": 193736,
+      "first": 134352223461444220,
+      "last": 134352223487940110
+    },
+    {
+      "path": "CAS/CorrelationControl.jsfb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile02.cak",
+      "kind": "stock",
+      "reads": 2,
+      "bytes": 146612,
+      "first": 134352223461444220,
+      "last": 134352223487928560
+    },
+    {
+      "path": "CAS/SampleData.sample.jsfb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile02.cak",
+      "kind": "stock",
+      "reads": 2,
+      "bytes": 146612,
+      "first": 134352223461444220,
+      "last": 134352223487928560
+    },
+    {
+      "path": "Arena/Parts/Lights/Textures/Light_Industrial_A_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 257259,
+      "first": 134352223480878850,
+      "last": 134352223480878850
+    },
+    {
+      "path": "CAS/Bottoms/02514/Textures/bottoms_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 177,
+      "first": 134352223480883600,
+      "last": 134352223480883600
+    },
+    {
+      "path": "Arena/Parts/Building_Shop_06/Building_Shop_06.mcd",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 156025,
+      "first": 134352223485615040,
+      "last": 134352223485615040
+    },
+    {
+      "path": "CAS/jtables/BRASSIERE.jsfb",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile02.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 27224,
+      "first": 134352223488004850,
+      "last": 134352223488004850
+    },
+    {
+      "path": "Characters/1025_Cody_Rhodes/WM42_2026/Textures/jacket_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile03.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078900,
+      "last": 134352224016078900
+    },
+    {
+      "path": "Characters/1025_Cody_Rhodes/WM42_2026/Textures/r_a_acce_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile03.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078900,
+      "last": 134352224016078900
+    },
+    {
+      "path": "Characters/1025_Cody_Rhodes/WM42_2026/Textures/r_a_acce_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile03.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078900,
+      "last": 134352224016078900
+    },
+    {
+      "path": "Characters/1025_Cody_Rhodes/WM42_2026/Textures/shoes_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile03.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078900,
+      "last": 134352224016078900
+    },
+    {
+      "path": "Characters/1025_Cody_Rhodes/WM42_2026/Textures/shoes_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile03.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078900,
+      "last": 134352224016078900
+    },
+    {
+      "path": "Characters/1025_Cody_Rhodes/WM42_2026/Textures/tights_color.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile03.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078900,
+      "last": 134352224016078900
+    },
+    {
+      "path": "Characters/1025_Cody_Rhodes/WM42_2026/Textures/tights_nrm.dds",
+      "cak": "C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile03.cak",
+      "kind": "stock",
+      "reads": 1,
+      "bytes": 2097152,
+      "first": 134352224016078900,
+      "last": 134352224016078900
+    }
+  ],
+  "folderSummary": [
+    {
+      "folder": "Logo/CAS/Logo_FacePhoto",
+      "mod": 18,
+      "stock": 0
+    },
+    {
+      "folder": "Logo/COMMON/LGC1_Logo_Design",
+      "mod": 7,
+      "stock": 0
+    },
+    {
+      "folder": "Characters/1025_Cody_Rhodes/WM42_2026",
+      "mod": 0,
+      "stock": 7
+    },
+    {
+      "folder": "_textures.tdb",
+      "mod": 2,
+      "stock": 0
+    },
+    {
+      "folder": "CAS/Body_Paint_Arm/00007",
+      "mod": 2,
+      "stock": 0
+    },
+    {
+      "folder": "Arena/Parts/Cliff_Atlantic_Coastline",
+      "mod": 0,
+      "stock": 2
+    },
+    {
+      "folder": "CAS",
+      "mod": 0,
+      "stock": 2
+    },
+    {
+      "folder": "CAS/Body_Paint_Arm/00012",
+      "mod": 1,
+      "stock": 0
+    },
+    {
+      "folder": "Arena/Parts/Shoes_01615",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "CAS/Bottoms/01361",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "CAS/Bottoms/11361",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "Arena/Parts/Shelf_03",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "Arena/Parts/Anarchy_Sign",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "Arena/Parts/Building_AshukaArcade",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "Arena/Parts/SheetMetal_01",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "CAS/H_Other/01124",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "CAS/H_Other/11124",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "Arena",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "Arena/Parts/Lights",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "CAS/Bottoms/02514",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "Arena/Parts/Building_Shop_06",
+      "mod": 0,
+      "stock": 1
+    },
+    {
+      "folder": "CAS/jtables",
+      "mod": 0,
+      "stock": 1
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "game": "WWE 2K22",
+  "scope": "Historical-version evidence kept separate from WWE 2K26 facts",
+  "updated": "2026-08-26",
+  "sources": [
+    {"id":"local-2k22-install","type":"local-validation","title":"Read-only WWE 2K22 installation inventory","pathScope":"D:/Program Files (x86)/Steam/steamapps/common/WWE 2K22","observed":"2026-08-26","limitations":"Archive presence and headers do not prove catalog or payload decoding."},
+    {"id":"local-2k22-reference-root","type":"developer-verification-reference","title":"User-supplied extracted WWE 2K22 reference tree","pathScope":"C:/Games/2k22-extracts/Root","observed":"2026-08-26","limitations":"This local tree is for developer byte and path verification only. It must not be bundled or required from end users."}
+  ],
+  "facts": [
+    {"id":"2k22-install-layout","status":"verified-local-inventory","evidenceLabel":"verified-wwe2k22","confidence":"high","fact":"The inspected install contains WWE2K22_x64.exe, oo2core_9_win64.dll, and bakedfile00.cak through bakedfile07.cak.","sourceRefs":["local-2k22-install"]},
+    {"id":"2k22-cak-header-family","status":"verified-header-only","evidenceLabel":"verified-wwe2k22","confidence":"high","fact":"All eight installed CAKs begin with FDIR, version 0x0308, and flags 0xC001.","sourceRefs":["local-2k22-install"],"limitations":"No catalog offsets, record layout, compression flags, or writable behavior are claimed."},
+    {"id":"2k22-existing-reader-compatibility","status":"verified-rejection","evidenceLabel":"verified-wwe2k22","confidence":"high","fact":"The current AuroraForge NT100 WWE 2K20 and WWE 2K26 readers both reject the inspected WWE 2K22 bakedfile00.cak catalog.","sourceRefs":["local-2k22-install"],"limitations":"Shared safety helpers may still be reusable, but neither version-specific parser is compatible as implemented."},
+    {"id":"2k22-reference-tree","status":"verified-developer-reference","evidenceLabel":"verified-wwe2k22","confidence":"high","fact":"The supplied extracted Root contains 262,956 files and identifies stream //wwe22/build, build 1882, changelist 1101457.","sourceRefs":["local-2k22-reference-root"],"limitations":"The reference tree does not reveal encrypted CAK catalog keys and cannot by itself validate an archive reader."}
+  ]
+}

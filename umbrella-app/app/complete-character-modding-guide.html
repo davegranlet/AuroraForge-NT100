@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Complete Character Modding Guide</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260805-r160f">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell character-guide-page">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link active" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Golden rule</div><strong>One change at a time</strong><span>Back up, change, bake, test, and record the result.</span></div>
+  </aside>
+
+  <main class="app-main character-guide-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Beginner Path</div><h1>Build a Complete WWE 2K26 Character</h1><p class="sub">CakeHook → CakeView → AuroraForge NT100 → Tribute → in-game testing.</p></div><a class="ai-btn secondary" href="tutorials.html">Back to Tutorials</a></section>
+
+    <section class="character-guide-hero">
+      <div><div class="part-label">Start with an empty project. Finish with a tested character.</div><h2>Do one numbered job. Do not skip the check.</h2><p>This guide uses plain language. It covers a new roster slot, original face and body textures, original attire, a legal custom theme, moveset, entrance, victory, render, baking, and final testing.</p></div>
+      <div class="character-guide-scope"><strong>Tools in this path</strong><span>AuroraForge NT100</span><span>CakeHook</span><span>CakeView</span><span>Tribute 26</span><span>DirectXTex texconv</span><span>Your 3D and image tools</span></div>
+    </section>
+
+    <div class="guide-alert safe"><strong>Before you touch the game:</strong> use a legitimately owned PC copy, back up your save and original files, and only use music, images, models, voices, and logos you own or have permission to use. Do not share extracted game assets.</div>
+    <div class="guide-alert version"><strong>Version check:</strong> tool screens and file rules can change after game or tool updates. Record the exact WWE 2K26, CakeView, CakeHook, and Tribute versions before each project. When this guide and the current tool disagree, stop and follow the tool maker’s current instructions.</div>
+
+    <nav class="character-guide-jumps" aria-label="Guide chapters">
+      <a href="#foundation">1. Foundation</a><a href="#plan">2. Plan</a><a href="#assets">3. Build assets</a><a href="#tribute">4. Tribute setup</a><a href="#bake">5. Bake and test</a><a href="#trouble">6. Fix problems</a>
+    </nav>
+
+    <section class="character-guide-chapter" id="foundation">
+      <div class="chapter-number">01</div><div class="chapter-content"><h2>Install CakeHook</h2><p>CakeHook is the loader that lets WWE 2K26 use enabled mod files.</p>
+        <ol><li>Close WWE 2K26.</li><li>In Steam, right-click WWE 2K26, choose <b>Manage</b>, then <b>Browse local files</b>.</li><li>Download the current WWE 2K26 CakeHook package from the official Pro Wrestling Mods source.</li><li>Open the package. Copy its <code>dinput8</code> file and <code>Plugins</code> folder into the folder beside the WWE 2K26 executable.</li><li>Do not copy an older game’s CakeHook into WWE 2K26.</li><li>Launch the game once with no character mod installed. Reach the main menu, close the game, and write down whether it worked.</li></ol>
+        <div class="guide-check"><b>Pass:</b> the clean game reaches the menu and the CakeHook files remain in the correct game folder.</div>
+        <div class="guide-stop"><b>Stop:</b> the game crashes before the menu. Remove the new CakeHook files, restore your clean folder, and obtain the current compatible release.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">02</div><div class="chapter-content"><h2>Install and connect CakeView</h2><p>CakeView explores supported game files, previews models/materials, and bakes prepared content.</p>
+        <ol><li>Install the current CakeView 26 release from Pro Wrestling Mods.</li><li>Open CakeView and select the WWE 2K26 executable when asked.</li><li>Confirm that CakeView can open the game’s file explorer.</li><li>Create a temporary empty bake test. Do not start with your real character.</li><li>Leave silent baking and directory watching off until a manual bake works.</li><li>Add CakeView’s location in AuroraForge NT100 <b>Setup</b> so it is easy to open later.</li></ol>
+        <div class="guide-check"><b>Pass:</b> CakeView recognizes WWE 2K26 and can browse supported files.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">03</div><div class="chapter-content"><h2>Install and connect Tribute 26</h2><p>Tribute manages roster/default data, slots, profiles, movesets, entrances, victories, themes, renders, and related records.</p>
+        <ol><li>Install the current Tribute 26 release from its official source.</li><li>Open Settings.</li><li>Choose the WWE 2K26 game directory and the correct save location.</li><li>Choose CakeView if the current version provides that setting.</li><li>Keep Auto-Bake off for the first project.</li><li>Confirm the status area reports a usable BakeMe state.</li><li>Back up Tribute’s working/default-data folders before creating a record.</li></ol>
+        <div class="guide-check"><b>Pass:</b> Tribute opens, its folders point to WWE 2K26, and the main managers load.</div>
+        <div class="guide-stop"><b>Stop:</b> Tribute points to another WWE game, another Steam account, or an unknown save folder.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">04</div><div class="chapter-content"><h2>Make a safe project</h2>
+        <ol><li>Enter the character name below and select <b>Create Complete Character Project</b>.</li><li>AuroraForge NT100 creates <code>00_Backups</code>, <code>01_References</code>, <code>02_Model</code>, <code>03_Textures</code>, <code>04_Attire</code>, <code>05_Audio</code>, <code>06_Profiles_JSON</code>, <code>07_Ready_To_Bake</code>, <code>08_Test_Builds</code>, and <code>09_Screenshots</code>.</li><li>Copy your save backup and untouched source files into <code>00_Backups</code>.</li><li>Never edit the only copy.</li></ol>
+        <div class="ai-field"><label for="completeCharacterProjectName">Character project name</label><input id="completeCharacterProjectName" value="New Complete Character"></div>
+        <div class="ai-actions"><button class="ai-btn" id="createCompleteCharacterProject" type="button">Create Complete Character Project</button></div>
+        <p id="completeCharacterProjectStatus" class="cak-message" role="status"></p>
+        <div class="guide-check"><b>Pass:</b> you can delete the entire Work area and still restore the original from Backups.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter" id="plan">
+      <div class="chapter-number">05</div><div class="chapter-content"><h2>Plan the complete character</h2>
+        <ol><li>Open AuroraForge NT100 <b>Creative Studios → Complete Character</b>.</li><li>Write the roster name, entrance name, height, weight, class, hometown, crowd reaction, and visual theme.</li><li>Choose a new Tribute slot. Use an existing-slot replacement only when you understand exactly what it replaces.</li><li>Plan ring attire and entrance attire separately.</li><li>Plan the face, hair, tattoos, logos, materials, theme music, moveset, entrance, victory, render, and graphics.</li><li>Save the project brief before making any asset.</li></ol>
+        <div class="guide-fact"><b>Confirmed for Tribute 26’s initial release:</b> 732 new character slots and up to 25 attire slots per character were announced. Check current Tribute release notes before relying on those numbers.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter" id="assets">
+      <div class="chapter-number">06</div><div class="chapter-content"><h2>Choose a safe model base</h2><p>A new character normally begins from a known-working WWE 2K26 character structure that matches the body/skeleton category you need.</p>
+        <ol><li>Download the AuroraForge NT100 reference-model library from the current VikingStudios Discord link.</li><li>Select <b>Open Reference Models Folder</b> and place the downloaded <code>MCDS</code> and <code>MTLS</code> contents in their matching folders.</li><li>Choose the supplied reference point that matches the body/skeleton category you need.</li><li>Record every folder, model, material, and texture name before changing anything.</li><li>Keep the skeleton, required mesh names, UV maps, material slots, and model scale unless verified documentation says otherwise.</li><li>Build original geometry or use assets you are allowed to modify.</li><li>Test the base body before adding hair and clothing.</li></ol>
+        <div class="ai-actions"><button class="ai-btn" id="openReferenceModelsFolder" type="button">Open Reference Models Folder</button></div>
+        <p id="referenceModelsStatus" class="cak-message" role="status"></p>
+        <div class="guide-stop"><b>Stop:</b> you do not know which skeleton/body category the source uses, exported UVs changed, or model import reports missing parts.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">07</div><div class="chapter-content"><h2>Make the face and body textures</h2>
+        <ol><li>Copy the original target DDS files into Backups.</li><li>Open AuroraForge NT100 <b>Face Texture Studio</b> and choose the correct face profile.</li><li>Build a square face texture from permission-cleared references.</li><li>Use <b>Tattoo</b> and the other Creative Studios for body art and logos.</li><li>Compare your output to the stock texture layout. The stock UV footprint is the authority.</li><li>Keep required padding and do not paint a normal portrait onto a UV texture.</li><li>Save editable PNG masters in <code>03_Textures</code>.</li></ol>
+        <div class="guide-check"><b>Pass:</b> the face features and body art occupy the same UV regions as the working stock texture.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter" id="dds-conversion">
+      <div class="chapter-number">08</div><div class="chapter-content"><h2>Convert DDS and PNG without Photoshop</h2><p>Open AuroraForge NT100 <b>Tools → DDS Converter</b>. The converter is included in the Windows app and AuroraForge NT100 handles its commands internally.</p>
+        <h3>DDS → PNG</h3><ol><li>Press <b>DDS → PNG</b>.</li><li>Press <b>Choose DDS Files</b>, or press <b>Convert a DDS Folder</b> to process every DDS in one folder.</li><li>Choose a separate output folder when asked.</li><li>Press <b>Convert Files</b> if you selected individual files. Folder conversion starts automatically.</li><li>Open the result and make sure it is not blank or the wrong size.</li></ol>
+        <h3>PNG → DDS</h3><ol><li>Press <b>PNG → DDS</b>.</li><li>Press <b>Choose PNG Files</b>, or press <b>Convert a PNG Folder</b>.</li><li>Choose a separate output folder.</li><li>Choose the folder containing the untouched, same-name original DDS files. AuroraForge NT100 uses those originals to match format, dimensions, and mipmaps.</li><li>Use the manual fallback only when you have verified the correct format and no matching original exists.</li><li>Press <b>Convert Files</b> if you selected individual files. The folder workflow converts automatically after its folders are chosen.</li><li>Review the conversion report and compare the new DDS with the original.</li></ol>
+        <div class="guide-alert version"><strong>Important:</strong> Never assume a color map, normal map, or mask uses the same DDS format. Let AuroraForge NT100 match each file to its working original whenever possible.</div>
+        <div class="guide-check"><b>Pass:</b> filename, dimensions, format, alpha behavior, and mipmaps match the target.</div>
+        <div class="guide-stop"><b>Stop:</b> the converted texture is black, loses transparency, changes size, or reports a different format than the stock target.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">09</div><div class="chapter-content"><h2>Build original attire and hair</h2>
+        <ol><li>Start from a compatible, known-working attire/hair structure.</li><li>Create or legally obtain the model assets.</li><li>Preserve the required skeleton binding, material slots, scale, and UVs.</li><li>Make color, normal, and packed mask textures to match each original target’s dimensions and DDS format.</li><li>Keep ring and entrance attire easy to identify.</li><li>Use CakeView’s preview to check missing meshes, reversed normals, transparency, and material links.</li><li>Test one piece before adding the next.</li></ol>
+        <div class="guide-stop"><b>Stop:</b> clothing explodes during poses, hair floats, a mesh is invisible, or a body part disappears unexpectedly.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">10</div><div class="chapter-content"><h2>Assemble the character folder</h2>
+        <ol><li>Copy the known-working folder structure into Work.</li><li>Replace only the intended model, material, and texture files.</li><li>Keep exact filenames unless the supported workflow also updates every reference.</li><li>Use AuroraForge NT100 <b>Mod File Inspector</b> to compare Original and Modified.</li><li>Confirm that MCD, MTLS, JMTL, YCL, and DDS references are present where expected.</li><li>Do not hex-edit an unknown binary because a filename looks readable inside it.</li><li>Put the checked folder into <code>07_Ready_To_Bake</code>.</li></ol>
+        <div class="guide-check"><b>Pass:</b> the comparison report contains only changes you intended.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter" id="tribute">
+      <div class="chapter-number">11</div><div class="chapter-content"><h2>Create the character record in Tribute</h2>
+        <ol><li>Open <b>Easy Wizard</b> or <b>Create Character</b>.</li><li>Load a trusted profile JSON, or enter Profile A and Profile B manually.</li><li>Check name, gender/category, height, weight, class, hometown, announcer ID, and crowd settings.</li><li>Choose a new slot for a first project. Treat <b>Replace</b> as advanced.</li><li>Select the prepared character folder and render DDS.</li><li>Do not create the record until every path is correct.</li><li>Save/export the character profile JSON into <code>06_Profiles_JSON</code>.</li></ol>
+        <div class="guide-fact"><b>Protect default data:</b> keep Tribute’s BakeMe/default profile data current. Game-save data can change when you edit in-game or when a save is replaced. Reusable JSON/default profiles make recovery easier.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">12</div><div class="chapter-content"><h2>Add the moveset</h2>
+        <ol><li>Begin with a moveset template that fits the character’s style.</li><li>Change signatures, finishers, taunts, strikes, grapples, running moves, aerial moves, reversals, and recovery behavior.</li><li>Test for unavailable, duplicated, or unsuitable moves.</li><li>Export/save the moveset as default data or JSON when supported.</li><li>Link the correct moveset profile to the new character.</li><li>Keep a copy outside the game save.</li></ol>
+        <div class="guide-check"><b>Pass:</b> the character can complete a normal match and all signatures/finishers trigger correctly.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">13</div><div class="chapter-content"><h2>Add entrance, victory, music, and graphics</h2>
+        <ol><li>Open Tribute’s entrance/template tools.</li><li>Choose the normal entrance, title entrance, double-title entrance, MITB entrance, victory, music ID, and GFX template.</li><li>Save as a new template instead of overwriting an unrelated one.</li><li>Use only music you own or may use.</li><li>Prepare the theme with the current SoundFactory/audio workflow. Audio codecs, IDs, and import steps are version-sensitive, so follow the current PWM SoundFactory instructions.</li><li>Assign the verified theme ID in the character’s entrance/template data.</li><li>Prepare the render, nameplate, trons, and other graphics, then link only IDs you have verified.</li><li>Export/save entrance and victory default-data profiles when supported.</li></ol>
+        <div class="guide-fact"><b>Current community tool note:</b> recent WWE 2K26 tutorials use SoundFactory for custom themes. Use the current release and its own instructions rather than an old WWE 2K25 conversion recipe.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter" id="bake">
+      <div class="chapter-number">14</div><div class="chapter-content"><h2>Make the first manual bake</h2>
+        <ol><li>Close WWE 2K26.</li><li>Open CakeView.</li><li>Stage only the new character and required profile changes.</li><li>Read CakeView’s summary before baking.</li><li>Create a named test build.</li><li>Bake manually.</li><li>Save the build log or screenshot.</li><li>Do not turn on Auto-Bake until this manual build works.</li></ol>
+        <div class="guide-check"><b>Pass:</b> CakeView completes without an error and you know exactly which files entered the bake.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter">
+      <div class="chapter-number">15</div><div class="chapter-content"><h2>Test the whole character</h2>
+        <ol><li>Launch the game.</li><li>Confirm the new roster entry and render.</li><li>Start a plain one-on-one match in a normal arena.</li><li>Check the face close up, skin tone, eyes, mouth, body art, hair, ring attire, entrance attire, transparency, shine, and normals.</li><li>Perform running, crouching, corner, rope, ground, signature, and finisher animations.</li><li>Test entrance, theme start and volume, trons/GFX, ring announcement, title entrance, and victory.</li><li>Test both attire slots.</li><li>Check an unrelated stock character to make sure it was not changed.</li><li>Take front, side, back, and action screenshots.</li></ol>
+        <div class="guide-check"><b>Pass:</b> the new character works from roster selection through victory without changing unrelated content.</div>
+      </div>
+    </section>
+
+    <section class="character-guide-chapter" id="trouble">
+      <div class="chapter-number">16</div><div class="chapter-content"><h2>Fix one problem at a time</h2>
+        <table class="character-guide-table"><thead><tr><th>Problem</th><th>Check first</th></tr></thead><tbody>
+          <tr><td>Game crashes before menu</td><td>CakeHook/game-version compatibility; remove the last loader/plugin change.</td></tr>
+          <tr><td>Character is missing</td><td>Slot/profile creation, default-data bake, and the exact character folder.</td></tr>
+          <tr><td>Black or invisible mesh</td><td>Missing texture/material, wrong DDS format, alpha, model/material assignment.</td></tr>
+          <tr><td>Face is stretched</td><td>Wrong face profile, UV layout, or target stock texture.</td></tr>
+          <tr><td>Clothing explodes</td><td>Skeleton weights, model category, import/export process.</td></tr>
+          <tr><td>Theme is silent</td><td>SoundFactory import, assigned ID, audio format, entrance template.</td></tr>
+          <tr><td>Wrong moveset</td><td>Linked moveset profile and baked/default data.</td></tr>
+          <tr><td>Old version remains</td><td>Wrong bake target, duplicate mod, stale output, or loader path.</td></tr>
+        </tbody></table>
+        <ol><li>Write the problem in one sentence.</li><li>Restore the last working build.</li><li>Change one file or one record.</li><li>Bake and repeat the same test.</li><li>Keep the change only if it fixed the problem.</li></ol>
+      </div>
+    </section>
+
+    <section class="character-guide-finish"><div><div class="section-label">Finish line</div><h2>Archive the working character</h2><p>Save the final character folder, source files, profile JSON, moveset, entrance/victory data, audio source and permission note, bake report, tool versions, screenshots, and a clean restore package. Never distribute extracted stock assets.</p></div></section>
+
+    <section class="character-guide-sources">
+      <h2>Current sources checked</h2>
+      <ul>
+        <li><a href="https://www.patreon.com/PWMods/posts/cakeview-26-156735503?l=en-GB" target="_blank" rel="noreferrer">Pro Wrestling Mods — CakeView 26 &amp; CakeHook</a> (posted April 28, 2026; checked August 5, 2026)</li>
+        <li><a href="https://www.patreon.com/TributeModding/posts/tribute-26-is-154757792?l=en-GB" target="_blank" rel="noreferrer">Tribute — Tribute 26 initial release</a> (posted April 18, 2026; checked August 5, 2026)</li>
+        <li><a href="https://www.patreon.com/TributeModding/posts/tribute-26-v1-3-160530629" target="_blank" rel="noreferrer">Tribute 26 v1.3.0 release notes</a> (posted June 8, 2026; checked August 5, 2026)</li>
+        <li><a href="https://github.com/microsoft/DirectXTex/wiki/Texconv" target="_blank" rel="noreferrer">Microsoft DirectXTex texconv documentation</a> (checked August 5, 2026)</li>
+        <li><a href="https://www.youtube.com/watch?v=G2G_NMOsYaM" target="_blank" rel="noreferrer">Gamerz Zone — WWE 2K26 custom theme with SoundFactory</a> (published March 21, 2026)</li>
+        <li><a href="https://www.youtube.com/watch?v=X6u3_eEcalQ" target="_blank" rel="noreferrer">Rexling — WWE 2K26 custom music workflow</a> (published March 6, 2026)</li>
+      </ul>
+      <p><b>Community-video caveat:</b> YouTube tutorials demonstrate a creator’s working setup at a point in time. Confirm every download, ID, codec, and menu against the current official tool release before using it.</p>
+    </section>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Complete Character Guide</footer>
+  </main>
+</div>
+<script src="assets/js/complete-character-guide.js"></script>
+</body>
+</html>
+

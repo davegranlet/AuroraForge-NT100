@@ -1,0 +1,43 @@
+**Readability note:** I ran this document through an “explain like I am five” chatbot to improve readability, explainability, and usability. The chatbot helped present the material; it did not originate AuroraForge NT100, DataCtrlLink, their functionality, or the underlying development work.
+
+Cutout Luchador Mask v1 Luchador Mask Layout Legend
+
+Purpose:
+Upload this layout reference with the final handoff prompt, selected profile JSON, and bundled/default mask texture.
+
+Rules:
+- The layout reference is a placement guide only.
+- Do not copy guide colors, labels, or grid lines into the final mask texture.
+- The default/stock mask texture remains the visual authority for the exact UV footprint.
+- Final production outputs are mask_color.png, mask_mask1.png, and mask_nrm.png.
+- Default production canvas is 2048 x 2048.
+
+128x128 grid:
+Each grid cell equals exactly 16 px on a 2048 x 2048 texture.
+Heavy grid lines appear every 16 cells, matching 256 px blocks.
+
+Zones:
+- upper_center_cap_top_crown: columns 39-90, rows 1-30 — Actual tan top/crown cap and upper center fold area
+- central_front_design_safe: columns 30-99, rows 22-77 — Main face/eye/forehead design panel
+- forehead_centerpiece: columns 47-82, rows 22-43 — Upper spear/forehead centerpiece
+- left_eye_wing_panel: columns 30-64, rows 30-64 — Left eye + red/gold wing
+- right_eye_wing_panel: columns 65-99, rows 30-64 — Right eye + red/gold wing
+- mouth_logo_chin_plate: columns 47-82, rows 56-77 — Mouth/logo/chin detail
+- lower_front_bib_panel: columns 26-103, rows 69-128 — Large lower blue/white front panel
+- left_side_island: columns 1-26, rows 1-52 — Far-left side mask island
+- right_side_island: columns 103-128, rows 1-52 — Far-right side mask island
+- left_lacing_border: columns 1-26, rows 69-128 — Lower left lacing/edge holes
+- right_lacing_border: columns 103-128, rows 69-128 — Lower right lacing/edge holes
+- diagonal_strap_left: columns 1-43, rows 1-128 — Large red/white diagonal side/strap flow
+- diagonal_strap_right: columns 86-128, rows 1-128 — Large red/white diagonal side/strap flow
+- main_front_safe_area: columns 30-99, rows 22-77 — Compatibility alias for main visible front design area on cutout mask profile.
+- forehead_identity: columns 47-82, rows 22-43 — Compatibility alias for forehead/centerpiece zone.
+- left_eye_surround: columns 30-64, rows 30-64 — Compatibility alias for left eye/wing zone.
+- right_eye_surround: columns 65-99, rows 30-64 — Compatibility alias for right eye/wing zone.
+- chin_lower_mouth: columns 47-82, rows 56-77 — Compatibility alias for mouth/logo/chin plate zone.
+- left_side_wrap: columns 1-26, rows 1-52 — Compatibility alias for left side cutout island.
+- right_side_wrap: columns 103-128, rows 1-52 — Compatibility alias for right side cutout island.
+- top_crown: columns 39-90, rows 1-30 — Compatibility alias for actual upper-center cap/crown zone.
+- bottom_neck_transition: columns 26-103, rows 69-128 — Compatibility alias for lower front/bib panel, not a normal hood neck band.
+
+Do not add reference-map files to the game. They are only for generation handoff.

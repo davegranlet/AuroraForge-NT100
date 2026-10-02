@@ -1,0 +1,19 @@
+0000000000000000000000000000000000000000 16175a69163f5bbe6bd201469a4a1c21f8a4ff62 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788900465 -0400
+16175a69163f5bbe6bd201469a4a1c21f8a4ff62 16175a69163f5bbe6bd201469a4a1c21f8a4ff62 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788900468 -0400	reset: moving to HEAD
+16175a69163f5bbe6bd201469a4a1c21f8a4ff62 1c7e21036dbb369ecb113910f34a8801f95e8650 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788900622 -0400	commit: Verify generated WWE 2K25 texture metadata
+1c7e21036dbb369ecb113910f34a8801f95e8650 74fbe9367f88c0e1e106b706e8bdeef3ebc816b1 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788902589 -0400	commit: Record verified WWE 2K25 visual replacement
+74fbe9367f88c0e1e106b706e8bdeef3ebc816b1 9b331f9b8327000590f79b1c73086ddd3091e01a davegranlet <20777780+davegranlet@users.noreply.github.com> 1788908270 -0400	commit: Add bounded BakeMe folder audit
+9b331f9b8327000590f79b1c73086ddd3091e01a d24d76b93043fe1d2894ee30970a550b021d8285 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788908522 -0400	commit: Create bounded clean BakeMe copies
+d24d76b93043fe1d2894ee30970a550b021d8285 ed1037084d6ab8115b62d15213a575463d566680 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788908632 -0400	revert: Revert "Create bounded clean BakeMe copies"
+ed1037084d6ab8115b62d15213a575463d566680 bdec43c3cc20eda4e4e42883cd010d8ac2ce12bc davegranlet <20777780+davegranlet@users.noreply.github.com> 1788908632 -0400	revert: Revert "Add bounded BakeMe folder audit"
+bdec43c3cc20eda4e4e42883cd010d8ac2ce12bc bb0947c3f802e5f1e4da041ef2cef64e4305afd4 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788908873 -0400	commit: Validate BakeMe roots before packaging
+bb0947c3f802e5f1e4da041ef2cef64e4305afd4 8e1cad3e93b12515f231b1d1b57a634b7a098bda davegranlet <20777780+davegranlet@users.noreply.github.com> 1788909035 -0400	commit: Allow full WWE 2K25 BakeMe root layouts
+8e1cad3e93b12515f231b1d1b57a634b7a098bda eed57a9c8d72db683a90166ea58c06b884517f9d davegranlet <20777780+davegranlet@users.noreply.github.com> 1788909452 -0400	commit: Verify BakeMe paths against game catalogs
+eed57a9c8d72db683a90166ea58c06b884517f9d a637af42f7d9503aab80362634621ef3616e747a davegranlet <20777780+davegranlet@users.noreply.github.com> 1788919767 -0400	commit: Block CAK outputs inside BakeMe sources
+a637af42f7d9503aab80362634621ef3616e747a 2ff15303f1992133b1746604f13ffb516e730bc2 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788921056 -0400	commit: Add WWE 2K25 one-click mod manifest sync
+2ff15303f1992133b1746604f13ffb516e730bc2 0172da8a829707f992cd2d4db4a2cda99a2ddfdc davegranlet <20777780+davegranlet@users.noreply.github.com> 1788921330 -0400	commit: Avoid self-collisions in mod manifest sync
+0172da8a829707f992cd2d4db4a2cda99a2ddfdc e24933e4321a7a0b0424fd730b5a6681e60ea8d9 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788921928 -0400	commit: Add verified WWE 2K25 CAK loader controls
+e24933e4321a7a0b0424fd730b5a6681e60ea8d9 a843ffbf142ef77119ec83181002b517633e6b77 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788921963 -0400	commit: Bundle verified WWE 2K25 loader core
+a843ffbf142ef77119ec83181002b517633e6b77 8e90fa9ad6545e9822733074782b831c06ba56b6 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788922378 -0400	commit: Package WWE 2K25 loader files outside app archive
+8e90fa9ad6545e9822733074782b831c06ba56b6 a2b77d3f2ca12b87d00e51974f0db22d00581ff7 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788926409 -0400	commit: Preserve explicit WWE 2K25 CAK load order
+a2b77d3f2ca12b87d00e51974f0db22d00581ff7 205517d6a6422ecd71f24915918582fcd2fc6ee3 davegranlet <20777780+davegranlet@users.noreply.github.com> 1788927143 -0400	commit: Report complete WWE 2K25 build loader gate

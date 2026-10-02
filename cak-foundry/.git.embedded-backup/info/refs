@@ -1,0 +1,11 @@
+205517d6a6422ecd71f24915918582fcd2fc6ee3	refs/heads/fix/v93-generated-texture-database-verification
+ec8b74f9e9c2a364228680fb10782c900cad2ace	refs/heads/main
+17b17b60e71b1086d96121bdc2a39a91b5eaed17	refs/heads/working
+ec8b74f9e9c2a364228680fb10782c900cad2ace	refs/remotes/origin/HEAD
+ec8b74f9e9c2a364228680fb10782c900cad2ace	refs/remotes/origin/main
+ec8b74f9e9c2a364228680fb10782c900cad2ace	refs/remotes/origin/working
+4c5bbf89868bdbc7d00f4ac456c63b721ba8eb0d	refs/tags/v1.7.8
+69a0de8ddc6644986887988b807198b1233df4cc	refs/tags/v1.7.9
+7e36d23ae216f489f8c26ff9edffccbc85b009b8	refs/tags/v1.7.9^{}
+cdea98d7232e80dc57a12c23b841817b98621c31	refs/tags/v1.7.9.a
+a40da989cbb8a7900ffc9d2513e8c165523521a7	refs/tags/v1.7.9.a^{}

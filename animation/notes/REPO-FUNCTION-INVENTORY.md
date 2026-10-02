@@ -1,0 +1,1237 @@
+# REPO FUNCTION INVENTORY
+_Generated 2026-09-17. Tracked files only (`git ls-files`). Binaries/minified summarized._
+
+## Aurora-CAK-Foundry (111 tracked files)
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `_tmp-v93-protected-fixture/Folder/sample.txt`
+- `app/assets/css/style.css`
+- `app/assets/img/app-icon.ico` :: <binary 108214B>
+- `app/assets/js/cak-explorer.js` :: while, message, showProgress, updateSelected, byId, renderModManager, refreshModManager, catch, renderLoaderManager, refreshLoaderManager, renderRows, search, applyOpen, openArchive, if, initialize
+- `app/cak-explorer.html`
+- `app/data/cak-known-paths.json`
+- `app/data/compatibility/secure-datacrtllink.json`
+- `app/data/compatibility/wwe2k25-cak-loader.json`
+- `app/data/loader-releases/wwe2k25-v123/AuroraForge.CAKModLoader.ftrib`
+- `app/data/loader-releases/wwe2k25-v123/dinput8.dll` :: <binary 1570816B>
+- `docs/ADR-0001-FDIR93-writer-provenance.md`
+- `docs/AURORA_CAK_FOUNDRY_v1.7.6c_BUG_REPORT.md`
+- `docs/AURORA_CAK_FOUNDRY_v1.7.6c_FIX_REPORT.md`
+- `docs/AURORA_CAK_FOUNDRY_v1.7.7_BUG_REPORT.md`
+- `docs/AURORA_CAK_FOUNDRY_v1.7.7_FIX_REPORT.md`
+- `docs/AURORA_CAK_FOUNDRY_v1.7.8_BUG_REPORT.md`
+- `docs/AURORA_CAK_FOUNDRY_v1.7.8_FIX_REPORT.md`
+- `docs/CAK_FOUNDRY_RELEASE_NOTES_1.7.6c.md`
+- `docs/CAK_FOUNDRY_RELEASE_NOTES_1.7.7.md`
+- `docs/CAK_FOUNDRY_RELEASE_NOTES_1.7.8.md`
+- `docs/CAK_FOUNDRY_RELEASE_NOTES_1.7.9.a.md`
+- `docs/CAK_FOUNDRY_RELEASE_NOTES_1.7.9.b.md`
+- `docs/CAK_FOUNDRY_RELEASE_NOTES_1.7.9.md`
+- `docs/FAQ.md`
+- `docs/INSTALLATION_AND_ROLLBACK.md`
+- `docs/SOURCE-SEPARATION-BUGS-AND-FIXES.md`
+- `electron/archive-repackager.js` :: exports:buildCak,verifyCak,scanBakeFolder,prepareScanPayloads,encodePairs,encodeStringTable,crc32cBuffer,derivePayloadKey,protectPayload,recoverPayload,EMPTY_TEXTURE_DATABASE
+- `electron/bakeme-validator.js` :: exports:normaliseGamePath,findPayloads,validateBakeMeRoot
+- `electron/cak-reader.js` :: exports:openArchive,publicSummary,searchFiles,buildNameCandidates,buildNativeDictionary,fnv1a64,decodePairs,decodeStringTable,readStringRecord,keyFromFirstMask
+- `electron/cak-v83-crypto.js` :: exports:generateCryptoKeyV83,decryptHeader,rotateCrypt,createInitialKeyTableV83,chacha20Crypt,metroHashUnkCustomV9_1
+- `electron/cak-v93-backend.js` :: exports:FDIR_VERSIONS,readFdirHeader,detectFdirVersion,isV93Archive,isSupportedVersion,openArchive,extractAll,extractFile,buildCak,verifyCak
+- `electron/cak-v99-key.js` :: exports:deriveArchiveKeyV99
+- `electron/cak20-reader.js` :: exports:openArchive,publicSummary,extractFile,deobfuscateBlock,cakeNameKey,expectedFirstWord
+- `electron/helpers/secure-loader-zip.ps1` :: if
+- `electron/main.js` :: sanitizeName, defaultProjectsPath, defaultExportsPath, ensureDir, isWwe2K26Running, isWwe2K25Running, workshopServices, auditModSuiteFolder, toolConfigPath, readCakDictionary, resolveOodlePath, bundledToolPath, cakHelperPath, cakV93ToolPath, openSupportedCak, configuredGameCatalogPaths, pac19HelperPath, pac19GameFolder, pac19OodlePath, cak20GameFolder, cak20OodlePath, cak20ArchiveSummary, openCak20Sessions, safeCak20RelativePath, cak20FileSummary, runPac19Helper, readToolConfig, writeToolConfig, assertKnownToolId, toolConfigForRenderer, findCaseInsensitiveEntry, findOnPath, resolveTexconvPath, readFourCC, inspectDdsFile, inspectPngFile, runNativeProcess, assertExistingFiles, isPathInside, uniquePath
+- `electron/preload.js` :: <no-top-symbols>
+- `electron/services/cak-collision-service.js` :: exports:createCakCollisionService,buildCollisionReport,lexicalCompare,MAX_ARCHIVES,MAX_FILES,MAX_COLLISIONS
+- `electron/services/capability-registry.js` :: exports:createCapabilityRegistry,sha256,regularFile
+- `electron/services/entitlement-token.js` :: exports:parseEntitlement,validateClaims,verifyEntitlement,allowsRelease
+- `electron/services/entitlement-token.test.js` :: base64url, signedToken, verifies a signed current entitlement and release access, rejects expired and modified tokens
+- `electron/services/game-install-registry.js` :: exports:GAME_IDS,createGameInstallRegistry
+- `electron/services/loader-diagnostics.js` :: exports:createLoaderDiagnostics,parseDiagnostics,parseLine,readBoundedTail,MAX_LOG_BYTES,MAX_LINES,MAX_ROWS
+- `electron/services/mod-manifest-manager.js` :: exports:createModManifestManager,validateOrder
+- `electron/services/operation-journal.js` :: exports:createOperationJournal
+- `electron/services/secure-loader-manager.js` :: exports:createSecureLoaderManager
+- `electron/services/secure-loader-release.js` :: exports:createSecureLoaderReleaseService,assertSafeEntryName,downloadPinned,MAX_ZIP_BYTES,MAX_ENTRY_BYTES,MAX_ENTRIES,DOWNLOAD_HOSTS
+- `electron/services/wwe2k25-loader-manager.js` :: exports:createWwe2k25LoaderManager
+- `electron/services/wwe2k25-mod-manager.js` :: exports:createWwe2k25ModManager
+- `electron/standalone-cak-main.js` :: <no-top-symbols>
+- `electron/standalone-cak20-main.js` :: <no-top-symbols>
+- `electron/standalone-dds-main.js` :: <no-top-symbols>
+- `electron/standalone-pac19-main.js` :: <no-top-symbols>
+- `entitlements/README.md`
+- `entitlements/schema.sql`
+- `entitlements/shared.mjs` :: base64url, for, btoa, sha256Hex, parseDeviceHash, parseActivation, if, parseIssue, newLicenseKey, signEntitlement
+- `entitlements/test/shared.test.mjs` :: accepts a constrained activation request, rejects a raw device identifier, accepts bounded manual issue input, rejects unsafe release identifiers and excessive device limits, signs an entitlement with an ephemeral Ed25519 key
+- `entitlements/worker.mjs` :: admin, active, body, issueToken, activate, createLicense, revoke, json, failure, if, fetch
+- `entitlements/wrangler.toml.example`
+- `package-lock.json`
+- `package.json`
+- `scripts/bake-v93-cli.js` :: arg, Error
+- `scripts/build-cak-helper.js` :: <no-top-symbols>
+- `scripts/build-cak-v93-backend.js` :: if
+- `scripts/build-portable-windows.js` :: copyDirectory, copyFile, if, Error
+- `scripts/verify-cak-catalog-coverage.js` :: <no-top-symbols>
+- `scripts/verify-cak-extraction.js` :: for, if
+- `scripts/verify-cak-v93-protected-writer.js` :: writeMinimalDxt1Dds, if, Error
+- `scripts/verify-cak-v93.js` :: <no-top-symbols>
+- `scripts/verify-raw-hash-roundtrip.js` :: storageProfile, invoke, if, for
+- `scripts/verify-repackager.js` :: for, if, verifyCak
+- `third_party/Nenkai-Bakery/AURORA-INTEGRATION-NOTICE.md`
+- `third_party/Nenkai-Bakery/CakeTool/AbstractVersionableCakeEntity.cs` :: IsVersion, IsAtLeastVersion
+- `third_party/Nenkai-Bakery/CakeTool/CakeDirInfo.cs` :: Read, Write, foreach, GetSize
+- `third_party/Nenkai-Bakery/CakeTool/CakeEntryLookup.cs` :: Read, Write, GetSize
+- `third_party/Nenkai-Bakery/CakeTool/CakeFileBuilder.cs` :: CakeFileBuilder, if, RegisterFiles, BuildFileTree, AddFile, foreach, RegisterFileForFolder, CreateFileEntry, SetupCompressedEntry, while, ShouldCompress, ShouldNotCompressFileWithExtension, switch, CreateTexFromDds, CompressChunked, UnreachableException, BuildStringTable, SerializeStringTable, WriteString, Bake, using, WriteFiles, WriteSection, catch, writeCallback, WriteFile, EncryptFileData, GetFullHeaderSize, GetHeaderAndSectionInfoSize, IsVersion, IsAtLeastVersion
+- `third_party/Nenkai-Bakery/CakeTool/CakeFileEntry.cs` :: Read, if, Write, foreach, GetSize
+- `third_party/Nenkai-Bakery/CakeTool/CakeFileHeaderSection.cs` :: CakeFileHeaderSection
+- `third_party/Nenkai-Bakery/CakeTool/CakeRegistryFile.cs` :: CakeRegistryFile, if, Open, GetHeaderAndSectionInfoSize, ExtractAll, foreach, ExtractFileData, catch, ExportAuroraCatalog, FileExists, ExtractFile, PostProcessFileData, OpenInternal, ReadSections, OnCakeEntriesLoaded, ExtractResource, ExtractRaw, PrintTextureInfo, ProcessEmbededTextureResource, ExtractChunked, switch, GetGamePathForEntry, ReadDirLookupTable, ReadFileLookupTable, ReadFileEntries, ReadDirEntries, ReadStringTable, ReadStringEntries, while, Dispose
+- `third_party/Nenkai-Bakery/CakeTool/CakeTool.csproj`
+- `third_party/Nenkai-Bakery/CakeTool/Compression/Crunch2.cs` :: crn_decompress_crn_to_dds, crn_free_block, DecompressToDds, if
+- `third_party/Nenkai-Bakery/CakeTool/Compression/Oodle.cs` :: Oodle, if, OodleLZ_Compress, OodleLZ_Decompress, GetCompressedBounds, Compress, fixed, Decompress
+- `third_party/Nenkai-Bakery/CakeTool/Crypto/CakeCryptor.cs` :: CakeCryptor, GenerateCryptoXorKey, if, CryptHeaderData, XORCRCData, RotateCrypt, NotImplementedException, ReadScrambledString, ScrambleBytes, EncryptHeaderData, while, EncryptStringData, GetFileManglingKey, return, NotSupportedException, CryptFileDataAndCheck, ScrambleGenSeed, GenerateCryptoKeyV6_7, GenerateCryptoKeyV6_8, GenerateCryptoKeyV8_2, Chacha20Crypt, GenerateCryptoKeyV8_3, GenerateCryptoKeyV8_7, GenerateCryptoKeyV9_1, GenerateCryptoKeyV9_2, GenerateCryptoKeyV9_3, CreateInitialKeyTableFromNameSeed, Dispose
+- `third_party/Nenkai-Bakery/CakeTool/Crypto/ChaCha20.cs` :: ChaCha20, KeySetup, IvSetup, if, ArgumentNullException, Dispose, DecryptBytes, WorkBytes, ObjectDisposedException, Hash, while, Increment, Xor256, Xor128, LongXor, QuarterRound, ResetCounter, XOr, unchecked, RotateLeft, return, RotateRight, Add, AddOne, U8To32Little, ToBytes
+- `third_party/Nenkai-Bakery/CakeTool/FilesysDirHeader.cs` :: <no-top-symbols>
+- `third_party/Nenkai-Bakery/CakeTool/GameFiles/AnimProjectBin.cs` :: Read, switch, NotSupportedException, if, LoadXMLNodes, ReadHeader, ReadString, ReadAnimNode, ProcessTransitionNode, InvalidDataException
+- `third_party/Nenkai-Bakery/CakeTool/GameFiles/MapBinary.cs` :: Symbol, Open, if, WriteList, foreach
+- `third_party/Nenkai-Bakery/CakeTool/GameFiles/Textures/DdsHeader.cs` :: Write, if
+- `third_party/Nenkai-Bakery/CakeTool/GameFiles/Textures/TextureDatabase.cs` :: TextureDatabase, Add, if, Read, Open, Write, foreach, TryGetTexture
+- `third_party/Nenkai-Bakery/CakeTool/GameFiles/Textures/TextureEnums.cs` :: <no-top-symbols>
+- `third_party/Nenkai-Bakery/CakeTool/GameFiles/Textures/TextureMeta.cs` :: IsCompressedTexture, if, SetCompressed, Read, Write, NotImplementedException, GetSize
+- `third_party/Nenkai-Bakery/CakeTool/GameFiles/Textures/TextureUtils.cs` :: ConvertToDDS, if, GEFormatToDXGIFormat, DXGIFormatToGE, switch
+- `third_party/Nenkai-Bakery/CakeTool/Hashing/CRC32C.cs` :: Hash
+- `third_party/Nenkai-Bakery/CakeTool/Hashing/FNV1A64.cs` :: FNV64StringI
+- `third_party/Nenkai-Bakery/CakeTool/Hashing/MetroHash.cs` :: Metrohash128crc_1, if, while, Metrohash128crc_2, MetroHashUnkCustomV9_1
+- `third_party/Nenkai-Bakery/CakeTool/Hashing/UnkHash.cs` :: Hash, ShiftRightLogical
+- `third_party/Nenkai-Bakery/CakeTool/NLog.config`
+- `third_party/Nenkai-Bakery/CakeTool/PRNG/SFMT.cs` :: SFMT, init_gen_rand, Nextuint, if, gen_rand_all_19937, period_certification, Reseed, Nextulong, Next
+- `third_party/Nenkai-Bakery/CakeTool/Program.cs` :: Main, CatalogJson, catch, UnpackFile, if, UnpackCake, MpbToTxt, PackCake, TdbDump, CheckOodle
+- `third_party/Nenkai-Bakery/CakeTool/ResourceIds.cs` :: <no-top-symbols>
+- `third_party/Nenkai-Bakery/CakeTool/Scripts/_Bake_24.bat`
+- `third_party/Nenkai-Bakery/CakeTool/Scripts/_Bake_25.bat`
+- `third_party/Nenkai-Bakery/CakeTool/Scripts/_Unpack.bat`
+- `third_party/Nenkai-Bakery/CakeTool/Utils.cs` :: ExtractU8_U32, ExtractU8_U64, AlignValue, BytesToString, switch, GetCurrentExecutingPath
+- `third_party/Nenkai-Bakery/LICENSE.txt`
+- `third_party/Nenkai-Bakery/LICENSES/Crunch2/license.txt`
+- `third_party/Nenkai-Bakery/UPSTREAM-README.md`
+- `tools/AuroraCakHelper/AuroraCakHelper.csproj`
+- `tools/AuroraCakHelper/Program.cs` :: Main, if, catch, Compress, CompressionResponse, Decompress, using, DecompressionResponse, Extract, foreach, ValidateEntry, DecompressChunks, ReadAt, while, SafeTarget, Crc32cWord, FnvByte, Byte32, Byte64, DerivePayloadKey, RotateLeft8, RotateRight8, RecoverPayload, DecompressDelegate, GameDecompressor, Dispose, CompressDelegate, GameCodec, ExtractionRequest, ExtractionEntry, ExtractionChunk, ExtractionResult, ExtractionResponse, CompressionRequest, DecompressionRequest
+
+## Aurora-Forge-CAK-Mod-Loader (38 tracked files)
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `THIRD_PARTY_NOTICES.md`
+- `build.ps1` :: if
+- `docs/BUGS-AND-FIXES.md`
+- `docs/RELEASE-NOTES-1.0.01-RC1.md`
+- `docs/RELEASE-NOTES-1.0.01.md`
+- `scripts/package-release.ps1` :: <no-top-symbols>
+- `src/core/profiles.cpp` :: is_stock_archive_name, get_profile, is_stock_archive
+- `src/core/profiles.hpp` :: get_profile, is_stock_archive
+- `src/plugins/mod_loader/mod_loader.cpp` :: cak_phase_detour, g_original_cak_phase, InterlockedExchange, if, show_cak_notification, MessageBoxW, cak_notification_worker, queue_cak_notification, regular_non_reparse, for, FindClose, MH_Initialize, MH_CreateHook, MH_EnableHook, while, MH_DisableHook, MH_RemoveHook, WideCharToMultiByte, g_cak_mount, Sleep, CloseHandle
+- `src/shared/cak_validator.cpp` :: return, write_u32, if, header_valid, validate_cak
+- `src/shared/cak_validator.hpp` :: validate_cak
+- `src/shared/logging.cpp` :: log_to_file, GetLocalTime, WriteFile, CloseHandle
+- `src/shared/logging.hpp` :: log_to_file
+- `src/shared/mod_manifest.cpp` :: ws, take, if, string, while, fail, number_one, safe_name, array, parse_mod_manifest, load_mod_manifest
+- `src/shared/mod_manifest.hpp` :: parse_mod_manifest, load_mod_manifest
+- `src/shared/plugin_interface.hpp` :: void, bool
+- `src/shared/runtime_config.cpp` :: while, number, invalid, parse_runtime_config, if, load_runtime_config
+- `src/shared/runtime_config.hpp` :: parse_runtime_config, load_runtime_config
+- `src/shared/status_message.cpp` :: if
+- `src/shared/status_message.hpp` :: <no-top-symbols>
+- `tests/cak_validator_tests.cpp` :: require_rejected, if
+- `tests/mod_manifest_tests.cpp` :: require, if, main
+- `tests/runtime_config_tests.cpp` :: require, if, main
+- `tests/status_message_tests.cpp` :: require, if
+- `third_party/minhook/LICENSE.txt`
+- `third_party/minhook/include/MinHook.h` :: MH_Initialize, MH_Uninitialize, MH_CreateHook, MH_CreateHookApi, MH_CreateHookApiEx, MH_RemoveHook, MH_EnableHook, MH_DisableHook, MH_QueueEnableHook, MH_QueueDisableHook, MH_ApplyQueued, MH_StatusToString
+- `third_party/minhook/src/buffer.c` :: InitializeBuffer, UninitializeBuffer, while, VirtualFree, FindPrevFreeRegion, FindNextFreeRegion, GetMemoryBlock, GetSystemInfo, if, AllocateBuffer, memset, FreeBuffer, IsExecutableAddress, VirtualQuery, return
+- `third_party/minhook/src/buffer.h` :: TORT, UninitializeBuffer, AllocateBuffer, FreeBuffer, IsExecutableAddress
+- `third_party/minhook/src/hde/hde64.c` :: Copyright, memset, switch, if
+- `third_party/minhook/src/hde/hde64.h` :: hde64_disasm
+- `third_party/minhook/src/hde/pstdint.h` :: <no-top-symbols>
+- `third_party/minhook/src/hde/table64.h` :: <no-top-symbols>
+- `third_party/minhook/src/hook.c` :: FindHookEntry, AddHookEntry, if, DeleteHookEntry, FindOldIP, FindNewIP, ProcessThreadIPs, switch, SetThreadContext, EnumerateThreads, HeapFree, CloseHandle, Freeze, Unfreeze, ResumeThread, EnableHookLL, memcpy, VirtualProtect, FlushInstructionCache, EnableAllHooksLL, EnterSpinLock, while, Sleep, LeaveSpinLock, InterlockedExchange, MH_Initialize, InitializeBuffer, MH_Uninitialize, UninitializeBuffer, HeapDestroy, MH_CreateHook, FreeBuffer, MH_RemoveHook, EnableHook, MH_EnableHook, MH_DisableHook, QueueHook, MH_QueueEnableHook, MH_QueueDisableHook, MH_ApplyQueued
+- `third_party/minhook/src/trampoline.c` :: IsCodePadding, CreateTrampolineFunction, if, memcpy, __movsb
+- `third_party/minhook/src/trampoline.h` :: CreateTrampolineFunction
+
+## Aurora-Forge-CAK-Mod-Loader-WWE2K25 (48 tracked files)
+- `.github/workflows/build.yml`
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `TESTING.md`
+- `THIRD_PARTY_NOTICES.md`
+- `build.ps1` :: if
+- `docs/BUGS-AND-FIXES.md`
+- `docs/CHANGED-CONTENT-OVERRIDE-TEST.md`
+- `docs/RELEASE-NOTES-1.0.01-RC1.md`
+- `docs/RELEASE-NOTES-1.0.02.md`
+- `scripts/Prepare-ChangedContentOverrideTest.ps1` :: Resolve, Assert, Write, param, if
+- `scripts/package-release.ps1` :: <no-top-symbols>
+- `src/core/profiles.cpp` :: is_stock_archive_name, get_profile, is_stock_archive
+- `src/core/profiles.hpp` :: get_profile, is_stock_archive
+- `src/plugins/mod_loader/mod_loader.cpp` :: exact_runtime_signatures_ready, virtual_protect_detour, if, window_thread_observer, UnhookWindowsHookEx, CallNextHookEx, for, find_game_window, window_dispatch_worker, while, EnumWindows, install_transition_observer, regular_non_reparse, show_collision_and_exit, MessageBoxW, TerminateProcess, FindClose, CloseHandle, DllMain, DisableThreadLibraryCalls
+- `src/shared/cak_collision.cpp` :: for, ignored_collision_path
+- `src/shared/cak_collision.hpp` :: <no-top-symbols>
+- `src/shared/cak_validator.cpp` :: write_u32, checked_slice, read_section, if, while, read_catalog_string, valid_virtual_path, decode_virtual_paths, for, header_valid, validate_cak
+- `src/shared/cak_validator.hpp` :: validate_cak
+- `src/shared/logging.cpp` :: log_to_file, GetLocalTime, WriteFile, CloseHandle
+- `src/shared/logging.hpp` :: log_to_file
+- `src/shared/mod_manifest.cpp` :: ws, take, if, string, while, fail, number_one, safe_name, array, parse_mod_manifest, load_mod_manifest
+- `src/shared/mod_manifest.hpp` :: parse_mod_manifest, load_mod_manifest
+- `src/shared/plugin_interface.hpp` :: void, bool
+- `src/shared/runtime_config.cpp` :: while, number, invalid, parse_runtime_config, if, load_runtime_config
+- `src/shared/runtime_config.hpp` :: parse_runtime_config, load_runtime_config
+- `src/shared/status_message.cpp` :: if
+- `src/shared/status_message.hpp` :: <no-top-symbols>
+- `tests/cak_collision_probe.cpp` :: wmain, if
+- `tests/cak_collision_tests.cpp` :: if
+- `tests/cak_validator_probe.cpp` :: wmain, if
+- `tests/cak_validator_tests.cpp` :: require_rejected, if, for
+- `tests/mod_manifest_tests.cpp` :: require, if, main
+- `tests/prepare_override_runner_tests.ps1` :: Require, Write, if
+- `tests/runtime_config_tests.cpp` :: require, if, main
+- `tests/status_message_tests.cpp` :: require, if
+- `third_party/minhook/LICENSE.txt`
+- `third_party/minhook/include/MinHook.h` :: MH_Initialize, MH_Uninitialize, MH_CreateHook, MH_CreateHookApi, MH_CreateHookApiEx, MH_RemoveHook, MH_EnableHook, MH_DisableHook, MH_QueueEnableHook, MH_QueueDisableHook, MH_ApplyQueued, MH_StatusToString
+- `third_party/minhook/src/buffer.c` :: InitializeBuffer, UninitializeBuffer, while, VirtualFree, FindPrevFreeRegion, FindNextFreeRegion, GetMemoryBlock, GetSystemInfo, if, AllocateBuffer, memset, FreeBuffer, IsExecutableAddress, VirtualQuery, return
+- `third_party/minhook/src/buffer.h` :: TORT, UninitializeBuffer, AllocateBuffer, FreeBuffer, IsExecutableAddress
+- `third_party/minhook/src/hde/hde64.c` :: Copyright, memset, switch, if
+- `third_party/minhook/src/hde/hde64.h` :: hde64_disasm
+- `third_party/minhook/src/hde/pstdint.h` :: <no-top-symbols>
+- `third_party/minhook/src/hde/table64.h` :: <no-top-symbols>
+- `third_party/minhook/src/hook.c` :: FindHookEntry, AddHookEntry, if, DeleteHookEntry, FindOldIP, FindNewIP, ProcessThreadIPs, switch, SetThreadContext, EnumerateThreads, HeapFree, CloseHandle, Freeze, Unfreeze, ResumeThread, EnableHookLL, memcpy, VirtualProtect, FlushInstructionCache, EnableAllHooksLL, EnterSpinLock, while, Sleep, LeaveSpinLock, InterlockedExchange, MH_Initialize, InitializeBuffer, MH_Uninitialize, UninitializeBuffer, HeapDestroy, MH_CreateHook, FreeBuffer, MH_RemoveHook, EnableHook, MH_EnableHook, MH_DisableHook, QueueHook, MH_QueueEnableHook, MH_QueueDisableHook, MH_ApplyQueued
+- `third_party/minhook/src/trampoline.c` :: IsCodePadding, CreateTrampolineFunction, if, memcpy, __movsb
+- `third_party/minhook/src/trampoline.h` :: CreateTrampolineFunction
+
+## Aurora-Forge-Custom-Music-Loader (26 tracked files)
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `THIRD_PARTY_NOTICES.md`
+- `build.ps1` :: <no-top-symbols>
+- `docs/BUGS-AND-FIXES.md`
+- `docs/DEVELOPMENT-AND-PROVENANCE-FAQ.md`
+- `docs/METHODOLOGY-AND-PROVENANCE.md`
+- `docs/RELEASE-NOTES-1.0.01-RC1.md`
+- `docs/RELEASE-NOTES-1.0.01.md`
+- `scripts/package-release.ps1` :: <no-top-symbols>
+- `src/core/profiles.cpp` :: is_stock_archive_name, get_profile, is_stock_archive
+- `src/core/profiles.hpp` :: get_profile, is_stock_archive
+- `src/plugins/music_loader/music_loader.cpp` :: wait_until, while, Sleep, predicate, if, looks_like_akpk, regular_non_reparse, MultiByteToWideChar, for, add_package
+- `src/shared/bank_builder.cpp` :: static_assert, hex_bytes, append_u32, patch_u32, append_record, checked_end, for, validate_akpk, if, extract_music_bank, rebuild_music_bank, while
+- `src/shared/bank_builder.hpp` :: extract_music_bank, rebuild_music_bank, validate_akpk
+- `src/shared/logging.cpp` :: log_to_file, GetLocalTime, WriteFile, CloseHandle
+- `src/shared/logging.hpp` :: log_to_file
+- `src/shared/mod_manifest.cpp` :: ws, take, if, string, while, fail, number_one, safe_name, array, parse_mod_manifest, load_mod_manifest
+- `src/shared/mod_manifest.hpp` :: parse_mod_manifest, load_mod_manifest
+- `src/shared/plugin_interface.hpp` :: void, bool
+- `src/shared/runtime_config.cpp` :: while, number, invalid, parse_runtime_config, if, load_runtime_config
+- `src/shared/runtime_config.hpp` :: parse_runtime_config, load_runtime_config
+- `tests/bank_builder_tests.cpp` :: if, require
+- `tests/mod_manifest_tests.cpp` :: require, if, main
+- `tests/runtime_config_tests.cpp` :: require, if, main
+
+## Aurora-Forge-Custom-Music-Loader-WWE2K25 (25 tracked files)
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `THIRD_PARTY_NOTICES.md`
+- `build.ps1` :: <no-top-symbols>
+- `docs/BUGS-AND-FIXES.md`
+- `docs/DEVELOPMENT-AND-PROVENANCE-FAQ.md`
+- `docs/METHODOLOGY-AND-PROVENANCE.md`
+- `docs/RELEASE-NOTES-1.0.01-RC1.md`
+- `scripts/package-release.ps1` :: <no-top-symbols>
+- `src/core/profiles.cpp` :: is_stock_archive_name, get_profile, is_stock_archive
+- `src/core/profiles.hpp` :: get_profile, is_stock_archive
+- `src/plugins/music_loader/music_loader.cpp` :: wait_until, while, Sleep, predicate, if, looks_like_akpk, regular_non_reparse, MultiByteToWideChar, for, FindNextFileW, FindClose, add_package
+- `src/shared/bank_builder.cpp` :: static_assert, hex_bytes, append_u32, patch_u32, append_record, checked_end, for, validate_akpk, if, extract_music_bank, rebuild_music_bank, while
+- `src/shared/bank_builder.hpp` :: extract_music_bank, rebuild_music_bank, validate_akpk
+- `src/shared/logging.cpp` :: log_to_file, GetLocalTime, WriteFile, CloseHandle
+- `src/shared/logging.hpp` :: log_to_file
+- `src/shared/mod_manifest.cpp` :: ws, take, if, string, while, fail, number_one, safe_name, array, parse_mod_manifest, load_mod_manifest
+- `src/shared/mod_manifest.hpp` :: parse_mod_manifest, load_mod_manifest
+- `src/shared/plugin_interface.hpp` :: void, bool
+- `src/shared/runtime_config.cpp` :: while, number, invalid, parse_runtime_config, if, load_runtime_config
+- `src/shared/runtime_config.hpp` :: parse_runtime_config, load_runtime_config
+- `tests/bank_builder_tests.cpp` :: if, require
+- `tests/mod_manifest_tests.cpp` :: require, if, main
+- `tests/runtime_config_tests.cpp` :: require, if, main
+
+## Aurora-Forge-DDS-Converter (32 tracked files)
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `app/assets/css/style.css`
+- `app/assets/img/app-icon.ico` :: <binary 108214B>
+- `app/assets/js/dds-converter.js` :: byId, desktop, escapeHtml, status, setRunning, renderInputs, renderMode, refreshToolStatus, if, chooseInputs, convertFolder, chooseOutput, chooseReferences, convert, renderResults, openOutput, clearAll
+- `app/data/compatibility/secure-datacrtllink.json`
+- `app/dds-converter.html`
+- `app/tools/texconv/LICENSE.txt`
+- `app/tools/texconv/SOURCE.txt`
+- `electron/archive-repackager.js` :: exports:buildCak,verifyCak,scanBakeFolder,prepareScanPayloads,encodePairs,encodeStringTable,crc32cBuffer,derivePayloadKey,protectPayload,recoverPayload,EMPTY_TEXTURE_DATABASE
+- `electron/cak-reader.js` :: exports:openArchive,publicSummary,searchFiles,buildNameCandidates,buildNativeDictionary,fnv1a64,decodePairs,decodeStringTable,readStringRecord,keyFromFirstMask
+- `electron/cak-v99-key.js` :: exports:deriveArchiveKeyV99
+- `electron/cak20-reader.js` :: exports:openArchive,publicSummary,extractFile,deobfuscateBlock,cakeNameKey,expectedFirstWord
+- `electron/helpers/secure-loader-zip.ps1` :: if
+- `electron/main.js` :: sanitizeName, defaultProjectsPath, defaultExportsPath, ensureDir, isWwe2K26Running, workshopServices, auditModSuiteFolder, toolConfigPath, readCakDictionary, resolveOodlePath, bundledToolPath, cakHelperPath, pac19HelperPath, pac19GameFolder, pac19OodlePath, cak20GameFolder, cak20OodlePath, cak20ArchiveSummary, openCak20Sessions, safeCak20RelativePath, cak20FileSummary, runPac19Helper, readToolConfig, writeToolConfig, assertKnownToolId, toolConfigForRenderer, findCaseInsensitiveEntry, findOnPath, resolveTexconvPath, readFourCC, inspectDdsFile, inspectPngFile, runNativeProcess, assertExistingFiles, isPathInside, uniquePath, defaultReferenceModelsPath, safeInsideAllowedRoots, assertProjectJsonShape, registerAppProtocol
+- `electron/preload.js` :: <no-top-symbols>
+- `electron/services/cak-collision-service.js` :: exports:createCakCollisionService,buildCollisionReport,lexicalCompare,MAX_ARCHIVES,MAX_FILES,MAX_COLLISIONS
+- `electron/services/capability-registry.js` :: exports:createCapabilityRegistry,sha256,regularFile
+- `electron/services/game-install-registry.js` :: exports:GAME_IDS,createGameInstallRegistry
+- `electron/services/loader-diagnostics.js` :: exports:createLoaderDiagnostics,parseDiagnostics,parseLine,readBoundedTail,MAX_LOG_BYTES,MAX_LINES,MAX_ROWS
+- `electron/services/mod-manifest-manager.js` :: exports:createModManifestManager,validateOrder
+- `electron/services/operation-journal.js` :: exports:createOperationJournal
+- `electron/services/secure-loader-manager.js` :: exports:createSecureLoaderManager
+- `electron/services/secure-loader-release.js` :: exports:createSecureLoaderReleaseService,assertSafeEntryName,downloadPinned,MAX_ZIP_BYTES,MAX_ENTRY_BYTES,MAX_ENTRIES,DOWNLOAD_HOSTS
+- `electron/standalone-cak-main.js` :: <no-top-symbols>
+- `electron/standalone-cak20-main.js` :: <no-top-symbols>
+- `electron/standalone-dds-main.js` :: <no-top-symbols>
+- `electron/standalone-pac19-main.js` :: <no-top-symbols>
+- `package.json`
+- `scripts/analyze-2k19-motion.js` :: exports:analyze,analyzeTarget,readUleb128,scanUleb128
+- `scripts/verify-dds-converter.js` :: run, if
+
+## Aurora-Forge-Knowledgebase (6 tracked files)
+- `README.md`
+- `handoffs/AURORA-FORGE-COMPLETE-GAME-VERIFICATION-HANDOFF-2026-09-09.md`
+- `handoffs/CHATGPT-WEB-AURORA-FORGE-HANDOFF-2026-09-07.md`
+- `status/PROJECT-STATUS.md`
+- `status/REPOSITORY-SCOPE-AUDIT-2026-09-09.md`
+- `status/WWE2K25-V123-OVERRIDE-TEST-CHECKPOINT-2026-09-08.md`
+
+## Aurora-Forge-Research (1 tracked files)
+- `README.md`
+
+## Aurora-Forge-WWE2K19-Animation-Research-Public (1 tracked files)
+- `README.md`
+
+## AuroraForge_WWE_PC-Game_Modding_Tool (248 tracked files)
+- `.github/workflows/build.yml`
+- `.gitignore`
+- `.npmrc`
+- `BUILDING.md`
+- `CAK_FOUNDRY_RELEASE_NOTES_1.7.5.md`
+- `FAQ.md`
+- `INSTALLATION_AND_ROLLBACK.md`
+- `LICENSE`
+- `PUBLIC_POSTS_CAK_FOUNDRY_v1.7.5.md`
+- `PUBLIC_POSTS_v1.7.5.md`
+- `README.md`
+- `RELEASE_NOTES_1.6.0_RC1.md`
+- `RELEASE_NOTES_1.7.5.md`
+- `RELEASE_NOTES_1.7_MAJOR_RC1.md`
+- `RELEASE_VERIFICATION_v1.7.5.md`
+- `app/about.html`
+- `app/app-manifest.json`
+- `app/arena-ring-branding-studio.html`
+- `app/assets/css/style.css`
+- `app/assets/img/app-icon-128.png` :: <binary 21927B>
+- `app/assets/img/app-icon-16.png` :: <binary 808B>
+- `app/assets/img/app-icon-24.png` :: <binary 1526B>
+- `app/assets/img/app-icon-256.png` :: <binary 69205B>
+- `app/assets/img/app-icon-32.png` :: <binary 2445B>
+- `app/assets/img/app-icon-48.png` :: <binary 4752B>
+- `app/assets/img/app-icon-64.png` :: <binary 7433B>
+- `app/assets/img/app-icon.ico` :: <binary 108214B>
+- `app/assets/img/aurora-forge-branding.png` :: <binary 1920794B>
+- `app/assets/img/aurora-forge-logo.png` :: <binary 843461B>
+- `app/assets/img/aurora-forge-mark.png` :: <binary 231745B>
+- `app/assets/img/lmask-reference/cutout-luchador-mask-reference.png` :: <binary 3876394B>
+- `app/assets/img/lmask-reference/lmask-ingame-vs-current-profile-comparison.png` :: <binary 1841139B>
+- `app/assets/js/about.js` :: byId, status, if, loadAboutInfo, copyAboutInfo
+- `app/assets/js/active-studio-workflow.js` :: byId, value, config, slugify, status, collect, linesFromData, promptText, checklistText, render, download, makeCrcTable, crc32, dosDateTime, u16, u32, createZip, if
+- `app/assets/js/app-config-loader.js` :: loadConfig, if, renderBoundFields, getPath, String, alignProductNavigation, renderConfigBlock
+- `app/assets/js/cak-explorer.js` :: while, message, updateSelected, byId, renderRows, search, applyOpen, openArchive, if, initialize
+- `app/assets/js/cak20-explorer.js` :: byId, pick, formatBytes, while, message, requireDesktop, renderRows, selectedEntries, updateExtractButton, renderFileRows, renderStatus, initialize, if, catch
+- `app/assets/js/cakeview-visual-quick-start.js` :: setLesson
+- `app/assets/js/caw-builder.js` :: byId, value, checked, setValue, setChecked, slugify, status, if, collectProject, applyProject, buildPlan, saveLocal, restoreLocal, progressText, section, masterPlanText, makeCrcTable, crc32, dosDateTime, u16, u32, createZip, textFor, downloadPack, bind
+- `app/assets/js/character-viewer.js` :: setStatus, initViewer, resizeViewer, animate, disposeMaterial, clearModel, classifyPart, materialFor, configureTexture, selectedColorTexture, updateMaterials, addObjText, countMeshes, renderPartsList, frameModel, applyLighting, readTextureFile, saveScreenshot, loadSelectedObjects, requestAnimationFrame, if, while, loadObjText, getState
+- `app/assets/js/complete-character-guide.js` :: if
+- `app/assets/js/dds-converter.js` :: byId, desktop, escapeHtml, status, setRunning, renderInputs, renderMode, refreshToolStatus, if, chooseInputs, convertFolder, chooseOutput, chooseReferences, convert, renderResults, openOutput, clearAll
+- `app/assets/js/desktop-app.js` :: byId, value, status, if, requireDesktop, loadDesktopInfo, createProjectFolder, chooseProjectFolder, openDefaultProjectsFolder, openDefaultExportsFolder, saveDesktopNote
+- `app/assets/js/desktop-bridge.js` :: addDesktopClass, if
+- `app/assets/js/easy-guide-data.js` :: <no-top-symbols>
+- `app/assets/js/easy-guide.js` :: escapeHtml, list, bulletList, safeUrl, sourceList, evidenceForGuide, evidenceBox, if, mediaVideo, visualCard, playVideo, wireVideoLibrary, card, render, openHashLesson, buildGroups
+- `app/assets/js/face-calibration-workflow.js` :: byId, previewImage, if, collectIssueNotes, buildOutputText, downloadText, setTimeout, resetForm, init
+- `app/assets/js/face-profile-loader.js` :: byId, cleanProfileForExport, normalizeManifest, Error, profileId, profileLabel, setStatus, loadJson, populateProfileDropdown, if, selectProfile, initProfileDropdown, loadProfiles
+- `app/assets/js/face-texture-studio.js` :: byId, value, setValue, selectedProfile, profileId, profileFilename, safeProjectName, slugify, status, if, projectStatus, zone, profileListText, profileLayoutSummary, profileOrientationSummary, profileEyeGuidance, profileFootprintGuidance, lipColorGuidance, profileRequiredReferenceGuidance, profileBaseName, profileAssetFilename, profileLayoutReferenceFilename, profileGridReferenceFilename, profileLayoutLegendFilename, profileDefaultTextureFilename, profileHasBundledDefaultTexture, profileReferencePath, profileStockTexturePath, downloadStaticFile, layoutReferenceFilesText, hardSizeGuidance, profileAnchorSummary, characterName, gridColumns, gridRows, gridSummary, zoneText, pxRange, isOriginalFaceMode, outputTarget
+- `app/assets/js/handbook-reader.js` :: applyScale, clearSearchMarks, markText, if, while, runSearch, escapeHtml, renderEvidenceAppendix
+- `app/assets/js/lmask-idea-library.js` :: byId, value, setValue, status, if, slug, parseTags, tagText, allIdeas, customIdeas, ideaToForm, formToIdea, renderTagFilter, filteredIdeas, renderIdeaList, renderSummary, newBlankIdea, saveIdea, duplicateIdea, deleteIdea, exportJson, downloadText, exportCustomIdeas, exportAllIdeas, importIdeaPack, bind
+- `app/assets/js/lmask-preview.js` :: rgbaWithAlpha, updateOpacityLabel, byId, status, if, selectedProfile, isCutoutProfile, refreshProfile, renderAll, grid, zone, zoneFrac, unionZones, cropForView, destForView, createDemoTexture, setActiveView, renderMain, setupCanvas, headPath, clipMask, drawHeadBase, drawImageCrop, drawBackTexture, drawMaskTexture, drawRiskShading, drawMaskFeatures, drawProfileOverlays, mapRect, overlayZonesForView, drawPlaceholder, renderView, drawSourceMap, loadFile, bindEvents
+- `app/assets/js/lmask-profile-loader.js` :: byId, cleanProfileForExport, normalizeManifest, Error, profileId, profileLabel, setStatus, loadJson, if, populateProfileDropdown, selectProfile, initProfileDropdown, loadProfiles
+- `app/assets/js/lmask-project-studio.js` :: byId, value, setValue, profileId, profileFilename, selectedProfile, populateDetailDropdowns, selectedDetail, buildDetailSummary, syncLmaskDetailNotes, profileBaseName, profileAssetFilename, profileLayoutReferenceFilename, profileGridReferenceFilename, profileLayoutLegendFilename, profileDefaultTextureFilename, profileHasBundledDefaultTexture, profileReferencePath, profileStockTexturePath, fetchBinaryFile, if, profileType, isCutoutProfile, layoutFamilyLabel, profileSummaryText, safeProjectName, slugify, status, collectSettings, saveProjectSettings, renderProjectPreview, restoreProjectSettings, restoreProfileSelection, resetProjectSettings, uploadChecklistText, projectBriefText, downloadProjectBrief, downloadText, copyUploadChecklist, copyText
+- `app/assets/js/lmask-prompt-compiler.js` :: byId, value, setStatus, if, getCanvasSize, profileId, profileType, isCutoutProfile, profileAssetText, layoutInstructions, cleanProfile, getGrid, clamp, calculateZonePixels, calculatedZones, zoneTableText, rulesText, baseContext, outputRequirements, sourceAndPreservation, commonStage2Intro, textureFileDetails, fullPrompt, compactPrompt, profileFileHandoffPrompt, expertShortPrompt, buildPrompt, renderPreview, escapeHtml, downloadPromptTxt, downloadText, downloadSelectedProfileJson, makeCrcTable, crc32, dosDateTime, u16, u32, normalizeZipFileBytes, createZip, downloadPromptProfileZip
+- `app/assets/js/main.js` :: copyById, copyText, fallbackCopy, downloadText, ideaSlug, uniqueIdeaId, parseIdeaTags, inferIdeaTags, normalizeIdea, getDefaultDesignIdeas, getCustomIdeas, saveCustomIdeas, getAllDesignIdeas, getIdeaById, buildIdeaPreviewText, populateIdeaSelect, updateIdeaPreview, chooseRandomIdea, applySelectedMaskIdea, applySelectedStage2Idea, refreshIdeaSelectors, buildAiRequest, buildMaskRequest, initLmaskIdeaControls, setValue, byId, getValue, notifyField, if, setTimeout, catch, while, String
+- `app/assets/js/mod-file-inspector.js` :: byId, status, normalizePath, formatBytes, ext, sha256, textFromBuffer, if, extractReferences, while, readReferences, parseDds, fourCC, fileMap, setStat, rowHtml, updateChangedTable, updateDdsTable, textureBasenames, analyze, fileHash, buildReport, copyReport, downloadReport, clearAll
+- `app/assets/js/mod-suite-data.js` :: <no-top-symbols>
+- `app/assets/js/mod-suite.js` :: byId, escapeHtml, status, desktop, categoryLabel, renderCategories, renderCapabilities, capabilityAction, capabilityCard, roadmapRow, if, bindCardActions, createWorkspace, auditText, renderAudit, chooseAudit
+- `app/assets/js/mod-workshop.js` :: byId, message, button, renderCapabilities, refresh, countBox, renderDiagnostics, if, renderCollisions, renderManifestList, loadManifest, renderJournal
+- `app/assets/js/pac19-explorer.js` :: while, message, visibleEntries, updateActions, byId, requireDesktop, renderRows, initialize, if, catch
+- `app/assets/js/project-manager.js` :: byId, value, setValue, normalizeStatus, status, if, requireDesktop, projectData, renderPreview, applyProjectData, summaryText, saveProjectJson, openProjectJson, saveProjectSummary, createProjectFolderFromManager
+- `app/assets/js/setup.js` :: byId, status, if, readPreferences, applyPreferences, collectPreferences, saveSetupPreferences, loadSetupInfo, resetSetupPreferences, markSetupComplete
+- `app/assets/js/tool-center.js` :: byId, desktop, status, escapeHtml, renderGroup, render, refresh, if, choose, openTool, clearTool, checkCakeHook
+- `app/assets/vendor/three/OBJLoader.js` :: ParserState, if, constructor, super, load, onLoad, onError, setMaterials, parse, switch, parseFloat
+- `app/assets/vendor/three/OrbitControls.js` :: onPointerDown, onPointerMove, onPointerUp, onMouseDown, onMouseMove, onMouseWheel, onKeyDown, onTouchStart, onTouchMove, onContextMenu, interceptControlDown, interceptControlUp, animate, constructor, super, if, cursorStyle, connect, disconnect, dispose, getPolarAngle, getAzimuthalAngle, getDistance, listenToKeyEvents, stopListenToKeyEvents, saveState, reset, pan, dollyIn, dollyOut, rotateLeft, rotateUp, update, _getAutoRotationAngle, _getZoomScale, _rotateLeft, _rotateUp, _panLeft, _panUp, _pan
+- `app/assets/vendor/three/THREE-LICENSE.txt`
+- `app/assets/vendor/three/three.core.min.js` :: <no-top-symbols>
+- `app/assets/vendor/three/three.module.min.js` :: <no-top-symbols>
+- `app/cak-explorer.html`
+- `app/cak20-explorer.html`
+- `app/cakeview-visual-quick-start.html`
+- `app/caw-character-builder.html`
+- `app/championship-belt-studio.html`
+- `app/character-viewer.html`
+- `app/complete-character-modding-guide.html`
+- `app/config/app-config.json`
+- `app/creative-studios.html`
+- `app/data/cak-known-paths.json`
+- `app/data/compatibility/secure-datacrtllink.json`
+- `app/data/wwe2k22-modding-facts.json`
+- `app/data/wwe2k26-modding-facts.json`
+- `app/dds-converter.html`
+- `app/desktop-dashboard.html`
+- `app/docs/mod-file-inspector-sample-slade-summary.txt`
+- `app/downloads/Aurora_Forge_Reader_Handbook.docx` :: <binary 82406B>
+- `app/downloads/Aurora_Forge_Reader_Handbook.pdf` :: <binary 727163B>
+- `app/entrance-gear-studio.html`
+- `app/face-calibration-workflow.html`
+- `app/face-texture-studio.html`
+- `app/faction-pack-builder.html`
+- `app/faq.html`
+- `app/gear-attire-studio.html`
+- `app/handbook-reader.html`
+- `app/ideas/lmask/default_design_ideas.json`
+- `app/index.html`
+- `app/knowledgebase.html`
+- `app/lmask-idea-library.html`
+- `app/lmask-mapping-handoff.html`
+- `app/lmask-project-studio.html`
+- `app/logo-emblem-studio.html`
+- `app/luchador-mask-generator.html`
+- `app/material-fabric-studio.html`
+- `app/mod-file-inspector.html`
+- `app/mod-suite.html`
+- `app/mod-workshop.html`
+- `app/normal-map-shader-helper.html`
+- `app/pac19-explorer.html`
+- `app/profiles/face/ColeQuinn.json`
+- `app/profiles/face/Slade.json`
+- `app/profiles/face/profiles.json`
+- `app/profiles/face/reference_maps/ColeQuinn_128x128_grid_reference.png` :: <binary 208771B>
+- `app/profiles/face/reference_maps/ColeQuinn_layout_legend.txt`
+- `app/profiles/face/reference_maps/ColeQuinn_layout_reference.png` :: <binary 162611B>
+- `app/profiles/face/reference_maps/Slade_128x128_grid_reference.png` :: <binary 206648B>
+- `app/profiles/face/reference_maps/Slade_layout_legend.txt`
+- `app/profiles/face/reference_maps/Slade_layout_reference.png` :: <binary 160355B>
+- `app/profiles/face/stock_textures/ColeQuinn_default_texture.png` :: <binary 3100345B>
+- `app/profiles/face/stock_textures/Slade_default_texture.png` :: <binary 3219143B>
+- `app/profiles/lmask/ReyMysterio2019.json`
+- `app/profiles/lmask/custom_profile_example.json`
+- `app/profiles/lmask/cutout_luchador_mask_v1.json`
+- `app/profiles/lmask/generic_hood_wrap_v1.json`
+- `app/profiles/lmask/profiles.json`
+- `app/profiles/lmask/reference_maps/ReyMysterio2019_128x128_grid_reference.png` :: <binary 1476821B>
+- `app/profiles/lmask/reference_maps/ReyMysterio2019_layout_legend.txt`
+- `app/profiles/lmask/reference_maps/ReyMysterio2019_layout_reference.png` :: <binary 1499631B>
+- `app/profiles/lmask/reference_maps/customprofileexample_128x128_grid_reference.png` :: <binary 169546B>
+- `app/profiles/lmask/reference_maps/customprofileexample_layout_legend.txt`
+- `app/profiles/lmask/reference_maps/customprofileexample_layout_reference.png` :: <binary 126758B>
+- `app/profiles/lmask/reference_maps/cutoutluchadormaskv1_128x128_grid_reference.png` :: <binary 186362B>
+- `app/profiles/lmask/reference_maps/cutoutluchadormaskv1_layout_legend.txt`
+- `app/profiles/lmask/reference_maps/cutoutluchadormaskv1_layout_reference.png` :: <binary 147171B>
+- `app/profiles/lmask/reference_maps/generichoodwrapv1_128x128_grid_reference.png` :: <binary 169565B>
+- `app/profiles/lmask/reference_maps/generichoodwrapv1_layout_legend.txt`
+- `app/profiles/lmask/reference_maps/generichoodwrapv1_layout_reference.png` :: <binary 126719B>
+- `app/profiles/lmask/stock_textures/ReyMysterio2019_default_mask_color.png` :: <binary 2764317B>
+- `app/profiles/lmask/stock_textures/Uploaded_mask_color_5_default_mask_color.png` :: <binary 1441579B>
+- `app/project-manager.html`
+- `app/reference-cleanup-pipeline.html`
+- `app/setup.html`
+- `app/tattoo-pipeline.html`
+- `app/tool-center.html`
+- `app/tools.html`
+- `app/tools/cak-helper/AuroraCakHelper.exe` :: <binary 63749236B>
+- `app/tools/cak-helper/README.txt`
+- `app/tools/pac19-helper/AuroraPac19Helper.exe` :: <binary 63769728B>
+- `app/tools/pac19-helper/THIRD-PARTY-NOTICES.md`
+- `app/tools/texconv/LICENSE.txt`
+- `app/tools/texconv/SOURCE.txt`
+- `app/tools/texconv/texconv.exe` :: <binary 966480B>
+- `app/training/animated-tutorial-clips/01_texture_workflow_overview.mp4` :: <binary 502729B>
+- `app/training/animated-tutorial-clips/01_texture_workflow_overview_thumbnail.png` :: <binary 38127B>
+- `app/training/animated-tutorial-clips/02_convert_png_to_dds.mp4` :: <binary 449504B>
+- `app/training/animated-tutorial-clips/02_convert_png_to_dds_thumbnail.png` :: <binary 32524B>
+- `app/training/animated-tutorial-clips/03_replace_texture_files.mp4` :: <binary 622074B>
+- `app/training/animated-tutorial-clips/03_replace_texture_files_thumbnail.png` :: <binary 33986B>
+- `app/training/animated-tutorial-clips/04_check_ycl_mcd_mtl_dds_chain.mp4` :: <binary 545373B>
+- `app/training/animated-tutorial-clips/04_check_ycl_mcd_mtl_dds_chain_thumbnail.png` :: <binary 31173B>
+- `app/training/animated-tutorial-clips/05_test_and_fix_loop.mp4` :: <binary 450121B>
+- `app/training/animated-tutorial-clips/05_test_and_fix_loop_thumbnail.png` :: <binary 37053B>
+- `app/training/animated-tutorial-clips/README.txt`
+- `app/training/animated-tutorial-clips/cover.png` :: <binary 50634B>
+- `app/training/cakeview-visual-quick-start/01-open-settings.jpg` :: <binary 59337B>
+- `app/training/cakeview-visual-quick-start/01-open-settings.mp4` :: <binary 275704B>
+- `app/training/cakeview-visual-quick-start/02-browse-archives.jpg` :: <binary 76524B>
+- `app/training/cakeview-visual-quick-start/02-browse-archives.mp4` :: <binary 1324472B>
+- `app/training/cakeview-visual-quick-start/03-find-character-model.jpg` :: <binary 59771B>
+- `app/training/cakeview-visual-quick-start/03-find-character-model.mp4` :: <binary 316495B>
+- `app/training/cakeview-visual-quick-start/04-view-character-model.jpg` :: <binary 83458B>
+- `app/training/cakeview-visual-quick-start/04-view-character-model.mp4` :: <binary 438478B>
+- `app/training/cakeview-visual-quick-start/05-open-sdb-editor.jpg` :: <binary 71130B>
+- `app/training/cakeview-visual-quick-start/05-open-sdb-editor.mp4` :: <binary 181981B>
+- `app/training/cakeview-visual-quick-start/06-open-ycl-editor.jpg` :: <binary 80924B>
+- `app/training/cakeview-visual-quick-start/06-open-ycl-editor.mp4` :: <binary 384926B>
+- `app/training/community-reference/tribute26-entrance-template-editor.png` :: <binary 117664B>
+- `app/training/community-reference/tribute26-prop-profile-generator.mp4` :: <binary 10460499B>
+- `app/training/community-reference/tribute26-replace-slot-checkbox.png` :: <binary 22370B>
+- `app/tutorials.html`
+- `docs/ADR-002-standalone-tools-sdcl-addons-and-build-profiles.md`
+- `docs/CAK-EXTRACT-REBUILD.md`
+- `electron/archive-repackager.js` :: exports:buildCak,verifyCak,scanBakeFolder,prepareScanPayloads,encodePairs,encodeStringTable,crc32cBuffer,derivePayloadKey,protectPayload,recoverPayload,EMPTY_TEXTURE_DATABASE
+- `electron/cak-reader.js` :: exports:openArchive,publicSummary,searchFiles,buildNameCandidates,fnv1a64,decodePairs,keyFromFirstMask
+- `electron/cak-v99-key.js` :: exports:deriveArchiveKeyV99
+- `electron/cak20-reader.js` :: exports:openArchive,publicSummary,extractFile,deobfuscateBlock,cakeNameKey,expectedFirstWord
+- `electron/helpers/secure-loader-zip.ps1` :: if
+- `electron/main.js` :: sanitizeName, defaultProjectsPath, defaultExportsPath, ensureDir, isWwe2K26Running, workshopServices, auditModSuiteFolder, toolConfigPath, readCakDictionary, resolveOodlePath, bundledToolPath, cakHelperPath, pac19HelperPath, pac19GameFolder, pac19OodlePath, cak20GameFolder, cak20OodlePath, cak20ArchiveSummary, openCak20Sessions, safeCak20RelativePath, cak20FileSummary, runPac19Helper, readToolConfig, writeToolConfig, assertKnownToolId, toolConfigForRenderer, findCaseInsensitiveEntry, findOnPath, resolveTexconvPath, readFourCC, inspectDdsFile, inspectPngFile, runNativeProcess, assertExistingFiles, isPathInside, uniquePath, defaultReferenceModelsPath, safeInsideAllowedRoots, assertProjectJsonShape, registerAppProtocol
+- `electron/preload.js` :: <no-top-symbols>
+- `electron/services/cak-collision-service.js` :: exports:createCakCollisionService,buildCollisionReport,lexicalCompare,MAX_ARCHIVES,MAX_FILES,MAX_COLLISIONS
+- `electron/services/capability-registry.js` :: exports:createCapabilityRegistry,sha256,regularFile
+- `electron/services/game-install-registry.js` :: exports:GAME_IDS,createGameInstallRegistry
+- `electron/services/loader-diagnostics.js` :: exports:createLoaderDiagnostics,parseDiagnostics,parseLine,readBoundedTail,MAX_LOG_BYTES,MAX_LINES,MAX_ROWS
+- `electron/services/mod-manifest-manager.js` :: exports:createModManifestManager,validateOrder
+- `electron/services/operation-journal.js` :: exports:createOperationJournal
+- `electron/services/secure-loader-manager.js` :: exports:createSecureLoaderManager
+- `electron/services/secure-loader-release.js` :: exports:createSecureLoaderReleaseService,assertSafeEntryName,downloadPinned,MAX_ZIP_BYTES,MAX_ENTRY_BYTES,MAX_ENTRIES,DOWNLOAD_HOSTS
+- `electron/standalone-cak-main.js` :: <no-top-symbols>
+- `electron/standalone-cak20-main.js` :: <no-top-symbols>
+- `electron/standalone-dds-main.js` :: <no-top-symbols>
+- `electron/standalone-pac19-main.js` :: <no-top-symbols>
+- `package-lock.json`
+- `package.json`
+- `scripts/analyze-2k22-format.js` :: readPrefix, probeReader, inspectReferenceRoot, main, while, if
+- `scripts/analyze-cak-name-records.js` :: basenameFor, recordFor, xorHex, if
+- `scripts/analyze-cak20-format.js` :: readSlice, words, printableAsciiRuns, headerLooksLikeCak20, tryCurrentReaderFamily, compareBuffers, readArcPaths, describeFile, main, u32, hex32, if, for
+- `scripts/analyze-name-table.js` :: <no-top-symbols>
+- `scripts/analyze-wwe2k26-registry-matches.js` :: sort, for
+- `scripts/audit-extracted-layouts.js` :: scanLayout, intersection, difference, for, if, while, tryMatch
+- `scripts/build-cak-helper.js` :: <no-top-symbols>
+- `scripts/build-cross-generation-path-catalog.js` :: if, for
+- `scripts/build-native-linux.js` :: run, if
+- `scripts/build-pac19-helper.js` :: <no-top-symbols>
+- `scripts/build-standalone-windows.js` :: copyDir, createStandaloneStaging, run, normalizeZipTimestamps, if, walk, for
+- `scripts/build-true-portable-windows.js` :: log, step, fail, commandExists, cmdQuote, normalizeCommand, run, read, remove, if
+- `scripts/build-wwe2k26-catalog-from-registry.js` :: reverseHexBytes, addCandidate, exportPathFor, recordOutputPath, if, for, Error, String
+- `scripts/build-wwe2k26-texture-headers.js` :: reverseHexBytes, readDdsHeader, if, String
+- `scripts/check-environment.js` :: run, ok, warn, catch, if
+- `scripts/clean-dist.js` :: if
+- `scripts/create-final-portable-zip.ps1` :: Write, if
+- `scripts/create-linux-archive.py` :: <no-top-symbols>
+- `scripts/generate-cak-known-paths.js` :: if
+- `scripts/helpers/create-test-zip.ps1` :: <no-top-symbols>
+- `scripts/inspect-cak-string-table.js` :: if
+- `scripts/live-secure-loader-acceptance.js` :: fail, gameRunning, main, if
+- `scripts/merge-cak-catalogs.js` :: for, if
+- `scripts/prepare-runtime-staging.js` :: remove, copyDir, readJson, if
+- `scripts/probe-2k22-header.js` :: exports:decode
+- `scripts/recover-cak-paths-from-2k26.js` :: normalize, addCandidate, readNameLengths, parentIndexMap, resolveCandidateGroups, String, if, for, onMatch, while
+- `scripts/render-handbook-qa.py` :: <no-top-symbols>
+- `scripts/sample-cak-name-cipher.js` :: <no-top-symbols>
+- `scripts/test-expand-names.js` :: <no-top-symbols>
+- `scripts/verify-cak-catalog-coverage.js` :: <no-top-symbols>
+- `scripts/verify-cak-extraction.js` :: if, for
+- `scripts/verify-cak20-reader.js` :: fail, main, Error, if, for
+- `scripts/verify-dds-converter.js` :: run, if
+- `scripts/verify-docx-structure.py` :: <no-top-symbols>
+- `scripts/verify-final-portable.js` :: assert, exists, if, walk
+- `scripts/verify-mod-manifest-manager.js` :: check
+- `scripts/verify-mod-workshop-services.js` :: check, hash, main
+- `scripts/verify-pac19-helper.js` :: if
+- `scripts/verify-package.js` :: ok, read, exists, json, count, walk, guideCount, if, for
+- `scripts/verify-repackager.js` :: for, if, verifyCak
+- `scripts/verify-standalone-staging.js` :: for, if
+- `tools/AuroraCakHelper/AuroraCakHelper.csproj`
+- `tools/AuroraCakHelper/Program.cs` :: Main, if, catch, Compress, CompressionResponse, Extract, foreach, ValidateEntry, ReadAt, while, SafeTarget, Crc32cWord, FnvByte, Byte32, Byte64, DerivePayloadKey, RotateLeft8, RotateRight8, RecoverPayload, DecompressDelegate, GameDecompressor, Decompress, Dispose, CompressDelegate, GameCodec, ExtractionRequest, ExtractionEntry, ExtractionResult, ExtractionResponse, CompressionRequest
+- `tools/AuroraPac19Helper/AuroraPac19Helper.csproj`
+- `tools/AuroraPac19Helper/Program.cs` :: Main, if, catch, Inspect, InspectResponse, Extract, foreach, ExtractResponse, Replace, using, ReplaceResponse, ValidateRawReplacement, NeedsOodle, FriendlyEntryName, LooksLikeRawIdentifier, SelfTest, SelfTestResponse, ExistingFile, ExistingFolder, RequiredPath, SafeName, Detect, Flatten, Walk, Locate, LocatedEntry, ReplaceLevel, ReplaceHspcChild, WriteU32, ReplaceShdcChild, WriteU64, ParseHspc, Require, ValidateRange, ParseShdc, ParseEpac, while, ParsePach, ParseId, Slice
+- `tools/AuroraPac19Helper/THIRD-PARTY-NOTICES.md`
+
+## DataCtrlLink-MusicOnly (61 tracked files)
+- `.clang-format`
+- `.github/workflows/build.yml`
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `SECURITY.md`
+- `TESTING.md`
+- `THIRD_PARTY_NOTICES.md`
+- `build.ps1` :: if
+- `docs/ADDON-MANAGEMENT.md`
+- `docs/ARCHITECTURE.md`
+- `docs/BUGS-AND-FIXES-1.7.7.md`
+- `docs/DEVELOPMENT-AND-PROVENANCE-FAQ.md`
+- `docs/EXPLAIN-LIKE-IM-FIVE.md`
+- `docs/METHODOLOGY-AND-PROVENANCE.md`
+- `docs/RELEASE-NOTES-1.7.7.md`
+- `docs/RELEASE-NOTES-TEMPLATE.md`
+- `exports.def`
+- `scripts/package-release.ps1` :: if
+- `src/core/addon_registry.cpp` :: same_filename
+- `src/core/addon_registry.hpp` :: <no-top-symbols>
+- `src/core/addon_selection.cpp` :: load_addon_selection, if, while
+- `src/core/addon_selection.hpp` :: load_addon_selection
+- `src/core/profiles.cpp` :: is_stock_archive_name, get_profile, is_stock_archive
+- `src/core/profiles.hpp` :: get_profile, is_stock_archive
+- `src/plugins/mod_loader/mod_loader.cpp` :: cak_phase_detour, g_original_cak_phase, InterlockedExchange, if, show_cak_notification, MessageBoxW, cak_notification_worker, queue_cak_notification, regular_non_reparse, for, FindClose, MH_Initialize, MH_CreateHook, MH_EnableHook, while, MH_DisableHook, MH_RemoveHook, WideCharToMultiByte, g_cak_mount, Sleep, CloseHandle
+- `src/plugins/music_loader/music_loader.cpp` :: wait_until, while, Sleep, predicate, if, looks_like_akpk, regular_non_reparse, MultiByteToWideChar, for, add_package
+- `src/plugins/mygm_mod/mygm_mod.cpp` :: apply_mygm_patch, if, VirtualProtect, Sleep
+- `src/proxy.cpp` :: GetModuleFileNameW, log_line, load_real_dinput8, if, CloseHandle, BCryptCloseAlgorithmProvider, while, BCryptHashData, BCryptFinishHash, BCryptDestroyHash, for, load_plugins, GetProcAddress, FreeLibrary, main_worker, MessageBoxW, create, get_class_object, get_df_di_joystick, DllMain, DisableThreadLibraryCalls
+- `src/shared/bank_builder.cpp` :: static_assert, hex_bytes, append_u32, patch_u32, append_record, checked_end, for, validate_akpk, if, extract_music_bank, rebuild_music_bank, while
+- `src/shared/bank_builder.hpp` :: extract_music_bank, rebuild_music_bank, validate_akpk
+- `src/shared/cak_validator.cpp` :: return, write_u32, if, header_valid, validate_cak
+- `src/shared/cak_validator.hpp` :: validate_cak
+- `src/shared/logging.cpp` :: log_to_file, GetLocalTime, WriteFile, CloseHandle
+- `src/shared/logging.hpp` :: log_to_file
+- `src/shared/mod_manifest.cpp` :: ws, take, if, string, while, fail, number_one, safe_name, array, parse_mod_manifest, load_mod_manifest
+- `src/shared/mod_manifest.hpp` :: parse_mod_manifest, load_mod_manifest
+- `src/shared/plugin_interface.hpp` :: void, bool
+- `src/shared/runtime_config.cpp` :: while, number, invalid, parse_runtime_config, if, load_runtime_config
+- `src/shared/runtime_config.hpp` :: parse_runtime_config, load_runtime_config
+- `src/shared/status_message.cpp` :: if
+- `src/shared/status_message.hpp` :: <no-top-symbols>
+- `tests/addon_registry_tests.cpp` :: require, if, main
+- `tests/addon_selection_tests.cpp` :: require, if, write, main
+- `tests/bank_builder_tests.cpp` :: if, require
+- `tests/cak_validator_tests.cpp` :: require_rejected, if
+- `tests/mod_manifest_tests.cpp` :: require, if, main
+- `tests/proxy_smoke.cpp` :: wmain, if, for, Sleep, FreeLibrary
+- `tests/runtime_config_tests.cpp` :: require, if, main
+- `tests/status_message_tests.cpp` :: require, if
+- `third_party/minhook/LICENSE.txt`
+- `third_party/minhook/include/MinHook.h` :: MH_Initialize, MH_Uninitialize, MH_CreateHook, MH_CreateHookApi, MH_CreateHookApiEx, MH_RemoveHook, MH_EnableHook, MH_DisableHook, MH_QueueEnableHook, MH_QueueDisableHook, MH_ApplyQueued, MH_StatusToString
+- `third_party/minhook/src/buffer.c` :: InitializeBuffer, UninitializeBuffer, while, VirtualFree, FindPrevFreeRegion, FindNextFreeRegion, GetMemoryBlock, GetSystemInfo, if, AllocateBuffer, memset, FreeBuffer, IsExecutableAddress, VirtualQuery, return
+- `third_party/minhook/src/buffer.h` :: TORT, UninitializeBuffer, AllocateBuffer, FreeBuffer, IsExecutableAddress
+- `third_party/minhook/src/hde/hde64.c` :: Copyright, memset, switch, if
+- `third_party/minhook/src/hde/hde64.h` :: hde64_disasm
+- `third_party/minhook/src/hde/pstdint.h` :: <no-top-symbols>
+- `third_party/minhook/src/hde/table64.h` :: <no-top-symbols>
+- `third_party/minhook/src/hook.c` :: FindHookEntry, AddHookEntry, if, DeleteHookEntry, FindOldIP, FindNewIP, ProcessThreadIPs, switch, SetThreadContext, EnumerateThreads, HeapFree, CloseHandle, Freeze, Unfreeze, ResumeThread, EnableHookLL, memcpy, VirtualProtect, FlushInstructionCache, EnableAllHooksLL, EnterSpinLock, while, Sleep, LeaveSpinLock, InterlockedExchange, MH_Initialize, InitializeBuffer, MH_Uninitialize, UninitializeBuffer, HeapDestroy, MH_CreateHook, FreeBuffer, MH_RemoveHook, EnableHook, MH_EnableHook, MH_DisableHook, QueueHook, MH_QueueEnableHook, MH_QueueDisableHook, MH_ApplyQueued
+- `third_party/minhook/src/trampoline.c` :: IsCodePadding, CreateTrampolineFunction, if, memcpy, __movsb
+- `third_party/minhook/src/trampoline.h` :: CreateTrampolineFunction
+
+## Sanitized-Research (2 tracked files)
+- `README.md`
+- `STATUS-SUMMARY.md`
+
+## tmp-wrestleminus-public (114 tracked files)
+- `.gitattributes`
+- `.github/workflows/dotnetcore.yml`
+- `.gitignore`
+- `.gitmodules`
+- `DirectXTex`
+- `LICENSE`
+- `README.md`
+- `WrestleMINUS.sln`
+- `WrestleMINUS/Assets/2.png` :: <binary 6857B>
+- `WrestleMINUS/Assets/8.png` :: <binary 7226B>
+- `WrestleMINUS/Assets/A.png` :: <binary 7695B>
+- `WrestleMINUS/Assets/AT.png` :: <binary 11468B>
+- `WrestleMINUS/Assets/B.png` :: <binary 5361B>
+- `WrestleMINUS/Assets/C.png` :: <binary 5286B>
+- `WrestleMINUS/Assets/D.png` :: <binary 6138B>
+- `WrestleMINUS/Assets/E.png` :: <binary 3641B>
+- `WrestleMINUS/Assets/F.png` :: <binary 3585B>
+- `WrestleMINUS/Assets/FileClassTemplate.vb`
+- `WrestleMINUS/Assets/G.png` :: <binary 5295B>
+- `WrestleMINUS/Assets/H.png` :: <binary 3568B>
+- `WrestleMINUS/Assets/Icon Sets.psd`
+- `WrestleMINUS/Assets/K.png` :: <binary 6784B>
+- `WrestleMINUS/Assets/L.png` :: <binary 5011B>
+- `WrestleMINUS/Assets/M.png` :: <binary 7257B>
+- `WrestleMINUS/Assets/N.png` :: <binary 6315B>
+- `WrestleMINUS/Assets/NodeIcons.txt`
+- `WrestleMINUS/Assets/O.png` :: <binary 4987B>
+- `WrestleMINUS/Assets/P.png` :: <binary 4415B>
+- `WrestleMINUS/Assets/Qu.png` :: <binary 5630B>
+- `WrestleMINUS/Assets/R.png` :: <binary 7427B>
+- `WrestleMINUS/Assets/S.png` :: <binary 6079B>
+- `WrestleMINUS/Assets/T.png` :: <binary 3567B>
+- `WrestleMINUS/Assets/U.png` :: <binary 4369B>
+- `WrestleMINUS/Assets/V.png` :: <binary 7933B>
+- `WrestleMINUS/Assets/W-.ico` :: <binary 270398B>
+- `WrestleMINUS/Assets/W.png` :: <binary 9775B>
+- `WrestleMINUS/Assets/Y.png` :: <binary 6586B>
+- `WrestleMINUS/Assets/Z.png` :: <binary 4785B>
+- `WrestleMINUS/Assets/thumb_Help_and_Support.png` :: <binary 16678B>
+- `WrestleMINUS/DefBuilder.vb`
+- `WrestleMINUS/FilePartHandlers.vb`
+- `WrestleMINUS/General Code/GeneralTools.vb`
+- `WrestleMINUS/General Code/OnlineVersion.vb`
+- `WrestleMINUS/Ionic.Zlib.dll` :: <binary 102400B>
+- `WrestleMINUS/MainForm/MainForm.Designer.vb`
+- `WrestleMINUS/MainForm/MainForm.resx`
+- `WrestleMINUS/MainForm/MainForm.vb`
+- `WrestleMINUS/MainForm/Main_ContextStrip.vb`
+- `WrestleMINUS/MainForm/Main_MenuStrip.vb`
+- `WrestleMINUS/MainForm/Main_Tabs.vb`
+- `WrestleMINUS/MainForm/Main_TreeView.vb`
+- `WrestleMINUS/MainForm/Tab Views/AnimationView.vb`
+- `WrestleMINUS/MainForm/Tab Views/AssetView.vb`
+- `WrestleMINUS/MainForm/Tab Views/AttireInfoView.vb`
+- `WrestleMINUS/MainForm/Tab Views/CAEMenuView.vb`
+- `WrestleMINUS/MainForm/Tab Views/CakView.vb`
+- `WrestleMINUS/MainForm/Tab Views/HexView.vb`
+- `WrestleMINUS/MainForm/Tab Views/MaskView.vb`
+- `WrestleMINUS/MainForm/Tab Views/MiscArenaView.vb`
+- `WrestleMINUS/MainForm/Tab Views/MiscShowView.vb`
+- `WrestleMINUS/MainForm/Tab Views/ModelArrayView.vb`
+- `WrestleMINUS/MainForm/Tab Views/ModelView.vb`
+- `WrestleMINUS/MainForm/Tab Views/MuscleView.vb`
+- `WrestleMINUS/MainForm/Tab Views/NIJBView.vb`
+- `WrestleMINUS/MainForm/Tab Views/PictureView.vb`
+- `WrestleMINUS/MainForm/Tab Views/Pof0View.vb`
+- `WrestleMINUS/MainForm/Tab Views/PropPositionView.vb`
+- `WrestleMINUS/MainForm/Tab Views/SoundRefView.vb`
+- `WrestleMINUS/MainForm/Tab Views/StringRefView.vb`
+- `WrestleMINUS/MainForm/Tab Views/TextView.vb`
+- `WrestleMINUS/MainForm/Tab Views/TitleView.vb`
+- `WrestleMINUS/MainForm/Tab Views/_MultiView.vb`
+- `WrestleMINUS/Modules-Handlers/ApplicationHandlers.vb`
+- `WrestleMINUS/Modules-Handlers/File_FolderHandlers.vb`
+- `WrestleMINUS/Modules-Handlers/HashGenerator.vb`
+- `WrestleMINUS/Modules-Handlers/HexaDecimalHandlers.vb`
+- `WrestleMINUS/Modules-Handlers/SettingsHandlers.vb`
+- `WrestleMINUS/My Project/Application.Designer.vb`
+- `WrestleMINUS/My Project/Application.myapp`
+- `WrestleMINUS/My Project/AssemblyInfo.vb`
+- `WrestleMINUS/My Project/DataSources/WrestleMINUS.My.MyApplication.datasource`
+- `WrestleMINUS/My Project/Resources.Designer.vb`
+- `WrestleMINUS/My Project/Resources.resx`
+- `WrestleMINUS/My Project/Settings.Designer.vb`
+- `WrestleMINUS/My Project/Settings.settings`
+- `WrestleMINUS/My Project/app.manifest`
+- `WrestleMINUS/Options Menu/Options.Advanced.vb`
+- `WrestleMINUS/Options Menu/Options.DLL.vb`
+- `WrestleMINUS/Options Menu/Options.FileSelect.vb`
+- `WrestleMINUS/Options Menu/Options.Main.vb`
+- `WrestleMINUS/Options Menu/OptionsMenu.Designer.vb`
+- `WrestleMINUS/Options Menu/OptionsMenu.resx`
+- `WrestleMINUS/Options Menu/OptionsMenu.vb`
+- `WrestleMINUS/PackUnpack.vb`
+- `WrestleMINUS/PackageHandlers/CakFileHandler.vb`
+- `WrestleMINUS/PackageInformation.vb`
+- `WrestleMINUS/PackageType.vb`
+- `WrestleMINUS/SubLicenses/Crunch_LICENSE.txt`
+- `WrestleMINUS/SubLicenses/DirectXTex_LICENSE.txt`
+- `WrestleMINUS/SubLicenses/FontAwesome.Sharp_LICENSE.txt`
+- `WrestleMINUS/SubLicenses/FrostyYukes_LICENSE.txt`
+- `WrestleMINUS/SubLicenses/Ionic.Zlib_LICENSE.txt`
+- `WrestleMINUS/SubLicenses/Newtonsoft.Json_LICENSE.txt`
+- `WrestleMINUS/TextDialogPrompt.Designer.vb`
+- `WrestleMINUS/TextDialogPrompt.resx`
+- `WrestleMINUS/TextDialogPrompt.vb`
+- `WrestleMINUS/Tools/FontAwesome.Sharp.dll` :: <binary 428032B>
+- `WrestleMINUS/Tools/FrostyYukes.dll` :: <binary 11776B>
+- `WrestleMINUS/Tools/Newtonsoft.Json.dll` :: <binary 662528B>
+- `WrestleMINUS/Tools/crunch_x64.exe` :: <binary 1028096B>
+- `WrestleMINUS/Tools/texconv.exe` :: <binary 635904B>
+- `WrestleMINUS/WrestleMINUS.vbproj`
+- `WrestleMINUS/app.config`
+- `WrestleMINUS/packages.config`
+
+## WWE2K19-to-2K26-Entrance-Prototype (369 tracked files)
+- `.gitignore`
+- `AURORA_FORGE_ACCOUNT_TRANSFER_HANDOFF_2026-09-13-CURRENT.md`
+- `AURORA_FORGE_ACCOUNT_TRANSFER_HANDOFF_2026-09-14-CURRENT.md`
+- `AURORA_FORGE_ACTIVE_STATE.md`
+- `CURRENT-STATUS-AND-REPOSITORY-CAPABILITIES.md`
+- `HANDOFF_EXACT_POINT_2026-09-10.md`
+- `PIPELINE_ARCHITECTURE.md`
+- `README.md`
+- `analysis/2k25-tribute-entry-14000-findings.md`
+- `analysis/research-findings-log.json`
+- `app/PATREON_ACCESS.md`
+- `app/app.js` :: basename, log, friendlyPatreonMessage, setAccess, refreshAccess, pickFile, pickOutputRoot, $, String, if, switch
+- `app/dist/builder-debug.yml`
+- `app/dist/win-unpacked/LICENSE.electron.txt`
+- `app/dist/win-unpacked/LICENSES.chromium.html`
+- `app/dist/win-unpacked/chrome_100_percent.pak`
+- `app/dist/win-unpacked/chrome_200_percent.pak`
+- `app/dist/win-unpacked/icudtl.dat`
+- `app/dist/win-unpacked/locales/af.pak`
+- `app/dist/win-unpacked/locales/am.pak`
+- `app/dist/win-unpacked/locales/ar.pak`
+- `app/dist/win-unpacked/locales/bg.pak`
+- `app/dist/win-unpacked/locales/bn.pak`
+- `app/dist/win-unpacked/locales/ca.pak`
+- `app/dist/win-unpacked/locales/cs.pak`
+- `app/dist/win-unpacked/locales/da.pak`
+- `app/dist/win-unpacked/locales/de.pak`
+- `app/dist/win-unpacked/locales/el.pak`
+- `app/dist/win-unpacked/locales/en-GB.pak`
+- `app/dist/win-unpacked/locales/en-US.pak`
+- `app/dist/win-unpacked/locales/es-419.pak`
+- `app/dist/win-unpacked/locales/es.pak`
+- `app/dist/win-unpacked/locales/et.pak`
+- `app/dist/win-unpacked/locales/fa.pak`
+- `app/dist/win-unpacked/locales/fi.pak`
+- `app/dist/win-unpacked/locales/fil.pak`
+- `app/dist/win-unpacked/locales/fr.pak`
+- `app/dist/win-unpacked/locales/gu.pak`
+- `app/dist/win-unpacked/locales/he.pak`
+- `app/dist/win-unpacked/locales/hi.pak`
+- `app/dist/win-unpacked/locales/hr.pak`
+- `app/dist/win-unpacked/locales/hu.pak`
+- `app/dist/win-unpacked/locales/id.pak`
+- `app/dist/win-unpacked/locales/it.pak`
+- `app/dist/win-unpacked/locales/ja.pak`
+- `app/dist/win-unpacked/locales/kn.pak`
+- `app/dist/win-unpacked/locales/ko.pak`
+- `app/dist/win-unpacked/locales/lt.pak`
+- `app/dist/win-unpacked/locales/lv.pak`
+- `app/dist/win-unpacked/locales/ml.pak`
+- `app/dist/win-unpacked/locales/mr.pak`
+- `app/dist/win-unpacked/locales/ms.pak`
+- `app/dist/win-unpacked/locales/nb.pak`
+- `app/dist/win-unpacked/locales/nl.pak`
+- `app/dist/win-unpacked/locales/pl.pak`
+- `app/dist/win-unpacked/locales/pt-BR.pak`
+- `app/dist/win-unpacked/locales/pt-PT.pak`
+- `app/dist/win-unpacked/locales/ro.pak`
+- `app/dist/win-unpacked/locales/ru.pak`
+- `app/dist/win-unpacked/locales/sk.pak`
+- `app/dist/win-unpacked/locales/sl.pak`
+- `app/dist/win-unpacked/locales/sr.pak`
+- `app/dist/win-unpacked/locales/sv.pak`
+- `app/dist/win-unpacked/locales/sw.pak`
+- `app/dist/win-unpacked/locales/ta.pak`
+- `app/dist/win-unpacked/locales/te.pak`
+- `app/dist/win-unpacked/locales/th.pak`
+- `app/dist/win-unpacked/locales/tr.pak`
+- `app/dist/win-unpacked/locales/uk.pak`
+- `app/dist/win-unpacked/locales/ur.pak`
+- `app/dist/win-unpacked/locales/vi.pak`
+- `app/dist/win-unpacked/locales/zh-CN.pak`
+- `app/dist/win-unpacked/locales/zh-TW.pak`
+- `app/dist/win-unpacked/resources.pak`
+- `app/dist/win-unpacked/resources/app.asar`
+- `app/dist/win-unpacked/resources/aurora-tools/blender_addon/README.md`
+- `app/dist/win-unpacked/resources/aurora-tools/blender_addon/aurora_2k19_fbx_export.py` :: arg, open, enumerate
+- `app/dist/win-unpacked/resources/aurora-tools/blender_addon/aurora_entrance_lab/__init__.py` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/adefs-container.js` :: exports:HEADER_BYTES,decode,encode
+- `app/dist/win-unpacked/resources/aurora-tools/tools/adefs-container.test.js` :: round-trips a version 6 ADefs zlib envelope, rejects a mismatched envelope size or version
+- `app/dist/win-unpacked/resources/aurora-tools/tools/adefs-json-export.js` :: exports:inspectText,inspectDirectory
+- `app/dist/win-unpacked/resources/aurora-tools/tools/adefs-json-export.test.js` :: fixture, reads an exported definition without reserializing its numeric IDs, rejects an unrelated JSON document
+- `app/dist/win-unpacked/resources/aurora-tools/tools/adefs-symbol-compare.js` :: exports:identifiers,compare
+- `app/dist/win-unpacked/resources/aurora-tools/tools/adefs-symbol-compare.test.js` :: collects bounded identifier tokens and excludes punctuation runs
+- `app/dist/win-unpacked/resources/aurora-tools/tools/amym-tbuf-report.js` :: exports:findTbufBlocks,readWrapper,report
+- `app/dist/win-unpacked/resources/aurora-tools/tools/amym-tbuf-report.test.js` :: block, for, findTbufBlocks accepts only validated TBUF ANIM headers, readWrapper supports AMYM and MINA container signatures, findTbufBlocks accepts the WWE 2K24 TBUF v2 / ANIM v11 generation
+- `app/dist/win-unpacked/resources/aurora-tools/tools/analyze_2k19_menu_templates.js` :: runs, for
+- `app/dist/win-unpacked/resources/aurora-tools/tools/append_2k25_entrance_clone_graph.js` :: die, option, int, field, target, u16, record, shift
+- `app/dist/win-unpacked/resources/aurora-tools/tools/append_2k25_entrance_entry.js` :: die, value, integer, fieldAt, offsetAt, scalar, u8, u16, u32, u64, i32
+- `app/dist/win-unpacked/resources/aurora-tools/tools/append_2k25_entrance_preserving_graph.js` :: field, target
+- `app/dist/win-unpacked/resources/aurora-tools/tools/append_2k25_entrance_template_entry.js` :: die, arg, field, off, start, u8
+- `app/dist/win-unpacked/resources/aurora-tools/tools/append_2k25_sdb_string.js` :: die, initialKey, encode, decode, if
+- `app/dist/win-unpacked/resources/aurora-tools/tools/append_2k25_victory_entry.js` :: die, option, numberOption, fieldAt, offsetField, scalar, readRecords, u8, u16, u32, u64, i32, Number, if
+- `app/dist/win-unpacked/resources/aurora-tools/tools/audit-extracted-root.js` :: csv, signature, classify, if
+- `app/dist/win-unpacked/resources/aurora-tools/tools/aurora-converter.js` :: usage, arg, main, if
+- `app/dist/win-unpacked/resources/aurora-tools/tools/build_2k19_2k25_victory_crosswalk.js` :: labelHits, buildBodyCrosswalk, Error, if
+- `app/dist/win-unpacked/resources/aurora-tools/tools/build_2k25_entrance_partition_map.js` :: exports:build
+- `app/dist/win-unpacked/resources/aurora-tools/tools/clips-controlled-diff.js` :: exports:diffRanges,report,runs
+- `app/dist/win-unpacked/resources/aurora-tools/tools/clips-controlled-diff.test.js` :: reports compact changed byte runs
+- `app/dist/win-unpacked/resources/aurora-tools/tools/clips-descriptor-lattice-report.js` :: exports:buildInput,descriptorReferences,run
+- `app/dist/win-unpacked/resources/aurora-tools/tools/clips-descriptor-lattice-report.test.js` :: entry, descriptorReferences groups descriptors into target track slots
+- `app/dist/win-unpacked/resources/aurora-tools/tools/clips-layout.integration.test.js` :: for
+- `app/dist/win-unpacked/resources/aurora-tools/tools/clips-layout.js` :: exports:build,clipNameId,parse,parseFile
+- `app/dist/win-unpacked/resources/aurora-tools/tools/clips-layout.test.js` :: fixture, reads fixed sections and repeated identifiers, compact parse omits explosive raw entry arrays, rejects identifier mismatch, rejects section coverage mismatch, rejects trailing bytes, rebuilds a lossless container from individual clip payloads, rejects malformed individual clip payloads
+- `app/dist/win-unpacked/resources/aurora-tools/tools/compare-motion-metadata.js` :: exports:compare
+- `app/dist/win-unpacked/resources/aurora-tools/tools/convert-acts22-to-anims23.js` :: exports:blocks,assertByteIdenticalBlocks,convert
+- `app/dist/win-unpacked/resources/aurora-tools/tools/convert-acts22-to-anims23.test.js` :: 2K22 Victory 6100 refuses an unresolved 2K23 TBUF payload copy
+- `app/dist/win-unpacked/resources/aurora-tools/tools/convert-yanm19-to-yanm20.integration.test.js` :: Victory 6100 converts from 2K19 to a readable 2K20 YANM section
+- `app/dist/win-unpacked/resources/aurora-tools/tools/convert-yanm19-to-yanm20.js` :: exports:convert
+- `app/dist/win-unpacked/resources/aurora-tools/tools/decode_2k19_menu_payloads.js` :: run
+- `app/dist/win-unpacked/resources/aurora-tools/tools/decode_adefs_wrapper.js` :: Error
+- `app/dist/win-unpacked/resources/aurora-tools/tools/evd-reader.js` :: exports:HEADER_BYTES,NAME_BYTES,readEvd
+- `app/dist/win-unpacked/resources/aurora-tools/tools/evd-reader.test.js` :: reads a second real 2K20 EVD envelope with a different metadata prefix, supports space-padded and null-terminated internal names, rejects an incomplete EVD envelope
+- `app/dist/win-unpacked/resources/aurora-tools/tools/export-yanm-ir.js` :: exports:exportIr
+- `app/dist/win-unpacked/resources/aurora-tools/tools/export_codex_chat.js` :: contentText, Error
+- `app/dist/win-unpacked/resources/aurora-tools/tools/extract_2k19_archive_entries.js` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/extract_2k19_pac.py` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fnv-track-resolve.js` :: exports:fnv1a64,resolve
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fnv-track-resolve.test.js` :: computes the verified WWE FNV-1a identifier for J_Hips
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fop19-evd20-body-model.js` :: exports:SOURCE_BODY_BYTES,TARGET_BODY_BYTES,SOURCE_TYPE_OFFSET,SOURCE_FLAG_OFFSET,SOURCE_FLAG_BYTES,SOURCE_EVENT_OFFSET,TARGET_TYPE_OFFSET,TARGET_EVENT_OFFSET,TARGET_SLOT_BASE_OFFSET,TARGET_SLOT_BYTES,DIRECT_VECTOR_INDEX,DIRECT_VECTOR_SOURCE_OFFSET,DIRECT_VECTOR_FLOATS,DIRECT_POSE_ANGLE_SOURCE_OFFSET,DIRECT_POSE_INDICES,MEASURED_DIRECT_POSE_COMPONENTS,MEASURED_IMPLICIT_POSE_BY_INDEX,SETUP_TABLE_INDEX,CIRCULAR_POSE_INDEX,WRAPPED_SINGLE_POSE_INDEX,WRAPPED_DUAL_POSE_INDEX,WRAPPED_TRIPLE_POSE_INDEX,CHAINED_TAIL_INDEX,LAST_MEASURED_REBASED_INDEX,convertKnownSimpleFop19BodyToEvd20,convertKnownFlaggedSimpleFop19BodyToEvd20,convertKnownRebasedSlotFop19BodyToEvd20,convertKnownDirectVectorFop19BodyToEvd20,convertKnownDirectPoseFop19BodyToEvd20,convertKnownImplicitPoseFop19BodyToEvd20,convertKnownCircularPoseFop19BodyToEvd20,convertKnownWrappedSinglePoseFop19BodyToEvd20,convertKnownWrappedDualPoseFop19BodyToEvd20,convertKnownWrappedTriplePoseFop19BodyToEvd20,convertKnownSetupTableFop19BodyToEvd20,convertKnownChainedTailFop19BodyToEvd20
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fop19-evd20-body-model.test.js` :: bodyAtIndex, for, rejects an unmeasured body layout rather than treating it as convertible, converts the exact measured 6100 index-13 direct-vector body, converts the exact measured 6100 direct-pose bodies 14 through 16, rejects unmeasured or multi-vector direct-pose candidates, converts the exact measured 6100 implicit-pose bodies 17 and 18, converts the exact measured 6100 circular-pose body at index 19, converts the exact measured 6100 wrapped single-pose body at index 20, converts the exact measured 6100 wrapped dual-pose body at index 21, converts the exact measured 6100 wrapped triple-pose body at index 22, rejects other wrapped multi-pose indices, converts the exact measured 6100 setup-table body at index 0, rejects non-6100 setup-table values, converts the exact measured 6100 chained-tail body at index 23, rejects non-tail bodies for the chained-tail converter
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fop19-evd20-table-model.js` :: exports:INNER_TABLE_OFFSET,TARGET_ENTRY_MARKER,compareFop19Evd20Index
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fop19-evd20-table-model.test.js` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fop19-reader.js` :: exports:ENTRY_BYTES,FOP_MAGIC,INNER_HEADER_BYTES,PREFIX_BYTES,readFop19
+- `app/dist/win-unpacked/resources/aurora-tools/tools/fop19-reader.test.js` :: reads the extracted 2K19 Victory 6100 0FOP event index, rejects a non-0FOP payload
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-descriptor-ranges.js` :: exports:boundedCandidates,inspect,ranges,rangesFromCandidates
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-descriptor-ranges.test.js` :: builds shared descriptor-owned Group90 ranges, rejects descriptor starts outside the Group90 table, retains the original descriptor references in bounded candidate ranges
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-encoder.js` :: exports:encodeUleb128,encodeTokens,decodeTokens
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-encoder.test.js` :: generic ULEB encoder round-trips ordinary and long BigInt tokens, generic ULEB encoder preserves its input byte stream on decode/re-encode
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-entries.js` :: exports:readEntries,encodeEntries,replaceEntries,replaceRecordGroup90
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-entries.test.js` :: fixed Group90 entries round-trip as uint64 words, fixed Group90 encoding is exactly 8 bytes per entry
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-segment-summary.js` :: exports:inspect,summarizeBytes
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-segment-summary.test.js` :: summarizes complete ULEB tokens within a segment, rejects a token crossing a segment boundary, permits a Group90 ULEB token longer than ten bytes
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-token-index-map.js` :: exports:mapReferences,inspect
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-token-index-map.test.js` :: groups descriptor references by Group90 token index, rejects a descriptor index outside the decoded token stream
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-uleb.js` :: exports:decodeAt,tokensFrom
+- `app/dist/win-unpacked/resources/aurora-tools/tools/group90-uleb.test.js` :: decodes bounded ULEB128 tokens, rejects unterminated tokens
+- `app/dist/win-unpacked/resources/aurora-tools/tools/inspect-track-codec-candidate.js` :: exports:inspect
+- `app/dist/win-unpacked/resources/aurora-tools/tools/inspect_2k19_archive.js` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/inspect_2k19_shdc.py` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/inspect_jsfb_vector.js` :: usage, tableAt, tableAtShallow, rootVector, dumpTable, compact, u16, u32, i32, if
+- `app/dist/win-unpacked/resources/aurora-tools/tools/package-exported-clips.js` :: main, if
+- `app/dist/win-unpacked/resources/aurora-tools/tools/parse_2k19_cae_menu.py` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/parse_2k25_victory_list.js` :: usage, fieldAt, offsetField, u8, u16, u32, u64, i32, scalar, Error
+- `app/dist/win-unpacked/resources/aurora-tools/tools/patch-acts20-yanm.js` :: exports:patch
+- `app/dist/win-unpacked/resources/aurora-tools/tools/patch_2k25_victory_list.js` :: u16, fieldAt, offsetField
+- `app/dist/win-unpacked/resources/aurora-tools/tools/patch_2k25_victory_name_type.js` :: die, value, integer, field, target, u16
+- `app/dist/win-unpacked/resources/aurora-tools/tools/prepare-6104-editor-import.js` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/pretty-jhips-report.js` :: fmt, descriptorMask, printTable, main, if, String, for, Error, Number
+- `app/dist/win-unpacked/resources/aurora-tools/tools/reference_unbpe.c` :: xgetc, yuke_bpe, if, while, memset, return, le32, main, fseek, fread, fwrite, free
+- `app/dist/win-unpacked/resources/aurora-tools/tools/scan-clips-corpus.js` :: exports:scan
+- `app/dist/win-unpacked/resources/aurora-tools/tools/score-group90-op0.js` :: exports:score,decodeAllUleb
+- `app/dist/win-unpacked/resources/aurora-tools/tools/staged-pipeline.js` :: exports:STAGES,run
+- `app/dist/win-unpacked/resources/aurora-tools/tools/summarize-track-descriptor-patterns.js` :: exports:summarize
+- `app/dist/win-unpacked/resources/aurora-tools/tools/tbuf-block-compare.js` :: exports:chooseBlock,compareBuffers,run
+- `app/dist/win-unpacked/resources/aurora-tools/tools/tbuf-block-compare.test.js` :: <no-top-symbols>
+- `app/dist/win-unpacked/resources/aurora-tools/tools/tbuf-corpus-continuity-report.js` :: exports:comparePair,report
+- `app/dist/win-unpacked/resources/aurora-tools/tools/tbuf-corpus-continuity-report.test.js` :: asset, reports exact and shared-prefix corpus continuity without payload output, accepts MINA .anims as the left corpus source
+- `app/dist/win-unpacked/resources/aurora-tools/tools/tbuf-v1.js` :: exports:HEADER_BYTES,decodeAt,encode,replacePayload
+- `app/dist/win-unpacked/resources/aurora-tools/tools/tbuf-v1.test.js` :: round-trips a validated TBUF v1 / ANIM v10 envelope, rejects a truncated or unsupported envelope, replaces only equal-sized payloads in a reference wrapper
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm-keyframes.js` :: exports:parseSection,decode,readKeys,summary
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm-keyframes.test.js` :: fixture, track count comes from +10, not section length at +4, multiple sections retain independent offset bases, compact delta flag is retained but not added to time, timeline disagreement is reported, never silently accepted, unknown record type is explicit, not guessed, reject missing signature and truncated sections, reject key blocks crossing their section into another section, reject oversized counts and unexpected headers
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-2k25-family-correlate.js` :: exports:correlate,transformKey
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-2k25-family-correlate.test.js` :: transformKey separates stream and signed normalization families
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-2k25-group90-entry-correlate.js` :: exports:buildReport,window
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-2k25-group90-entry-correlate.test.js` :: entry, window clamps entry context at table boundaries
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-2k25-group90-lattice-report.js` :: exports:fitLattice,report,signedModulo
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-2k25-group90-lattice-report.test.js` :: signedModulo returns the nearest signed lane offset, fitLattice selects the minimum-residual 256-entry origin
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-body-table-report.js` :: exports:buildReport,parseRecord
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-body-table-report.test.js` :: sourceFixture, actsFixture, reports corrected 2K20 body table records against 2K19 source tracks
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-bridge-inspect.js` :: exports:inspect,readStream,compareRows,norm16Delta
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-encoder.js` :: exports:encodeStream,encodeRecord,encodeSection
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-encoder.test.js` :: encodes signed triplets and big-endian frame deltas, encodes the verified 0x2100 40-byte record header, lays out a self-consistent YANM20 section with relative stream offsets
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-ir-writer.js` :: exports:recordsFromIr,encodeIrSection,recordsFromIrWithReference,encodeIrSectionWithReference
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-ir-writer.test.js` :: irFixture, maps neutral IR timelines to 2K20 records without changing packed values, rejects missing auxiliary and quantization data, encodes an IR section through the 2K20 section writer, uses a verified 2K20 reference for auxiliary stream and quantization fields
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-locate-body-table.js` :: exports:canonicalHash,commonPrefix,readHashes,scanBlocks
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-locate-body-table.test.js` :: scanBlocks reports big-endian YANM header metadata, commonPrefix requires the same ordered hash sequence, canonicalHash ignores the x prefix casing
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-normalization-score.js` :: exports:score,wrapS16,transformPacked,scoreRows
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-normalization-score.test.js` :: wrapS16 keeps values in signed 16-bit space, transformPacked applies permutation signs and half-turn offsets
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-normalization-sweep.js` :: exports:sweep,candidateKey,writeReport
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-normalization-sweep.test.js` :: candidateKey groups equivalent transform candidates, writeReport creates only a new JSON artifact
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-normalized-ir.js` :: exports:normalize,sourceRows
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-normalized-ir.test.js` :: applies measured normalization to the selected source triple, rejects missing sweep evidence instead of inventing a transform
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-reader.js` :: exports:decodeSection,readStream
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-reader.test.js` :: reads back encoded 2K20 records and both streams, rejects truncated stream spans, preserves the compact 8-byte trailing sentinel header
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-stream-classify.js` :: exports:classify,scoreComparison
+- `app/dist/win-unpacked/resources/aurora-tools/tools/yanm20-stream-classify.test.js` :: coverage score rewards both overlap and value agreement
+- `app/dist/win-unpacked/vk_swiftshader_icd.json`
+- `app/index.html`
+- `app/main.js` :: repoRoot, nodeEnv, patreon, createWindow, runNode, requireAccess, startPatreonOAuthLogin, require, if, Error, reject, rejectReady
+- `app/package-lock.json`
+- `app/package.json`
+- `app/preload.js` :: <no-top-symbols>
+- `app/start-aurora-forge.cmd`
+- `app/styles.css`
+- `blender_addon/README.md`
+- `blender_addon/aurora_2k19_fbx_export.py` :: arg, open, enumerate
+- `blender_addon/aurora_entrance_lab/__init__.py` :: <no-top-symbols>
+- `convert-19-to-20.cmd`
+- `docs/2K19-TO-2K20-CONVERTER-TUTORIAL.md`
+- `docs/BATCH-2K19-TO-2K20-VICTORY-PACKAGES.md`
+- `docs/DISCORD-2K19-TO-2K20-CONVERTER-MULTIPOST.md`
+- `docs/REPOSITORY-VERSIONING-AUDIT-2026-09-14.md`
+- `docs/VERSIONING-AUDIT-2026-09-14.md`
+- `knowledge.md`
+- `notes/2026-09-11-extraction-checkpoint.md`
+- `notes/2026-09-12-animation-converter-source-map.md`
+- `notes/2026-09-12-direct-codec-paused-handoff.md`
+- `notes/2026-09-12-extracted-animation-catalog-sources.md`
+- `notes/2026-09-12-wwe2k-mdl-per-file-capability-ledger.md`
+- `notes/2026-09-12-wwe2k-mdl-source-audit.md`
+- `notes/2026-09-13-active-codec-blockers.md`
+- `notes/2026-09-14-2k22-update-checkpoint.md`
+- `notes/2026-09-15-native-relocation-corpus.json`
+- `notes/2026-09-15-offset-hypotheses-summary.json`
+- `notes/ACTIVE-2K20-PACKAGE-RESEARCH-LOG.md`
+- `notes/STATUS-SUMMARY.md`
+- `tools/adefs-container.integration.test.js` :: for, decodes real 2K24 and 2K25 Victory 6100 ADEF v6 envelopes
+- `tools/adefs-container.js` :: exports:HEADER_BYTES,decode,encode
+- `tools/adefs-container.test.js` :: round-trips a version 6 ADefs zlib envelope, rejects a mismatched envelope size or version
+- `tools/adefs-json-export.js` :: exports:inspectText,inspectDirectory
+- `tools/adefs-json-export.test.js` :: fixture, reads an exported definition without reserializing its numeric IDs, rejects an unrelated JSON document
+- `tools/adefs-symbol-compare.js` :: exports:identifiers,compare
+- `tools/adefs-symbol-compare.test.js` :: collects bounded identifier tokens and excludes punctuation runs
+- `tools/adefs-tool.js` :: exports:compare,inspect,printableTokens,run
+- `tools/adefs-tool.test.js` :: reads and compares bounded ADEF envelopes without offering a writer
+- `tools/amym-container.js` :: exports:parse,build
+- `tools/amym-container.test.js` :: fixture, AMYM reads multiple groups and preserves opaque entries and alignment, AMYM rejects truncated, trailing, invalid-group and corrupt-size data
+- `tools/amym-tbuf-report.js` :: exports:findTbufBlocks,readWrapper,report
+- `tools/amym-tbuf-report.test.js` :: block, for, findTbufBlocks accepts only validated TBUF ANIM headers, readWrapper supports AMYM and MINA container signatures, findTbufBlocks accepts the WWE 2K24 TBUF v2 / ANIM v11 generation
+- `tools/analyze_2k19_menu_templates.js` :: runs, for
+- `tools/append_2k25_entrance_clone_graph.js` :: die, option, int, field, target, u16, record, shift
+- `tools/append_2k25_entrance_entry.js` :: die, value, integer, fieldAt, offsetAt, scalar, u8, u16, u32, u64, i32
+- `tools/append_2k25_entrance_preserving_graph.js` :: field, target
+- `tools/append_2k25_entrance_template_entry.js` :: die, arg, field, off, start, u8
+- `tools/append_2k25_sdb_string.js` :: die, initialKey, encode, decode, if
+- `tools/append_2k25_victory_entry.js` :: die, option, numberOption, fieldAt, offsetField, scalar, readRecords, u8, u16, u32, u64, i32, Number, if
+- `tools/audit-extracted-root.js` :: csv, signature, classify, if
+- `tools/aurora-converter.js` :: usage, arg, main, if
+- `tools/batch-2k19-to-2k20-victory-packages.js` :: exports:runBatch,buildRows,indexSourceMotions,indexFops,indexReferences,idsFromPath,normalizeId
+- `tools/batch-2k19-to-2k20-victory-packages.test.js` :: for, normalizes zero-padded animation ids, extracts four-digit animation ids from paths, reads manifest rows for ambiguous batch folders, rejects malformed manifest rows, automatic folder mode matches ids across source, fop, and reference folders, dry-run reports missing automatic matches without writing package files, rejects empty automatic batches, dry-run reports matched manifest rows without writing package files, batch builds package from manifest using proven 6100 sample
+- `tools/build-2k19-to-2k20-victory-package.js` :: exports:buildPackage,buildMeasuredVictory6100Evd,convertMeasured6100EventBody
+- `tools/build-2k19-to-2k20-victory-package.test.js` :: builds converted 2K20 ACTS and EVD package for Victory 6100
+- `tools/build_2k19_2k25_victory_crosswalk.js` :: labelHits, buildBodyCrosswalk, Error, if
+- `tools/build_2k25_entrance_partition_map.js` :: exports:build
+- `tools/clip-control-pair.js` :: exports:compareControlPair
+- `tools/clip-control-pair.test.js` :: <no-top-symbols>
+- `tools/clips-controlled-diff.js` :: exports:diffRanges,report,runs
+- `tools/clips-controlled-diff.test.js` :: reports compact changed byte runs
+- `tools/clips-descriptor-lattice-report.js` :: exports:buildInput,descriptorReferences,run
+- `tools/clips-descriptor-lattice-report.test.js` :: entry, descriptorReferences groups descriptors into target track slots
+- `tools/clips-layout.integration.test.js` :: for
+- `tools/clips-layout.js` :: exports:build,clipNameId,parse,parseFile
+- `tools/clips-layout.test.js` :: fixture, reads fixed sections and repeated identifiers, compact parse omits explosive raw entry arrays, rejects identifier mismatch, rejects section coverage mismatch, rejects trailing bytes, rebuilds a lossless container from individual clip payloads, rejects malformed individual clip payloads
+- `tools/clips-native-inspect.js` :: exports:decodeQuantizedValue,decodeRecordTiming,decodeTimingPrelude,descriptor,entryWord,inspectFile,inspectPayloadFile,inspectRecord,readBitsLE,run
+- `tools/clips-native-inspect.test.js` :: reads native-style little-endian bit fields across uint64 words, exposes only directly observed descriptor fields, converts the parser hex representation back to a little-endian uint64, mirrors the native compact timing prelude before value reads, treats an empty Group90 payload as a static/bind record, mirrors native scalar descriptor expansion without claiming full pose decoding, interprets observed modern descriptor upper words as IEEE float bits
+- `tools/clips-tool.js` :: exports:extract,inject,list,patchGroup90,rebuild,run,validate
+- `tools/clips-tool.test.js` :: refuses unsafe overwrite, mismatched IDs, and unimplemented semantic edits
+- `tools/compare-motion-metadata.js` :: exports:compare
+- `tools/convert-acts22-to-anims23.js` :: exports:blocks,assertByteIdenticalBlocks,convert
+- `tools/convert-acts22-to-anims23.test.js` :: 2K22 Victory 6100 refuses an unresolved 2K23 TBUF payload copy
+- `tools/convert-yanm19-to-yanm20.integration.test.js` :: Victory 6100 converts from 2K19 to a readable 2K20 YANM section
+- `tools/convert-yanm19-to-yanm20.js` :: exports:convert
+- `tools/convert-yanm20-to-tbuf22.js` :: exports:convert
+- `tools/decode_2k19_menu_payloads.js` :: run
+- `tools/decode_adefs_wrapper.js` :: Error
+- `tools/descriptor-full-analysis.js` :: if, for
+- `tools/entrance-motion-table.integration.test.js` :: 2K24 and 2K25 preserve the EntranceMotionTable registration anchor exactly
+- `tools/entrance-motion-table.js` :: exports:FILE_IDENTIFIER,RECORD_FIELDS,readEntranceMotionTable
+- `tools/entrance-motion-table.test.js` :: reads the measured five-lane EntranceMotionTable registration records
+- `tools/evd-reader.js` :: exports:HEADER_BYTES,NAME_BYTES,readEvd
+- `tools/evd-reader.test.js` :: reads a second real 2K20 EVD envelope with a different metadata prefix, supports space-padded and null-terminated internal names, rejects an incomplete EVD envelope
+- `tools/export-yanm-ir.js` :: exports:exportIr
+- `tools/export_codex_chat.js` :: contentText, Error
+- `tools/extract_2k19_archive_entries.js` :: <no-top-symbols>
+- `tools/extract_2k19_pac.py` :: <no-top-symbols>
+- `tools/fnv-track-resolve.js` :: exports:fnv1a64,resolve
+- `tools/fnv-track-resolve.test.js` :: computes the verified WWE FNV-1a identifier for J_Hips
+- `tools/fop19-evd20-body-model.js` :: exports:SOURCE_BODY_BYTES,TARGET_BODY_BYTES,SOURCE_TYPE_OFFSET,SOURCE_FLAG_OFFSET,SOURCE_FLAG_BYTES,SOURCE_EVENT_OFFSET,TARGET_TYPE_OFFSET,TARGET_EVENT_OFFSET,TARGET_SLOT_BASE_OFFSET,TARGET_SLOT_BYTES,DIRECT_VECTOR_INDEX,DIRECT_VECTOR_SOURCE_OFFSET,DIRECT_VECTOR_FLOATS,DIRECT_POSE_ANGLE_SOURCE_OFFSET,DIRECT_POSE_INDICES,MEASURED_DIRECT_POSE_COMPONENTS,MEASURED_IMPLICIT_POSE_BY_INDEX,SETUP_TABLE_INDEX,CIRCULAR_POSE_INDEX,WRAPPED_SINGLE_POSE_INDEX,WRAPPED_DUAL_POSE_INDEX,WRAPPED_TRIPLE_POSE_INDEX,CHAINED_TAIL_INDEX,LAST_MEASURED_REBASED_INDEX,convertKnownSimpleFop19BodyToEvd20,convertKnownFlaggedSimpleFop19BodyToEvd20,convertKnownRebasedSlotFop19BodyToEvd20,convertKnownDirectVectorFop19BodyToEvd20,convertKnownDirectPoseFop19BodyToEvd20,convertKnownImplicitPoseFop19BodyToEvd20,convertKnownCircularPoseFop19BodyToEvd20,convertKnownWrappedSinglePoseFop19BodyToEvd20,convertKnownWrappedDualPoseFop19BodyToEvd20,convertKnownWrappedTriplePoseFop19BodyToEvd20,convertKnownSetupTableFop19BodyToEvd20,convertKnownChainedTailFop19BodyToEvd20
+- `tools/fop19-evd20-body-model.test.js` :: bodyAtIndex, for, rejects an unmeasured body layout rather than treating it as convertible, converts the exact measured 6100 index-13 direct-vector body, converts the exact measured 6100 direct-pose bodies 14 through 16, rejects unmeasured or multi-vector direct-pose candidates, converts the exact measured 6100 implicit-pose bodies 17 and 18, converts the exact measured 6100 circular-pose body at index 19, converts the exact measured 6100 wrapped single-pose body at index 20, converts the exact measured 6100 wrapped dual-pose body at index 21, converts the exact measured 6100 wrapped triple-pose body at index 22, rejects other wrapped multi-pose indices, converts the exact measured 6100 setup-table body at index 0, rejects non-6100 setup-table values, converts the exact measured 6100 chained-tail body at index 23, rejects non-tail bodies for the chained-tail converter
+- `tools/fop19-evd20-table-model.js` :: exports:INNER_TABLE_OFFSET,TARGET_ENTRY_MARKER,compareFop19Evd20Index
+- `tools/fop19-evd20-table-model.test.js` :: <no-top-symbols>
+- `tools/fop19-reader.js` :: exports:ENTRY_BYTES,FOP_MAGIC,INNER_HEADER_BYTES,PREFIX_BYTES,readFop19
+- `tools/fop19-reader.test.js` :: reads the extracted 2K19 Victory 6100 0FOP event index, rejects a non-0FOP payload
+- `tools/ghidra/DecompileEntrypoints.java` :: if, for, disassemble, println
+- `tools/ghidra/DecompileFunctions.java` :: if, for, println
+- `tools/ghidra/DumpInstructions.java` :: if, while, println
+- `tools/ghidra/DumpMemoryWords.java` :: if, println
+- `tools/ghidra/FindEditorStringReferences.java` :: matches, if, for, while
+- `tools/ghidra/FindSymbols.java` :: if, while, for, println
+- `tools/ghidra/ReferencesToRange.java` :: if, while, for
+- `tools/group90-descriptor-ranges.js` :: exports:boundedCandidates,inspect,ranges,rangesFromCandidates
+- `tools/group90-descriptor-ranges.test.js` :: builds shared descriptor-owned Group90 ranges, rejects descriptor starts outside the Group90 table, retains the original descriptor references in bounded candidate ranges
+- `tools/group90-encoder.js` :: exports:encodeUleb128,encodeTokens,decodeTokens
+- `tools/group90-encoder.test.js` :: generic ULEB encoder round-trips ordinary and long BigInt tokens, generic ULEB encoder preserves its input byte stream on decode/re-encode
+- `tools/group90-entries.js` :: exports:readEntries,encodeEntries,replaceEntries,replaceRecordGroup90
+- `tools/group90-entries.test.js` :: fixed Group90 entries round-trip as uint64 words, fixed Group90 encoding is exactly 8 bytes per entry
+- `tools/group90-segment-summary.js` :: exports:inspect,summarizeBytes
+- `tools/group90-segment-summary.test.js` :: summarizes complete ULEB tokens within a segment, rejects a token crossing a segment boundary, permits a Group90 ULEB token longer than ten bytes
+- `tools/group90-token-index-map.js` :: exports:mapReferences,inspect
+- `tools/group90-token-index-map.test.js` :: groups descriptor references by Group90 token index, rejects a descriptor index outside the decoded token stream
+- `tools/group90-uleb.js` :: exports:decodeAt,tokensFrom
+- `tools/group90-uleb.test.js` :: decodes bounded ULEB128 tokens, rejects unterminated tokens
+- `tools/inspect-track-codec-candidate.js` :: exports:inspect
+- `tools/inspect_2k19_archive.js` :: <no-top-symbols>
+- `tools/inspect_2k19_shdc.py` :: <no-top-symbols>
+- `tools/inspect_jsfb_vector.js` :: usage, tableAt, tableAtShallow, rootVector, dumpTable, compact, u16, u32, i32, if
+- `tools/package-exported-clips.js` :: main, if
+- `tools/parse_2k19_cae_menu.py` :: <no-top-symbols>
+- `tools/parse_2k25_victory_list.js` :: usage, fieldAt, offsetField, u8, u16, u32, u64, i32, scalar, Error
+- `tools/patch-acts20-yanm.js` :: exports:patch
+- `tools/patch-acts20-yanm.test.js` :: patches an AMYM-wrapped 2K20 ACTS by updating the entry size table
+- `tools/patch_2k25_victory_list.js` :: u16, fieldAt, offsetField
+- `tools/patch_2k25_victory_name_type.js` :: die, value, integer, field, target, u16
+- `tools/patreon-access.js` :: exports:buildOAuthStartUrl,configStatus,DEFAULT_VERIFY_URL,memberResult,normalizeEmail,readConfig,remoteOAuthVerify,verifyPatreonAccess
+- `tools/patreon-access.test.js` :: response, reports remote verifier configuration without requiring creator secrets locally, normalizes patron identity emails, builds remote OAuth start URL from verifier URL, allows an active patron on an allowed tier, uses the remote verifier when a verifier URL is configured, surfaces remote verifier failures, rejects active patrons outside the configured tier list, passes through verifier reason codes for clearer client messaging, follows Patreon pagination until the requested patron is found, posts OAuth code to remote verifier endpoint
+- `tools/prepare-6104-editor-import.js` :: <no-top-symbols>
+- `tools/pretty-jhips-report.js` :: fmt, descriptorMask, printTable, main, if, String, for, Error, Number
+- `tools/reference_unbpe.c` :: xgetc, yuke_bpe, if, while, memset, return, le32, main, fseek, fread, fwrite, free
+- `tools/scan-clips-corpus.js` :: exports:scan
+- `tools/score-group90-op0.js` :: exports:score,decodeAllUleb
+- `tools/staged-pipeline.js` :: exports:STAGES,run
+- `tools/summarize-track-descriptor-patterns.js` :: exports:summarize
+- `tools/tbuf-block-compare.js` :: exports:chooseBlock,compareBuffers,run
+- `tools/tbuf-block-compare.test.js` :: <no-top-symbols>
+- `tools/tbuf-corpus-continuity-report.js` :: exports:comparePair,report
+- `tools/tbuf-corpus-continuity-report.test.js` :: asset, reports exact and shared-prefix corpus continuity without payload output, accepts MINA .anims as the left corpus source
+- `tools/tbuf-v1-body-candidate-record.js` :: exports:classifyComplexCases,classifyRangeLayouts,descriptorWord,inspectFile,inspectTableRanges,readBody,readU32Record,report,scanTwentyByteRecords,validateLayout
+- `tools/tbuf-v1-body-candidate-record.test.js` :: writeActs, for, inspectFile, readU32Record reads bounded words, descriptorWord splits selector bytes from the low count, inspectFile validates candidate 20-byte records, inspectFile preserves complex descriptor selectors while validating low bits, inspectTableRanges summarizes bounded regions without exposing payload bytes, scanTwentyByteRecords emits hashes and summaries without raw payload words, report summarizes corpus validators, classifyComplexCases groups descriptor and offset-delta variants, classifyRangeLayouts compares simple and complex offset gaps, scanner rejects invalid bounds and limits and honors bounded sampling, readBody returns structured body data for all layout types, validateLayout confirms layout consistency
+- `tools/tbuf-v1-body-offset-hypotheses.js` :: exports:inspectOffsetHypotheses,summarizeOffsetHypotheses
+- `tools/tbuf-v1-body-offset-hypotheses.test.js` :: fixture, for, compares address bases and matches a complete field-relative 32-byte header, scans headers at four-byte alignment and counts beyond the sample cap, rejects bad inputs and preserves invalid or unaligned candidate status, summaries separate usual and expanded gaps and retain descriptor exceptions
+- `tools/tbuf-v1-body-prefix-corpus.js` :: exports:inspectFile,report,u32Words
+- `tools/tbuf-v1-body-prefix-corpus.test.js` :: writeActs, words, u32Words reads bounded little-endian prefix words, inspectFile identifies the single 6-channel body block prefix relationship, report validates stable prefix relationships over a small corpus
+- `tools/tbuf-v1-relocation-report.js` :: exports:report
+- `tools/tbuf-v1-relocations.js` :: exports:inspectRelocations
+- `tools/tbuf-v1-relocations.test.js` :: fixture, for, reads all relocation widths, field-relative targets and nulls without mutation
+- `tools/tbuf-v1-track-probe.js` :: exports:byteDiffRanges,payloadWindowDiffs,payloadPrefixWords,readAnimationFile,compareByChannelOccurrence,report
+- `tools/tbuf-v1-track-probe.test.js` :: tempFile, writeSyntheticActs, byteDiffRanges reports compact changed ranges without exposing payload bytes, payloadWindowDiffs emits hashes for changed windows only, report compares aligned synthetic TBUF blocks
+- `tools/tbuf-v1.js` :: exports:TBUF_HEADER_BYTES,ANIM_HEADER_BYTES,HEADER_BYTES,SUPPORTED_TBUF_VERSIONS,SUPPORTED_ANIM_VERSIONS,ANIM_VERSION_10,ANIM_VERSION_11,ANIM_VERSION_16,animVersionLabel,decodeAt,encode,replacePayload
+- `tools/tbuf-v1.test.js` :: round-trips a validated TBUF v1 / ANIM v10 envelope, rejects a truncated or unsupported envelope, replaces only equal-sized payloads in a reference wrapper
+- `tools/victory-list.js` :: exports:FILE_IDENTIFIER,MAX_RECORDS,readVictoryList
+- `tools/victory-list.test.js` :: <no-top-symbols>
+- `tools/yanm-keyframes.js` :: exports:parseSection,decode,readKeys,summary
+- `tools/yanm-keyframes.test.js` :: fixture, track count comes from +10, not section length at +4, multiple sections retain independent offset bases, compact delta flag is retained but not added to time, timeline disagreement is reported, never silently accepted, unknown record type is explicit, not guessed, reject missing signature and truncated sections, reject key blocks crossing their section into another section, reject oversized counts and unexpected headers
+- `tools/yanm20-2k25-family-correlate.js` :: exports:correlate,transformKey
+- `tools/yanm20-2k25-family-correlate.test.js` :: transformKey separates stream and signed normalization families
+- `tools/yanm20-2k25-group90-entry-correlate.js` :: exports:buildReport,window
+- `tools/yanm20-2k25-group90-entry-correlate.test.js` :: entry, window clamps entry context at table boundaries
+- `tools/yanm20-2k25-group90-lattice-report.js` :: exports:fitLattice,report,signedModulo
+- `tools/yanm20-2k25-group90-lattice-report.test.js` :: signedModulo returns the nearest signed lane offset, fitLattice selects the minimum-residual 256-entry origin
+- `tools/yanm20-body-table-report.js` :: exports:buildReport,parseRecord
+- `tools/yanm20-body-table-report.test.js` :: sourceFixture, actsFixture, reports corrected 2K20 body table records against 2K19 source tracks
+- `tools/yanm20-bridge-inspect.js` :: exports:inspect,readStream,compareRows,norm16Delta
+- `tools/yanm20-encoder.js` :: exports:encodeStream,encodeRecord,encodeSection
+- `tools/yanm20-encoder.test.js` :: encodes signed triplets and big-endian frame deltas, encodes the verified 0x2100 40-byte record header, lays out a self-consistent YANM20 section with relative stream offsets
+- `tools/yanm20-ir-writer.js` :: exports:recordsFromIr,encodeIrSection,recordsFromIrWithReference,encodeIrSectionWithReference
+- `tools/yanm20-ir-writer.test.js` :: irFixture, maps neutral IR timelines to 2K20 records without changing packed values, rejects missing auxiliary and quantization data, encodes an IR section through the 2K20 section writer, uses a verified 2K20 reference for auxiliary stream and quantization fields
+- `tools/yanm20-locate-body-table.js` :: exports:canonicalHash,commonPrefix,readHashes,scanBlocks
+- `tools/yanm20-locate-body-table.test.js` :: scanBlocks reports big-endian YANM header metadata, commonPrefix requires the same ordered hash sequence, canonicalHash ignores the x prefix casing
+- `tools/yanm20-normalization-score.js` :: exports:score,wrapS16,transformPacked,scoreRows
+- `tools/yanm20-normalization-score.test.js` :: wrapS16 keeps values in signed 16-bit space, transformPacked applies permutation signs and half-turn offsets
+- `tools/yanm20-normalization-sweep.js` :: exports:sweep,candidateKey,writeReport
+- `tools/yanm20-normalization-sweep.test.js` :: candidateKey groups equivalent transform candidates, writeReport creates only a new JSON artifact
+- `tools/yanm20-normalized-ir.js` :: exports:normalize,sourceRows
+- `tools/yanm20-normalized-ir.test.js` :: applies measured normalization to the selected source triple, rejects missing sweep evidence instead of inventing a transform
+- `tools/yanm20-reader.js` :: exports:decodeSection,readStream
+- `tools/yanm20-reader.test.js` :: reads back encoded 2K20 records and both streams, rejects truncated stream spans, preserves the compact 8-byte trailing sentinel header
+- `tools/yanm20-stream-classify.js` :: exports:classify,scoreComparison
+- `tools/yanm20-stream-classify.test.js` :: coverage score rewards both overlap and value agreement
+
+## Aurora-Forge-2K19-PAC-Tools (11 tracked files)
+- `.gitignore`
+- `README.md`
+- `VERSION`
+- `package.json`
+- `tools/analyze_2k19_menu_templates.js` :: runs, for
+- `tools/decode_2k19_menu_payloads.js` :: run
+- `tools/extract_2k19_archive_entries.js` :: <no-top-symbols>
+- `tools/extract_2k19_pac.py` :: <no-top-symbols>
+- `tools/inspect_2k19_archive.js` :: <no-top-symbols>
+- `tools/inspect_2k19_shdc.py` :: <no-top-symbols>
+- `tools/parse_2k19_cae_menu.py` :: <no-top-symbols>
+
+## Aurora-Forge-2K19-to-2K20-Converter (41 tracked files)
+- `.gitignore`
+- `README.md`
+- `VERSION`
+- `docs/2K19-TO-2K20-CONVERTER-TUTORIAL.md`
+- `docs/BATCH-2K19-TO-2K20-VICTORY-PACKAGES.md`
+- `package.json`
+- `tools/amym-container.js` :: exports:parse,build
+- `tools/amym-container.test.js` :: fixture, AMYM reads multiple groups and preserves opaque entries and alignment, AMYM rejects truncated, trailing, invalid-group and corrupt-size data
+- `tools/aurora-converter.js` :: usage, arg, main, if
+- `tools/batch-2k19-to-2k20-victory-packages.js` :: exports:runBatch,buildRows,indexSourceMotions,indexFops,indexReferences,idsFromPath,normalizeId
+- `tools/batch-2k19-to-2k20-victory-packages.test.js` :: for, normalizes zero-padded animation ids, extracts four-digit animation ids from paths, reads manifest rows for ambiguous batch folders, rejects malformed manifest rows, automatic folder mode matches ids across source, fop, and reference folders, dry-run reports missing automatic matches without writing package files, rejects empty automatic batches, dry-run reports matched manifest rows without writing package files, batch builds package from manifest using proven 6100 sample
+- `tools/build-2k19-to-2k20-victory-package.js` :: exports:buildPackage,buildMeasuredVictory6100Evd,convertMeasured6100EventBody
+- `tools/build-2k19-to-2k20-victory-package.test.js` :: builds converted 2K20 ACTS and EVD package for Victory 6100
+- `tools/convert-yanm19-to-yanm20.integration.test.js` :: Victory 6100 converts from 2K19 to a readable 2K20 YANM section
+- `tools/convert-yanm19-to-yanm20.js` :: exports:convert
+- `tools/evd-reader.js` :: exports:HEADER_BYTES,NAME_BYTES,readEvd
+- `tools/evd-reader.test.js` :: reads a second real 2K20 EVD envelope with a different metadata prefix, supports space-padded and null-terminated internal names, rejects an incomplete EVD envelope
+- `tools/fop19-evd20-body-model.js` :: exports:SOURCE_BODY_BYTES,TARGET_BODY_BYTES,SOURCE_TYPE_OFFSET,SOURCE_FLAG_OFFSET,SOURCE_FLAG_BYTES,SOURCE_EVENT_OFFSET,TARGET_TYPE_OFFSET,TARGET_EVENT_OFFSET,TARGET_SLOT_BASE_OFFSET,TARGET_SLOT_BYTES,DIRECT_VECTOR_INDEX,DIRECT_VECTOR_SOURCE_OFFSET,DIRECT_VECTOR_FLOATS,DIRECT_POSE_ANGLE_SOURCE_OFFSET,DIRECT_POSE_INDICES,MEASURED_DIRECT_POSE_COMPONENTS,MEASURED_IMPLICIT_POSE_BY_INDEX,SETUP_TABLE_INDEX,CIRCULAR_POSE_INDEX,WRAPPED_SINGLE_POSE_INDEX,WRAPPED_DUAL_POSE_INDEX,WRAPPED_TRIPLE_POSE_INDEX,CHAINED_TAIL_INDEX,LAST_MEASURED_REBASED_INDEX,convertKnownSimpleFop19BodyToEvd20,convertKnownFlaggedSimpleFop19BodyToEvd20,convertKnownRebasedSlotFop19BodyToEvd20,convertKnownDirectVectorFop19BodyToEvd20,convertKnownDirectPoseFop19BodyToEvd20,convertKnownImplicitPoseFop19BodyToEvd20,convertKnownCircularPoseFop19BodyToEvd20,convertKnownWrappedSinglePoseFop19BodyToEvd20,convertKnownWrappedDualPoseFop19BodyToEvd20,convertKnownWrappedTriplePoseFop19BodyToEvd20,convertKnownSetupTableFop19BodyToEvd20,convertKnownChainedTailFop19BodyToEvd20
+- `tools/fop19-evd20-body-model.test.js` :: bodyAtIndex, for, rejects an unmeasured body layout rather than treating it as convertible, converts the exact measured 6100 index-13 direct-vector body, converts the exact measured 6100 direct-pose bodies 14 through 16, rejects unmeasured or multi-vector direct-pose candidates, converts the exact measured 6100 implicit-pose bodies 17 and 18, converts the exact measured 6100 circular-pose body at index 19, converts the exact measured 6100 wrapped single-pose body at index 20, converts the exact measured 6100 wrapped dual-pose body at index 21, converts the exact measured 6100 wrapped triple-pose body at index 22, rejects other wrapped multi-pose indices, converts the exact measured 6100 setup-table body at index 0, rejects non-6100 setup-table values, converts the exact measured 6100 chained-tail body at index 23, rejects non-tail bodies for the chained-tail converter
+- `tools/fop19-evd20-table-model.js` :: exports:INNER_TABLE_OFFSET,TARGET_ENTRY_MARKER,compareFop19Evd20Index
+- `tools/fop19-evd20-table-model.test.js` :: <no-top-symbols>
+- `tools/fop19-reader.js` :: exports:ENTRY_BYTES,FOP_MAGIC,INNER_HEADER_BYTES,PREFIX_BYTES,readFop19
+- `tools/fop19-reader.test.js` :: reads the extracted 2K19 Victory 6100 0FOP event index, rejects a non-0FOP payload
+- `tools/patch-acts20-yanm.js` :: exports:patch
+- `tools/patch-acts20-yanm.test.js` :: patches an AMYM-wrapped 2K20 ACTS by updating the entry size table
+- `tools/patreon-access.js` :: exports:configStatus,memberResult,normalizeEmail,readConfig,verifyPatreonAccess
+- `tools/patreon-access.test.js` :: response, reports remote verifier configuration without requiring creator secrets locally, normalizes patron identity emails, allows an active patron on an allowed tier, uses the remote verifier when a verifier URL is configured, surfaces remote verifier failures, rejects active patrons outside the configured tier list, passes through verifier reason codes for clearer client messaging, follows Patreon pagination until the requested patron is found
+- `tools/yanm-keyframes.js` :: exports:parseSection,decode,readKeys,summary
+- `tools/yanm-keyframes.test.js` :: fixture, track count comes from +10, not section length at +4, multiple sections retain independent offset bases, compact delta flag is retained but not added to time, timeline disagreement is reported, never silently accepted, unknown record type is explicit, not guessed, reject missing signature and truncated sections, reject key blocks crossing their section into another section, reject oversized counts and unexpected headers
+- `tools/yanm20-body-table-report.js` :: exports:buildReport,parseRecord
+- `tools/yanm20-body-table-report.test.js` :: sourceFixture, actsFixture, reports corrected 2K20 body table records against 2K19 source tracks
+- `tools/yanm20-encoder.js` :: exports:encodeStream,encodeRecord,encodeSection
+- `tools/yanm20-encoder.test.js` :: encodes signed triplets and big-endian frame deltas, encodes the verified 0x2100 40-byte record header, lays out a self-consistent YANM20 section with relative stream offsets
+- `tools/yanm20-ir-writer.js` :: exports:recordsFromIr,encodeIrSection,recordsFromIrWithReference,encodeIrSectionWithReference
+- `tools/yanm20-ir-writer.test.js` :: irFixture, maps neutral IR timelines to 2K20 records without changing packed values, rejects missing auxiliary and quantization data, encodes an IR section through the 2K20 section writer, uses a verified 2K20 reference for auxiliary stream and quantization fields
+- `tools/yanm20-locate-body-table.js` :: exports:canonicalHash,commonPrefix,readHashes,scanBlocks
+- `tools/yanm20-locate-body-table.test.js` :: scanBlocks reports big-endian YANM header metadata, commonPrefix requires the same ordered hash sequence, canonicalHash ignores the x prefix casing
+- `tools/yanm20-normalized-ir.js` :: exports:normalize,sourceRows
+- `tools/yanm20-normalized-ir.test.js` :: applies measured normalization to the selected source triple, rejects missing sweep evidence instead of inventing a transform
+- `tools/yanm20-reader.js` :: exports:decodeSection,readStream
+- `tools/yanm20-reader.test.js` :: reads back encoded 2K20 records and both streams, rejects truncated stream spans, preserves the compact 8-byte trailing sentinel header
+
+## Aurora-Forge-Blender-Animation-Tools (6 tracked files)
+- `.gitignore`
+- `README.md`
+- `VERSION`
+- `blender_addon/README.md`
+- `blender_addon/aurora_2k19_fbx_export.py` :: arg, open, enumerate
+- `blender_addon/aurora_entrance_lab/__init__.py` :: <no-top-symbols>
+
+## Aurora-Forge-Clips-Tools (35 tracked files)
+- `.gitignore`
+- `README.md`
+- `VERSION`
+- `package.json`
+- `tools/clips-controlled-diff.js` :: exports:diffRanges,report,runs
+- `tools/clips-controlled-diff.test.js` :: reports compact changed byte runs
+- `tools/clips-descriptor-lattice-report.js` :: exports:buildInput,descriptorReferences,run
+- `tools/clips-descriptor-lattice-report.test.js` :: entry, descriptorReferences groups descriptors into target track slots
+- `tools/clips-layout.integration.test.js` :: for
+- `tools/clips-layout.js` :: exports:build,clipNameId,parse,parseFile
+- `tools/clips-layout.test.js` :: fixture, reads fixed sections and repeated identifiers, compact parse omits explosive raw entry arrays, rejects identifier mismatch, rejects section coverage mismatch, rejects trailing bytes, rebuilds a lossless container from individual clip payloads, rejects malformed individual clip payloads
+- `tools/clips-native-inspect.js` :: exports:decodeQuantizedValue,decodeRecordTiming,decodeTimingPrelude,descriptor,entryWord,inspectFile,inspectPayloadFile,inspectRecord,readBitsLE,run
+- `tools/clips-native-inspect.test.js` :: reads native-style little-endian bit fields across uint64 words, exposes only directly observed descriptor fields, converts the parser hex representation back to a little-endian uint64, mirrors the native compact timing prelude before value reads, treats an empty Group90 payload as a static/bind record, mirrors native scalar descriptor expansion without claiming full pose decoding, interprets observed modern descriptor upper words as IEEE float bits
+- `tools/clips-tool.js` :: exports:extract,inject,list,patchGroup90,rebuild,run,validate
+- `tools/clips-tool.test.js` :: refuses unsafe overwrite, mismatched IDs, and unimplemented semantic edits
+- `tools/group90-descriptor-ranges.js` :: exports:boundedCandidates,inspect,ranges,rangesFromCandidates
+- `tools/group90-descriptor-ranges.test.js` :: builds shared descriptor-owned Group90 ranges, rejects descriptor starts outside the Group90 table, retains the original descriptor references in bounded candidate ranges
+- `tools/group90-encoder.js` :: exports:encodeUleb128,encodeTokens,decodeTokens
+- `tools/group90-encoder.test.js` :: generic ULEB encoder round-trips ordinary and long BigInt tokens, generic ULEB encoder preserves its input byte stream on decode/re-encode
+- `tools/group90-entries.js` :: exports:readEntries,encodeEntries,replaceEntries,replaceRecordGroup90
+- `tools/group90-entries.test.js` :: fixed Group90 entries round-trip as uint64 words, fixed Group90 encoding is exactly 8 bytes per entry
+- `tools/group90-segment-summary.js` :: exports:inspect,summarizeBytes
+- `tools/group90-segment-summary.test.js` :: summarizes complete ULEB tokens within a segment, rejects a token crossing a segment boundary, permits a Group90 ULEB token longer than ten bytes
+- `tools/group90-token-index-map.js` :: exports:mapReferences,inspect
+- `tools/group90-token-index-map.test.js` :: groups descriptor references by Group90 token index, rejects a descriptor index outside the decoded token stream
+- `tools/group90-uleb.js` :: exports:decodeAt,tokensFrom
+- `tools/group90-uleb.test.js` :: decodes bounded ULEB128 tokens, rejects unterminated tokens
+- `tools/package-exported-clips.js` :: main, if
+- `tools/scan-clips-corpus.js` :: exports:scan
+- `tools/tbuf-block-compare.js` :: exports:chooseBlock,compareBuffers,run
+- `tools/tbuf-block-compare.test.js` :: <no-top-symbols>
+- `tools/tbuf-corpus-continuity-report.js` :: exports:comparePair,report
+- `tools/tbuf-corpus-continuity-report.test.js` :: asset, reports exact and shared-prefix corpus continuity without payload output, accepts MINA .anims as the left corpus source
+- `tools/tbuf-v1.js` :: exports:HEADER_BYTES,decodeAt,encode,replacePayload
+- `tools/tbuf-v1.test.js` :: round-trips a validated TBUF v1 / ANIM v10 envelope, rejects a truncated or unsupported envelope, replaces only equal-sized payloads in a reference wrapper
+
+## Aurora-Forge-Converter-App (12 tracked files)
+- `.gitignore`
+- `README.md`
+- `VERSION`
+- `app/PATREON_ACCESS.md`
+- `app/app.js` :: basename, log, friendlyPatreonMessage, setAccess, refreshAccess, pickFile, pickOutputRoot, $, String, if, switch
+- `app/index.html`
+- `app/main.js` :: repoRoot, nodeEnv, patreon, createWindow, runNode, requireAccess, require, if, Error
+- `app/package-lock.json`
+- `app/package.json`
+- `app/preload.js` :: <no-top-symbols>
+- `app/start-aurora-forge.cmd`
+- `app/styles.css`
+
+## Aurora-Forge-Patreon-Verifier (8 tracked files)
+- `.gitignore`
+- `.openai/hosting.json`
+- `README.md`
+- `VERSION`
+- `package.json`
+- `scripts/build.sh`
+- `scripts/validate-artifact.mjs` :: readFile
+- `worker/index.js` :: json, splitCsv, readConfig, indexIncluded, memberTierIds, memberUserId, membersUrl, encodeOAuthState, decodeOAuthState, pruneRateLimitBuckets, isRateLimited, getClientInfo, safeRedirectUri, handleOAuthStart, handleOAuthCallback, patreonRequest, exchangeOAuthCode, fetchIdentity, verifyCreatorIdentity, verifyUserId, handleOAuthVerify, String, if, Map, return, while, for, fetch

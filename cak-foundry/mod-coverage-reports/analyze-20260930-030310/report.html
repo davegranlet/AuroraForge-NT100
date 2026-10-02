@@ -1,0 +1,1394 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Aurora Forge - Mod Coverage Report</title>
+<style>
+ body{font-family:Segoe UI,Arial,sans-serif;background:#14171c;color:#e6e6e6;margin:24px}
+ h1{font-size:20px;margin:0 0 4px} h2{font-size:15px;margin:26px 0 8px;color:#9fd0ff}
+ .sub{color:#9aa4b2;font-size:12px;margin-bottom:18px}
+ .cards{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+ .card{background:#1e232b;border:1px solid #2c3440;border-radius:8px;padding:10px 14px;min-width:150px}
+ .card b{display:block;font-size:20px} .card span{color:#9aa4b2;font-size:11px}
+ .critical{color:#ff6b6b} .good{color:#7ee787}
+ table{border-collapse:collapse;width:100%;font-size:12px;margin-bottom:8px}
+ th,td{border:1px solid #2c3440;padding:4px 8px;text-align:left;vertical-align:top}
+ th{background:#1e232b;color:#9fd0ff;position:sticky;top:0}
+ td.n{text-align:right} tr:nth-child(even){background:#191d24}
+ .empty{color:#9aa4b2;font-size:12px}
+ details{margin-top:18px} summary{cursor:pointer;color:#9fd0ff;font-size:14px}
+ .wrap{max-height:70vh;overflow:auto;border:1px solid #2c3440;border-radius:6px;padding:8px}
+</style></head><body>
+<h1>Aurora Forge - Mod Coverage Report</h1>
+<div class="sub">generated 2026-09-30T07:03:33.215Z &middot; game pid 0x00006c54 &middot; trace C:\Users\dgran\AppData\Local\Temp\opencode\kfile-run2.csv<br>
+active mods: 2ndtest-cv.cak, 3rdtest-cv.cak &middot; focus: CAS/, Logo/, Characters/, Arena/, Entrances/</div>
+<div class="cards">
+ <div class="card"><b>83</b><span>MOD HITS (served from mod CAK)</span></div>
+ <div class="card"><b class="good">0</b><span>CRITICAL (mod path read from stock)</span></div>
+ <div class="card"><b>67</b><span>stock loads in focus namespaces</span></div>
+ <div class="card"><b>444</b><span>CAK reads analyzed</span></div>
+</div>
+<h2>CRITICAL - stock read though an active mod provides the path</h2>
+<p class="empty">None. Every path an active mod provides was read from the mod CAK.</p>
+<h2>MOD HITS - served from a mod CAK</h2>
+<table><thead><tr><th>Asset</th><th>CAK</th><th>Reads</th><th>Bytes</th><th>First</th><th>Last</th></tr></thead><tbody><tr><td>_textures.tdb</td><td>3rdtest-cv.cak</td><td class="n">4</td><td class="n">4.3 KB</td><td>02:12:25.894</td><td>02:12:40.519</td></tr><tr><td>CAS/Body_Paint_Arm/00007/02.dds</td><td>3rdtest-cv.cak</td><td class="n">2</td><td class="n">128.0 KB</td><td>02:12:25.915</td><td>02:12:28.838</td></tr><tr><td>Entrances/EntranceListData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">64.9 KB</td><td>02:12:25.917</td><td>02:12:25.917</td></tr><tr><td>Roster/LocationsData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">9.6 KB</td><td>02:12:25.917</td><td>02:12:25.917</td></tr><tr><td>Arena/ArenaData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">19.3 KB</td><td>02:12:25.917</td><td>02:12:25.917</td></tr><tr><td>Roster/RefereeSelect.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.9 KB</td><td>02:12:25.918</td><td>02:12:25.918</td></tr><tr><td>Cutscene/CutsceneNoRegistry.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32.5 KB</td><td>02:12:25.943</td><td>02:12:25.943</td></tr><tr><td>Rules/GameTypeData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">5.7 KB</td><td>02:12:25.948</td><td>02:12:25.948</td></tr><tr><td>Rules/TagRuleData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">7.0 KB</td><td>02:12:25.948</td><td>02:12:25.948</td></tr><tr><td>SharedGameplay/MatchTypeData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.6 KB</td><td>02:12:25.948</td><td>02:12:25.948</td></tr><tr><td>Movies/MovieDataTable.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">86.0 KB</td><td>02:12:25.948</td><td>02:12:25.948</td></tr><tr><td>Environment/PropsSet/PropsSet_Ambulance.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">156 B</td><td>02:12:25.949</td><td>02:12:25.949</td></tr><tr><td>Environment/PropsSet/PropsSet_Gameplay_Casket.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">156 B</td><td>02:12:25.952</td><td>02:12:25.952</td></tr><tr><td>Environment/PropsSet/PropsSet_Gameplay_Dumpster.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">144 B</td><td>02:12:25.953</td><td>02:12:25.953</td></tr><tr><td>Environment/PropsSet/PropsSet_Gameplay_LadderMatch_0.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">220 B</td><td>02:12:25.954</td><td>02:12:25.954</td></tr><tr><td>Environment/PropsSet/PropsSet_Gameplay_TableMatch_0.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">220 B</td><td>02:12:25.954</td><td>02:12:25.954</td></tr><tr><td>Environment/PropsSet/PropsSet_Gameplay_TLCMatch_0.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">220 B</td><td>02:12:25.954</td><td>02:12:25.954</td></tr><tr><td>Environment/PropsSet/PropsSet_Wargames.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">442 B</td><td>02:12:25.956</td><td>02:12:25.956</td></tr><tr><td>Environment/PropsSet/PropsSet_IQuit.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.957</td><td>02:12:25.957</td></tr><tr><td>Environment/PropsSet/PropsSet_LastManStanding.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.957</td><td>02:12:25.957</td></tr><tr><td>Environment/PropsSet/PropsSet_SteelCage.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.957</td><td>02:12:25.957</td></tr><tr><td>Environment/PropsSet/PropsSet_Underground.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.957</td><td>02:12:25.957</td></tr><tr><td>Environment/PropsSet/PropsSet_BloodlineRules.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.957</td><td>02:12:25.957</td></tr><tr><td>Environment/PropsSet/PropsSet_EliminationChamber.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.957</td><td>02:12:25.957</td></tr><tr><td>Environment/PropsSet/PropsSet_ExtremeRules.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.957</td><td>02:12:25.957</td></tr><tr><td>Environment/PropsSet/PropsSet_FallsCountAnywhere.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.958</td><td>02:12:25.958</td></tr><tr><td>Environment/PropsSet/PropsSet_HIAC.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.958</td><td>02:12:25.958</td></tr><tr><td>Environment/PropsSet/PropsSet_Inferno.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">32 B</td><td>02:12:25.958</td><td>02:12:25.958</td></tr><tr><td>Entrances/VictoryListData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">12.8 KB</td><td>02:12:25.958</td><td>02:12:25.958</td></tr><tr><td>CreateShow/NameplateAnimeData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">4.0 KB</td><td>02:12:25.959</td><td>02:12:25.959</td></tr><tr><td>Roster/CharProfileTable.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">133.8 KB</td><td>02:12:25.964</td><td>02:12:25.964</td></tr><tr><td>Audio/MusicList.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">24.6 KB</td><td>02:12:28.067</td><td>02:12:28.067</td></tr><tr><td>Sdb/ENG.sdb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">6.3 MB</td><td>02:12:28.089</td><td>02:12:28.089</td></tr><tr><td>Props/PropsData/PropsData_AssetMap.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">48.9 KB</td><td>02:12:28.358</td><td>02:12:28.358</td></tr><tr><td>Belts/BeltsData/BeltsData_AssetMap.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">8.6 KB</td><td>02:12:28.358</td><td>02:12:28.358</td></tr><tr><td>Environment/EnvironmentSetup/PropsPositions.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.0 KB</td><td>02:12:28.358</td><td>02:12:28.358</td></tr><tr><td>Logo/CrowdSigns.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">39.5 KB</td><td>02:12:28.422</td><td>02:12:28.422</td></tr><tr><td>MSC/Global/Soundtracks.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">593 B</td><td>02:12:28.502</td><td>02:12:28.502</td></tr><tr><td>MoveData/CAMMoveData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">867.9 KB</td><td>02:12:28.503</td><td>02:12:28.503</td></tr><tr><td>Characters/CharacterMapping.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">40.7 KB</td><td>02:12:28.566</td><td>02:12:28.566</td></tr><tr><td>Characters/CostumesTable.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">13.2 KB</td><td>02:12:28.567</td><td>02:12:28.567</td></tr><tr><td>Audio/Generated/BnkPckData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.4 KB</td><td>02:12:28.703</td><td>02:12:28.703</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00002/Textures/design_mask.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">128.0 KB</td><td>02:12:28.851</td><td>02:12:28.851</td></tr><tr><td>Roster/CharMoveSetDataTable.jsfb</td><td>3rdtest-cv.cak</td><td class="n">2</td><td class="n">1.8 MB</td><td>02:12:30.617</td><td>02:12:37.400</td></tr><tr><td>Stable/TeamsTable.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">4.0 KB</td><td>02:12:30.617</td><td>02:12:30.617</td></tr><tr><td>Stable/StableAnnounceStrings.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">2.4 KB</td><td>02:12:30.617</td><td>02:12:30.617</td></tr><tr><td>Belts/_Jtables/BeltDataTable.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">9.5 KB</td><td>02:12:30.617</td><td>02:12:30.617</td></tr><tr><td>Cutscene/ListData/CutsceneCastData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">5.4 KB</td><td>02:12:31.327</td><td>02:12:31.327</td></tr><tr><td>Cutscene/ListData/CutsceneFallbackData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">2.7 KB</td><td>02:12:31.327</td><td>02:12:31.327</td></tr><tr><td>Cutscene/ListData/StableEntranceListData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">203 B</td><td>02:12:31.328</td><td>02:12:31.328</td></tr><tr><td>CreateShow/MatchUpScreenAsset.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">4.8 KB</td><td>02:12:35.764</td><td>02:12:35.764</td></tr><tr><td>CreateShow/NameplateData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.9 KB</td><td>02:12:35.764</td><td>02:12:35.764</td></tr><tr><td>CreateShow/CopyrightData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.3 KB</td><td>02:12:35.764</td><td>02:12:35.764</td></tr><tr><td>CreateShow/ReplayData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.2 KB</td><td>02:12:35.765</td><td>02:12:35.765</td></tr><tr><td>CreateShow/EtcDesignData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">895 B</td><td>02:12:35.772</td><td>02:12:35.772</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00001/design_thum.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">4.0 KB</td><td>02:12:38.706</td><td>02:12:38.706</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00001/Textures/design_color.dds</td><td>2ndtest-cv.cak</td><td class="n">2</td><td class="n">8.0 KB</td><td>02:12:38.821</td><td>02:12:38.822</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00002/design_thum.dds</td><td>2ndtest-cv.cak</td><td class="n">2</td><td class="n">12.0 KB</td><td>02:12:38.868</td><td>02:12:38.868</td></tr><tr><td>_textures.tdb</td><td>2ndtest-cv.cak</td><td class="n">2</td><td class="n">2.1 KB</td><td>02:12:40.506</td><td>02:12:40.506</td></tr><tr><td>CAS/Body_Paint_Arm/00012/02.dds</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">4.0 KB</td><td>02:12:40.603</td><td>02:12:40.603</td></tr><tr><td>CreateShow/MatchupMenuAssetData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">2.3 KB</td><td>02:12:44.549</td><td>02:12:44.549</td></tr><tr><td>CreateShow/EtcDesignMenuAssetData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">2.1 KB</td><td>02:12:44.550</td><td>02:12:44.550</td></tr><tr><td>CreateShow/ReplayMenuAssetData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">2.0 KB</td><td>02:12:44.550</td><td>02:12:44.550</td></tr><tr><td>CreateShow/TransitionMenuAssetData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">1.7 KB</td><td>02:12:44.551</td><td>02:12:44.551</td></tr><tr><td>CreateShow/MusicMenuAssetData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">724 B</td><td>02:12:44.552</td><td>02:12:44.552</td></tr><tr><td>CreateShow/TemplateMenuAssetData.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">162 B</td><td>02:12:44.552</td><td>02:12:44.552</td></tr><tr><td>MatchCreator/MatchCreatorTables.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">11.5 KB</td><td>02:12:46.767</td><td>02:12:46.767</td></tr><tr><td>CAS/Body_Paint_Arm/00007/01.dds</td><td>3rdtest-cv.cak</td><td class="n">2</td><td class="n">5.0 KB</td><td>02:12:52.573</td><td>02:12:52.578</td></tr><tr><td>CAS/Tights/01196/Textures/tights_nrm.dds</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">3.6 MB</td><td>02:12:52.763</td><td>02:12:52.763</td></tr><tr><td>Logo/CAS/Logo_FacePhoto/00000/Textures/design_blur.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">1.1 KB</td><td>02:12:52.931</td><td>02:12:52.931</td></tr><tr><td>Logo/CAS/Logo_FacePhoto/00000/Textures/design_color.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">294.2 KB</td><td>02:12:52.932</td><td>02:12:52.932</td></tr><tr><td>CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_L.mtls</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">16 B</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_L.mcd</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">4.1 KB</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_R.mtls</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">16 B</td><td>02:12:52.934</td><td>02:12:52.934</td></tr><tr><td>CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_R.mcd</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">4.1 KB</td><td>02:12:52.935</td><td>02:12:52.935</td></tr><tr><td>CAS/Tights/01196/Tights_01196.mtls</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">72 B</td><td>02:12:52.936</td><td>02:12:52.936</td></tr><tr><td>CAS/Tights/01196/Tights_01196.mcd</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">871.9 KB</td><td>02:12:52.937</td><td>02:12:52.937</td></tr><tr><td>CAS/Tights/01196/Materials/tights.jmtl</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">200 B</td><td>02:12:52.940</td><td>02:12:52.940</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00004/Textures/design_color.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">562.7 KB</td><td>02:12:52.953</td><td>02:12:52.953</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00004/Textures/design_mask.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">84 B</td><td>02:12:52.954</td><td>02:12:52.954</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00004/Textures/design_blur.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">12.2 KB</td><td>02:12:52.954</td><td>02:12:52.954</td></tr><tr><td>Particle/gamejptclconfig.jsfb</td><td>3rdtest-cv.cak</td><td class="n">1</td><td class="n">2.8 KB</td><td>02:12:54.143</td><td>02:12:54.143</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design/00003/design_thum.dds</td><td>2ndtest-cv.cak</td><td class="n">1</td><td class="n">2.0 MB</td><td>02:13:21.607</td><td>02:13:21.607</td></tr></tbody></table>
+<h2>Stock loads in focus namespaces (CAS/, Logo/, Characters/, Arena/, Entrances/)</h2>
+<table><thead><tr><th>Asset</th><th>CAK</th><th>Reads</th><th>Bytes</th><th>First</th><th>Last</th></tr></thead><tbody><tr><td>Arena/Parts/Shoes_01615/Textures/shoes_01615_nrm.dds</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">4.0 KB</td><td>02:12:24.292</td><td>02:12:24.292</td></tr><tr><td>CAS/Bottoms/01361/Textures/bottoms_nrm.dds</td><td>bakedfile80.cak</td><td class="n">1</td><td class="n">6.2 KB</td><td>02:12:25.915</td><td>02:12:25.915</td></tr><tr><td>Arena/Parts/Shelf_03/Textures/Shelf_03_nrm.dds</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">80 B</td><td>02:12:25.915</td><td>02:12:25.915</td></tr><tr><td>Arena/Parts/Anarchy_Sign/Textures/Anarchy_Sign_color.dds</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">11.6 KB</td><td>02:12:25.917</td><td>02:12:25.917</td></tr><tr><td>Arena/Parts/Building_AshukaArcade/Textures/AsukaMasks_01_color.dds</td><td>bakedfile100.cak</td><td class="n">5</td><td class="n">2.7 KB</td><td>02:12:25.919</td><td>02:12:25.920</td></tr><tr><td>Arena/Parts/SheetMetal_01/Textures/SheetMetal_01_nrm.dds</td><td>bakedfile100.cak</td><td class="n">21</td><td class="n">6.3 KB</td><td>02:12:25.920</td><td>02:12:25.922</td></tr><tr><td>CAS/H_Other/01124/Textures/h_other_nrm.dds</td><td>bakedfile80.cak</td><td class="n">1</td><td class="n">376 B</td><td>02:12:25.923</td><td>02:12:25.923</td></tr><tr><td>Arena/Parts/Lights/Textures/Light_Industrial_A_nrm.dds</td><td>bakedfile80.cak</td><td class="n">1</td><td class="n">251.2 KB</td><td>02:12:28.087</td><td>02:12:28.087</td></tr><tr><td>CAS/Bottoms/02514/Textures/bottoms_nrm.dds</td><td>bakedfile80.cak</td><td class="n">1</td><td class="n">177 B</td><td>02:12:28.088</td><td>02:12:28.088</td></tr><tr><td>Arena/Parts/Building_Shop_06/Building_Shop_06.mcd</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">152.4 KB</td><td>02:12:28.561</td><td>02:12:28.561</td></tr><tr><td>CAS/jtables/BRASSIERE.jsfb</td><td>bakedfile02.cak</td><td class="n">1</td><td class="n">26.6 KB</td><td>02:12:28.800</td><td>02:12:28.800</td></tr><tr><td>Arena/Commonness/Corner_Post/Japan_Hall/Corner_Post.mtls</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">542 B</td><td>02:12:52.003</td><td>02:12:52.003</td></tr><tr><td>Characters/928_Santos_Escobar/BaseModel/baseModel.mcd</td><td>bakedfile100.cak</td><td class="n">7</td><td class="n">3.5 MB</td><td>02:12:52.547</td><td>02:12:52.547</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/928_Attire.mcd</td><td>bakedfile100.cak</td><td class="n">14</td><td class="n">5.0 MB</td><td>02:12:52.549</td><td>02:12:52.552</td></tr><tr><td>Characters/369_Seth_Rollins_2019/BaseModel/baseModel.mcd</td><td>bakedfile100.cak</td><td class="n">7</td><td class="n">3.5 MB</td><td>02:12:52.557</td><td>02:12:52.560</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/369_Attire.mcd</td><td>bakedfile100.cak</td><td class="n">12</td><td class="n">4.5 MB</td><td>02:12:52.562</td><td>02:12:52.564</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/928_Attire.ycl</td><td>bakedfile100.cak</td><td class="n">2</td><td class="n">268.2 KB</td><td>02:12:52.564</td><td>02:12:52.564</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/369_Attire.ycl</td><td>bakedfile100.cak</td><td class="n">2</td><td class="n">370.6 KB</td><td>02:12:52.564</td><td>02:12:52.564</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/l_kneepad.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/l_a_acce.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/r_a_acce.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/l_wrist.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/r_kneepad.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/shoes.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/u_acce.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/u_acce_ALPHA.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">176 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire/Materials/underwear.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.569</td><td>02:12:52.569</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/glasses.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/jacket.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/jacket_ALPHA.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">176 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/l_kneepad.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/l_wrist.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/r_kneepad.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/r_wrist.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/shoes.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/tights.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.572</td><td>02:12:52.572</td></tr><tr><td>Characters/369_Seth_Rollins_2019/BaseModel/Textures/head_nrm.dds</td><td>bakedfile80.cak</td><td class="n">2</td><td class="n">1.3 MB</td><td>02:12:52.635</td><td>02:12:52.639</td></tr><tr><td>Characters/369_Seth_Rollins_2019/BaseModel/Textures/body_color.dds</td><td>bakedfile100.cak</td><td class="n">6</td><td class="n">1.6 MB</td><td>02:12:52.643</td><td>02:12:52.644</td></tr><tr><td>Characters/369_Seth_Rollins_2019/BaseModel/Textures/head_color.dds</td><td>bakedfile80.cak</td><td class="n">2</td><td class="n">567.4 KB</td><td>02:12:52.651</td><td>02:12:52.652</td></tr><tr><td>CAS/_Global/globaldata/male.casglobal</td><td>bakedfile100.cak</td><td class="n">24</td><td class="n">5.0 MB</td><td>02:12:52.707</td><td>02:12:52.712</td></tr><tr><td>Characters/369_Seth_Rollins_2019/BaseModel/Textures/body_nrm.dds</td><td>bakedfile100.cak</td><td class="n">11</td><td class="n">6.1 MB</td><td>02:12:52.734</td><td>02:12:52.739</td></tr><tr><td>Characters/368_Roman_Reigns/BaseModel/Textures/head_color.dds</td><td>bakedfile80.cak</td><td class="n">2</td><td class="n">606.7 KB</td><td>02:12:52.800</td><td>02:12:52.801</td></tr><tr><td>CAS/Head/00000/Head_00000.mcd</td><td>bakedfile100.cak</td><td class="n">5</td><td class="n">2.4 MB</td><td>02:12:52.919</td><td>02:12:52.919</td></tr><tr><td>CAS/Eyelash/00001/eyelash_00001.mcd</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">139.3 KB</td><td>02:12:52.923</td><td>02:12:52.923</td></tr><tr><td>CAS/Combinations/01059/Combinations_01059.mcd</td><td>bakedfile100.cak</td><td class="n">3</td><td class="n">1.1 MB</td><td>02:12:52.923</td><td>02:12:52.923</td></tr><tr><td>CAS/Face_Type/00000/Materials/arm_l.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Face_Type/00000/Materials/arm_r.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Face_Type/00000/Materials/feet.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Face_Type/00000/Materials/hand_l.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Face_Type/00000/Materials/hand_r.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Face_Type/00000/Materials/leg_l.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.933</td><td>02:12:52.933</td></tr><tr><td>CAS/Face_Type/00000/Materials/leg_r.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.934</td><td>02:12:52.934</td></tr><tr><td>CAS/Face_Type/00000/Materials/torso.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.934</td><td>02:12:52.934</td></tr><tr><td>CAS/Face_Type/00000/Materials/waist.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.934</td><td>02:12:52.934</td></tr><tr><td>CAS/Shoes/01602/Shoes_01602.mcd</td><td>bakedfile100.cak</td><td class="n">2</td><td class="n">466.2 KB</td><td>02:12:52.935</td><td>02:12:52.935</td></tr><tr><td>CAS/Elbowpad/02813/elbowpad_02813_L.mcd</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">106.0 KB</td><td>02:12:52.935</td><td>02:12:52.935</td></tr><tr><td>CAS/Socks/01056/Socks_01056.mcd</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">351.1 KB</td><td>02:12:52.937</td><td>02:12:52.937</td></tr><tr><td>CAS/A_Acce/01093/a_acce_01093_R.mcd</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">160.1 KB</td><td>02:12:52.937</td><td>02:12:52.937</td></tr><tr><td>CAS/Kneepad/01165/Kneepad_01165_L.mcd</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">161.0 KB</td><td>02:12:52.937</td><td>02:12:52.937</td></tr><tr><td>CAS/Socks/01056/Materials/socks.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">200 B</td><td>02:12:52.938</td><td>02:12:52.938</td></tr><tr><td>CAS/A_Acce/01093/Materials/r_a_acce.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">200 B</td><td>02:12:52.939</td><td>02:12:52.939</td></tr><tr><td>CAS/Shoes/01602/Materials/shoes.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">200 B</td><td>02:12:52.941</td><td>02:12:52.941</td></tr><tr><td>CAS/Kneepad/01165/Materials/l_kneepad.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">200 B</td><td>02:12:52.941</td><td>02:12:52.941</td></tr><tr><td>CAS/Elbowpad/02813/Materials/l_elbowpads.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">200 B</td><td>02:12:52.941</td><td>02:12:52.941</td></tr><tr><td>CAS/Glasses/00017/glasses_00017.mcd</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">132.5 KB</td><td>02:12:52.942</td><td>02:12:52.942</td></tr><tr><td>CAS/Glasses/00017/Materials/glasses.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">208 B</td><td>02:12:52.943</td><td>02:12:52.943</td></tr><tr><td>CAS/Glasses/00017/Materials/glasses_alpha.jmtl</td><td>bakedfile100.cak</td><td class="n">1</td><td class="n">192 B</td><td>02:12:52.943</td><td>02:12:52.943</td></tr></tbody></table>
+<h2>Namespace summary</h2>
+<table><thead><tr><th>Namespace</th><th>Mod</th><th>Stock</th></tr></thead><tbody>
+<tr><td>Environment/PropsSet</td><td class="n">17</td><td class="n">0</td></tr><tr><td>CreateShow</td><td class="n">12</td><td class="n">0</td></tr><tr><td>Characters/928_Santos_Escobar/928_Default_Attire</td><td class="n">0</td><td class="n">11</td></tr><tr><td>Characters/369_Seth_Rollins_2019/369_Default_Attire</td><td class="n">0</td><td class="n">11</td></tr><tr><td>CAS/Face_Type/00000</td><td class="n">0</td><td class="n">9</td></tr><tr><td>Logo/COMMON/LGC1_Logo_Design</td><td class="n">8</td><td class="n">0</td></tr><tr><td>CAS/Body_Paint_Arm/00012</td><td class="n">5</td><td class="n">0</td></tr><tr><td>Characters/369_Seth_Rollins_2019/BaseModel</td><td class="n">0</td><td class="n">5</td></tr><tr><td>Roster</td><td class="n">4</td><td class="n">0</td></tr><tr><td>CAS/Tights/01196</td><td class="n">4</td><td class="n">0</td></tr><tr><td>Cutscene/ListData</td><td class="n">3</td><td class="n">0</td></tr><tr><td>CAS/Glasses/00017</td><td class="n">0</td><td class="n">3</td></tr><tr><td>_textures.tdb</td><td class="n">2</td><td class="n">0</td></tr><tr><td>CAS/Body_Paint_Arm/00007</td><td class="n">2</td><td class="n">0</td></tr><tr><td>Entrances</td><td class="n">2</td><td class="n">0</td></tr><tr><td>Rules</td><td class="n">2</td><td class="n">0</td></tr><tr><td>Characters</td><td class="n">2</td><td class="n">0</td></tr><tr><td>Stable</td><td class="n">2</td><td class="n">0</td></tr><tr><td>Logo/CAS/Logo_FacePhoto</td><td class="n">2</td><td class="n">0</td></tr><tr><td>CAS/Shoes/01602</td><td class="n">0</td><td class="n">2</td></tr><tr><td>CAS/Elbowpad/02813</td><td class="n">0</td><td class="n">2</td></tr><tr><td>CAS/Socks/01056</td><td class="n">0</td><td class="n">2</td></tr><tr><td>CAS/A_Acce/01093</td><td class="n">0</td><td class="n">2</td></tr><tr><td>CAS/Kneepad/01165</td><td class="n">0</td><td class="n">2</td></tr><tr><td>Arena</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Cutscene</td><td class="n">1</td><td class="n">0</td></tr><tr><td>SharedGameplay</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Movies</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Audio</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Sdb</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Props/PropsData</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Belts/BeltsData</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Environment/EnvironmentSetup</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Logo</td><td class="n">1</td><td class="n">0</td></tr><tr><td>MSC/Global</td><td class="n">1</td><td class="n">0</td></tr><tr><td>MoveData</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Audio/Generated</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Belts/_Jtables</td><td class="n">1</td><td class="n">0</td></tr><tr><td>MatchCreator</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Particle</td><td class="n">1</td><td class="n">0</td></tr><tr><td>Arena/Parts/Shoes_01615</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/Bottoms/01361</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Arena/Parts/Shelf_03</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Arena/Parts/Anarchy_Sign</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Arena/Parts/Building_AshukaArcade</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Arena/Parts/SheetMetal_01</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/H_Other/01124</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Arena/Parts/Lights</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/Bottoms/02514</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Arena/Parts/Building_Shop_06</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/jtables</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Arena/Commonness/Corner_Post</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Characters/928_Santos_Escobar/BaseModel</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/_Global/globaldata</td><td class="n">0</td><td class="n">1</td></tr><tr><td>Characters/368_Roman_Reigns/BaseModel</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/Head/00000</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/Eyelash/00001</td><td class="n">0</td><td class="n">1</td></tr><tr><td>CAS/Combinations/01059</td><td class="n">0</td><td class="n">1</td></tr>
+</tbody></table>
+<details><summary>Raw asset list (JSON)</summary><div class="wrap"><pre>{
+  &quot;modHits&quot;: [
+    {
+      &quot;path&quot;: &quot;_textures.tdb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 4,
+      &quot;bytes&quot;: 4400,
+      &quot;first&quot;: 134352223458948830,
+      &quot;last&quot;: 134352223605195710
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Body_Paint_Arm/00007/02.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 131088,
+      &quot;first&quot;: 134352223459158580,
+      &quot;last&quot;: 134352223488386930
+    },
+    {
+      &quot;path&quot;: &quot;Entrances/EntranceListData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 66424,
+      &quot;first&quot;: 134352223459177140,
+      &quot;last&quot;: 134352223459177140
+    },
+    {
+      &quot;path&quot;: &quot;Roster/LocationsData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 9822,
+      &quot;first&quot;: 134352223459177740,
+      &quot;last&quot;: 134352223459177740
+    },
+    {
+      &quot;path&quot;: &quot;Arena/ArenaData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 19766,
+      &quot;first&quot;: 134352223459178930,
+      &quot;last&quot;: 134352223459178930
+    },
+    {
+      &quot;path&quot;: &quot;Roster/RefereeSelect.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1958,
+      &quot;first&quot;: 134352223459180200,
+      &quot;last&quot;: 134352223459180200
+    },
+    {
+      &quot;path&quot;: &quot;Cutscene/CutsceneNoRegistry.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 33314,
+      &quot;first&quot;: 134352223459432300,
+      &quot;last&quot;: 134352223459432300
+    },
+    {
+      &quot;path&quot;: &quot;Rules/GameTypeData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 5844,
+      &quot;first&quot;: 134352223459481820,
+      &quot;last&quot;: 134352223459481820
+    },
+    {
+      &quot;path&quot;: &quot;Rules/TagRuleData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 7159,
+      &quot;first&quot;: 134352223459482190,
+      &quot;last&quot;: 134352223459482190
+    },
+    {
+      &quot;path&quot;: &quot;SharedGameplay/MatchTypeData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1679,
+      &quot;first&quot;: 134352223459482380,
+      &quot;last&quot;: 134352223459482380
+    },
+    {
+      &quot;path&quot;: &quot;Movies/MovieDataTable.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 88092,
+      &quot;first&quot;: 134352223459484850,
+      &quot;last&quot;: 134352223459484850
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Ambulance.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 156,
+      &quot;first&quot;: 134352223459490020,
+      &quot;last&quot;: 134352223459490020
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Gameplay_Casket.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 156,
+      &quot;first&quot;: 134352223459527710,
+      &quot;last&quot;: 134352223459527710
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Gameplay_Dumpster.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 144,
+      &quot;first&quot;: 134352223459535400,
+      &quot;last&quot;: 134352223459535400
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Gameplay_LadderMatch_0.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 220,
+      &quot;first&quot;: 134352223459542180,
+      &quot;last&quot;: 134352223459542180
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Gameplay_TableMatch_0.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 220,
+      &quot;first&quot;: 134352223459546620,
+      &quot;last&quot;: 134352223459546620
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Gameplay_TLCMatch_0.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 220,
+      &quot;first&quot;: 134352223459546980,
+      &quot;last&quot;: 134352223459546980
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Wargames.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 442,
+      &quot;first&quot;: 134352223459560400,
+      &quot;last&quot;: 134352223459560400
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_IQuit.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459578160,
+      &quot;last&quot;: 134352223459578160
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_LastManStanding.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459578510,
+      &quot;last&quot;: 134352223459578510
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_SteelCage.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459578800,
+      &quot;last&quot;: 134352223459578800
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Underground.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459579090,
+      &quot;last&quot;: 134352223459579090
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_BloodlineRules.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459579400,
+      &quot;last&quot;: 134352223459579400
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_EliminationChamber.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459579700,
+      &quot;last&quot;: 134352223459579700
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_ExtremeRules.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459579980,
+      &quot;last&quot;: 134352223459579980
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_FallsCountAnywhere.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459580340,
+      &quot;last&quot;: 134352223459580340
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_HIAC.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459580620,
+      &quot;last&quot;: 134352223459580620
+    },
+    {
+      &quot;path&quot;: &quot;Environment/PropsSet/PropsSet_Inferno.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 32,
+      &quot;first&quot;: 134352223459580900,
+      &quot;last&quot;: 134352223459580900
+    },
+    {
+      &quot;path&quot;: &quot;Entrances/VictoryListData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 13138,
+      &quot;first&quot;: 134352223459584420,
+      &quot;last&quot;: 134352223459584420
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/NameplateAnimeData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4081,
+      &quot;first&quot;: 134352223459592140,
+      &quot;last&quot;: 134352223459592140
+    },
+    {
+      &quot;path&quot;: &quot;Roster/CharProfileTable.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 137006,
+      &quot;first&quot;: 134352223459642980,
+      &quot;last&quot;: 134352223459642980
+    },
+    {
+      &quot;path&quot;: &quot;Audio/MusicList.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 25179,
+      &quot;first&quot;: 134352223480674660,
+      &quot;last&quot;: 134352223480674660
+    },
+    {
+      &quot;path&quot;: &quot;Sdb/ENG.sdb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 6655132,
+      &quot;first&quot;: 134352223480893420,
+      &quot;last&quot;: 134352223480893420
+    },
+    {
+      &quot;path&quot;: &quot;Props/PropsData/PropsData_AssetMap.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 50071,
+      &quot;first&quot;: 134352223483583540,
+      &quot;last&quot;: 134352223483583540
+    },
+    {
+      &quot;path&quot;: &quot;Belts/BeltsData/BeltsData_AssetMap.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 8770,
+      &quot;first&quot;: 134352223483584210,
+      &quot;last&quot;: 134352223483584210
+    },
+    {
+      &quot;path&quot;: &quot;Environment/EnvironmentSetup/PropsPositions.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1047,
+      &quot;first&quot;: 134352223483585440,
+      &quot;last&quot;: 134352223483585440
+    },
+    {
+      &quot;path&quot;: &quot;Logo/CrowdSigns.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 40410,
+      &quot;first&quot;: 134352223484224850,
+      &quot;last&quot;: 134352223484224850
+    },
+    {
+      &quot;path&quot;: &quot;MSC/Global/Soundtracks.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 593,
+      &quot;first&quot;: 134352223485028480,
+      &quot;last&quot;: 134352223485028480
+    },
+    {
+      &quot;path&quot;: &quot;MoveData/CAMMoveData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 888690,
+      &quot;first&quot;: 134352223485031870,
+      &quot;last&quot;: 134352223485031870
+    },
+    {
+      &quot;path&quot;: &quot;Characters/CharacterMapping.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 41694,
+      &quot;first&quot;: 134352223485669680,
+      &quot;last&quot;: 134352223485669680
+    },
+    {
+      &quot;path&quot;: &quot;Characters/CostumesTable.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 13509,
+      &quot;first&quot;: 134352223485670140,
+      &quot;last&quot;: 134352223485670140
+    },
+    {
+      &quot;path&quot;: &quot;Audio/Generated/BnkPckData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1455,
+      &quot;first&quot;: 134352223487037070,
+      &quot;last&quot;: 134352223487037070
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00002/Textures/design_mask.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 131072,
+      &quot;first&quot;: 134352223488513090,
+      &quot;last&quot;: 134352223488513090
+    },
+    {
+      &quot;path&quot;: &quot;Roster/CharMoveSetDataTable.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 1885320,
+      &quot;first&quot;: 134352223506174200,
+      &quot;last&quot;: 134352223574008850
+    },
+    {
+      &quot;path&quot;: &quot;Stable/TeamsTable.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4141,
+      &quot;first&quot;: 134352223506174940,
+      &quot;last&quot;: 134352223506174940
+    },
+    {
+      &quot;path&quot;: &quot;Stable/StableAnnounceStrings.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 2486,
+      &quot;first&quot;: 134352223506175300,
+      &quot;last&quot;: 134352223506175300
+    },
+    {
+      &quot;path&quot;: &quot;Belts/_Jtables/BeltDataTable.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 9768,
+      &quot;first&quot;: 134352223506175680,
+      &quot;last&quot;: 134352223506175680
+    },
+    {
+      &quot;path&quot;: &quot;Cutscene/ListData/CutsceneCastData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 5483,
+      &quot;first&quot;: 134352223513275180,
+      &quot;last&quot;: 134352223513275180
+    },
+    {
+      &quot;path&quot;: &quot;Cutscene/ListData/CutsceneFallbackData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 2749,
+      &quot;first&quot;: 134352223513275520,
+      &quot;last&quot;: 134352223513275520
+    },
+    {
+      &quot;path&quot;: &quot;Cutscene/ListData/StableEntranceListData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 203,
+      &quot;first&quot;: 134352223513284600,
+      &quot;last&quot;: 134352223513284600
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/MatchUpScreenAsset.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4897,
+      &quot;first&quot;: 134352223557641810,
+      &quot;last&quot;: 134352223557641810
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/NameplateData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1907,
+      &quot;first&quot;: 134352223557645760,
+      &quot;last&quot;: 134352223557645760
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/CopyrightData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1366,
+      &quot;first&quot;: 134352223557648480,
+      &quot;last&quot;: 134352223557648480
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/ReplayData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1213,
+      &quot;first&quot;: 134352223557650580,
+      &quot;last&quot;: 134352223557650580
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/EtcDesignData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 895,
+      &quot;first&quot;: 134352223557720750,
+      &quot;last&quot;: 134352223557720750
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00001/design_thum.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4096,
+      &quot;first&quot;: 134352223587069310,
+      &quot;last&quot;: 134352223587069310
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00001/Textures/design_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 8192,
+      &quot;first&quot;: 134352223588219460,
+      &quot;last&quot;: 134352223588221100
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00002/design_thum.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 12288,
+      &quot;first&quot;: 134352223588686850,
+      &quot;last&quot;: 134352223588688910
+    },
+    {
+      &quot;path&quot;: &quot;_textures.tdb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 2144,
+      &quot;first&quot;: 134352223605061470,
+      &quot;last&quot;: 134352223605061900
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Body_Paint_Arm/00012/02.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4096,
+      &quot;first&quot;: 134352223606036740,
+      &quot;last&quot;: 134352223606036740
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/MatchupMenuAssetData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 2328,
+      &quot;first&quot;: 134352223645497150,
+      &quot;last&quot;: 134352223645497150
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/EtcDesignMenuAssetData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 2194,
+      &quot;first&quot;: 134352223645501460,
+      &quot;last&quot;: 134352223645501460
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/ReplayMenuAssetData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 2069,
+      &quot;first&quot;: 134352223645506980,
+      &quot;last&quot;: 134352223645506980
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/TransitionMenuAssetData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1722,
+      &quot;first&quot;: 134352223645512350,
+      &quot;last&quot;: 134352223645512350
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/MusicMenuAssetData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 724,
+      &quot;first&quot;: 134352223645520300,
+      &quot;last&quot;: 134352223645520300
+    },
+    {
+      &quot;path&quot;: &quot;CreateShow/TemplateMenuAssetData.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 162,
+      &quot;first&quot;: 134352223645525900,
+      &quot;last&quot;: 134352223645525900
+    },
+    {
+      &quot;path&quot;: &quot;MatchCreator/MatchCreatorTables.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 11748,
+      &quot;first&quot;: 134352223667675070,
+      &quot;last&quot;: 134352223667675070
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Body_Paint_Arm/00007/01.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 5164,
+      &quot;first&quot;: 134352223725737820,
+      &quot;last&quot;: 134352223725781070
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Tights/01196/Textures/tights_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 3812722,
+      &quot;first&quot;: 134352223727632750,
+      &quot;last&quot;: 134352223727632750
+    },
+    {
+      &quot;path&quot;: &quot;Logo/CAS/Logo_FacePhoto/00000/Textures/design_blur.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 1079,
+      &quot;first&quot;: 134352223729318400,
+      &quot;last&quot;: 134352223729318400
+    },
+    {
+      &quot;path&quot;: &quot;Logo/CAS/Logo_FacePhoto/00000/Textures/design_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 301275,
+      &quot;first&quot;: 134352223729326750,
+      &quot;last&quot;: 134352223729326750
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_L.mtls&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 16,
+      &quot;first&quot;: 134352223729332060,
+      &quot;last&quot;: 134352223729332060
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_L.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4172,
+      &quot;first&quot;: 134352223729336880,
+      &quot;last&quot;: 134352223729336880
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_R.mtls&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 16,
+      &quot;first&quot;: 134352223729346080,
+      &quot;last&quot;: 134352223729346080
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Body_Paint_Arm/00012/Body_Paint_Arm_00012_R.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4172,
+      &quot;first&quot;: 134352223729350820,
+      &quot;last&quot;: 134352223729350820
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Tights/01196/Tights_01196.mtls&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 72,
+      &quot;first&quot;: 134352223729361870,
+      &quot;last&quot;: 134352223729361870
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Tights/01196/Tights_01196.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 892842,
+      &quot;first&quot;: 134352223729372020,
+      &quot;last&quot;: 134352223729372020
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Tights/01196/Materials/tights.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 200,
+      &quot;first&quot;: 134352223729409580,
+      &quot;last&quot;: 134352223729409580
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00004/Textures/design_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 576227,
+      &quot;first&quot;: 134352223729539420,
+      &quot;last&quot;: 134352223729539420
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00004/Textures/design_mask.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 84,
+      &quot;first&quot;: 134352223729544100,
+      &quot;last&quot;: 134352223729544100
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00004/Textures/design_blur.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 12460,
+      &quot;first&quot;: 134352223729549860,
+      &quot;last&quot;: 134352223729549860
+    },
+    {
+      &quot;path&quot;: &quot;Particle/gamejptclconfig.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/3rdtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 2893,
+      &quot;first&quot;: 134352223741432660,
+      &quot;last&quot;: 134352223741432660
+    },
+    {
+      &quot;path&quot;: &quot;Logo/COMMON/LGC1_Logo_Design/00003/design_thum.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/mods/2ndtest-cv.cak&quot;,
+      &quot;kind&quot;: &quot;mod&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 2097152,
+      &quot;first&quot;: 134352224016078580,
+      &quot;last&quot;: 134352224016078580
+    }
+  ],
+  &quot;critical&quot;: [],
+  &quot;focusAttention&quot;: [
+    {
+      &quot;path&quot;: &quot;Arena/Parts/Shoes_01615/Textures/shoes_01615_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 4096,
+      &quot;first&quot;: 134352223442928350,
+      &quot;last&quot;: 134352223442928350
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Bottoms/01361/Textures/bottoms_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 6299,
+      &quot;first&quot;: 134352223459157660,
+      &quot;last&quot;: 134352223459157660
+    },
+    {
+      &quot;path&quot;: &quot;Arena/Parts/Shelf_03/Textures/Shelf_03_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 80,
+      &quot;first&quot;: 134352223459159870,
+      &quot;last&quot;: 134352223459159870
+    },
+    {
+      &quot;path&quot;: &quot;Arena/Parts/Anarchy_Sign/Textures/Anarchy_Sign_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 11828,
+      &quot;first&quot;: 134352223459179840,
+      &quot;last&quot;: 134352223459179840
+    },
+    {
+      &quot;path&quot;: &quot;Arena/Parts/Building_AshukaArcade/Textures/AsukaMasks_01_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 5,
+      &quot;bytes&quot;: 2719,
+      &quot;first&quot;: 134352223459199890,
+      &quot;last&quot;: 134352223459204750
+    },
+    {
+      &quot;path&quot;: &quot;Arena/Parts/SheetMetal_01/Textures/SheetMetal_01_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 21,
+      &quot;bytes&quot;: 6401,
+      &quot;first&quot;: 134352223459201570,
+      &quot;last&quot;: 134352223459221170
+    },
+    {
+      &quot;path&quot;: &quot;CAS/H_Other/01124/Textures/h_other_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 376,
+      &quot;first&quot;: 134352223459230060,
+      &quot;last&quot;: 134352223459230060
+    },
+    {
+      &quot;path&quot;: &quot;Arena/Parts/Lights/Textures/Light_Industrial_A_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 257259,
+      &quot;first&quot;: 134352223480878850,
+      &quot;last&quot;: 134352223480878850
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Bottoms/02514/Textures/bottoms_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 177,
+      &quot;first&quot;: 134352223480883600,
+      &quot;last&quot;: 134352223480883600
+    },
+    {
+      &quot;path&quot;: &quot;Arena/Parts/Building_Shop_06/Building_Shop_06.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 156025,
+      &quot;first&quot;: 134352223485615040,
+      &quot;last&quot;: 134352223485615040
+    },
+    {
+      &quot;path&quot;: &quot;CAS/jtables/BRASSIERE.jsfb&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile02.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 27224,
+      &quot;first&quot;: 134352223488004850,
+      &quot;last&quot;: 134352223488004850
+    },
+    {
+      &quot;path&quot;: &quot;Arena/Commonness/Corner_Post/Japan_Hall/Corner_Post.mtls&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 542,
+      &quot;first&quot;: 134352223720030060,
+      &quot;last&quot;: 134352223720030060
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/BaseModel/baseModel.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 7,
+      &quot;bytes&quot;: 3625188,
+      &quot;first&quot;: 134352223725472530,
+      &quot;last&quot;: 134352223725473490
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/928_Attire.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 14,
+      &quot;bytes&quot;: 5273823,
+      &quot;first&quot;: 134352223725491410,
+      &quot;last&quot;: 134352223725522160
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/BaseModel/baseModel.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 7,
+      &quot;bytes&quot;: 3631877,
+      &quot;first&quot;: 134352223725570030,
+      &quot;last&quot;: 134352223725608370
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/369_Attire.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 12,
+      &quot;bytes&quot;: 4698224,
+      &quot;first&quot;: 134352223725622320,
+      &quot;last&quot;: 134352223725642340
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/928_Attire.ycl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 274598,
+      &quot;first&quot;: 134352223725643410,
+      &quot;last&quot;: 134352223725643680
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/369_Attire.ycl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 379483,
+      &quot;first&quot;: 134352223725644530,
+      &quot;last&quot;: 134352223725645780
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/l_kneepad.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725693470,
+      &quot;last&quot;: 134352223725693470
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/l_a_acce.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725693980,
+      &quot;last&quot;: 134352223725693980
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/r_a_acce.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725694600,
+      &quot;last&quot;: 134352223725694600
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/l_wrist.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725695060,
+      &quot;last&quot;: 134352223725695060
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/r_kneepad.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725696560,
+      &quot;last&quot;: 134352223725696560
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/shoes.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725697460,
+      &quot;last&quot;: 134352223725697460
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/u_acce.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725697900,
+      &quot;last&quot;: 134352223725697900
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/u_acce_ALPHA.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 176,
+      &quot;first&quot;: 134352223725698820,
+      &quot;last&quot;: 134352223725698820
+    },
+    {
+      &quot;path&quot;: &quot;Characters/928_Santos_Escobar/928_Default_Attire/Materials/underwear.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725699740,
+      &quot;last&quot;: 134352223725699740
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/glasses.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725724420,
+      &quot;last&quot;: 134352223725724420
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/jacket.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725725300,
+      &quot;last&quot;: 134352223725725300
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/jacket_ALPHA.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 176,
+      &quot;first&quot;: 134352223725725760,
+      &quot;last&quot;: 134352223725725760
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/l_kneepad.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725726220,
+      &quot;last&quot;: 134352223725726220
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/l_wrist.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725726800,
+      &quot;last&quot;: 134352223725726800
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/r_kneepad.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725727200,
+      &quot;last&quot;: 134352223725727200
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/r_wrist.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725727630,
+      &quot;last&quot;: 134352223725727630
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/shoes.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725728110,
+      &quot;last&quot;: 134352223725728110
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/369_Default_Attire/Materials/tights.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223725728540,
+      &quot;last&quot;: 134352223725728540
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/BaseModel/Textures/head_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 1402044,
+      &quot;first&quot;: 134352223726351260,
+      &quot;last&quot;: 134352223726395500
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/BaseModel/Textures/body_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 6,
+      &quot;bytes&quot;: 1657355,
+      &quot;first&quot;: 134352223726438400,
+      &quot;last&quot;: 134352223726445780
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/BaseModel/Textures/head_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 580999,
+      &quot;first&quot;: 134352223726517520,
+      &quot;last&quot;: 134352223726527660
+    },
+    {
+      &quot;path&quot;: &quot;CAS/_Global/globaldata/male.casglobal&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 24,
+      &quot;bytes&quot;: 5225528,
+      &quot;first&quot;: 134352223727076600,
+      &quot;last&quot;: 134352223727129490
+    },
+    {
+      &quot;path&quot;: &quot;Characters/369_Seth_Rollins_2019/BaseModel/Textures/body_nrm.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 11,
+      &quot;bytes&quot;: 6370577,
+      &quot;first&quot;: 134352223727348340,
+      &quot;last&quot;: 134352223727397340
+    },
+    {
+      &quot;path&quot;: &quot;Characters/368_Roman_Reigns/BaseModel/Textures/head_color.dds&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile80.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 621261,
+      &quot;first&quot;: 134352223728008060,
+      &quot;last&quot;: 134352223728017400
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Head/00000/Head_00000.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 5,
+      &quot;bytes&quot;: 2524220,
+      &quot;first&quot;: 134352223729195700,
+      &quot;last&quot;: 134352223729197010
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Eyelash/00001/eyelash_00001.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 142687,
+      &quot;first&quot;: 134352223729235700,
+      &quot;last&quot;: 134352223729235700
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Combinations/01059/Combinations_01059.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 3,
+      &quot;bytes&quot;: 1185707,
+      &quot;first&quot;: 134352223729237400,
+      &quot;last&quot;: 134352223729237760
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/arm_l.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729338100,
+      &quot;last&quot;: 134352223729338100
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/arm_r.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729338510,
+      &quot;last&quot;: 134352223729338510
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/feet.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729338830,
+      &quot;last&quot;: 134352223729338830
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/hand_l.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729339120,
+      &quot;last&quot;: 134352223729339120
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/hand_r.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729339460,
+      &quot;last&quot;: 134352223729339460
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/leg_l.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729339740,
+      &quot;last&quot;: 134352223729339740
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/leg_r.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729340100,
+      &quot;last&quot;: 134352223729340100
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/torso.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729340380,
+      &quot;last&quot;: 134352223729340380
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Face_Type/00000/Materials/waist.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729340850,
+      &quot;last&quot;: 134352223729340850
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Shoes/01602/Shoes_01602.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 2,
+      &quot;bytes&quot;: 477396,
+      &quot;first&quot;: 134352223729354620,
+      &quot;last&quot;: 134352223729355230
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Elbowpad/02813/elbowpad_02813_L.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 108507,
+      &quot;first&quot;: 134352223729356000,
+      &quot;last&quot;: 134352223729356000
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Socks/01056/Socks_01056.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 359576,
+      &quot;first&quot;: 134352223729374530,
+      &quot;last&quot;: 134352223729374530
+    },
+    {
+      &quot;path&quot;: &quot;CAS/A_Acce/01093/a_acce_01093_R.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 163923,
+      &quot;first&quot;: 134352223729376400,
+      &quot;last&quot;: 134352223729376400
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Kneepad/01165/Kneepad_01165_L.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 164898,
+      &quot;first&quot;: 134352223729379470,
+      &quot;last&quot;: 134352223729379470
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Socks/01056/Materials/socks.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 200,
+      &quot;first&quot;: 134352223729381200,
+      &quot;last&quot;: 134352223729381200
+    },
+    {
+      &quot;path&quot;: &quot;CAS/A_Acce/01093/Materials/r_a_acce.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 200,
+      &quot;first&quot;: 134352223729392910,
+      &quot;last&quot;: 134352223729392910
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Shoes/01602/Materials/shoes.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 200,
+      &quot;first&quot;: 134352223729410030,
+      &quot;last&quot;: 134352223729410030
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Kneepad/01165/Materials/l_kneepad.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 200,
+      &quot;first&quot;: 134352223729410530,
+      &quot;last&quot;: 134352223729410530
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Elbowpad/02813/Materials/l_elbowpads.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 200,
+      &quot;first&quot;: 134352223729411180,
+      &quot;last&quot;: 134352223729411180
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Glasses/00017/glasses_00017.mcd&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 135719,
+      &quot;first&quot;: 134352223729426460,
+      &quot;last&quot;: 134352223729426460
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Glasses/00017/Materials/glasses.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 208,
+      &quot;first&quot;: 134352223729434750,
+      &quot;last&quot;: 134352223729434750
+    },
+    {
+      &quot;path&quot;: &quot;CAS/Glasses/00017/Materials/glasses_alpha.jmtl&quot;,
+      &quot;cak&quot;: &quot;C:/SteamLibrary/steamapps/common/WWE 2K26/bakedfile100.cak&quot;,
+      &quot;kind&quot;: &quot;stock&quot;,
+      &quot;reads&quot;: 1,
+      &quot;bytes&quot;: 192,
+      &quot;first&quot;: 134352223729437090,
+      &quot;last&quot;: 134352223729437090
+    }
+  ]
+}</pre></div></details>
+</body></html>

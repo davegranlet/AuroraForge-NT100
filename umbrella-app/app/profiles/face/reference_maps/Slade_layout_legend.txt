@@ -1,0 +1,51 @@
+**Readability note:** I ran this document through an “explain like I am five” chatbot to improve readability, explainability, and usability. The chatbot helped present the material; it did not originate AuroraForge NT100, DataCtrlLink, their functionality, or the underlying development work.
+
+Slade Face Layout Reference Legend
+
+Purpose:
+This file explains the matching layout PNG and 128x128 technical grid PNG. Upload the layout PNG with the Face Texture Prompt, selected profile JSON, and stock character head_color texture.
+
+Rules:
+- The layout reference is a placement guide only.
+- Do not copy guide colors, labels, or grid lines into the final face texture.
+- The stock character head_color texture remains the visual authority for the exact lower neck / UV padding footprint.
+- The final generated face texture must be 2048 x 2048 unless a different project size is explicitly selected.
+- Lower neck / upper chest UV padding is opaque texture space, not transparency.
+
+128x128 grid:
+Each grid cell equals exactly 16 px on a 2048 x 2048 texture.
+Heavy grid lines appear every 16 cells, matching 256 px blocks.
+
+Zones:
+- full_face_safe_area: columns 30-99, rows 21-103 — Main visible Slade face area in upright working orientation.
+- forehead: columns 39-90, rows 26-44 — Forehead and upper brow mass.
+- left_eye_area: columns 39-61, rows 39-57 — Left eye socket / eyelid zone.
+- right_eye_area: columns 68-90, rows 39-57 — Right eye socket / eyelid zone.
+- nose_bridge: columns 56-73, rows 47-64 — Nose bridge and upper nose.
+- nose_tip: columns 56-73, rows 59-73 — Nose tip and nostril area.
+- left_cheek: columns 30-61, rows 52-82 — Left cheek and under-eye support zone.
+- right_cheek: columns 68-99, rows 52-82 — Right cheek and under-eye support zone.
+- mouth_lips: columns 47-82, rows 68-82 — Mouth / lips zone.
+- chin: columns 47-82, rows 81-99 — Chin and beard shadow zone.
+- left_jaw: columns 30-57, rows 72-99 — Left jaw / beard support zone.
+- right_jaw: columns 72-99, rows 72-99 — Right jaw / beard support zone.
+- left_temple_side: columns 17-39, rows 30-90 — Left temple and side-wrap support.
+- right_temple_side: columns 90-112, rows 30-90 — Right temple and side-wrap support.
+- left_ear_risk: columns 8-31, rows 43-73 — Ear-risk zone. Keep detail simple.
+- right_ear_risk: columns 98-121, rows 43-73 — Ear-risk zone. Keep detail simple.
+- hairline_risk: columns 30-103, rows 1-35 — Hair / hairline zone in upright orientation.
+- neck_transition: columns 26-103, rows 98-128 — Lower neck / upper chest UV padding transition footprint. Opaque stock texture space; keep it soft, skin-tone matched, irregular like the stock map, and not transparent.
+- centerline_balance: columns 59-70, rows 1-128 — Keep facial features centered on the Slade map.
+- lower_edge_padding: columns 1-128, rows 111-128 — Bottom edge stock UV padding / bleed area. Preserve soft skin-tone padding and irregular stock edge behavior; no important facial features here.
+- outer_corner_padding: columns 1-128, rows 1-128 — Outer-corner face-map padding / unused-edge behavior. Keep color compatible with adjacent stock texture areas; do not place key features in the corners.
+- lower_third_stock_footprint: columns 1-128, rows 77-128 — Mandatory stock lower-third footprint reference zone. Match uploaded stock texture behavior: lower neck/chest padding, corner/edge padding, opaque UV bleed shapes, no portrait-background simplification.
+- stock_reference_match_priority: columns 1-128, rows 1-128 — Use the uploaded stock texture image as the whole-canvas layout authority. JSON coordinates support the reference image; they do not replace it.
+
+Upload order:
+1. Stock character head_color texture image
+2. Face Texture Prompt
+3. Selected profile JSON
+4. Layout reference PNG
+5. Optional technical 128x128 grid reference PNG
+
+Do not add these reference-map files to the game. They are only for generation handoff.

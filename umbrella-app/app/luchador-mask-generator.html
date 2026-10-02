@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>WWE 2K26 — Luchador Mask Art Pipeline</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div>
+      <div>
+        <div class="app-brand-title">AuroraForge NT100</div>
+        <div class="app-brand-sub">by VikingStudios</div>
+      </div>
+    </div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Home</strong><small>Start here</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and continue</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Tools</strong><small>Preview and inspect</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Tutorials</strong><small>Learn step by step</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Folders and programs</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Version and credits</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div>
+        <div class="eyebrow">AuroraForge NT100 · Prompt Builders</div>
+        <h1>Luchador Mask Studio · Stage 1 Art Builder</h1>
+        <p class="sub">Stage 1: generate beautiful high-quality wrestler mask art before mapping.</p>
+      </div>
+    </section>
+<div class="wrap">
+  <section id="mask-system" class="ai-hero hero-glow">
+    <div class="part-label">Studio Step 2</div>
+    <h2>Generate the Approved Mask Turnaround Sheet First</h2>
+    <p>This page is for the beauty/art approval pass, but the output must be a useful multi-view reference sheet. Create the same finished real-life luchador mask design in front, side, back, and top/crown views. Do not force final WWE 2K26 coordinates in this step. Mapping happens later on the Mapping Handoff page after the user approves the turnaround sheet.</p>
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="copyById('luchadorMasterPrompt', 'maskMasterStatus')">Copy Stage 1 Master Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="copyById('maskRequestOutput', 'maskRequestStatus')">Copy Built Request</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadText('wwe-2k26-lmask-stage1-master-prompt.txt', document.getElementById('luchadorMasterPrompt').value)">Download Prompt .txt</button>
+    </div>
+    <div id="maskMasterStatus" class="copy-status"></div>
+  </section>
+
+  <div class="pipeline-flow">
+    <div class="flow-step active-flow"><span>1</span><strong>Generate Art</strong><small>Use this page</small></div>
+    <div class="flow-step"><span>2</span><strong>Review</strong><small>Approve image</small></div>
+    <div class="flow-step"><span>3</span><strong>Final Chat</strong><small>Upload image</small></div>
+    <div class="flow-step"><span>4</span><strong>Map</strong><small>Use handoff prompt</small></div>
+  </div>
+
+  <section class="ai-panel">
+    <div class="section-label" style="margin-top:0;">Stage 1 Master Prompt</div>
+    <p>Paste this once into your chosen AI or image-generation tool, then use the builder below to create the mask request.</p>
+    <textarea id="luchadorMasterPrompt" class="ai-textarea" readonly>You are an elite WWE 2K26 PC texture designer creating high-quality luchador facemask design references.
+
+This step is STAGE 1 of the Luchador Mask workflow.
+
+Your job is to create an APPROVED LUCHADOR MASK DESIGN TURNAROUND SHEET for a luchador wrestling mask.
+
+Do NOT create a single hero render.
+Do NOT create a glamour shot.
+Do NOT create a centered product photo.
+Do NOT create a poster image.
+Do NOT create a wrestler body, mannequin, dramatic background, or presentation scene.
+Do NOT create a UV template, coordinate grid, blue grid, debug map, or placement test.
+Do NOT create primitive blotches or placeholder mask art.
+
+Create a clean multi-view design reference sheet showing the SAME finished premium luchador mask design from the important angles needed for later mapping.
+
+Required Stage 1 presentation:
+- mask only
+- neutral plain background
+- clean design sheet layout
+- no body or head wearing the mask
+- no dramatic showroom lighting
+- no poster styling
+- no fake UV template
+- no debug labels
+- no coordinate boxes
+
+Required views:
+- front view
+- left side view
+- right side view
+- back view
+- top/crown view
+
+Optional if space allows:
+- front 3/4 view
+
+The purpose is to approve the final mask design before mapping.
+This image is a design reference sheet for the next chat, not the final WWE 2K26 texture sheet.
+
+Create a high-quality finished mask design with:
+- real fabric/leather material feel
+- clean sewn panels
+- raised eye trim
+- clear cheek and jaw panels
+- a distinct chin plate / lower mouth identity section
+- a forehead centerpiece / front identity
+- side panels that wrap naturally outward
+- stitching, lacing, rivets, and trim where appropriate
+- premium real-life wrestling mask craftsmanship
+
+Important production art rules:
+- The design must read as a real sewn luchador mask, not a skull face painted directly onto a hood.
+- If using a skull motif, make it a controlled centerpiece or integrated mask feature, not one giant stretched skull covering the whole face.
+- Use stronger mask construction language: raised eye trim, stitched panel borders, cheek/jaw panels, chin plate, side seams, and rear lacing.
+- Reduce pure white highlights.
+- Use darker metallic silver, gunmetal, charcoal, and muted grey instead of large bright white areas.
+- Keep bright highlights small, sharp, and controlled.
+- Keep the top/crown and rear seam areas mostly dark and simple.
+- Do not carry bright skull, wing, or metallic motifs heavily across the top/back seam.
+- Use only simple continuation panels, stitching, and lacing on the rear.
+- Keep blacklight / glow response under control by avoiding overly bright white regions.
+
+After the user approves this turnaround sheet, the approved image will be uploaded into the compatible AI tool you choose and remapped using the selected modular WWE 2K26 luchador mask mapping profile definition.</textarea>
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="copyById('luchadorMasterPrompt', 'maskMasterStatus2')">Copy Master Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadText('wwe-2k26-lmask-stage1-master-prompt.txt', document.getElementById('luchadorMasterPrompt').value)">Download .txt</button>
+    </div>
+    <div id="maskMasterStatus2" class="copy-status"></div>
+  </section>
+
+  <section class="ai-panel">
+    <div class="section-label" style="margin-top:0;">Stage 1 Mask Art Builder</div>
+    <p>This builder creates the art-generation prompt. It intentionally does not force the final mapping coordinates yet.</p>
+    <div class="change-notice"><strong>Design ideas:</strong> Choose one of the 25 built-in ideas, change its details, or add your own idea in the Idea Library.</div>
+
+    <div class="app-two-col" style="margin-bottom:18px;">
+      <div>
+        <div class="ai-field">
+          <label for="maskIdeaPreset">Design idea</label>
+          <select id="maskIdeaPreset"><option value="">Loading default ideas…</option></select>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="applySelectedMaskIdea()">Apply Selected Idea</button>
+          <button class="ai-btn secondary" type="button" onclick="chooseRandomIdea('maskIdeaPreset', 'maskIdeaPreview')">Random Idea</button>
+        </div>
+      </div>
+      <div>
+        <label style="display:block;font-weight:700;margin-bottom:8px;">Idea details</label>
+        <pre id="maskIdeaPreview" class="mini-output">Loading default design idea…</pre>
+      </div>
+    </div>
+
+    <div class="ai-grid">
+      <div class="ai-field">
+        <label for="maskGenre">Genre</label>
+        <input id="maskGenre" value="Gothic Biker Luchador">
+      </div>
+      <div class="ai-field">
+        <label for="maskType">Mask Type</label>
+        <input id="maskType" value="Full face lucha libre wrestling mask">
+      </div>
+      <div class="ai-field">
+        <label for="maskColors">Colors</label>
+        <input id="maskColors" value="Black, charcoal grey, metallic silver, deep blood red">
+      </div>
+      <div class="ai-field">
+        <label for="maskEyes">Eye / Expression Style</label>
+        <input id="maskEyes" value="Sharp aggressive eye openings with raised metallic trim">
+      </div>
+      <div class="ai-field">
+        <label for="maskTheme">Theme</label>
+        <textarea id="maskTheme">Horned skull centerpiece, raven wing panels, chains, gothic trim, dark fantasy biker influence</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="maskDetails">Details</label>
+        <textarea id="maskDetails">Strong symmetrical front layout, bold controlled forehead centerpiece, cheek panels flowing into the jaw, wrapped side panels, visible back lacing, top/crown view, raised stitching, clean seams, deep red wingtip accents, darker gunmetal silver borders, believable fabric/leather texture, premium real-life wrestling mask craftsmanship</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="maskRemove">Remove / Avoid</label>
+        <textarea id="maskRemove">tattoos, body mockup, wrestler face, face paint, motorcycle helmet, poster background, leather background, text, random decoration, primitive placeholder shapes, flat test layout, coordinate grid</textarea>
+      </div>
+    </div>
+
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="buildMaskRequest()">Build Stage 1 Request</button>
+      <button class="ai-btn secondary" type="button" onclick="copyById('maskRequestOutput', 'maskRequestStatus')">Copy Request</button>
+    </div>
+    <div id="maskRequestStatus" class="copy-status"></div>
+
+    <div class="ai-field" style="margin-top:14px;">
+      <label for="maskRequestOutput">Generated Stage 1 Request</label>
+      <textarea id="maskRequestOutput" class="ai-textarea ai-output" readonly></textarea>
+    </div>
+  </section>
+
+  <section class="ai-panel good-panel">
+    <div class="section-label" style="margin-top:0;">After the Art Looks Good</div>
+    <h2>Return to Luchador Mask Studio</h2>
+    <p>After the Stage 1 artwork is approved, return to Luchador Mask Studio. The Studio will guide you through project notes, mapping profile selection, Stage 2 prompt generation, and the final handoff pack.</p>
+    <div class="ai-actions">
+      <a class="ai-btn" href="lmask-project-studio.html">Back to Luchador Mask Studio</a>
+    </div>
+  </section>
+</div>
+
+
+<footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+
