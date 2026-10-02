@@ -12,7 +12,7 @@ Rollback builds (kept on disk, NOT shipped in the package):
   ..\..\..\rollback\converters\Aurora-Forge-Beta1.0.0c-Preview.exe
 
 Version scheme: major releases are plain (1.8.0, 2.0, ...); every fix/update gets
-the next letter (2.0.b, 2.0.b, ...). See VERSION-HISTORY.md at the repo root.
+the next letter (2.0.b, 2.0.c, ...). See VERSION-HISTORY.md at the repo root.
 
 Current verified scope:
 - Reads decoded WWE 2K19 motion.

@@ -29,6 +29,21 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.c — 2026-10-02
+
+Fourth published build on the 2.0 line.
+
+- **About and FAQ rewritten.** Both pages now answer what the project is, why it exists (the anti-consumer gate story, no competitor names), and where it is going, plus "The man behind the forge" builder story. The outdated converter button was removed from About; the FAQ covers the in-app Entry Studio, the own-game-files converter flow, and multi-version CAK support.
+- **Standalone converter downloads retired (owner rule).** From this release onward only the main app ships (Windows x64 zip + Linux x64 tar.gz); the converter remains bundled inside the app, launched from Tools after access verification, so users stay on the supported pipeline. No converter-only artifacts are staged or published.
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.c:
+
+```
+AuroraForge-NT100-2.0.c-Windows-x64.zip
+AuroraForge-NT100-2.0.c-Linux-x64.tar.gz
+```
+
 ## 2.0.b — 2026-10-02
 
 Third published build on the 2.0 line. Ships all queued 2.0.b fixes together.
@@ -59,16 +74,15 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.c** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+- **2.0.d** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
   - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
   - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.
   - Queued: **Entry Studio live click-through** - owner-run pass over the new in-app page (scan → convert → edit → bake → stage).
-  - Queued: **retire the standalone converter downloads (owner rule)** - from 2.0.c onward, do not stage or publish converter-only artifacts (`Aurora-Forge-*-Preview.exe` / `.tar.gz`); the converter ships inside the app only, launched from Tools after access verification, so users stay on the supported pipeline. The 2.0.b release keeps its existing assets.
 
 ### Rule reminder
 
 An internal-only fix does not trigger a rebuild, rehash, or reupload. When a build
 is next published for any reason, all queued fixes ship together under the next
 letter and get an entry in this file. Standalone converter downloads are retired
-from the next release onward; the converter is bundled in the app only.
+(2.0.c onward); the converter is bundled in the app only.
