@@ -185,6 +185,7 @@ const studioFiles = new Set(manifest.creativeStudios.map((item) => item.file).co
   'creative-studios.html', 'lmask-idea-library.html', 'lmask-mapping-handoff.html', 'luchador-mask-generator.html'
 ]));
 const toolFiles = new Set(manifest.tools.map((item) => item.file).concat(['tools.html']));
+const modSuiteFiles = new Set(['mod-suite.html', 'mod-workshop.html', 'mod-file-inspector.html']);
 
 normalHtmlFiles.forEach((file) => {
   const html = fs.readFileSync(path.join(appRoot, file), 'utf8');
@@ -198,7 +199,8 @@ normalHtmlFiles.forEach((file) => {
   ok(!/desktop-dashboard\.html|tool-center\.html|knowledgebase\.html/i.test(nav), file + ' navigation contains no replaced destinations');
 
   if (studioFiles.has(file)) ok(nav.includes('class="app-nav-link active" href="creative-studios.html"'), file + ' highlights Creative Studios');
-  if (toolFiles.has(file)) ok(nav.includes('class="app-nav-link active" href="tools.html"'), file + ' highlights Tools');
+  if (modSuiteFiles.has(file)) ok(nav.includes('class="app-nav-link active" href="mod-suite.html"'), file + ' highlights Package & Test');
+  else if (toolFiles.has(file)) ok(nav.includes('class="app-nav-link active" href="tools.html"'), file + ' highlights Tools');
 });
 
 const projectsHtml = read('app', 'project-manager.html');

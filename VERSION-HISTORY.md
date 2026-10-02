@@ -42,7 +42,7 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 ## Next
 
 - **2.0.b** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
-  - Queued: **navigation consistency fix** - every app page now carries the exact same sidebar (Home / Projects / Prompt Builders / Tools / Tutorials / Setup / About, matching `app-manifest.json` primaryNavigation); the home page's drifted labels (Forge Home / Inspect & Convert / Package & Test / Rebuilding) and its extra menu item were normalized across 11 pages. `verify-package` navigation checks pass.
+  - Queued: **navigation consistency fix** - the owner-approved workspace sidebar (Forge Home / Projects / Prompt Builders / Inspect & Convert / Package & Test / Rebuilding / Setup / About) is now the single canonical menu on all 37 app pages; the package/test pages (mod-suite, mod-workshop, mod-file-inspector) highlight their own "Package & Test" item; `verify-package` navigation checks updated and passing.
 
 ### Rule reminder
 
