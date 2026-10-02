@@ -61,7 +61,7 @@ const required = [
   'app/assets/js/aurora-projects.js',
   'app/assets/js/access-gate.js',
   'app/tools/access-gate/patreon-access.js',
-  'app/tools/animation-converter/Aurora-Forge-2.0-Preview.exe',
+  'app/tools/animation-converter/Aurora-Forge-2.0.a-Preview.exe',
   'app/tools/animation-converter/SHA256SUMS.txt',
   'app/tools/wwe2k25-loader/dinput8.dll',
   'app/tools/wwe2k25-loader/plugins/AuroraForge.CAKModLoader.ftrib',
@@ -166,8 +166,8 @@ projectCatalog.projects.forEach((project) => {
 });
 const animationProject = projectCatalog.projects.find((project) => project.id === 'animation-converter');
 ok(animationProject?.status === 'experimental' && animationProject?.featured === true, '2K19 to 2K25 converter is featured with an honest experimental status');
-const beta3ConverterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'animation-converter', 'Aurora-Forge-2.0-Preview.exe'))).digest('hex').toUpperCase();
-ok(beta3ConverterHash === 'E2CC5A3F0B5FBCCC614C487E179C3D7D798968578FA5886B8941E7F9A37B1FC1', 'bundled 2.0 converter matches its recorded SHA-256');
+const beta3ConverterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'animation-converter', 'Aurora-Forge-2.0.a-Preview.exe'))).digest('hex').toUpperCase();
+ok(beta3ConverterHash === '2E1AE3101FABEE2AF37E3D86A436F9AE11855B49CF229EB59C599A59FBAC3314', 'bundled 2.0.a converter matches its recorded SHA-256');
 const loaderCoreHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'wwe2k25-loader', 'dinput8.dll'))).digest('hex').toUpperCase();
 const loaderAddonHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'wwe2k25-loader', 'plugins', 'AuroraForge.CAKModLoader.ftrib'))).digest('hex').toUpperCase();
 ok(loaderCoreHash === 'E600D04F2E1A9AF3C23A358462E8B5C25064D6C08411819377E278581EF0ED2F', 'bundled WWE2K25 loader core matches verified SHA-256');
@@ -276,7 +276,7 @@ ok(cakReaderJs.includes("options.scope) ? options.scope : 'resolved'"), 'archive
 ok(cakReaderJs.includes("file.availability = file.extractable ? (file.nameResolved ? 'ready' : 'raw-hash') : 'external-reference'"), 'archive reader distinguishes ready files, raw-hash payloads, and external references');
 ok(cakReaderJs.includes('Unresolved/${path.basename') && cakReaderJs.includes('safeGeneratedName(file)'), 'unnamed payloads receive safe archive-scoped generated paths');
 ok(!mainJs.includes('findExistingExtractRoots'), 'archive opening never auto-scans a large extracted-files tree');
-ok(mainJs.includes('currentCakSession = cakReader.openArchive(selected, readCakDictionary())'), 'archive opening uses the bundled dictionary immediately');
+ok(mainJs.includes('cakReader.openArchive(selected, readCakDictionary())'), 'archive opening uses the bundled dictionary immediately');
 ok(!mainJs.includes('cakDictionaryPath') && !mainJs.includes('writeCakDictionary'), 'runtime catalog cannot be overridden by stale local name data');
 ok(!mainJs.includes('desktop:cak-explorer-build-dictionary'), 'Electron exposes no end-user extraction-tree scanner');
 ok(!preloadJs.includes('buildCakNameDictionary') && !cakJs.includes('cakBuildNames') && !cakHtml.includes('cakBuildNames'), 'archive interface exposes no end-user name-learning workflow');
