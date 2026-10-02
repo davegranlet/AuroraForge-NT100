@@ -64,9 +64,11 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
   - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
   - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.
   - Queued: **Entry Studio live click-through** - owner-run pass over the new in-app page (scan → convert → edit → bake → stage).
+  - Queued: **retire the standalone converter downloads (owner rule)** - from 2.0.c onward, do not stage or publish converter-only artifacts (`Aurora-Forge-*-Preview.exe` / `.tar.gz`); the converter ships inside the app only, launched from Tools after access verification, so users stay on the supported pipeline. The 2.0.b release keeps its existing assets.
 
 ### Rule reminder
 
 An internal-only fix does not trigger a rebuild, rehash, or reupload. When a build
 is next published for any reason, all queued fixes ship together under the next
-letter and get an entry in this file.
+letter and get an entry in this file. Standalone converter downloads are retired
+from the next release onward; the converter is bundled in the app only.
