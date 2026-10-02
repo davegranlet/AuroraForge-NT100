@@ -31,10 +31,10 @@ In-game picker visibility of newly added entries remains under validation; earli
 
 Big files are self-hosted at https://auroraforge.live/downloads:
 
-- Windows - main app: https://auroraforge.live/downloads/AuroraForge-NT100-2.0-Windows-x64.zip
-- Linux - main app (GPU-less OK): https://auroraforge.live/downloads/AuroraForge-NT100-2.0-Linux-x64.tar.gz
-- Windows - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0-Preview.exe
-- Linux - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0-Preview.tar.gz
+- Windows - main app: https://auroraforge.live/downloads/AuroraForge-NT100-2.0.a-Windows-x64.zip
+- Linux - main app (GPU-less OK): https://auroraforge.live/downloads/AuroraForge-NT100-2.0.a-Linux-x64.tar.gz
+- Windows - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0.a-Preview.exe
+- Linux - converter only: https://auroraforge.live/downloads/Aurora-Forge-2.0.a-Preview.tar.gz
 - SHA-256 hashes: https://auroraforge.live/downloads/SHA256SUMS.txt
 
 Mirror: https://github.com/davegranlet/AuroraForge-NT100/releases
