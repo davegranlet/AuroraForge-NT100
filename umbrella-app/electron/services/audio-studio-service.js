@@ -38,6 +38,28 @@ function createAudioStudioService(options) {
     return path.join(toolsDir(), name);
   }
 
+  function bundledMusicListPath() {
+    return path.join(appRoot, 'data', 'audio', 'MusicList.jsfb');
+  }
+
+  function workingMusicListPath() {
+    return path.join(workDir, 'MusicList.working.jsfb');
+  }
+
+  function effectiveMusicList() {
+    const config = readConfig();
+    if (config.musicListSource && fs.existsSync(config.musicListSource)) return config.musicListSource;
+    return bundledMusicListPath();
+  }
+
+  function ensureWorkingCopy() {
+    const base = effectiveMusicList();
+    if (!base || !fs.existsSync(base)) throw new Error('No MusicList.jsfb base is available.');
+    fs.mkdirSync(workDir, { recursive: true });
+    fs.copyFileSync(base, workingMusicListPath());
+    return { base, working: workingMusicListPath(), bundled: base === bundledMusicListPath() };
+  }
+
   function readConfig() {
     let stored = {};
     try { stored = JSON.parse(fs.readFileSync(configPath, 'utf8')) || {}; } catch (_error) { stored = {}; }
@@ -63,15 +85,20 @@ function createAudioStudioService(options) {
 
   function getDefaults() {
     const config = readConfig();
+    const effectiveList = effectiveMusicList();
     return {
       ...config,
+      musicListSource: effectiveList,
+      bundledMusicList: bundledMusicListPath(),
+      musicListSourceIsBundled: effectiveList === bundledMusicListPath(),
       work: workDir,
       tools: toolsDir(),
       toolsReady: fs.existsSync(toolPath('build-music-pck.js')) && fs.existsSync(toolPath('build-wem.js')) && fs.existsSync(toolPath('edit-2k25-music-list.js')),
       exists: {
         gameFolder: fs.existsSync(config.gameFolder || ''),
         modsFolder: fs.existsSync(config.modsFolder || ''),
-        musicListSource: fs.existsSync(config.musicListSource || ''),
+        musicListSource: fs.existsSync(effectiveList),
+        bundledMusicList: fs.existsSync(bundledMusicListPath()),
         ffmpegPath: fs.existsSync(config.ffmpegPath || '')
       }
     };
@@ -87,17 +114,18 @@ function createAudioStudioService(options) {
   }
 
   function listMusic() {
-    const config = readConfig();
-    if (!config.musicListSource || !fs.existsSync(config.musicListSource)) {
-      return { ok: false, error: 'Choose a MusicList.jsfb source file first.', rows: [] };
+    const source = effectiveMusicList();
+    if (!source || !fs.existsSync(source)) {
+      return { ok: false, error: 'No MusicList.jsfb source is available.', rows: [] };
     }
-    const run = runNode(toolPath('edit-2k25-music-list.js'), ['--in', config.musicListSource, '--list']);
+    const run = runNode(toolPath('edit-2k25-music-list.js'), ['--in', source, '--list']);
     if (run.status !== 0) throw new Error(`MusicList read failed: ${(run.stderr || run.stdout || '').trim()}`);
     const parsed = JSON.parse(run.stdout);
     const rows = parsed.music || [];
     return {
       ok: true,
-      source: config.musicListSource,
+      source,
+      bundled: source === bundledMusicListPath(),
       count: rows.length,
       stockCount: rows.filter((row) => row.musicId < MIN_CUSTOM_MUSIC_ID).length,
       customCount: rows.filter((row) => row.musicId >= MIN_CUSTOM_MUSIC_ID).length,
@@ -141,10 +169,9 @@ function createAudioStudioService(options) {
     const modsFolder = config.modsFolder || path.join(config.gameFolder, 'mods');
     const tracks = (payload && payload.tracks) || [];
     if (!tracks.length) throw new Error('Add at least one custom track first.');
-    const musicListSource = (payload && payload.musicListSource) || config.musicListSource;
-    if (!musicListSource || !fs.existsSync(musicListSource)) throw new Error('Choose a MusicList.jsfb source file first.');
+    const baseCopy = ensureWorkingCopy();
 
-    const report = { wems: [], rows: [], package: null, cak: null, manifest: null };
+    const report = { wems: [], rows: [], package: null, cak: null, manifest: null, musicList: null };
 
     const existing = listMusic().rows.map((row) => row.musicId);
     const usedIds = new Set(existing);
@@ -181,11 +208,18 @@ function createAudioStudioService(options) {
 
     const editedListPath = path.join(workDir, 'MusicList.jsfb');
     fs.mkdirSync(workDir, { recursive: true });
-    const listArgs = [toolPath('edit-2k25-music-list.js'), '--in', musicListSource, '--out', editedListPath];
+    const listArgs = [toolPath('edit-2k25-music-list.js'), '--in', baseCopy.working, '--out', editedListPath];
     for (const row of rows) listArgs.push('--add', `${row.musicId}=${row.trackTitle}=${row.starName}=${row.cuePoint}=${row.type}`);
     const listRun = runNode(toolPath('edit-2k25-music-list.js'), listArgs.slice(1));
     if (listRun.status !== 0) throw new Error(`MusicList edit failed: ${(listRun.stderr || listRun.stdout || '').trim()}`);
     report.rows = rows;
+    report.musicList = {
+      base: baseCopy.base,
+      baseIsBundled: baseCopy.bundled,
+      workingCopy: baseCopy.working,
+      edited: editedListPath,
+      bakedInto: null
+    };
 
     const cakName = String((payload && payload.cakName) || 'AuroraForge-CustomMusic').replace(/[^A-Za-z0-9_.-]/g, '_');
     fs.rmSync(treeDir, { recursive: true, force: true });
@@ -196,6 +230,7 @@ function createAudioStudioService(options) {
     const built = buildCak(treeDir, cakPath);
     report.cak = { path: built.outputPath || cakPath, bytes: fs.statSync(built.outputPath || cakPath).size };
     if (typeof verifyCak === 'function') report.cak.verified = Boolean(verifyCak(built.outputPath || cakPath));
+    if (report.musicList) report.musicList.bakedInto = report.cak.path;
 
     const manifestPath = path.join(config.gameFolder, 'mods', 'manifest.json');
     fs.mkdirSync(path.dirname(manifestPath), { recursive: true });

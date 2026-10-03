@@ -55,9 +55,9 @@
         <div class="section-label" style="margin-top:0;">Folders</div>
         <div class="as-folder-line"><span class="as-dot" id="dotGameFolder"></span><input id="cfgGameFolder" readonly placeholder="Your WWE 2K26 game folder"><button class="ai-btn secondary" type="button" data-cfg="gameFolder">Choose</button></div>
         <div class="as-folder-line"><span class="as-dot" id="dotModsFolder"></span><input id="cfgModsFolder" readonly placeholder="Game mods folder (defaults to <game>\mods)"><button class="ai-btn secondary" type="button" data-cfg="modsFolder">Choose</button></div>
-        <div class="as-folder-line"><span class="as-dot" id="dotMusicListSource"></span><input id="cfgMusicListSource" readonly placeholder="MusicList.jsfb extracted from your own game"><button class="ai-btn secondary" type="button" id="chooseMusicList">Choose MusicList.jsfb</button></div>
+        <div class="as-folder-line"><span class="as-dot" id="dotMusicListSource"></span><input id="cfgMusicListSource" readonly placeholder="MusicList base (bundled default; override optional)"><button class="ai-btn secondary" type="button" id="chooseMusicList">Override base…</button></div>
         <div class="as-folder-line"><span class="as-dot" id="dotFfmpegPath"></span><input id="cfgFfmpegPath" readonly placeholder="ffmpeg.exe (auto-detected; choose only to override)"><button class="ai-btn secondary" type="button" data-cfg="ffmpegPath">Choose</button></div>
-        <div class="as-muted">The MusicList.jsfb source comes from your own game files. Extract it with the CAK explorer (Audio/MusicList.jsfb) if you have not already.</div>
+        <div class="as-muted">Build copies the bundled MusicList.jsfb into your work folder, appends your custom rows there, and bakes the edited copy into the CAK the game loads. Nothing is written to the app files.</div>
       </section>
 
       <div class="as-grid">

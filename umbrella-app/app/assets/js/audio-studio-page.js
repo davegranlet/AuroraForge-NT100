@@ -186,6 +186,11 @@
       try {
         var report = await api().build({ tracks: state.tracks });
         log('WEMs: ' + report.wems.map(function (w) { return w.musicId + ' -> ' + w.bytes + ' bytes'; }).join(', '));
+        if (report.musicList) {
+          log('MusicList base: ' + (report.musicList.baseIsBundled ? 'bundled default' : report.musicList.base));
+          log('working copy: ' + report.musicList.workingCopy);
+          log('baked: ' + report.musicList.edited + ' -> ' + report.musicList.bakedInto);
+        }
         log('package: ' + report.package.path + ' (' + report.package.bytes + ' bytes)');
         log('cak: ' + report.cak.path + ' (' + report.cak.bytes + ' bytes)' + (report.cak.verified ? ' [verified]' : ''));
         log('manifest: ' + report.manifest.path);
