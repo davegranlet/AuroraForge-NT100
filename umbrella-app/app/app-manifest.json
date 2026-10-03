@@ -1,5 +1,5 @@
 {
-  "release": "2.0.d",
+  "release": "2.0.e",
   "releaseTitle": "Beta 3",
   "distributionGoal": "windows_x64_zip_and_linux_x64_tar_gz",
   "primaryNavigation": [

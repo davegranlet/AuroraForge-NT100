@@ -29,6 +29,22 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.e — 2026-10-03
+
+Sixth published build on the 2.0 line.
+
+- **Audio Studio — add and edit custom music.** New in-app tool (Tools hub): choose your own WWE 2K26 game folder, mods folder, and a `MusicList.jsfb` source extracted from your game; import MP3/WAV/FLAC/OGG/M4A; each track is assigned to the next free custom slot (musicId 3000+, the slots the verified CustomMusicLoader rebuilds); edit title/star/cue per track; one Build button encodes Wwise Opus WEMs, builds the `sound/Custom_Music.pck` AKPK package, appends the MusicList rows, bakes the MusicList CAK, and merges `mods/manifest.json` (`cakOrder` + `packageOrder`).
+- **New audio pipeline tools** (staged into packaged builds): `build-wem.js` (Wwise Opus WEM muxer; `seek` chunk proven as one u16 per Opus packet), `build-music-pck.js` (AKPK builder matching the captured Custom_Music.pck layout), `edit-2k25-music-list.js` (byte-preserving MusicList writer; stock rows verified unchanged).
+- End-to-end sandbox test passed: WAV -> WEM -> AKPK (validated) -> MusicList (758 rows, stock byte-identical) -> CAK (verified) -> manifest.
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.e:
+
+```
+AuroraForge-NT100-2.0.e-Windows-x64.zip
+AuroraForge-NT100-2.0.e-Linux-x64.tar.gz
+```
+
 ## 2.0.d — 2026-10-02
 
 Fifth published build on the 2.0 line. Supersedes 2.0.c (do not use 2.0.c builds).
@@ -88,7 +104,10 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.e** — in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+- **2.0.f** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+  - Queued: **custom-music in-game validation** - stage a real track with the loader + CustomMusicLoader addon and confirm the picker row and playback; confirm the cloned row's extra f11 u32 is ignored for 3000+ slots.
+  - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
+  - Queued: **auto-extract MusicList.jsfb** from the user's game CAKs instead of asking for an extracted file.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
   - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
   - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.
