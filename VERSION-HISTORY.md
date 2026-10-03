@@ -29,6 +29,21 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.i — 2026-10-03
+
+Tenth published build on the 2.0 line.
+
+- **Pickers refresh from CustomMusic.cak (owner report: "picker needs to pick up the changes and refresh after making").** The Audio Studio music list now reads the current `mods/CustomMusic.cak` (the in-game truth) instead of the base file, so after Build & Stage the row table immediately shows the new custom rows (proven: 759 rows, 2 custom, `fromCak: true`). The Entry Studio entrance-music dropdown reads the same CAK first, so newly added music is selectable there too (proven: ids 3000/3001 appear).
+- The ffmpeg status dot now reflects whether ffmpeg actually resolves (configured path or PATH), not just whether a path was chosen.
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.i:
+
+```
+AuroraForge-NT100-2.0.i-Windows-x64.zip
+AuroraForge-NT100-2.0.i-Linux-x64.tar.gz
+```
+
 ## 2.0.h — 2026-10-03
 
 Ninth published build on the 2.0 line.
@@ -147,7 +162,7 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.i** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+- **2.0.j** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
   - Queued: **custom-music in-game validation** - stage a real track with the loader + CustomMusicLoader addon and confirm the picker row and playback; confirm the cloned row's extra f11 u32 is ignored for 3000+ slots.
   - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).

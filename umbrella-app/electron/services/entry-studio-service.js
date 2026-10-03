@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
+const { readMusicListFromCak: readMusicListFromCakModule } = require('./music-cak');
 
 const CONFIG_KEYS = ['extraction', 'binsEntrance', 'binsVictory', 'gameRoot', 'mods'];
 const LEGACY_DEFAULTS = {
@@ -315,6 +316,17 @@ function createEntryStudioService(options) {
   function musicList() {
     const config = readConfig();
     const { readMusicList } = tool('list-2k25-options.js');
+    const modsFolder = config.mods || (config.gameRoot ? path.join(config.gameRoot, 'mods') : '');
+    if (modsFolder) {
+      const recovered = readMusicListFromCakModule(
+        { openArchive: options.openArchive, recoverPayload: options.recoverPayload, derivePayloadKey: options.derivePayloadKey },
+        path.join(modsFolder, 'CustomMusic.cak')
+      );
+      if (recovered) {
+        const list = readMusicList(recovered);
+        return list.music.map((m) => ({ id: m.musicId, title: m.trackTitle, star: m.starName }));
+      }
+    }
     const list = readMusicList(fs.readFileSync(path.join(config.extraction, 'Audio', 'MusicList.jsfb')));
     return list.music.map((m) => ({ id: m.musicId, title: m.trackTitle, star: m.starName }));
   }

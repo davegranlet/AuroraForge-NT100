@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
+const { readMusicListFromCak: readMusicListFromCakModule } = require('./music-cak');
 
 const CONFIG_KEYS = ['gameFolder', 'modsFolder', 'musicListSource', 'ffmpegPath'];
 const MIN_CUSTOM_MUSIC_ID = 3000;
@@ -47,6 +48,20 @@ function createAudioStudioService(options) {
     return path.join(appRoot, 'data', 'audio', 'MusicList.jsfb');
   }
 
+  let ffmpegCheckCache = null;
+  function ffmpegAvailable() {
+    if (ffmpegCheckCache !== null) return ffmpegCheckCache;
+    const config = readConfig();
+    const candidate = config.ffmpegPath || (process.platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg');
+    try {
+      const run = cp.spawnSync(candidate, ['-version'], { encoding: 'utf8', timeout: 15000 });
+      ffmpegCheckCache = !run.error && run.status === 0;
+    } catch (_error) {
+      ffmpegCheckCache = false;
+    }
+    return ffmpegCheckCache;
+  }
+
   function workingMusicListPath() {
     return path.join(workDir, 'MusicList.working.jsfb');
   }
@@ -73,19 +88,7 @@ function createAudioStudioService(options) {
   }
 
   function readMusicListFromCak(cakPath) {
-    if (typeof openArchive !== 'function' || typeof recoverPayload !== 'function' || typeof derivePayloadKey !== 'function') return null;
-    if (!fs.existsSync(cakPath)) return null;
-    const session = openArchive(cakPath, {});
-    const file = (session.files || [])[0];
-    if (!file) return null;
-    const fd = fs.openSync(cakPath, 'r');
-    try {
-      const stored = Buffer.alloc(file.storedSize);
-      fs.readSync(fd, stored, 0, stored.length, Number(file.offset));
-      return recoverPayload(stored, derivePayloadKey(session.key, file.storedSize, file.offset));
-    } finally {
-      fs.closeSync(fd);
-    }
+    return readMusicListFromCakModule({ openArchive, recoverPayload, derivePayloadKey }, cakPath);
   }
 
   function ensureWorkingCopyFromExistingCak() {
@@ -136,12 +139,13 @@ function createAudioStudioService(options) {
       work: workDir,
       tools: toolsDir(),
       toolsReady: fs.existsSync(toolPath('build-music-pck.js')) && fs.existsSync(toolPath('build-wem.js')) && fs.existsSync(toolPath('edit-2k25-music-list.js')),
+      ffmpegReady: ffmpegAvailable(),
       exists: {
         gameFolder: fs.existsSync(config.gameFolder || ''),
         modsFolder: fs.existsSync(config.modsFolder || ''),
         musicListSource: fs.existsSync(effectiveList),
         bundledMusicList: fs.existsSync(bundledMusicListPath()),
-        ffmpegPath: fs.existsSync(config.ffmpegPath || '')
+        ffmpegPath: ffmpegAvailable()
       }
     };
   }
@@ -156,18 +160,30 @@ function createAudioStudioService(options) {
   }
 
   function listMusic() {
-    const source = effectiveMusicList();
-    if (!source || !fs.existsSync(source)) {
-      return { ok: false, error: 'No MusicList.jsfb source is available.', rows: [] };
+    let buffer = null;
+    let source = '';
+    let fromCak = false;
+    try {
+      const existing = musicCakPath();
+      if (fs.existsSync(existing)) {
+        buffer = readMusicListFromCak(existing);
+        if (buffer) { source = existing; fromCak = true; }
+      }
+    } catch (_error) { buffer = null; }
+    if (!buffer) {
+      source = effectiveMusicList();
+      if (!source || !fs.existsSync(source)) {
+        return { ok: false, error: 'No MusicList.jsfb source is available.', rows: [] };
+      }
+      buffer = fs.readFileSync(source);
     }
-    const run = runNode(toolPath('edit-2k25-music-list.js'), ['--in', source, '--list']);
-    if (run.status !== 0) throw new Error(`MusicList read failed: ${(run.stderr || run.stdout || '').trim()}`);
-    const parsed = JSON.parse(run.stdout);
-    const rows = parsed.music || [];
+    const { readMusicList } = require(path.join(toolsDir(), 'edit-2k25-music-list.js'));
+    const rows = readMusicList(buffer).records;
     return {
       ok: true,
       source,
-      bundled: source === bundledMusicListPath(),
+      fromCak,
+      bundled: !fromCak && source === bundledMusicListPath(),
       count: rows.length,
       stockCount: rows.filter((row) => row.musicId < MIN_CUSTOM_MUSIC_ID).length,
       customCount: rows.filter((row) => row.musicId >= MIN_CUSTOM_MUSIC_ID).length,

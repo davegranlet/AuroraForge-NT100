@@ -74,7 +74,7 @@
     }
     state.rows = result.rows || [];
     renderMusic();
-    log('music list loaded: ' + result.count + ' rows (' + result.customCount + ' custom)');
+    log('music list loaded: ' + result.count + ' rows (' + result.customCount + ' custom)' + (result.fromCak ? ' from CustomMusic.cak' : (result.bundled ? ' from the bundled base' : ' from ' + result.source)));
   }
 
   function renderTracks() {

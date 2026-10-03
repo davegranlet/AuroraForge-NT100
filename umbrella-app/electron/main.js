@@ -175,7 +175,10 @@ function entryStudioService() {
   entryStudioServiceCache = createEntryStudioService({
     appRoot: APP_ROOT,
     userDataDir: app.getPath('userData'),
-    bundledToolPath
+    bundledToolPath,
+    openArchive: cakReader.openArchive,
+    recoverPayload: archiveRepackager.recoverPayload,
+    derivePayloadKey: archiveRepackager.derivePayloadKey
   });
   return entryStudioServiceCache;
 }
@@ -967,7 +970,7 @@ function createWindow() {
       submenu: [
         { label: 'Tutorials', click: () => loadAppPage(mainWindow, 'tutorials.html') },
         { type: 'separator' },
-        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 3', detail: 'Internal build 2.0.h\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta3 app experience.' }) }
+        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 3', detail: 'Internal build 2.0.i\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta3 app experience.' }) }
       ]
     }
   ];
