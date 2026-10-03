@@ -185,6 +185,13 @@ ok(!/127\.0\.0\.1:7878/.test(mainJs + preloadJs + entryStudioHtml + read('app', 
 ok(!read('app', 'tools.html').includes('openEntryStudio'), 'tools hub links Entry Studio to its in-app page');
 ok(read('scripts', 'prepare-runtime-staging.js').includes('entry-studio'), 'runtime staging copies the Entry Studio toolchain');
 
+const audioStudioHtml = read('app', 'audio-studio.html');
+const audioStudioPageJs = read('app', 'assets', 'js', 'audio-studio-page.js');
+ok(audioStudioHtml.includes('audio-studio-page.js') && audioStudioPageJs.includes('audioStudio'), 'Audio Studio page runs in-app through the preload bridge');
+ok(mainJs.includes('desktop:audio-studio-build') && preloadJs.includes('audioStudio:'), 'Electron exposes the Audio Studio service');
+ok(read('app', 'tools.html').includes('audio-studio.html'), 'tools hub links Audio Studio');
+ok(fs.existsSync(path.join(root, '..', 'animation', 'tools', 'build-wem.js')) && fs.existsSync(path.join(root, '..', 'animation', 'tools', 'build-music-pck.js')) && fs.existsSync(path.join(root, '..', 'animation', 'tools', 'edit-2k25-music-list.js')), 'audio pipeline tools exist (WEM muxer, AKPK builder, MusicList writer)');
+
 const compatibilityPages = new Set(['access-gate.html', 'desktop-dashboard.html', 'tool-center.html', 'knowledgebase.html']);
 const normalHtmlFiles = fs.readdirSync(appRoot).filter((name) =>
   name.endsWith('.html') && !compatibilityPages.has(name)

@@ -19,6 +19,7 @@ const { createLoaderDiagnostics } = require('./services/loader-diagnostics');
 const { createCakCollisionService } = require('./services/cak-collision-service');
 const { createModManifestManager } = require('./services/mod-manifest-manager');
 const { createEntryStudioService } = require('./services/entry-studio-service');
+const { createAudioStudioService } = require('./services/audio-studio-service');
 const { isOwnerBuild, ownerSession } = require('./owner-build');
 
 // GPU-less hosts (VPS/Docker/headless): on Linux the app defaults to software
@@ -177,6 +178,19 @@ function entryStudioService() {
     bundledToolPath
   });
   return entryStudioServiceCache;
+}
+
+let audioStudioServiceCache = null;
+function audioStudioService() {
+  if (audioStudioServiceCache) return audioStudioServiceCache;
+  audioStudioServiceCache = createAudioStudioService({
+    appRoot: APP_ROOT,
+    userDataDir: app.getPath('userData'),
+    bundledToolPath,
+    buildCak: archiveRepackager.buildCak,
+    verifyCak: archiveRepackager.verifyCak
+  });
+  return audioStudioServiceCache;
 }
 
 function auditModSuiteFolder(selectedPath) {
@@ -1114,6 +1128,58 @@ ipcMain.handle('desktop:entry-studio-bake', (_event, payload) => {
 ipcMain.handle('desktop:entry-studio-stage', (_event, payload) => {
   requireVerifiedAccess();
   return entryStudioService().stage(payload || {});
+});
+
+ipcMain.handle('desktop:audio-studio-defaults', () => {
+  requireVerifiedAccess();
+  return audioStudioService().getDefaults();
+});
+
+ipcMain.handle('desktop:audio-studio-save-config', (_event, patch) => {
+  requireVerifiedAccess();
+  return audioStudioService().saveConfig(patch);
+});
+
+ipcMain.handle('desktop:audio-studio-choose-folder', async () => {
+  requireVerifiedAccess();
+  const result = await dialog.showOpenDialog({
+    title: 'Choose Audio Studio folder',
+    properties: ['openDirectory', 'createDirectory']
+  });
+  if (result.canceled || !result.filePaths[0]) return { ok: false, canceled: true };
+  return { ok: true, path: result.filePaths[0] };
+});
+
+ipcMain.handle('desktop:audio-studio-choose-musiclist', async () => {
+  requireVerifiedAccess();
+  const result = await dialog.showOpenDialog({
+    title: 'Choose MusicList.jsfb',
+    properties: ['openFile'],
+    filters: [{ name: 'MusicList.jsfb', extensions: ['jsfb'] }, { name: 'All files', extensions: ['*'] }]
+  });
+  if (result.canceled || !result.filePaths[0]) return { ok: false, canceled: true };
+  return { ok: true, path: result.filePaths[0] };
+});
+
+ipcMain.handle('desktop:audio-studio-list', () => {
+  requireVerifiedAccess();
+  return audioStudioService().listMusic();
+});
+
+ipcMain.handle('desktop:audio-studio-add-files', async () => {
+  requireVerifiedAccess();
+  const result = await dialog.showOpenDialog({
+    title: 'Add custom music audio',
+    properties: ['openFile', 'multiSelections'],
+    filters: [{ name: 'Audio', extensions: ['mp3', 'wav', 'flac', 'ogg', 'm4a', 'aac', 'wma'] }, { name: 'All files', extensions: ['*'] }]
+  });
+  if (result.canceled || !result.filePaths.length) return { ok: false, canceled: true, files: [] };
+  return audioStudioService().addFiles(result.filePaths);
+});
+
+ipcMain.handle('desktop:audio-studio-build', (_event, payload) => {
+  requireVerifiedAccess();
+  return audioStudioService().build(payload || {});
 });
 
 ipcMain.handle('desktop:choose-project-folder', async () => {

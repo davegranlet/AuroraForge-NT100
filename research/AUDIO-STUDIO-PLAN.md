@@ -51,22 +51,33 @@ slots 3000+ need new rows.
 - `animation/tools/build-music-pck.js` - AKPK builder + validator (selftest
   passes; layout matches the captured package exactly, including the stock
   language section).
+- `animation/tools/build-wem.js` - Wwise Opus WEM muxer (ffmpeg libopus -> Ogg
+  packets -> RIFF `fmt` 0x3041 + `seek` u16 packet-size table + `data`). Selftest
+  passes and the header matches the verified sample WEMs (the `seek` chunk was
+  proven to be one u16 per Opus packet; `fmt` carries total samples and packet
+  count).
+- `animation/tools/edit-2k25-music-list.js` - byte-preserving MusicList writer:
+  appends custom rows by cloning a stock template row and inserting vector slots
+  (all stock rows verified byte-identical after edits); supports metadata edits.
+- `electron/services/audio-studio-service.js` + IPC/preload + `app/audio-studio.html`
+  page + tools-hub card: choose game/mods/MusicList source, list picker rows,
+  import audio, assign slots (auto next free 3000+), edit title/star/cue, build.
+- End-to-end sandbox test passes: WAV -> WEM -> AKPK (validated) -> MusicList
+  edit -> CAK (verified) -> `mods/manifest.json` (`cakOrder` + `packageOrder`).
 
 ## Next steps
 
-1. **WEM muxer** - encode user audio with ffmpeg (libopus) into Ogg Opus, split
-   packets, rebuild the Wwise RIFF container (`fmt` 0x3041 + `seek` + `data`).
-   Requires confirming the `seek` entry interval (looks like one u32 per 1280
-   samples) against the verified samples.
-2. **MusicList.jsfb writer** - append rows 3000+i and edit title/star/cuePoint
-   while preserving the stock rows byte-for-byte (same byte-preserving approach
-   as the entrance/victory writers).
-3. **Audio Studio service + page** - in-app page (Tools) with: music list table
-   (stock + custom), import audio (MP3/WAV/FLAC/OGG), slot assignment, edit
-   metadata, build package, bake MusicList CAK, stage `sound/Custom_Music.pck` +
-   `mods/manifest.json`, backup/rollback.
-4. **Verification** - validate every built AKPK with the loader's rules; unpack
-   and byte-compare the MusicList CAK against source; owner in-game run.
+1. **Owner in-game run** - stage a real track into the live game (loader with the
+   CustomMusicLoader addon enabled) and confirm the picker shows the custom row
+   and plays the audio.
+2. **Confirm the picker trigger** - stock rows carry an extra u32 field (f11)
+   whose value does not match `Play_MUS_ID_<id>`; custom rows clone the template
+   value. If the game ignores it for 3000+ slots the current build is correct;
+   if it matters, derive the right hash from a working custom row.
+3. **ffmpeg bundling** - bundle an LGPL ffmpeg (or Setup-selected path) so public
+   builds can encode without a system install.
+4. **Auto-extract MusicList** - pull `Audio/MusicList.jsfb` straight from the
+   user's game CAKs instead of asking for an extracted file.
 
 ## Open items / decisions
 
