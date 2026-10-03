@@ -87,6 +87,40 @@ function createAudioStudioService(options) {
     return path.join(modsFolder, MUSIC_CAK_NAME);
   }
 
+  function timestamp() {
+    return new Date().toISOString().replace(/[-:T]/g, '').slice(0, 15);
+  }
+
+  function ensureMusicAddonEnabled(gameFolder) {
+    const pluginsDir = path.join(gameFolder, 'Plugins');
+    const addonsPath = path.join(pluginsDir, 'addons.txt');
+    const addonName = 'AuroraForge.CustomMusicLoader.ftrib';
+    if (!fs.existsSync(addonsPath)) return { ok: false, reason: 'Plugins/addons.txt not found (install the loader first)' };
+    const lines = fs.readFileSync(addonsPath, 'utf8').split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    if (lines.includes(addonName)) return { ok: true, changed: false };
+    if (!fs.existsSync(path.join(pluginsDir, addonName))) return { ok: false, reason: addonName + ' is missing from Plugins' };
+    const backup = `${addonsPath}.${timestamp()}.before-music-enable.bak`;
+    fs.copyFileSync(addonsPath, backup);
+    lines.push(addonName);
+    fs.writeFileSync(addonsPath, lines.join('\n') + '\n', 'utf8');
+    return { ok: true, changed: true, backup };
+  }
+
+  function removeStaleMusicCaks(modsFolder) {
+    const removed = [];
+    if (!fs.existsSync(modsFolder)) return removed;
+    for (const name of fs.readdirSync(modsFolder)) {
+      if (!/custommusic/i.test(name)) continue;
+      if (name.toLowerCase() === MUSIC_CAK_NAME.toLowerCase()) continue;
+      if (!/\.cak$/i.test(name)) continue;
+      try {
+        fs.renameSync(path.join(modsFolder, name), path.join(modsFolder, name + '.stale-bak'));
+        removed.push(name);
+      } catch (_error) { /* leave it in place */ }
+    }
+    return removed;
+  }
+
   function readMusicListFromCak(cakPath) {
     return readMusicListFromCakModule({ openArchive, recoverPayload, derivePayloadKey }, cakPath);
   }
@@ -228,8 +262,10 @@ function createAudioStudioService(options) {
     const tracks = (payload && payload.tracks) || [];
     if (!tracks.length) throw new Error('Add at least one custom track first.');
     const baseCopy = ensureWorkingCopyFromExistingCak() || ensureWorkingCopy();
+    const addon = ensureMusicAddonEnabled(config.gameFolder);
+    const removedStaleCaks = removeStaleMusicCaks(modsFolder);
 
-    const report = { wems: [], rows: [], package: null, cak: null, manifest: null, musicList: null };
+    const report = { wems: [], rows: [], package: null, cak: null, manifest: null, musicList: null, addon, removedStaleCaks };
 
     const existing = listMusic().rows.map((row) => row.musicId);
     const usedIds = new Set(existing);
@@ -298,6 +334,7 @@ function createAudioStudioService(options) {
       if (existingManifest && Array.isArray(existingManifest.cakOrder)) manifest.cakOrder = existingManifest.cakOrder.slice();
       if (existingManifest && Array.isArray(existingManifest.packageOrder)) manifest.packageOrder = existingManifest.packageOrder.slice();
     } catch (_error) { /* start fresh */ }
+    manifest.cakOrder = manifest.cakOrder.filter((name) => !/custommusic/i.test(String(name)));
     const cakEntry = path.basename(report.cak.path);
     const packageEntry = path.basename(packagePath);
     if (!manifest.cakOrder.includes(cakEntry)) manifest.cakOrder.push(cakEntry);

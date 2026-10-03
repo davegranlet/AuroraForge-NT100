@@ -197,6 +197,12 @@
         log('manifest: ' + report.manifest.path);
         log('cakOrder: ' + JSON.stringify(report.manifest.cakOrder));
         log('packageOrder: ' + JSON.stringify(report.manifest.packageOrder));
+        if (report.addon) {
+          log(report.addon.ok
+            ? ('music loader addon: ' + (report.addon.changed ? 'enabled now (backup: ' + report.addon.backup + ')' : 'already enabled'))
+            : ('music loader addon problem: ' + report.addon.reason));
+        }
+        if (report.removedStaleCaks && report.removedStaleCaks.length) log('removed stale music CAKs: ' + report.removedStaleCaks.join(', '));
         state.tracks = [];
         renderTracks();
         await refreshMusic();
