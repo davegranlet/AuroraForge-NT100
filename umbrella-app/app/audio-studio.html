@@ -8,24 +8,26 @@
 <link rel="stylesheet" href="assets/css/style.css?v=20260805-r160g">
 <link rel="stylesheet" href="assets/css/aurora-crystal.css">
 <style>
-  .as-grid { display: grid; grid-template-columns: minmax(420px, 1fr) minmax(380px, 460px); gap: 14px; align-items: start; }
-  @media (max-width: 1180px) { .as-grid { grid-template-columns: 1fr; } }
+  .as-grid { display: grid; grid-template-columns: minmax(520px, 1.3fr) minmax(440px, 1fr); gap: 14px; align-items: start; }
+  @media (max-width: 1280px) { .as-grid { grid-template-columns: 1fr; } }
   .as-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
   .as-row input[type=text], .as-row input[type=number], .as-row select, .as-field input { background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 7px; color: var(--text); padding: 6px 9px; font: inherit; }
   .as-folder-line { display: flex; gap: 8px; align-items: center; margin-bottom: 7px; }
   .as-folder-line input { flex: 1; background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 7px; color: var(--text-dim); padding: 6px 9px; font: inherit; font-size: 12.5px; }
   .as-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--red); margin-right: 6px; }
   .as-dot.ok { background: #43c07a; }
-  .as-table { max-height: 340px; overflow: auto; border: 1px solid var(--crystal-line); border-radius: 10px; background: var(--code-bg); }
-  .as-table table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .as-table th, .as-table td { text-align: left; padding: 5px 9px; border-bottom: 1px solid rgba(215,221,224,.07); }
+  .as-table { max-height: 430px; overflow: auto; border: 1px solid var(--crystal-line); border-radius: 10px; background: var(--code-bg); }
+  .as-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .as-table th, .as-table td { text-align: left; padding: 6px 10px; border-bottom: 1px solid rgba(215,221,224,.07); white-space: nowrap; }
   .as-table th { color: var(--text-mute); font-weight: 600; position: sticky; top: 0; background: var(--surface2); }
   .as-table tr.custom td { color: #f0c96a; }
-  .as-track { border: 1px solid var(--crystal-line); border-radius: 10px; padding: 9px; margin-bottom: 8px; background: var(--surface2); }
-  .as-track .name { font-family: Consolas, monospace; font-size: 12.5px; color: var(--text); margin-bottom: 6px; }
-  .as-track .fields { display: grid; grid-template-columns: 90px 1fr 1fr 90px 90px 34px; gap: 6px; align-items: center; }
-  .as-track .fields input { background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 6px; color: var(--text); padding: 4px 7px; font: inherit; font-size: 12.5px; width: 100%; }
-  .as-track .fields label { color: var(--text-mute); font-size: 10.5px; display: block; }
+  .as-track { border: 1px solid var(--crystal-line); border-radius: 10px; padding: 10px 11px; margin-bottom: 10px; background: var(--surface2); }
+  .as-track .name { font-family: Consolas, monospace; font-size: 13px; color: var(--text); margin-bottom: 9px; word-break: break-all; }
+  .as-track .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 10px; }
+  .as-track .fields > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .as-track .fields label { color: var(--text-mute); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+  .as-track .fields input { background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 6px; color: var(--text); padding: 7px 9px; font: inherit; font-size: 13px; width: 100%; box-sizing: border-box; }
+  .as-track .fields .as-remove { justify-content: flex-end; }
   .as-log { font-family: Consolas, monospace; font-size: 12px; background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 10px; padding: 9px; height: 150px; overflow: auto; white-space: pre-wrap; margin-top: 8px; color: var(--text-dim); }
   .as-muted { color: var(--text-mute); font-size: 12px; }
 </style>

@@ -40,10 +40,10 @@ const projectCatalog = json('app', 'data', 'aurora-projects.json');
 
 ok(pkg.version === '2.0.0', 'standards-safe package version is 2.0');
 ok(lock.version === '2.0.0' && lock.packages[''].version === '2.0.0', 'package-lock root version matches');
-ok(manifest.release === '2.0.g' && manifest.releaseTitle === 'Beta 3', 'manifest identifies visible AuroraForge NT100 Beta3');
-ok(config.release === '2.0.g' && config.releaseTitle === 'Beta 3', 'app config identifies visible AuroraForge NT100 Beta3');
+ok(manifest.release === '2.0.h' && manifest.releaseTitle === 'Beta 3', 'manifest identifies visible AuroraForge NT100 Beta3');
+ok(config.release === '2.0.h' && config.releaseTitle === 'Beta 3', 'app config identifies visible AuroraForge NT100 Beta3');
 const releaseChallenge = json('app', 'config', 'release-challenge.json');
-ok(releaseChallenge.release === '2.0.g' && releaseChallenge.releaseTitle === 'Beta 3' && /^[0-9a-f]{64}$/i.test(releaseChallenge.challenge || ''), 'per-release verification challenge is generated for Beta3');
+ok(releaseChallenge.release === '2.0.h' && releaseChallenge.releaseTitle === 'Beta 3' && /^[0-9a-f]{64}$/i.test(releaseChallenge.challenge || ''), 'per-release verification challenge is generated for Beta3');
 ok(pkg.devDependencies.electron === '43.2.0', 'Electron is exactly pinned');
 ok(pkg.devDependencies['@electron/packager'] === '20.0.4', 'Electron Packager is exactly pinned');
 ok(pkg.dependencies.three === '0.185.1', 'Three.js is exactly pinned');
@@ -241,7 +241,7 @@ ok(mainJs.includes('projectsFolder') && mainJs.includes('exportsFolder'), 'Elect
 ok(mainJs.includes("desktop:check-aurora-loader") && preloadJs.includes('checkAuroraLoader'), 'Electron exposes Aurora loader setup check');
 ok(!/desktop:check-cakehook|cakeView:|tribute:/.test(mainJs + preloadJs), 'Electron setup allowlist excludes old third-party tool gates');
 ok(!/cakeView|tribute|texconv/.test(read('app', 'assets', 'js', 'tool-center.js')), 'Setup renderer only lists supported creative programs');
-ok(mainJs.includes('AuroraForge NT100 Beta 3') && mainJs.includes('Internal build 2.0.g'), 'Electron About uses visible Beta3 release identity');
+ok(mainJs.includes('AuroraForge NT100 Beta 3') && mainJs.includes('Internal build 2.0.h'), 'Electron About uses visible Beta3 release identity');
 ok(!mainJs.includes('toggleDevTools'), 'normal Electron menu does not expose developer tools');
 
 const studiosHtml = read('app', 'creative-studios.html');

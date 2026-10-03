@@ -29,6 +29,20 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.h — 2026-10-03
+
+Ninth published build on the 2.0 line.
+
+- **Audio Studio layout fixed (owner report: "so crowded you can't see what the information is").** The custom-track editor was crushing six fields into one row; it is now a labeled two-column grid (ID/Title, Star/Cue, Type/Remove) with full-width inputs and readable labels. Panels are wider (min 520px / 440px, stacking under 1280px), the music table has taller rows and no text wrapping, and the startup log explains the bundled base + `CustomMusic.cak` flow.
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.h:
+
+```
+AuroraForge-NT100-2.0.h-Windows-x64.zip
+AuroraForge-NT100-2.0.h-Linux-x64.tar.gz
+```
+
 ## 2.0.g — 2026-10-03
 
 Eighth published build on the 2.0 line.
@@ -133,7 +147,7 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.h** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+- **2.0.i** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
   - Queued: **custom-music in-game validation** - stage a real track with the loader + CustomMusicLoader addon and confirm the picker row and playback; confirm the cloned row's extra f11 u32 is ignored for 3000+ slots.
   - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).

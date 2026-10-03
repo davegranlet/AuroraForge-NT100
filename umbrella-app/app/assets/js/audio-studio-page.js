@@ -118,6 +118,7 @@
       remove.title = 'Remove';
       remove.onclick = function () { state.tracks.splice(index, 1); renderTracks(); };
       var removeWrap = document.createElement('div');
+      removeWrap.className = 'as-remove';
       removeWrap.append(remove);
       fields.append(removeWrap);
       card.append(fields);
@@ -207,7 +208,7 @@
       try {
         await refreshDefaults();
         await refreshMusic();
-        log('ready. Choose your game folder and MusicList source, then add audio files.');
+        log('ready. Choose your game folder, then add audio files. The bundled MusicList base is used automatically and baked into CustomMusic.cak.');
       } catch (error) { log('startup failed: ' + error.message); }
     })();
   });
