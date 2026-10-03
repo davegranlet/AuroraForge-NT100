@@ -29,6 +29,21 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.g — 2026-10-03
+
+Eighth published build on the 2.0 line.
+
+- **Custom music bakes into a fixed `CustomMusic.cak`.** Audio Studio no longer generates per-build CAK names: every build writes/overwrites `mods/CustomMusic.cak` (stable name keeps the FDIR key stable and makes the file easy to track).
+- **Edits accumulate.** When `CustomMusic.cak` already exists, the editor reads its `MusicList.jsfb` back out of the CAK as the base, appends the new rows, and rebuilds the same CAK - so adding or editing music never loses earlier tracks. Proven by a two-build E2E: build 1 = 758 rows, build 2 read the CAK back and produced 759 rows with both custom tracks and all stock rows intact.
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.g:
+
+```
+AuroraForge-NT100-2.0.g-Windows-x64.zip
+AuroraForge-NT100-2.0.g-Linux-x64.tar.gz
+```
+
 ## 2.0.f — 2026-10-03
 
 Seventh published build on the 2.0 line.
@@ -118,7 +133,7 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.g** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+- **2.0.h** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
   - Queued: **custom-music in-game validation** - stage a real track with the loader + CustomMusicLoader addon and confirm the picker row and playback; confirm the cloned row's extra f11 u32 is ignored for 3000+ slots.
   - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).

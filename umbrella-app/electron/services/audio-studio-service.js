@@ -6,6 +6,8 @@ const cp = require('child_process');
 
 const CONFIG_KEYS = ['gameFolder', 'modsFolder', 'musicListSource', 'ffmpegPath'];
 const MIN_CUSTOM_MUSIC_ID = 3000;
+const MUSIC_CAK_NAME = 'CustomMusic.cak';
+const MUSIC_PACKAGE_NAME = 'Custom_Music.pck';
 
 function createAudioStudioService(options) {
   const appRoot = options.appRoot;
@@ -13,6 +15,9 @@ function createAudioStudioService(options) {
   const bundledToolPath = options.bundledToolPath;
   const buildCak = options.buildCak;
   const verifyCak = options.verifyCak;
+  const openArchive = options.openArchive;
+  const recoverPayload = options.recoverPayload;
+  const derivePayloadKey = options.derivePayloadKey;
 
   const configPath = path.join(userDataDir, 'audio-studio-config.json');
   const workDir = path.join(userDataDir, 'audio-studio');
@@ -57,7 +62,44 @@ function createAudioStudioService(options) {
     if (!base || !fs.existsSync(base)) throw new Error('No MusicList.jsfb base is available.');
     fs.mkdirSync(workDir, { recursive: true });
     fs.copyFileSync(base, workingMusicListPath());
-    return { base, working: workingMusicListPath(), bundled: base === bundledMusicListPath() };
+    return { base, working: workingMusicListPath(), bundled: base === bundledMusicListPath(), source: base === bundledMusicListPath() ? 'bundled default' : base };
+  }
+
+  function musicCakPath() {
+    const config = readConfig();
+    const modsFolder = config.modsFolder || (config.gameFolder ? path.join(config.gameFolder, 'mods') : '');
+    if (!modsFolder) throw new Error('Choose your WWE 2K26 game folder first.');
+    return path.join(modsFolder, MUSIC_CAK_NAME);
+  }
+
+  function readMusicListFromCak(cakPath) {
+    if (typeof openArchive !== 'function' || typeof recoverPayload !== 'function' || typeof derivePayloadKey !== 'function') return null;
+    if (!fs.existsSync(cakPath)) return null;
+    const session = openArchive(cakPath, {});
+    const file = (session.files || [])[0];
+    if (!file) return null;
+    const fd = fs.openSync(cakPath, 'r');
+    try {
+      const stored = Buffer.alloc(file.storedSize);
+      fs.readSync(fd, stored, 0, stored.length, Number(file.offset));
+      return recoverPayload(stored, derivePayloadKey(session.key, file.storedSize, file.offset));
+    } finally {
+      fs.closeSync(fd);
+    }
+  }
+
+  function ensureWorkingCopyFromExistingCak() {
+    const existing = musicCakPath();
+    if (!fs.existsSync(existing)) return null;
+    try {
+      const recovered = readMusicListFromCak(existing);
+      if (!recovered || recovered.length < 16 || recovered.subarray(4, 8).toString('latin1') !== 'Musi') return null;
+      fs.mkdirSync(workDir, { recursive: true });
+      fs.writeFileSync(workingMusicListPath(), recovered);
+      return { base: existing, working: workingMusicListPath(), bundled: false, source: 'existing ' + MUSIC_CAK_NAME };
+    } catch (_error) {
+      return null;
+    }
   }
 
   function readConfig() {
@@ -169,7 +211,7 @@ function createAudioStudioService(options) {
     const modsFolder = config.modsFolder || path.join(config.gameFolder, 'mods');
     const tracks = (payload && payload.tracks) || [];
     if (!tracks.length) throw new Error('Add at least one custom track first.');
-    const baseCopy = ensureWorkingCopy();
+    const baseCopy = ensureWorkingCopyFromExistingCak() || ensureWorkingCopy();
 
     const report = { wems: [], rows: [], package: null, cak: null, manifest: null, musicList: null };
 
@@ -196,7 +238,7 @@ function createAudioStudioService(options) {
       });
     }
 
-    const packageName = String((payload && payload.packageName) || 'Custom_Music').replace(/[^A-Za-z0-9_.-]/g, '_');
+    const packageName = String((payload && payload.packageName) || MUSIC_PACKAGE_NAME).replace(/[^A-Za-z0-9_.-]/g, '_');
     const soundDir = path.join(config.gameFolder, 'sound');
     fs.mkdirSync(soundDir, { recursive: true });
     const packagePath = path.join(soundDir, packageName.endsWith('.pck') ? packageName : `${packageName}.pck`);
@@ -215,24 +257,24 @@ function createAudioStudioService(options) {
     report.rows = rows;
     report.musicList = {
       base: baseCopy.base,
+      baseSource: baseCopy.source,
       baseIsBundled: baseCopy.bundled,
       workingCopy: baseCopy.working,
       edited: editedListPath,
       bakedInto: null
     };
 
-    const cakName = String((payload && payload.cakName) || 'AuroraForge-CustomMusic').replace(/[^A-Za-z0-9_.-]/g, '_');
+    const cakPath = musicCakPath();
     fs.rmSync(treeDir, { recursive: true, force: true });
     fs.mkdirSync(path.join(treeDir, 'Audio'), { recursive: true });
     fs.copyFileSync(editedListPath, path.join(treeDir, 'Audio', 'MusicList.jsfb'));
-    fs.mkdirSync(modsFolder, { recursive: true });
-    const cakPath = path.join(modsFolder, cakName.endsWith('.cak') ? cakName : `${cakName}.cak`);
+    fs.mkdirSync(path.dirname(cakPath), { recursive: true });
     const built = buildCak(treeDir, cakPath);
     report.cak = { path: built.outputPath || cakPath, bytes: fs.statSync(built.outputPath || cakPath).size };
     if (typeof verifyCak === 'function') report.cak.verified = Boolean(verifyCak(built.outputPath || cakPath));
     if (report.musicList) report.musicList.bakedInto = report.cak.path;
 
-    const manifestPath = path.join(config.gameFolder, 'mods', 'manifest.json');
+    const manifestPath = path.join(modsFolder, 'manifest.json');
     fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
     let manifest = { version: 1, cakOrder: [], packageOrder: [] };
     try {

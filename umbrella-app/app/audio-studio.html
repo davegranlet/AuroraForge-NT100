@@ -57,7 +57,7 @@
         <div class="as-folder-line"><span class="as-dot" id="dotModsFolder"></span><input id="cfgModsFolder" readonly placeholder="Game mods folder (defaults to <game>\mods)"><button class="ai-btn secondary" type="button" data-cfg="modsFolder">Choose</button></div>
         <div class="as-folder-line"><span class="as-dot" id="dotMusicListSource"></span><input id="cfgMusicListSource" readonly placeholder="MusicList base (bundled default; override optional)"><button class="ai-btn secondary" type="button" id="chooseMusicList">Override base…</button></div>
         <div class="as-folder-line"><span class="as-dot" id="dotFfmpegPath"></span><input id="cfgFfmpegPath" readonly placeholder="ffmpeg.exe (auto-detected; choose only to override)"><button class="ai-btn secondary" type="button" data-cfg="ffmpegPath">Choose</button></div>
-        <div class="as-muted">Build copies the bundled MusicList.jsfb into your work folder, appends your custom rows there, and bakes the edited copy into the CAK the game loads. Nothing is written to the app files.</div>
+        <div class="as-muted">Build copies the bundled MusicList.jsfb into your work folder, appends your custom rows there, and bakes the edited copy into <b>CustomMusic.cak</b> in your mods folder. Later builds read that CAK back so added and edited tracks accumulate. Nothing is written to the app files.</div>
       </section>
 
       <div class="as-grid">
