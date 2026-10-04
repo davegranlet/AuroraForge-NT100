@@ -5,7 +5,7 @@ const crypto = require('crypto');
 
 const root = path.join(__dirname, '..');
 const appFolder = path.join(root, 'dist', 'AuroraForge NT100-win32-x64');
-const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.0.k-Windows-x64.zip');
+const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.0.l-Windows-x64.zip');
 const asarPath = path.join(appFolder, 'resources', 'app.asar');
 const unpackedTools = path.join(appFolder, 'resources', 'app.asar.unpacked', 'app', 'tools');
 
@@ -50,7 +50,7 @@ const loaderAddon = path.join(unpackedTools, 'wwe2k25-loader', 'plugins', 'Auror
 assert(exists(beta3ConverterExe), '2.0.k converter is physically unpacked for Windows execution');
 assert(exists(loaderCore), 'verified WWE 2K25 loader core is physically unpacked');
 assert(exists(loaderAddon), 'verified WWE 2K25 loader addon is physically unpacked');
-if (exists(beta3ConverterExe)) assert(sha256(beta3ConverterExe) === '8A6EE905A51AAE4EADDC431C7F7667A7B038CA4F8A3B73916936AF63FF7CB7CD', 'packaged 2.0.d converter checksum matches release candidate');
+if (exists(beta3ConverterExe)) assert(sha256(beta3ConverterExe) === '76D7D4ABFE6D44E5D3941AFDC86E2F64E62CB488A90AC84304B7095A685CE764', 'packaged 2.0.d converter checksum matches release candidate');
 if (exists(loaderCore)) assert(sha256(loaderCore) === 'E600D04F2E1A9AF3C23A358462E8B5C25064D6C08411819377E278581EF0ED2F', 'packaged loader core checksum matches verified binary');
 if (exists(loaderAddon)) assert(sha256(loaderAddon) === '8DF85F88EF117CAE07D9BA3788AB255C5986E3E460F905EDAB7C5972918E3E33', 'packaged loader addon checksum matches verified binary');
 assert(exists(appFolder, 'chrome_100_percent.pak') || exists(appFolder, 'chrome_200_percent.pak'), 'Electron chrome pak runtime files exist');

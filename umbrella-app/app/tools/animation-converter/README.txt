@@ -4,7 +4,7 @@ Preferred bundled portable converter:
   Aurora-Forge-2.0.k-Preview.exe
 
 SHA-256:
-  8A6EE905A51AAE4EADDC431C7F7667A7B038CA4F8A3B73916936AF63FF7CB7CD
+  76D7D4ABFE6D44E5D3941AFDC86E2F64E62CB488A90AC84304B7095A685CE764
 
 Rollback builds (kept on disk, NOT shipped in the package):
   ..\..\..\rollback\converters\Aurora-Forge-Beta3-Preview.exe

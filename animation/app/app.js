@@ -488,6 +488,7 @@ function wireUi() {
     });
   }
 
+  const outputBtn = $('output-btn');
   if (outputBtn) {
     outputBtn.onclick = async () => {
       const file = await window.aurora.pickCakSave();

@@ -29,6 +29,21 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.l — 2026-10-04
+
+Thirteenth published build on the 2.0 line.
+
+- **Converter verification inheritance fixed (owner report: owner build's converter locked; user build had to re-verify).** Root cause: the pipeline-dropdown edit accidentally dropped the `const outputBtn = $('output-btn')` line, so `wireUi()` threw `ReferenceError: outputBtn is not defined` and the whole renderer init (including the access check) never ran - the converter always showed locked. Fixed and verified end-to-end: with a main-app session the renderer now calls the access handler and receives `main_app_session` (converter shows verified, no re-verification).
+- Bundled converter refreshed (`Aurora-Forge-2.0.k-Preview.exe`, new SHA-256).
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.l:
+
+```
+AuroraForge-NT100-2.0.l-Windows-x64.zip
+AuroraForge-NT100-2.0.l-Linux-x64.tar.gz
+```
+
 ## 2.0.k — 2026-10-04
 
 Twelfth published build on the 2.0 line.
@@ -198,8 +213,8 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.l** — next editor work, in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
-  - Queued: **multi-game conversion pipelines** (source/target dropdown exists; the reverse clips pipeline + older registration writers are the work behind the coming-soon options).
+- **2.0.m** — **Animation Converter runs inside the main app** (owner directive: "instead of loading the standalone app separately make it load in the main app"): port the wizard (folders, Source/Target pipeline, task, convert, results) into an in-app page backed by an umbrella service over the same toolchain, like Entry Studio and Audio Studio. Then the next editor work, in-game entry validation results, creator acceptance, verifier KV binding, user-reported fixes.
+  - Queued: **multi-game conversion pipelines** (reverse clips pipeline + older registration writers behind the coming-soon dropdown options).
   - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
   - Queued: **import the existing WEM library** into the Audio Studio work folder.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
