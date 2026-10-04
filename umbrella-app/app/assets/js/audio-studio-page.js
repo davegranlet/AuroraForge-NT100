@@ -193,6 +193,7 @@
           log('baked: ' + report.musicList.edited + ' -> ' + report.musicList.bakedInto);
         }
         log('package: ' + report.package.path + ' (' + report.package.bytes + ' bytes)');
+        if (report.missingWems && report.missingWems.length) log('warning: no WEM found for musicId(s): ' + report.missingWems.join(', '));
         log('cak: ' + report.cak.path + ' (' + report.cak.bytes + ' bytes)' + (report.cak.verified ? ' [verified]' : ''));
         log('manifest: ' + report.manifest.path);
         log('cakOrder: ' + JSON.stringify(report.manifest.cakOrder));

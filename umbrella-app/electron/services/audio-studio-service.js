@@ -294,6 +294,23 @@ function createAudioStudioService(options) {
     const soundDir = path.join(config.gameFolder, 'sound');
     fs.mkdirSync(soundDir, { recursive: true });
     const packagePath = path.join(soundDir, packageName.endsWith('.pck') ? packageName : `${packageName}.pck`);
+    const { readMusicList } = require(path.join(toolsDir(), 'edit-2k25-music-list.js'));
+    const baseRows = readMusicList(fs.readFileSync(baseCopy.working)).records;
+    const allCustomIds = new Set([
+      ...baseRows.filter((row) => row.musicId >= MIN_CUSTOM_MUSIC_ID).map((row) => row.musicId),
+      ...rows.map((row) => row.musicId)
+    ]);
+    const missingWems = [];
+    for (const musicId of allCustomIds) {
+      const wemId = 1080000000 + (musicId - MIN_CUSTOM_MUSIC_ID);
+      const wemPath = path.join(wemsDir, `${wemId}.wem`);
+      if (fs.existsSync(wemPath)) {
+        if (!wemEntries.some((entry) => entry.id === wemId)) wemEntries.push({ id: wemId, path: wemPath });
+      } else {
+        missingWems.push(musicId);
+      }
+    }
+    report.missingWems = missingWems;
     const pckArgs = [toolPath('build-music-pck.js'), '--out', packagePath];
     for (const entry of wemEntries) pckArgs.push('--map', `${entry.id}=${entry.path}`);
     const pckRun = runNode(toolPath('build-music-pck.js'), pckArgs.slice(1));
