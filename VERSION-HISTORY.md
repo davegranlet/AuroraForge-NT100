@@ -29,6 +29,22 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.k — 2026-10-04
+
+Twelfth published build on the 2.0 line.
+
+- **Converter copy no longer says 2K25-only.** The task, button, summary, and completion text now say 2K25/2K26 (the pipeline always targeted whichever game you select; only the wording lagged).
+- **Source/Target game pipeline dropdown.** New selectors in the converter wizard: Source game (WWE 2K19 active; 2K26, 2K25, 2K24, 2K23, 2K22, 2K20 listed as coming soon) and Target game (WWE 2K25 and WWE 2K26 active; older games coming soon). Labels, task text, and the summary follow the selected target, and the chosen game folder is version-checked against it (a mismatch shows a clear heads-up instead of failing later). Reverse and cross-game pipelines (for example 2K26 to 2K20) will slot into this selector as they are finished.
+- **Bundled converter refreshed** to `Aurora-Forge-2.0.k-Preview.exe` (copy fix + pipeline dropdown).
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.k:
+
+```
+AuroraForge-NT100-2.0.k-Windows-x64.zip
+AuroraForge-NT100-2.0.k-Linux-x64.tar.gz
+```
+
 ## 2.0.j — 2026-10-03
 
 Eleventh published build on the 2.0 line.
@@ -182,9 +198,10 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.k** — next editor work, in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+- **2.0.l** — next editor work, in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
+  - Queued: **multi-game conversion pipelines** (source/target dropdown exists; the reverse clips pipeline + older registration writers are the work behind the coming-soon options).
   - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
-  - Queued: **import the existing WEM library** into the Audio Studio work folder (so older custom tracks are manageable from the app).
+  - Queued: **import the existing WEM library** into the Audio Studio work folder.
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
   - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
   - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.

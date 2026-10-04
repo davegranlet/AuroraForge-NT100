@@ -17,6 +17,8 @@ const state = {
   game19Picked: false,
   game26: DEFAULTS.game26,
   game26Picked: false,
+  sourceGame: '2k19',
+  targetGame: '2k26',
   output: DEFAULTS.output,
   extractFolder: DEFAULTS.extractAll,
   task: 'convert',
@@ -27,6 +29,47 @@ const state = {
   phaseStartedAt: 0,
   progressSeen: false,
 };
+
+function targetGameLabel() {
+  if (state.targetGame === '2k25') return 'WWE 2K25';
+  if (state.targetGame === '2k26') return 'WWE 2K26';
+  return 'WWE 2K25/2K26';
+}
+
+function applyPipelineLabels() {
+  const label = targetGameLabel();
+  const taskStrong = document.querySelector('label[for="task-convert"] strong');
+  if (taskStrong) taskStrong.textContent = `Convert all 2K19 Victory + Entrance animations to new ${label} entries`;
+  setText('task-label', `New ${label} entries`);
+  setText('summary-target', `New ${label} entries`);
+  setText('game26-name', state.game26 || `Choose your ${label} game folder`);
+  const game26Button = $('game26-btn');
+  if (game26Button) game26Button.textContent = `Choose ${label} Game Folder`;
+  const convertButton = $('convert');
+  if (convertButton && currentTask() !== 'extract-all') convertButton.textContent = `Convert all 2K19 Victory + Entrance animations to new ${label} entries`;
+}
+
+async function validateTargetFolder() {
+  const note = $('pipeline-note');
+  if (!note) return;
+  if (!state.game26) {
+    note.textContent = `WWE 2K19 motion becomes new entries in your own ${targetGameLabel()} game. Reverse and cross-game pipelines (for example 2K26 to 2K20) are planned and will appear here as they are finished.`;
+    return;
+  }
+  try {
+    const result = window.aurora && window.aurora.gameFolderVersion ? await window.aurora.gameFolderVersion(state.game26) : null;
+    if (result && result.ok && result.version === state.targetGame) {
+      note.textContent = `Pipeline ready: WWE 2K19 -> ${targetGameLabel()} using ${state.game26}.`;
+    } else if (result && result.ok) {
+      note.textContent = `Heads up: the selected folder looks like ${result.version.toUpperCase()}, but the target game is ${targetGameLabel()}. Choose the matching game folder or change the target.`;
+      log(`Warning: game folder version ${result.version} does not match target ${state.targetGame}.`);
+    } else {
+      note.textContent = `Pipeline: WWE 2K19 -> ${targetGameLabel()}. The game version could not be identified from the selected folder; the converter will still detect it when it runs.`;
+    }
+  } catch (error) {
+    note.textContent = `Pipeline: WWE 2K19 -> ${targetGameLabel()}.`;
+  }
+}
 
 function basename(file) {
   return String(file || '').split(/[\\/]/).pop();
@@ -112,18 +155,18 @@ function applyTaskUi() {
     setText('task-registration', 'Not applicable');
     if (registration) registration.className = '';
     setText('convert-title', 'Extract every readable 2K19 file to a fresh folder');
-    setText('convert-sub', 'Decodes all 2K19 event files into the extraction folder so you can reuse them with other tools. Nothing is converted or added to WWE 2K25.');
+    setText('convert-sub', 'Decodes all 2K19 event files into the extraction folder so you can reuse them with other tools. Nothing is converted or added to WWE 2K25/2K26.');
     if (convertButton) convertButton.textContent = 'Extract all 2K19 files to the extraction folder';
     document.querySelectorAll('.adv-convert').forEach(el => el.classList.add('hidden'));
     document.querySelectorAll('.adv-extract').forEach(el => el.classList.remove('hidden'));
   } else {
-    setText('task-label', 'New 2K25 entries');
+    setText('task-label', `New ${targetGameLabel()} entries`);
     setText('task-output', 'Loader-ready CAK');
     setText('task-registration', 'Auto from your game');
     if (registration) registration.className = 'green';
     setText('convert-title', 'One click builds the whole new-entry library');
     setText('convert-sub', 'This runs the full Aurora Forge ecosystem: decode 2K19 animations \u2192 build new 2K26 entry clips \u2192 write every registration table \u2192 bake + verify the loader-ready CAK. This can take several minutes.');
-    if (convertButton) convertButton.textContent = 'Convert all 2K19 Victory + Entrance animations to new 2K25 entries';
+    if (convertButton) convertButton.textContent = `Convert all 2K19 Victory + Entrance animations to new ${targetGameLabel()} entries`;
     document.querySelectorAll('.adv-convert').forEach(el => el.classList.remove('hidden'));
     document.querySelectorAll('.adv-extract').forEach(el => el.classList.add('hidden'));
   }
@@ -197,6 +240,7 @@ function setGame26Folder(folder) {
   if (!folder) return;
   state.game26 = folder;
   setText('game26-name', folder);
+  validateTargetFolder();
   refreshReady();
 }
 
@@ -222,13 +266,13 @@ function setOutputCak(file) {
 
 const PHASES = [
   { re: /decod|pac\\evt|reading 2k19|2k19 animation/i, label: 'Decoding 2K19 Victory + Entrance animations...' },
-  { re: /victory entry|entrance entry|cutscene|sdb|registration|append/i, label: 'Writing 2K25 registration (Victory, Entrance, Cutscene, SDB)...' },
+  { re: /victory entry|entrance entry|cutscene|sdb|registration|append/i, label: 'Writing 2K25/2K26 registration (Victory, Entrance, Cutscene, SDB)...' },
   { re: /foundry|fdir|bake|pack|verify/i, label: 'Baking + verifying the loader-ready CAK...' },
 ];
 
 const PROGRESS_LABELS = {
   extract: 'Decoding 2K19 animation files',
-  convert: 'Building new 2K25 entries',
+  convert: 'Building new 2K25/2K26 entries',
   bake: 'Baking + verifying the loader-ready CAK',
 };
 
@@ -313,7 +357,7 @@ async function runConversion() {
   if (barFill) barFill.style.width = '0%';
   const stepResult = $('step-result');
   if (stepResult) stepResult.classList.add('hidden');
-  log('Converting all 2K19 Victory + Entrance animations to new 2K25 entries. This can take several minutes...');
+  log('Converting all 2K19 Victory + Entrance animations to new 2K25/2K26 entries. This can take several minutes...');
 
   let result;
   try {
@@ -350,7 +394,7 @@ async function runConversion() {
       setText('result-label', 'EXTRACTED');
       const summary = $('result-summary');
       if (summary) {
-        summary.innerHTML = `Decoded <strong>${v.decoded}</strong> file(s) (${v.victory} victory, ${v.entrance} entrance) into this folder. It is yours to reuse with other tools; nothing was added to WWE 2K25.`;
+        summary.innerHTML = `Decoded <strong>${v.decoded}</strong> file(s) (${v.victory} victory, ${v.entrance} entrance) into this folder. It is yours to reuse with other tools; nothing was added to WWE 2K25/2K26.`;
       }
       if (stepResult) stepResult.classList.remove('hidden');
       log(`Extraction complete: ${v.decoded} file(s) at ${v.outputRoot || state.extractFolder}`);
@@ -364,18 +408,18 @@ async function runConversion() {
     setText('out-state', 'READY TO TEST');
     setGreen('out-state', true);
     setText('job-state', 'COMPLETE');
-    setText('job-phase', 'Done. Copy the CAK into your WWE 2K25 mods folder.');
+    setText('job-phase', 'Done. Copy the CAK into your WWE 2K25/2K26 mods folder.');
     setPill(4, true, false);
     setText('result-cak', (v.outputCak || state.output));
     setText('result-label', 'DONE');
     const summary = $('result-summary');
     if (summary) {
-      summary.innerHTML = `Added <strong>${v.count}</strong> new entries starting at id <strong>${v.assignedStartId}</strong>. Copy this CAK into your WWE 2K25 <span class="kbd">mods</span> folder and launch with the Aurora loader. Your new Victory + Entrance entries appear in the picker as AURORA &lt;id&gt;.`;
+      summary.innerHTML = `Added <strong>${v.count}</strong> new entries starting at id <strong>${v.assignedStartId}</strong>. Copy this CAK into your WWE 2K25/2K26 <span class="kbd">mods</span> folder and launch with the Aurora loader. Your new Victory + Entrance entries appear in the picker as AURORA &lt;id&gt;.`;
     }
     if (stepResult) stepResult.classList.remove('hidden');
     log(`Library CAK built and reopened: ${v.outputCak || state.output}`);
     log(`Added ${v.count} new entries starting at id ${v.assignedStartId}; CAK holds ${v.cak ? v.cak.fileCount : '?'} file(s), ${v.cak ? Number(v.cak.bytes).toLocaleString() : '?'} bytes.`);
-    log('Copy this .cak into the WWE 2K25 mods folder for the Aurora loader.');
+    log('Copy this .cak into the WWE 2K25/2K26 mods folder for the Aurora loader.');
     }
   } else {
     const stage = (result && result.stage) ? ` (stage: ${result.stage})` : '';
@@ -427,6 +471,22 @@ function wireUi() {
 
   const game26Btn = $('game26-btn');
   if (game26Btn) game26Btn.onclick = chooseGame26Folder;
+
+  const targetSelect = $('targetGame');
+  if (targetSelect) {
+    targetSelect.addEventListener('change', () => {
+      state.targetGame = targetSelect.value;
+      applyPipelineLabels();
+      validateTargetFolder();
+    });
+  }
+  const sourceSelect = $('sourceGame');
+  if (sourceSelect) {
+    sourceSelect.addEventListener('change', () => {
+      state.sourceGame = sourceSelect.value;
+      log(`Source game selected: ${state.sourceGame}.`);
+    });
+  }
 
   if (outputBtn) {
     outputBtn.onclick = async () => {
@@ -499,6 +559,8 @@ async function init() {
   setText('output-name', state.output || 'Choose an output CAK');
   setText('extract-folder-name', state.extractFolder || 'Choose an extraction folder');
   setText('summary-output', basename(state.output));
+  applyPipelineLabels();
+  validateTargetFolder();
   log('Ready: point to your WWE 2K19 folder and your WWE 2K25/2K26 folder. The registration skeleton is rebuilt from your own game files on this PC.');
   applyTaskUi();
   refreshAccess();

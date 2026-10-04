@@ -5,7 +5,7 @@ const crypto = require('crypto');
 
 const root = path.join(__dirname, '..');
 const appFolder = path.join(root, 'dist', 'AuroraForge NT100-win32-x64');
-const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.0.j-Windows-x64.zip');
+const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.0.k-Windows-x64.zip');
 const asarPath = path.join(appFolder, 'resources', 'app.asar');
 const unpackedTools = path.join(appFolder, 'resources', 'app.asar.unpacked', 'app', 'tools');
 
@@ -44,13 +44,13 @@ const hasUnpackedApp = exists(appFolder, 'resources', 'app');
 assert(hasAsar || hasUnpackedApp, 'packaged app runtime exists in resources');
 assert(exists(unpackedTools, 'cak-helper', 'AuroraCakHelper.exe'), 'CAK helper is physically unpacked for Windows execution');
 assert(exists(unpackedTools, 'texconv', 'texconv.exe'), 'DirectXTex converter is physically unpacked for Windows execution');
-const beta3ConverterExe = path.join(unpackedTools, 'animation-converter', 'Aurora-Forge-2.0.d-Preview.exe');
+const beta3ConverterExe = path.join(unpackedTools, 'animation-converter', 'Aurora-Forge-2.0.k-Preview.exe');
 const loaderCore = path.join(unpackedTools, 'wwe2k25-loader', 'dinput8.dll');
 const loaderAddon = path.join(unpackedTools, 'wwe2k25-loader', 'plugins', 'AuroraForge.CAKModLoader.ftrib');
-assert(exists(beta3ConverterExe), '2.0.d converter is physically unpacked for Windows execution');
+assert(exists(beta3ConverterExe), '2.0.k converter is physically unpacked for Windows execution');
 assert(exists(loaderCore), 'verified WWE 2K25 loader core is physically unpacked');
 assert(exists(loaderAddon), 'verified WWE 2K25 loader addon is physically unpacked');
-if (exists(beta3ConverterExe)) assert(sha256(beta3ConverterExe) === '6E3729DDE74DCCD0C1C9D6CA31C9BDC810F30EAE6F82D1D8423EEDB80374E05F', 'packaged 2.0.d converter checksum matches release candidate');
+if (exists(beta3ConverterExe)) assert(sha256(beta3ConverterExe) === '8A6EE905A51AAE4EADDC431C7F7667A7B038CA4F8A3B73916936AF63FF7CB7CD', 'packaged 2.0.d converter checksum matches release candidate');
 if (exists(loaderCore)) assert(sha256(loaderCore) === 'E600D04F2E1A9AF3C23A358462E8B5C25064D6C08411819377E278581EF0ED2F', 'packaged loader core checksum matches verified binary');
 if (exists(loaderAddon)) assert(sha256(loaderAddon) === '8DF85F88EF117CAE07D9BA3788AB255C5986E3E460F905EDAB7C5972918E3E33', 'packaged loader addon checksum matches verified binary');
 assert(exists(appFolder, 'chrome_100_percent.pak') || exists(appFolder, 'chrome_200_percent.pak'), 'Electron chrome pak runtime files exist');
@@ -88,7 +88,7 @@ try {
   assert(hasPrefix('resources/'), 'portable ZIP contains required Electron resources runtime entries');
   assert(hasExact('resources/app.asar.unpacked/app/tools/cak-helper/AuroraCakHelper.exe'), 'portable ZIP contains runnable unpacked CAK helper');
   assert(hasExact('resources/app.asar.unpacked/app/tools/texconv/texconv.exe'), 'portable ZIP contains runnable unpacked DirectXTex converter');
-assert(hasExact('resources/app.asar.unpacked/app/tools/animation-converter/Aurora-Forge-2.0.d-Preview.exe'), 'portable ZIP contains runnable unpacked 2.0.d converter');
+assert(hasExact('resources/app.asar.unpacked/app/tools/animation-converter/Aurora-Forge-2.0.k-Preview.exe'), 'portable ZIP contains runnable unpacked 2.0.d converter');
   assert(hasExact('resources/app.asar.unpacked/app/tools/wwe2k25-loader/dinput8.dll'), 'portable ZIP contains verified WWE 2K25 loader core');
   assert(hasExact('resources/app.asar.unpacked/app/tools/wwe2k25-loader/plugins/AuroraForge.CAKModLoader.ftrib'), 'portable ZIP contains verified WWE 2K25 loader addon');
   assert(hasPrefix('locales/'), 'portable ZIP contains required Electron locales runtime entries');

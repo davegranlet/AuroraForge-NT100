@@ -741,6 +741,25 @@ ipcMain.handle('wizard-defaults', async () => {
   };
 });
 
+ipcMain.handle('game-folder-version', async (_event, folder) => {
+  const dir = String(folder || '');
+  const known = {
+    'WWE2K26_x64.exe': '2k26',
+    'WWE2K25_x64.exe': '2k25',
+    'WWE2K24_x64.exe': '2k24',
+    'WWE2K23_x64.exe': '2k23',
+    'WWE2K22_x64.exe': '2k22',
+    'WWE2K20_x64.exe': '2k20',
+    'WWE2K19_x64.exe': '2k19'
+  };
+  for (const [exe, version] of Object.entries(known)) {
+    try {
+      if (dir && fs.existsSync(path.join(dir, exe))) return { ok: true, version, exe };
+    } catch (_error) { /* keep looking */ }
+  }
+  return { ok: false };
+});
+
 ipcMain.handle('detect-games', async () => {
   try {
     return { ok: true, installs: detectGameInstalls() };

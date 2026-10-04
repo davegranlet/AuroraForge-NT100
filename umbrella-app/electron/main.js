@@ -970,7 +970,7 @@ function createWindow() {
       submenu: [
         { label: 'Tutorials', click: () => loadAppPage(mainWindow, 'tutorials.html') },
         { type: 'separator' },
-        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 3', detail: 'Internal build 2.0.j\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta3 app experience.' }) }
+        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 3', detail: 'Internal build 2.0.k\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta3 app experience.' }) }
       ]
     }
   ];
@@ -1030,6 +1030,7 @@ ipcMain.handle('desktop:verify-access', async (event) => {
 ipcMain.handle('desktop:open-animation-converter', async () => {
   const accessEnv = bundledToolAccessEnv();
   const gatedBuilds = [
+    'Aurora-Forge-2.0.k-Preview.exe',
     'Aurora-Forge-2.0.d-Preview.exe',
     'Aurora-Forge-2.0.b-Preview.exe',
     'Aurora-Forge-2.0.a-Preview.exe',

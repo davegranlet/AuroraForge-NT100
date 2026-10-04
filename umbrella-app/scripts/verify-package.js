@@ -40,10 +40,10 @@ const projectCatalog = json('app', 'data', 'aurora-projects.json');
 
 ok(pkg.version === '2.0.0', 'standards-safe package version is 2.0');
 ok(lock.version === '2.0.0' && lock.packages[''].version === '2.0.0', 'package-lock root version matches');
-ok(manifest.release === '2.0.j' && manifest.releaseTitle === 'Beta 3', 'manifest identifies visible AuroraForge NT100 Beta3');
-ok(config.release === '2.0.j' && config.releaseTitle === 'Beta 3', 'app config identifies visible AuroraForge NT100 Beta3');
+ok(manifest.release === '2.0.k' && manifest.releaseTitle === 'Beta 3', 'manifest identifies visible AuroraForge NT100 Beta3');
+ok(config.release === '2.0.k' && config.releaseTitle === 'Beta 3', 'app config identifies visible AuroraForge NT100 Beta3');
 const releaseChallenge = json('app', 'config', 'release-challenge.json');
-ok(releaseChallenge.release === '2.0.j' && releaseChallenge.releaseTitle === 'Beta 3' && /^[0-9a-f]{64}$/i.test(releaseChallenge.challenge || ''), 'per-release verification challenge is generated for Beta3');
+ok(releaseChallenge.release === '2.0.k' && releaseChallenge.releaseTitle === 'Beta 3' && /^[0-9a-f]{64}$/i.test(releaseChallenge.challenge || ''), 'per-release verification challenge is generated for Beta3');
 ok(pkg.devDependencies.electron === '43.2.0', 'Electron is exactly pinned');
 ok(pkg.devDependencies['@electron/packager'] === '20.0.4', 'Electron Packager is exactly pinned');
 ok(pkg.dependencies.three === '0.185.1', 'Three.js is exactly pinned');
@@ -61,7 +61,7 @@ const required = [
   'app/assets/js/aurora-projects.js',
   'app/assets/js/access-gate.js',
   'app/tools/access-gate/patreon-access.js',
-  'app/tools/animation-converter/Aurora-Forge-2.0.d-Preview.exe',
+  'app/tools/animation-converter/Aurora-Forge-2.0.k-Preview.exe',
   'app/tools/animation-converter/SHA256SUMS.txt',
   'app/tools/wwe2k25-loader/dinput8.dll',
   'app/tools/wwe2k25-loader/plugins/AuroraForge.CAKModLoader.ftrib',
@@ -166,8 +166,8 @@ projectCatalog.projects.forEach((project) => {
 });
 const animationProject = projectCatalog.projects.find((project) => project.id === 'animation-converter');
 ok(animationProject?.status === 'experimental' && animationProject?.featured === true, '2K19 to 2K25 converter is featured with an honest experimental status');
-const beta3ConverterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'animation-converter', 'Aurora-Forge-2.0.d-Preview.exe'))).digest('hex').toUpperCase();
-ok(beta3ConverterHash === '6E3729DDE74DCCD0C1C9D6CA31C9BDC810F30EAE6F82D1D8423EEDB80374E05F', 'bundled 2.0.d converter matches its recorded SHA-256');
+const beta3ConverterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'animation-converter', 'Aurora-Forge-2.0.k-Preview.exe'))).digest('hex').toUpperCase();
+ok(beta3ConverterHash === '8A6EE905A51AAE4EADDC431C7F7667A7B038CA4F8A3B73916936AF63FF7CB7CD', 'bundled 2.0.k converter matches its recorded SHA-256');
 const loaderCoreHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'wwe2k25-loader', 'dinput8.dll'))).digest('hex').toUpperCase();
 const loaderAddonHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'wwe2k25-loader', 'plugins', 'AuroraForge.CAKModLoader.ftrib'))).digest('hex').toUpperCase();
 ok(loaderCoreHash === 'E600D04F2E1A9AF3C23A358462E8B5C25064D6C08411819377E278581EF0ED2F', 'bundled WWE2K25 loader core matches verified SHA-256');
@@ -241,7 +241,7 @@ ok(mainJs.includes('projectsFolder') && mainJs.includes('exportsFolder'), 'Elect
 ok(mainJs.includes("desktop:check-aurora-loader") && preloadJs.includes('checkAuroraLoader'), 'Electron exposes Aurora loader setup check');
 ok(!/desktop:check-cakehook|cakeView:|tribute:/.test(mainJs + preloadJs), 'Electron setup allowlist excludes old third-party tool gates');
 ok(!/cakeView|tribute|texconv/.test(read('app', 'assets', 'js', 'tool-center.js')), 'Setup renderer only lists supported creative programs');
-ok(mainJs.includes('AuroraForge NT100 Beta 3') && mainJs.includes('Internal build 2.0.j'), 'Electron About uses visible Beta3 release identity');
+ok(mainJs.includes('AuroraForge NT100 Beta 3') && mainJs.includes('Internal build 2.0.k'), 'Electron About uses visible Beta3 release identity');
 ok(!mainJs.includes('toggleDevTools'), 'normal Electron menu does not expose developer tools');
 
 const studiosHtml = read('app', 'creative-studios.html');
