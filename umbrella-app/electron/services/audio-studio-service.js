@@ -290,11 +290,21 @@ function createAudioStudioService(options) {
       });
     }
 
+    const { readMusicList, removeMusicRows } = require(path.join(toolsDir(), 'edit-2k25-music-list.js'));
+    const preRows = readMusicList(fs.readFileSync(baseCopy.working)).records;
+    const pruneIds = preRows
+      .filter((row) => row.musicId >= MIN_CUSTOM_MUSIC_ID)
+      .filter((row) => !fs.existsSync(path.join(wemsDir, `${1080000000 + (row.musicId - MIN_CUSTOM_MUSIC_ID)}.wem`)))
+      .map((row) => row.musicId);
+    if (pruneIds.length) {
+      fs.writeFileSync(baseCopy.working, removeMusicRows(fs.readFileSync(baseCopy.working), pruneIds));
+    }
+    report.prunedRows = pruneIds;
+
     const packageName = String((payload && payload.packageName) || MUSIC_PACKAGE_NAME).replace(/[^A-Za-z0-9_.-]/g, '_');
     const soundDir = path.join(config.gameFolder, 'sound');
     fs.mkdirSync(soundDir, { recursive: true });
     const packagePath = path.join(soundDir, packageName.endsWith('.pck') ? packageName : `${packageName}.pck`);
-    const { readMusicList } = require(path.join(toolsDir(), 'edit-2k25-music-list.js'));
     const baseRows = readMusicList(fs.readFileSync(baseCopy.working)).records;
     const allCustomIds = new Set([
       ...baseRows.filter((row) => row.musicId >= MIN_CUSTOM_MUSIC_ID).map((row) => row.musicId),

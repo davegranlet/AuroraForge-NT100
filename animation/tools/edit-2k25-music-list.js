@@ -185,6 +185,26 @@ function appendMusicRows(buffer, rows, options) {
   return Buffer.concat([shifted, Buffer.concat(additions)]);
 }
 
+function removeMusicRows(buffer, removeIds) {
+  const parsed = readMusicList(buffer);
+  const remove = new Set((removeIds || []).map(Number));
+  if (!remove.size) return Buffer.from(buffer);
+  const keptSlots = [];
+  parsed.records.forEach((record, index) => {
+    if (!remove.has(record.musicId)) keptSlots.push(index);
+  });
+  if (keptSlots.length === parsed.count) return Buffer.from(buffer);
+  const out = Buffer.from(buffer);
+  for (let i = 0; i < keptSlots.length; i += 1) {
+    const sourceSlot = parsed.vector + 4 + keptSlots[i] * 4;
+    const targetSlot = parsed.vector + 4 + i * 4;
+    const relative = out.readUInt32LE(sourceSlot);
+    out.writeUInt32LE(relative + (sourceSlot - targetSlot), targetSlot);
+  }
+  out.writeUInt32LE(keptSlots.length, parsed.vector);
+  return out;
+}
+
 function setMusicRow(buffer, musicId, changes) {
   const parsed = readMusicList(buffer);
   const index = parsed.records.findIndex((record) => record.musicId === musicId);
@@ -305,7 +325,7 @@ function main() {
   return 0;
 }
 
-module.exports = { readMusicList, appendMusicRows, setMusicRow };
+module.exports = { readMusicList, appendMusicRows, setMusicRow, removeMusicRows };
 
 if (require.main === module) {
   try {
