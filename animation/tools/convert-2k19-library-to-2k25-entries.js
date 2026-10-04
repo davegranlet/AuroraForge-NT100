@@ -179,9 +179,8 @@ function buildLibrary(options) {
     const label = `${namePrefix} ${id}`;
     replaceWithCli(engSdbPath, 'append_2k25_sdb_string.js', ['--id', String(nameString), '--text', label], ops);
     replaceWithCli(victoryPath, 'append_2k25_victory_clone_graph.js', ['--entry-id', String(id), '--clone-id', String(baseId), '--name-string', String(nameString), '--some-id', String(id), '--face', String(id)], ops);
-    replaceWithCli(entrancePath, 'append_2k25_entrance_clone_graph.js', [
+    replaceWithCli(entrancePath, 'append_2k25_entrance_scalar_rows.js', [
       '--entry-id', String(id),
-      '--clone-id', String(baseId),
       '--name-string', String(nameString),
     ], ops);
 
