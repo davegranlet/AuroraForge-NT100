@@ -29,6 +29,23 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.m — 2026-10-04
+
+Fourteenth published build on the 2.0 line.
+
+- **Animation Converter now runs inside the main app** (owner directive: "instead of loading the standalone app separately make it load in the main app"). New `app/animation-converter.html` page + renderer and a new in-process `electron/services/animation-converter-service.js`: choose the 2K19 folder and the target 2K25/2K26 folder, then convert the full library to new entries and bake one CAK — no separate download or app window. The page reuses the same verified toolchain (skeleton refresh from the user's own game CAKs, 2K19 extraction, clone-graph library conversion, Foundry bake), streams the live progress log, version-checks the target folder, and persists folder choices in app data. The tools hub and the retired project-catalog page link to the in-app page; the old launcher stays only as a rollback path.
+- **Packaged builds stage a minimal converter Foundry** (game-version registry + bake CLI staged at build time) so the in-app flow bakes with the bundled CAK v9.3 tools instead of requiring the standalone converter.
+- **Extract-only task**: the same page can decode the 2K19 animation library to a folder without baking, for inspection or reuse.
+- Known issue carried forward: the full-library CAK produced by the earlier converter flow still crashes WWE 2K26 at the known rebuilt-registration-table signature (RVA `0xA51A27`); the crash dump is analyzed and the byte-preserving staging investigation continues (see the loader session log).
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.m:
+
+```
+AuroraForge-NT100-2.0.m-Windows-x64.zip
+AuroraForge-NT100-2.0.m-Linux-x64.tar.gz
+```
+
 ## 2.0.l — 2026-10-04
 
 Thirteenth published build on the 2.0 line.
@@ -213,14 +230,7 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.m** — **Animation Converter runs inside the main app** (owner directive: "instead of loading the standalone app separately make it load in the main app"): port the wizard (folders, Source/Target pipeline, task, convert, results) into an in-app page backed by an umbrella service over the same toolchain, like Entry Studio and Audio Studio. Then the next editor work, in-game entry validation results, creator acceptance, verifier KV binding, user-reported fixes.
-  - Queued: **multi-game conversion pipelines** (reverse clips pipeline + older registration writers behind the coming-soon dropdown options).
-  - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
-  - Queued: **import the existing WEM library** into the Audio Studio work folder.
-  - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
-  - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
-  - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.
-  - Queued: **Entry Studio live click-through** - owner-run pass over the new in-app page (scan → convert → edit → bake → stage).
+- **2.0.n** — queued work: the replace/full-library registration crash (RVA `0xA51A27`) fix so converted libraries load in 2K26; multi-game conversion pipelines (reverse clips pipeline + older registration writers behind the coming-soon dropdown options); bundle an LGPL ffmpeg (or keep Setup-selected) so public builds encode without a system install; import the existing WEM library into the Audio Studio work folder; in-game entry validation (2 test runs budgeted; nothing staged); creator acceptance (Route 2) for converted entries in Create-an-Entrance; verifier KV binding so sessions survive verifier redeploys; Entry Studio live click-through (scan → convert → edit → bake → stage); the next editor from the 2K26 JSFB inventory.
 
 ### Rule reminder
 

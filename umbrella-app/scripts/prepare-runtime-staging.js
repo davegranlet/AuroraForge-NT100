@@ -31,6 +31,17 @@ copyDir(path.join(root, 'app'), path.join(staging, 'app'));
 copyDir(path.join(root, 'electron'), path.join(staging, 'electron'));
 copyDir(path.join(root, '..', 'animation', 'tools'), path.join(staging, 'app', 'tools', 'entry-studio', 'tools'), new Set(['__pycache__', 'ghidra']));
 
+const foundrySource = [
+  path.join(root, '..', 'cak-foundry'),
+  path.join(root, '..', '..', 'cak-foundry')
+].find((candidate) => fs.existsSync(path.join(candidate, 'scripts', 'bake-v93-cli.js')));
+if (!foundrySource) throw new Error('CAK Foundry source was not found for the in-app converter bake');
+const converterFoundry = path.join(staging, 'app', 'tools', 'converter-foundry');
+fs.mkdirSync(path.join(converterFoundry, 'electron'), { recursive: true });
+fs.mkdirSync(path.join(converterFoundry, 'scripts'), { recursive: true });
+fs.copyFileSync(path.join(foundrySource, 'electron', 'game-versions.js'), path.join(converterFoundry, 'electron', 'game-versions.js'));
+fs.copyFileSync(path.join(foundrySource, 'scripts', 'bake-v93-cli.js'), path.join(converterFoundry, 'scripts', 'bake-v93-cli.js'));
+
 const pkg = readJson(path.join(root, 'package.json'));
 const runtimePackage = {
   name: pkg.name,

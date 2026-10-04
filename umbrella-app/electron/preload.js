@@ -92,4 +92,14 @@ contextBridge.exposeInMainWorld('WWE2K26Desktop', {
     addFiles: () => ipcRenderer.invoke('desktop:audio-studio-add-files'),
     build: (payload) => ipcRenderer.invoke('desktop:audio-studio-build', payload)
   }
+  ,converter: {
+    getDefaults: () => ipcRenderer.invoke('desktop:converter-defaults'),
+    saveConfig: (patch) => ipcRenderer.invoke('desktop:converter-save-config', patch),
+    gameVersion: (folder) => ipcRenderer.invoke('desktop:converter-game-version', folder),
+    chooseFolder: () => ipcRenderer.invoke('desktop:converter-choose-folder'),
+    chooseOutput: () => ipcRenderer.invoke('desktop:converter-choose-output'),
+    extract: (payload) => ipcRenderer.invoke('desktop:converter-extract', payload),
+    build: (payload) => ipcRenderer.invoke('desktop:converter-build', payload),
+    onLog: (callback) => ipcRenderer.on('converter-log', (_event, text) => callback(text))
+  }
 });

@@ -20,6 +20,7 @@ const { createCakCollisionService } = require('./services/cak-collision-service'
 const { createModManifestManager } = require('./services/mod-manifest-manager');
 const { createEntryStudioService } = require('./services/entry-studio-service');
 const { createAudioStudioService } = require('./services/audio-studio-service');
+const { createAnimationConverterService } = require('./services/animation-converter-service');
 const { isOwnerBuild, ownerSession } = require('./owner-build');
 
 // GPU-less hosts (VPS/Docker/headless): on Linux the app defaults to software
@@ -198,6 +199,25 @@ function audioStudioService() {
   });
   return audioStudioServiceCache;
 }
+
+let animationConverterServiceCache = null;
+function animationConverterService() {
+  if (animationConverterServiceCache) return animationConverterServiceCache;
+  animationConverterServiceCache = createAnimationConverterService({
+    appRoot: APP_ROOT,
+    userDataDir: app.getPath('userData'),
+    bundledToolPath,
+    onLog: (text) => {
+      try {
+        for (const window of BrowserWindow.getAllWindows()) {
+          if (!window.isDestroyed()) window.webContents.send('converter-log', String(text) + '\n');
+        }
+      } catch (_error) { /* renderer already gone */ }
+    }
+  });
+  return animationConverterServiceCache;
+}
+
 
 function auditModSuiteFolder(selectedPath) {
   const selected = path.resolve(String(selectedPath || ''));
@@ -970,7 +990,7 @@ function createWindow() {
       submenu: [
         { label: 'Tutorials', click: () => loadAppPage(mainWindow, 'tutorials.html') },
         { type: 'separator' },
-        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 3', detail: 'Internal build 2.0.l\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta3 app experience.' }) }
+        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 3', detail: 'Internal build 2.0.m\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta3 app experience.' }) }
       ]
     }
   ];
@@ -1188,6 +1208,53 @@ ipcMain.handle('desktop:audio-studio-build', (_event, payload) => {
   requireVerifiedAccess();
   return audioStudioService().build(payload || {});
 });
+
+ipcMain.handle('desktop:converter-defaults', () => {
+  requireVerifiedAccess();
+  return animationConverterService().getDefaults();
+});
+
+ipcMain.handle('desktop:converter-save-config', (_event, patch) => {
+  requireVerifiedAccess();
+  return animationConverterService().saveConfig(patch || {});
+});
+
+ipcMain.handle('desktop:converter-game-version', (_event, folder) => {
+  return animationConverterService().gameVersion(folder);
+});
+
+ipcMain.handle('desktop:converter-choose-folder', async () => {
+  requireVerifiedAccess();
+  const result = await dialog.showOpenDialog({
+    title: 'Choose game folder',
+    properties: ['openDirectory', 'createDirectory']
+  });
+  if (result.canceled || !result.filePaths.length) return { ok: false, canceled: true };
+  return { ok: true, path: result.filePaths[0] };
+});
+
+ipcMain.handle('desktop:converter-choose-output', async () => {
+  requireVerifiedAccess();
+  const result = await dialog.showSaveDialog({
+    title: 'Save the new entry library CAK',
+    defaultPath: 'aurora-2k26-library.cak',
+    filters: [{ name: 'WWE CAK archive', extensions: ['cak'] }]
+  });
+  if (result.canceled || !result.filePath) return { ok: false, canceled: true };
+  const target = result.filePath.toLowerCase().endsWith('.cak') ? result.filePath : result.filePath + '.cak';
+  return { ok: true, path: target };
+});
+
+ipcMain.handle('desktop:converter-extract', (_event, payload) => {
+  requireVerifiedAccess();
+  return animationConverterService().extract19(payload || {});
+});
+
+ipcMain.handle('desktop:converter-build', (_event, payload) => {
+  requireVerifiedAccess();
+  return animationConverterService().buildLibrary(payload || {});
+});
+
 
 ipcMain.handle('desktop:choose-project-folder', async () => {
   const result = await dialog.showOpenDialog({
