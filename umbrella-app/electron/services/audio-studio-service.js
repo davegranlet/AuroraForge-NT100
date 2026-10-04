@@ -337,7 +337,7 @@ function createAudioStudioService(options) {
     manifest.cakOrder = manifest.cakOrder.filter((name) => !/custommusic/i.test(String(name)));
     const cakEntry = path.basename(report.cak.path);
     const packageEntry = path.basename(packagePath);
-    if (!manifest.cakOrder.includes(cakEntry)) manifest.cakOrder.push(cakEntry);
+    manifest.cakOrder.unshift(cakEntry);
     if (!manifest.packageOrder.includes(packageEntry)) manifest.packageOrder.push(packageEntry);
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
     const raw = fs.readFileSync(manifestPath);
