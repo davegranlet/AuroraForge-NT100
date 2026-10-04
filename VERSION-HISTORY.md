@@ -29,6 +29,26 @@ Aurora-Forge-2.0-Preview.tar.gz
 
 Hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
+## 2.0.j — 2026-10-03
+
+Eleventh published build on the 2.0 line.
+
+- **Custom music works end-to-end in-game.** Verified by the owner: custom tracks appear and play correctly in the entrance and victory editors and during matches, with commentary and match rating intact.
+- **Audio Studio builds the working package shape:** exactly one WEM per registered custom row - never bulk silent placeholders (the 2,500-entry placeholder package broke the game's streamed audio: no commentary, no in-match entrance music, match rating disabled).
+- **Only entries with actual music are registered:** the MusicList writer can prune rows (new `removeMusicRows`, in-place vector rewrite with rebased offsets), and the build drops any custom row that has no WEM instead of listing dead entries.
+- **Fixed `CustomMusic.cak` with cumulative edits:** every build writes/overwrites `mods/CustomMusic.cak`, reads its existing MusicList back out of the CAK as the base, and appends - so adding or editing music never loses earlier tracks.
+- **Pickers refresh from the CAK:** the Audio Studio list and the Entry Studio entrance-music dropdown read the current `CustomMusic.cak`.
+- **Music loader addon auto-enabled on build** (timestamped backup first), stale `*CustomMusic*.cak` files renamed `.stale-bak`, manifest `cakOrder` sanitized and the music CAK kept first.
+- Loader stack rebuilt with the current reproducible registry (music addon `4a21575f…`, MyGM example `50cdabf7…`); the verified mount configuration stays `CakInjectIndex=90, CakInjectExact=1` (later mounts win).
+- New per-release verification challenge (sessions from earlier releases do not unlock this build).
+
+Artifacts for 2.0.j:
+
+```
+AuroraForge-NT100-2.0.j-Windows-x64.zip
+AuroraForge-NT100-2.0.j-Linux-x64.tar.gz
+```
+
 ## 2.0.i — 2026-10-03
 
 Tenth published build on the 2.0 line.
@@ -162,9 +182,9 @@ Second build on the 2.0 line (source-level version; artifacts publish with the n
 
 ## Next
 
-- **2.0.j** — in-game entry validation results, custom-music in-game validation, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
-  - Queued: **custom-music in-game validation** - stage a real track with the loader + CustomMusicLoader addon and confirm the picker row and playback; confirm the cloned row's extra f11 u32 is ignored for 3000+ slots.
+- **2.0.k** — next editor work, in-game entry validation results, creator acceptance for the owner's own accounts, verifier KV binding, any user-reported fixes.
   - Queued: **bundle an LGPL ffmpeg** (or keep Setup-selected) so public builds encode without a system install.
+  - Queued: **import the existing WEM library** into the Audio Studio work folder (so older custom tracks are manageable from the app).
   - Queued: **in-game entry validation** - fresh runs of the converted entries in WWE 2K25/2K26 (2 test runs budgeted; nothing staged).
   - Queued: **creator acceptance (Route 2)** - confirm the owner's own accounts can accept the converted entries in Create-an-Entrance.
   - Queued: **verifier KV binding** - move the replay store from memory to KV so sessions survive verifier redeploys.
