@@ -118,21 +118,47 @@ function archiveRelativePath(sourceRelative) {
 function scanBakeFolder(sourceRoot) {
   const root = path.resolve(sourceRoot);
   if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) throw new Error('Choose a readable BakeMe folder first.');
+  const manifestPath = path.join(root, '.aurora-cak-manifest.json');
+  let preservedEntries = new Map();
+  if (fs.existsSync(manifestPath)) {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (manifest.schema !== 'aurora-forge-cak-extraction-manifest/v1' || !Array.isArray(manifest.entries)) throw new Error('The Aurora CAK extraction manifest is malformed or unsupported.');
+    preservedEntries = new Map(manifest.entries.map((entry) => [String(entry.relativePath || '').replace(/\\/g, '/').toLowerCase(), entry]));
+  }
   const folders = [{ relative: '', leaf: '', parent: -1, children: [], files: [], hash: ROOT_HASH }]; const files = [];
-  let ignoredTextureDatabase = false;
   const walk = (full, folderId) => {
     for (const entry of fs.readdirSync(full, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
       if (entry.isSymbolicLink()) continue; const target = path.join(full, entry.name); const relative = path.relative(root, target).replace(/\\/g, '/');
       if (!relative || relative.split('/').includes('..')) throw new Error('A BakeMe entry escapes the selected folder.');
       if (entry.isDirectory()) { const id = folders.length; folders.push({ relative, leaf: entry.name, parent: folderId, children: [], files: [], hash: fnv1a64(relative.toLowerCase()) }); folders[folderId].children.push(id); walk(target, id); }
       else if (entry.isFile()) {
-        if (relative.toLowerCase() === '_textures.tdb') { ignoredTextureDatabase = true; continue; }
-        const size = fs.statSync(target).size; if (size > 0xffffffff) throw new Error(`${relative} exceeds the 4 GB per-file CAK limit.`); const id = files.length; const archiveRelative = archiveRelativePath(relative); files.push({ id, full: target, relative, archiveRelative, leaf: archiveRelative.split(/[\\/]/).pop(), folderId, size, hash: fnv1a64(archiveRelative.toLowerCase()) }); folders[folderId].files.push(id);
+        if (['.aurora-cak-manifest.json', '.aurora-cak-external-references.json', 'aurora_forge_extraction_report.txt'].includes(relative.toLowerCase())) continue;
+        const size = fs.statSync(target).size; if (size > 0xffffffff) throw new Error(`${relative} exceeds the 4 GB per-file CAK limit.`);
+        const preserved = preservedEntries.get(relative.toLowerCase());
+        const validHash = (value) => /^[0-9a-f]{16}$/i.test(String(value || ''));
+        if (preserved && !validHash(preserved.fileHash)) throw new Error(`The extraction manifest has an invalid file hash for ${relative}.`);
+        if (preserved && preserved.folderHash && !validHash(preserved.folderHash)) throw new Error(`The extraction manifest has an invalid folder hash for ${relative}.`);
+        if (preserved && preserved.folderHash) {
+          const normalizedFolderHash = preserved.folderHash.toLowerCase();
+          if (folders[folderId].preservedHash && folders[folderId].preservedHash !== normalizedFolderHash) throw new Error(`The extraction manifest maps one output folder to multiple original folder hashes: ${folders[folderId].relative}.`);
+          folders[folderId].hash = normalizedFolderHash; folders[folderId].preservedHash = normalizedFolderHash;
+        }
+        const id = files.length;
+        const archiveRelative = archiveRelativePath(relative);
+        files.push({ id, full: target, relative, archiveRelative, leaf: archiveRelative.split(/[\\/]/).pop(), folderId, size, hash: preserved ? preserved.fileHash.toLowerCase() : fnv1a64(archiveRelative.toLowerCase()), preservedIdentity: Boolean(preserved) });
+        folders[folderId].files.push(id);
       }
     }
   };
   walk(root, 0); if (!files.length) throw new Error('The selected BakeMe folder contains no files.');
-  return { root, folders, files, suppliedTextureDatabase: false, ignoredTextureDatabase };
+  const suppliedTextureDatabase = files.some((file) => file.relative.toLowerCase() === '_textures.tdb');
+  if (!suppliedTextureDatabase) {
+    files.forEach((file) => { file.id += 1; });
+    folders.forEach((folder) => { folder.files = folder.files.map((id) => id + 1); });
+    files.unshift({ id: 0, full: '', relative: '_textures.tdb', leaf: '_textures.tdb', folderId: 0, size: EMPTY_TEXTURE_DATABASE.length, hash: fnv1a64('_textures.tdb'), synthetic: true, content: EMPTY_TEXTURE_DATABASE });
+    folders[0].files.unshift(0);
+  }
+  return { root, folders, files, suppliedTextureDatabase };
 }
 function prepareScanPayloads(scan, options = {}) {
   for (const file of scan.files) {
@@ -146,7 +172,9 @@ function prepareScanPayloads(scan, options = {}) {
   const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'aurora-cak-compress-'));
   try {
     for (const file of scan.files) {
-      if (file.synthetic || file.size < 64) continue;
+      const archiveRelative = file.archiveRelative || file.relative || file.leaf || '';
+      const lowerRelative = archiveRelative.toLowerCase();
+      if (file.synthetic || file.size < 64 || lowerRelative === '_textures.tdb' || lowerRelative.endsWith('.sdb')) continue;
       const outputPath = path.join(temporaryRoot, `${file.id}.oodle`);
       const requestPath = path.join(temporaryRoot, `${file.id}.json`);
       fs.writeFileSync(requestPath, JSON.stringify({ action: 'compress', inputPath: file.full, outputPath, oodlePath: options.oodlePath }), 'utf8');
@@ -174,7 +202,7 @@ function encodeStringTable(input) {
   };
   let cursor = 1;
   let processed = 0;
-  // CakeView deliberately leaves the final separator byte outside this pass.
+  // The archive format leaves the final separator byte outside this pass.
   while (cursor + 1 < output.length) {
     cursor += 1; // The separator preceding this name is stored unchanged.
     const length = output[cursor];
@@ -239,9 +267,8 @@ function buildCak(sourceRoot, outputPath, options = {}) {
   if (fs.existsSync(output)) fs.rmSync(output); fs.renameSync(temporary, output); const verification = verifyCak(output, scan);
   const texturePayloads = scan.files.filter((file) => /\.(?:dds|tex)$/i.test(file.relative)).length;
   const warnings = [];
-  if (scan.ignoredTextureDatabase) warnings.push('_textures.tdb was present in the BakeMe root and was intentionally ignored so separate mod CAKs do not provide competing root texture databases.');
-  if (texturePayloads) warnings.push('No _textures.tdb was baked. Texture replacements rely on existing game or loader texture metadata; entirely new texture hashes need a separate metadata strategy, not one texture database per mod CAK.');
-  return { outputPath: output, sourceRoot: scan.root, fileCount: scan.files.length, folderCount: scan.folders.length, bytes: fs.statSync(output).size, texturePayloads, textureDatabase: scan.ignoredTextureDatabase ? 'ignored' : 'not-baked', warnings, ...verification };
+  if (texturePayloads && !scan.suppliedTextureDatabase) warnings.push('An empty _textures.tdb was added. This is correct for replacements of existing texture hashes; entirely new texture hashes need a populated _textures.tdb supplied in the BakeMe root.');
+  return { outputPath: output, sourceRoot: scan.root, fileCount: scan.files.length, folderCount: scan.folders.length, bytes: fs.statSync(output).size, texturePayloads, textureDatabase: scan.suppliedTextureDatabase ? 'supplied' : 'generated-empty-v6', warnings, ...verification };
 }
 function verifyCak(archivePath, expected) {
   if (expected && expected.files.some((file) => file.storedSize === undefined)) prepareScanPayloads(expected);

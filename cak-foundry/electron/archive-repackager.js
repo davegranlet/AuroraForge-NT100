@@ -173,7 +173,8 @@ function prepareScanPayloads(scan, options = {}) {
   try {
     for (const file of scan.files) {
       const archiveRelative = file.archiveRelative || file.relative || file.leaf || '';
-      if (file.synthetic || file.size < 64 || archiveRelative.toLowerCase() === '_textures.tdb') continue;
+      const lowerRelative = archiveRelative.toLowerCase();
+      if (file.synthetic || file.size < 64 || lowerRelative === '_textures.tdb' || lowerRelative.endsWith('.sdb')) continue;
       const outputPath = path.join(temporaryRoot, `${file.id}.oodle`);
       const requestPath = path.join(temporaryRoot, `${file.id}.json`);
       fs.writeFileSync(requestPath, JSON.stringify({ action: 'compress', inputPath: file.full, outputPath, oodlePath: options.oodlePath }), 'utf8');
