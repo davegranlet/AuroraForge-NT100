@@ -41,8 +41,8 @@ function buildReplacement(options) {
   const before = parseFile(template25, { includeRaw: false });
   if (!before.records.length) throw new Error('template has no records');
   let recordIndex;
-  if (requestedRecord === 'auto') {
-    recordIndex = before.records.reduce((best, record, i) => (record.length > before.records[best].length ? i : best), 0);
+  if (requestedRecord === 'auto' || requestedRecord === 'body') {
+    recordIndex = before.records.reduce((best, record, i) => (record.trackIdentifiers.length > before.records[best].trackIdentifiers.length ? i : best), 0);
   } else {
     recordIndex = integer(requestedRecord, 'recordIndex');
   }
@@ -59,8 +59,10 @@ function buildReplacement(options) {
       outputPath: output,
       sectionIndex: 0,
       legsStock: Boolean(options.legsStock),
-      gainPos: options.gainPos,
-      gainRot: options.gainRot,
+      trackOffset: options.trackOffset,
+    gainPos: options.gainPos,
+    gainRot: options.gainRot,
+    calibrationPath: options.calibrationPath,
     });
     const after = parseFile(output, { includeRaw: false });
     const targetBefore = before.records[recordIndex];
@@ -113,8 +115,10 @@ if (require.main === module) {
       output: arg(process.argv, '--out'),
       sectionIndex: arg(process.argv, '--section-index', undefined) !== undefined ? Number(arg(process.argv, '--section-index')) : null,
       legsStock: process.argv.includes('--legs-stock'),
-      gainPos: arg(process.argv, '--gain-pos', undefined),
-      gainRot: arg(process.argv, '--gain-rot', undefined),
+      trackOffset: Number(arg(process.argv, '--track-offset', '0')),
+    gainPos: arg(process.argv, '--gain-pos', undefined),
+    gainRot: arg(process.argv, '--gain-rot', undefined),
+    calibrationPath: arg(process.argv, '--calibration', undefined),
     });
     console.log(JSON.stringify(result, null, 2));
   } catch (error) {

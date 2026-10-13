@@ -88,13 +88,13 @@ entries.forEach((e, i) => {
   out.writeInt32LE(rec - vt, rec);
   out.writeUInt8(1, rec + 7);
   out.writeUInt16LE(e.id, rec + 8);
-  out.writeUInt16LE(10226, rec + 10);
+  out.writeUInt16LE(e.field9 !== undefined ? e.field9 : 10226, rec + 10);
   out.writeUInt32LE(e.nameString >>> 0, rec + 12);
-  out.writeUInt32LE(852, rec + 16);
-  out.writeUInt32LE(852, rec + 20);
-  out.writeUInt32LE(1161, rec + 24);
-  out.writeUInt32LE(26008, rec + 28);
-  out.writeUInt32LE(2236, rec + 32);
+  out.writeUInt32LE(e.field4 !== undefined ? e.field4 : 852, rec + 16);
+  out.writeUInt32LE(e.field5 !== undefined ? e.field5 : 852, rec + 20);
+  out.writeUInt32LE(e.field6 !== undefined ? e.field6 : 1161, rec + 24);
+  out.writeUInt32LE(e.field7 !== undefined ? e.field7 : 26008, rec + 28);
+  out.writeUInt32LE(e.field8 !== undefined ? e.field8 : 2236, rec + 32);
 });
 
 if (!out.subarray(shift).equals(b)) die('Original graph failed byte-preservation check');

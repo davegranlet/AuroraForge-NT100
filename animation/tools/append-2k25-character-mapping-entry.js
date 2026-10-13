@@ -35,7 +35,7 @@ function findById(buffer, vecInfo, id) {
     const table = vecInfo.tables[i];
     if (table === null) continue;
     const rec = readId(buffer, table);
-    if (rec && rec.id === (id & 0xffff) && rec.osize === 64) return { index: i, table, ...rec };
+    if (rec && rec.id === (id & 0xffff)) return { index: i, table, ...rec };
   }
   return null;
 }
@@ -52,11 +52,11 @@ function appendCharacterMappingEntry(input, options) {
     throw new Error(`appendCharacterMappingEntry: id ${newId} already exists; refusing duplicate`);
   }
   const template = findById(buffer, vecInfo, templateId);
-  if (!template) throw new Error(`appendCharacterMappingEntry: template id ${templateId} not found (dominant 64-byte shape)`);
-  const templateBytes = buffer.subarray(template.table, template.table + 64);
+  if (!template) throw new Error(`appendCharacterMappingEntry: template id ${templateId} not found`);
+  const templateBytes = buffer.subarray(template.table, template.table + template.osize);
 
   const refs = lib.collectSlots(buffer, vecInfo);
-  const spliced = lib.spliceAppend(buffer, vecInfo, Buffer.alloc(64, 0), refs);
+  const spliced = lib.spliceAppend(buffer, vecInfo, Buffer.alloc(template.osize, 0), refs);
   const out = spliced.buffer;
   const shift = (p) => p + (p >= spliced.insertAt ? 4 : 0);
   const pos = spliced.newTablePos;

@@ -25,6 +25,11 @@ const lib = require('./jsfb-append-lib');
 const CHILD_RELS = [0, 0, 8, 0, 12, 0, 16, 20, 24, 28, 32, 0, 0, 0, 0, 0, 10, 5, 0, 0,
   36, 40, 44, 48, 52, 56, 60, 64, 0, 68, 72, 76, 80, 84, 88, 0, 0, 6, 0, 0, 0, 7];
 const CHILD_PTR_FIELDS = [20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32, 33];
+// Known child shapes: 2K25 mainstream (92/88) and 2K26 (116/110).
+const CHILD_SHAPES = {
+  '92:88': { osize: 92, vsize: 88, f2rel: 8, ptrFields: CHILD_PTR_FIELDS },
+  '116:110': { osize: 116, vsize: 110, f2rel: 8, ptrFields: [4, 5, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 34, 35, 45, 47, 48] },
+};
 
 function locateRecords(buffer) {
   const { root } = lib.readHeader(buffer, 'Char');
@@ -46,18 +51,37 @@ function readOuter(buffer, table) {
 
 function readChild(buffer, child) {
   const resolved = lib.tableAt(buffer, child);
-  if (!resolved || resolved.osize !== 92 || resolved.vsize !== 88) return null;
-  const rels = [];
-  for (let f = 0; f < 42; f++) {
-    const field = lib.fieldByIndex(resolved, f);
-    rels.push(field ? field.rel : 0);
-  }
-  for (let f = 0; f < 42; f++) {
-    if (rels[f] !== CHILD_RELS[f]) return null;
+  if (!resolved) return null;
+  const shape = CHILD_SHAPES[`${resolved.osize}:${resolved.vsize}`];
+  if (!shape) return null;
+  if (shape.osize === 92) {
+    const rels = [];
+    for (let f = 0; f < 42; f++) {
+      const field = lib.fieldByIndex(resolved, f);
+      rels.push(field ? field.rel : 0);
+    }
+    for (let f = 0; f < 42; f++) {
+      if (rels[f] !== CHILD_RELS[f]) return null;
+    }
   }
   const f2 = lib.fieldByIndex(resolved, 2);
   if (!f2 || f2.size < 2) return null;
-  return { child, vtable: resolved.vtable, mirrorId: buffer.readUInt16LE(f2.at), f2rel: f2.rel };
+  return { child, vtable: resolved.vtable, osize: shape.osize, vsize: shape.vsize, ptrFields: shape.ptrFields, mirrorId: buffer.readUInt16LE(f2.at), f2rel: f2.rel };
+}
+
+// Version-agnostic: first outer record whose child matches the measured shape.
+function pickTemplate(input) {
+  const buffer = Buffer.isBuffer(input) ? input : fs.readFileSync(input);
+  const { vecInfo } = locateRecords(buffer);
+  for (let i = 0; i < vecInfo.count; i++) {
+    const table = vecInfo.tables[i];
+    if (table === null) continue;
+    const outer = readOuter(buffer, table);
+    if (!outer) continue;
+    if (!readChild(buffer, outer.child)) continue;
+    return { templateCharId: outer.id };
+  }
+  return null;
 }
 
 function findByCharId(buffer, vecInfo, charId) {
@@ -90,7 +114,7 @@ function appendCharProfileTableEntry(input, options) {
   const childResolved = lib.tableAt(buffer, template.child);
   // Snapshot every pointer target's content for the share check.
   const targets = {};
-  for (const f of CHILD_PTR_FIELDS) {
+  for (const f of child.ptrFields) {
     const field = lib.fieldByIndex(childResolved, f);
     const target = field.at + buffer.readUInt32LE(field.at);
     const asTable = lib.tableAt(buffer, target);
@@ -102,7 +126,7 @@ function appendCharProfileTableEntry(input, options) {
     ...lib.collectRootSoff(buffer, root),
     ...lib.collectSoffs(buffer, vecInfo.tables),
   ];
-  const spliced = lib.spliceAppendAt(buffer, vecInfo, 12 + 92, refs);
+  const spliced = lib.spliceAppendAt(buffer, vecInfo, 12 + child.osize, refs);
   const out = spliced.buffer;
   const shift = (p) => p + (p >= spliced.insertAt ? spliced.delta : 0);
   const outerPos = spliced.chunkPos;
@@ -113,10 +137,10 @@ function appendCharProfileTableEntry(input, options) {
   out.writeUInt16LE(newCharId & 0xffff, outerPos + 6);
   out.writeUInt32LE(childPos - (outerPos + 8), outerPos + 8);
 
-  buffer.subarray(template.child, template.child + 92).copy(out, childPos);
+  buffer.subarray(template.child, template.child + child.osize).copy(out, childPos);
   out.writeInt32LE(childPos - shift(child.vtable), childPos);
   out.writeUInt16LE(newCharId & 0xffff, childPos + child.f2rel);
-  for (const f of CHILD_PTR_FIELDS) {
+  for (const f of child.ptrFields) {
     const field = lib.fieldByIndex(childResolved, f);
     const at = childPos + (field.at - template.child);
     const value = shift(targets[f].target) - at;
@@ -161,7 +185,10 @@ function validateTableAppend(before, after, options) {
       continue;
     }
     if (oa.id !== ob.id) throw new Error(`appendCharProfileTableEntry: row ${i} changed`);
-    if (!before.subarray(oa.child, oa.child + 92).equals(after.subarray(ob.child, ob.child + 92))) {
+    const oaChild = readChild(before, oa.child);
+    const obChild = readChild(after, ob.child);
+    const childSize = oaChild ? oaChild.osize : 92;
+    if (!before.subarray(oa.child, oa.child + childSize).equals(after.subarray(ob.child, ob.child + childSize))) {
       throw new Error(`appendCharProfileTableEntry: row ${i} child changed`);
     }
   }
@@ -173,7 +200,7 @@ function validateTableAppend(before, after, options) {
   }
   const createdResolved = lib.tableAt(after, created.child);
   const shift = (p) => p + (p >= insertAt ? delta : 0);
-  for (const f of CHILD_PTR_FIELDS) {
+  for (const f of Object.keys(targets).map(Number)) {
     const field = lib.fieldByIndex(createdResolved, f);
     const target = field.at + after.readUInt32LE(field.at);
     if (target !== shift(targets[f].target)) {
@@ -187,7 +214,7 @@ function validateTableAppend(before, after, options) {
   if (verified < 100) throw new Error(`appendCharProfileTableEntry: too few refs verified (${verified})`);
 }
 
-module.exports = { appendCharProfileTableEntry, locateRecords, findByCharId };
+module.exports = { appendCharProfileTableEntry, pickTemplate, locateRecords, findByCharId };
 
 if (require.main === module) {
   const source = process.argv[2];

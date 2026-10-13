@@ -53,16 +53,22 @@ for (const r of records) {
   decoded.set(r.offset, transform(source.subarray(r.offset, r.offset + r.length), r.offset));
 }
 
+const replaceMode = process.argv.includes('--replace');
 const additions = [];
+const replacement = new Map();
 for (const e of entries) {
   const id = Number(e.id) >>> 0;
   if (!Number.isInteger(id)) die(`Bad entry id: ${JSON.stringify(e)}`);
-  if (existing.has(id)) { console.error(`skip ${id}: id already exists`); continue; }
   const text = String(e.text);
   if (!text.length) die(`Empty text for ${id}`);
+  if (existing.has(id)) {
+    if (replaceMode) { replacement.set(id, text); continue; }
+    console.error(`skip ${id}: id already exists`);
+    continue;
+  }
   additions.push({ id, text });
 }
-if (!additions.length) die('Nothing to append (all ids exist)');
+if (!additions.length && !replacement.size) die('Nothing to append or replace');
 
 // Build the new record list: originals keep order, additions sorted by id.
 const merged = records.concat(additions.map((a) => ({ id: a.id, text: a.text })));
@@ -86,6 +92,7 @@ function place(text) {
 }
 const placed = sorted.map((r) => {
   if (r.text !== undefined) return { id: r.id, ...place(r.text) };
+  if (replacement.has(r.id)) return { id: r.id, ...place(replacement.get(r.id)) };
   const old = decoded.get(r.offset);
   const text = old.toString('utf8');
   return { id: r.id, ...place(text) };
@@ -103,4 +110,4 @@ placed.forEach((p, i) => {
 const out = Buffer.concat([header, ...pool]);
 fs.mkdirSync(path.dirname(path.resolve(output)), { recursive: true });
 fs.writeFileSync(output, out);
-console.log(JSON.stringify({ output: path.resolve(output), sourceBytes: source.length, bytes: out.length, records: placed.length, appended: additions.length, uniqueStrings: byText.size }, null, 2));
+console.log(JSON.stringify({ output: path.resolve(output), sourceBytes: source.length, bytes: out.length, records: placed.length, appended: additions.length, replaced: replacement.size, uniqueStrings: byText.size }, null, 2));

@@ -234,7 +234,28 @@ function validateCharMoveSetAppend(before, after, options) {
   if (verified < 1000) throw new Error(`appendCharMoveSetSlot: suspiciously few refs verified (${verified})`);
 }
 
-module.exports = { appendCharMoveSetSlot, locateTopVector, findWrestler };
+// Version-agnostic template picker: returns the first slot of the first
+// preferred wrestler that exists in the file, with its current SDB id.
+function pickTemplate(input, preferredWrestlerIds) {
+  const buffer = Buffer.isBuffer(input) ? input : fs.readFileSync(input);
+  const { vecInfo } = locateTopVector(buffer);
+  for (const wrestlerId of preferredWrestlerIds) {
+    const wrestler = findWrestler(buffer, vecInfo, wrestlerId);
+    if (!wrestler) continue;
+    const wrap = readWrapper(buffer, wrestler.wrapper);
+    if (!wrap) continue;
+    const wf0 = asTableVector(buffer, wrap.fields[0].target);
+    if (!wf0) continue;
+    for (const t of wf0.tables) {
+      if (t === null) continue;
+      const slot = readSlot(buffer, t);
+      if (slot && slot.sdbId) return { wrestlerId, templateSdbId: slot.sdbId >>> 0 };
+    }
+  }
+  return null;
+}
+
+module.exports = { appendCharMoveSetSlot, locateTopVector, findWrestler, pickTemplate };
 
 if (require.main === module) {
   const source = process.argv[2];

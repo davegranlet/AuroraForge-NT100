@@ -13,7 +13,10 @@
 //   3. stage registration into a BakeMe tree (no copy; tree must contain the
 //      stock SNME files):
 //        - SDB name id (last+1 negative space) + text
-//        - entrance row: byte-preserving clone of sec8 row 1 + in-place f4/f5 edit
+//        - entrance row: byte-preserving clone of the newest proven custom sec8
+//          row (id>=14000, type 1, hideId 0; fallback sec8 row 1) + in-place f4
+//          edit (+f5 victory motion only when one is registered, pass
+//          victoryMotionId: null to leave the stock victory id)
 //        - victory row: proven victory entry writer
 //        - cutscene entry (template 6100)
 //        - 8 extended writers (teams, charmapping, cammove, facetextures,
@@ -147,24 +150,47 @@ function stageSdbName(treeRoot, text) {
   if (existing) return { id: existing.id >>> 0, signedId: existing.id | 0, created: false };
   const next = (records[records.length - 1].id + 1) >>> 0;
   const signed = next > 0x7fffffff ? next - 0x100000000 : next;
-  runTool([path.join('tools', 'append_2k25_sdb_string.js'), sdbPath, sdbPath, '--id', String(signed), '--text', text], 'sdb append');
-  return { id: next, signedId: signed, created: true };
+  // 2K26 pools are cipher-encoded; the 2K25 writer garbles them. Prefer the
+  // 2K26 appender when the pool decodes with the 2K26 transform.
+  const { transform } = require('./sdb-2k26');
+  let use2k26 = false;
+  try {
+    const probe = records[records.length - 1];
+    const raw = fs.readFileSync(sdbPath);
+    const decoded = transform(raw.subarray(probe.offset, probe.offset + probe.length), probe.offset).toString('utf8');
+    const printable = decoded.split('').filter((c) => c >= ' ' && c <= '~').length / Math.max(1, decoded.length);
+    use2k26 = decoded.length > 0 && printable > 0.9;
+  } catch (error) {
+    use2k26 = false;
+  }
+  const writer = use2k26 ? 'append_2k26_sdb_string.js' : 'append_2k25_sdb_string.js';
+  runTool([path.join('tools', writer), sdbPath, sdbPath, '--id', String(signed), '--text', text], 'sdb append');
+  return { id: next, signedId: signed, created: true, writer };
 }
 
-function stageEntranceRow(treeRoot, { entryId, nameId, motionId }) {
+function stageEntranceRow(treeRoot, { entryId, nameId, motionId, victoryMotionId = motionId }) {
   const entrancePath = path.join(treeRoot, 'Entrances', 'EntranceListData.jsfb');
   const { findEntranceEntry } = require('./find-2k25-entrance-entry');
   const existing = findEntranceEntry(fs.readFileSync(entrancePath), entryId);
   if (existing) return { created: false, section: existing.section, index: existing.index };
+  let cloneId = 1;
+  try {
+    const { locateEntranceVectors } = require('./locate-entrance-vectors.js');
+    const rows = locateEntranceVectors(fs.readFileSync(entrancePath)).flat();
+    const proven = rows.filter((row) => row.id >= 14000 && row.type === 1 && row.hideId === 0n).sort((a, b) => b.id - a.id)[0];
+    if (proven) cloneId = proven.id;
+  } catch {}
   const temporary = `${entrancePath}.aurora-clone.tmp`;
   runTool([
     path.join('tools', 'append_2k25_entrance_clone_graph.js'), entrancePath, temporary,
-    '--entry-id', String(entryId), '--clone-id', '1', '--name-string', String(nameId),
+    '--entry-id', String(entryId), '--clone-id', String(cloneId), '--name-string', String(nameId),
   ], 'entrance clone');
   const { editEntranceEntry } = require('./edit-2k25-entrance-entry');
-  editEntranceEntry({ inputPath: temporary, outputPath: entrancePath, entryId, setters: { field4: motionId, field5: motionId } });
+  const setters = { field4: motionId };
+  if (victoryMotionId !== null && victoryMotionId !== undefined) setters.field5 = victoryMotionId;
+  editEntranceEntry({ inputPath: temporary, outputPath: entrancePath, entryId, setters });
   fs.unlinkSync(temporary);
-  return { created: true };
+  return { created: true, cloneId };
 }
 
 function stageVictoryRow(treeRoot, { entryId, nameId, motionId }) {
@@ -208,9 +234,11 @@ function stageExtended(treeRoot, { entryId, nameId }) {
   fs.writeFileSync(p, appendFaceTexturesEntry(fs.readFileSync(p), { templateId: 100, newId: entryId }));
   blocks.facetextures = true;
 
-  const { appendCharMoveSetSlot } = require('./append-2k25-charmoveset-slot');
+  const { appendCharMoveSetSlot, pickTemplate } = require('./append-2k25-charmoveset-slot');
   p = path.join(treeRoot, 'Roster', 'CharMoveSetDataTable.jsfb');
-  fs.writeFileSync(p, appendCharMoveSetSlot(fs.readFileSync(p), { wrestlerId: 1, templateSdbId: 4294957756, newSdbId: nameId }));
+  const cmBuffer = fs.readFileSync(p);
+  const cmPick = pickTemplate(cmBuffer, [1, 100]) || { wrestlerId: 1, templateSdbId: 4294957756 };
+  fs.writeFileSync(p, appendCharMoveSetSlot(cmBuffer, { wrestlerId: cmPick.wrestlerId, templateSdbId: cmPick.templateSdbId, newSdbId: nameId }));
   blocks.charmoveset = true;
 
   const { appendCharProfileProEntry } = require('./append-2k25-charprofilepro-entry');
@@ -218,9 +246,11 @@ function stageExtended(treeRoot, { entryId, nameId }) {
   fs.writeFileSync(p, appendCharProfileProEntry(fs.readFileSync(p), { templateCharId: 101, newCharId: entryId }));
   blocks.charprofilepro = true;
 
-  const { appendCharProfileTableEntry } = require('./append-2k25-charprofiletable-entry');
+  const { appendCharProfileTableEntry, pickTemplate: pickProfileTableTemplate } = require('./append-2k25-charprofiletable-entry');
   p = path.join(treeRoot, 'Roster', 'CharProfileTable.jsfb');
-  fs.writeFileSync(p, appendCharProfileTableEntry(fs.readFileSync(p), { templateCharId: 65533, newCharId: entryId }));
+  const cptBuffer = fs.readFileSync(p);
+  const cptPick = pickProfileTableTemplate(cptBuffer) || { templateCharId: 65533 };
+  fs.writeFileSync(p, appendCharProfileTableEntry(cptBuffer, { templateCharId: cptPick.templateCharId, newCharId: entryId }));
   blocks.charprofiletable = true;
 
   const { appendHideMotionEntry } = require('./append-hide-ctrl-entry');
@@ -354,4 +384,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { convertAnimationToEntry, buildEntranceAssets, buildVictoryAssets, stageRegistration, stageStockTree, ensureSdbWinner, detectKind };
+module.exports = { convertAnimationToEntry, buildEntranceAssets, buildVictoryAssets, stageRegistration, stageStockTree, ensureSdbWinner, detectKind, stageSdbName, stageEntranceRow, stageVictoryRow, stageCutsceneRow };
