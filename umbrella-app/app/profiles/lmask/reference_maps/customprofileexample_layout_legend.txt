@@ -1,0 +1,36 @@
+**Readability note:** I ran this document through an “explain like I am five” chatbot to improve readability, explainability, and usability. The chatbot helped present the material; it did not originate AuroraForge NT100, DataCtrlLink, their functionality, or the underlying development work.
+
+Custom Profile Example Luchador Mask Layout Legend
+
+Purpose:
+Upload this layout reference with the final handoff prompt, selected profile JSON, and bundled/default mask texture.
+
+Rules:
+- The layout reference is a placement guide only.
+- Do not copy guide colors, labels, or grid lines into the final mask texture.
+- The default/stock mask texture remains the visual authority for the exact UV footprint.
+- Final production outputs are mask_color.png, mask_mask1.png, and mask_nrm.png.
+- Default production canvas is 2048 x 2048.
+
+128x128 grid:
+Each grid cell equals exactly 16 px on a 2048 x 2048 texture.
+Heavy grid lines appear every 16 cells, matching 256 px blocks.
+
+Zones:
+- main_front_safe_area: columns 30-99, rows 13-99 — Main visible front identity zone.
+- front_center: columns 56-73, rows 13-99 — Strongest central front identity balance zone.
+- forehead_identity: columns 47-82, rows 13-39 — Forehead emblem, controlled skull centerpiece, or front identity.
+- left_eye_surround: columns 30-60, rows 26-69 — Raised trim around left eye zone.
+- right_eye_surround: columns 69-99, rows 26-69 — Raised trim around right eye zone.
+- cheek_jaw_overall: columns 26-103, rows 56-94 — Overall cheek and jaw flow zone.
+- left_cheek_jaw: columns 26-60, rows 56-94 — Left cheek and jaw panel flow.
+- right_cheek_jaw: columns 69-103, rows 56-94 — Right cheek and jaw panel flow.
+- chin_lower_mouth: columns 47-77, rows 73-107 — Chin plate and lower mouth identity.
+- left_side_wrap: columns 1-35, rows 30-103 — Left side panel wrap.
+- right_side_wrap: columns 94-128, rows 30-103 — Right side panel wrap.
+- rear_seam_left: columns 1-13, rows 1-128 — Rear seam-safe edge.
+- rear_seam_right: columns 116-128, rows 1-128 — Rear seam-safe edge.
+- top_crown: columns 1-128, rows 1-26 — Compressed top/crown safety zone.
+- bottom_neck_transition: columns 1-128, rows 99-128 — Lower neck and transition zone.
+
+Do not add reference-map files to the game. They are only for generation handoff.

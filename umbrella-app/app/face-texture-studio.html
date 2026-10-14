@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Face Texture Studio</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div>
+      <div>
+        <div class="app-brand-title">AuroraForge NT100</div>
+        <div class="app-brand-sub">by VikingStudios</div>
+      </div>
+    </div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div>
+        <div class="eyebrow">AuroraForge NT100 · Prompt Builders</div>
+        <h1>Face Texture Studio</h1>
+        <p class="sub">Build a complete face texture handoff from one setup page: choose the profile, set the face details, then download one final handoff pack that includes everything.</p>
+      </div>
+    </section>
+    <div class="wrap">
+<div class="pipeline-flow studio-flow">
+        <div class="flow-step active-flow"><span>1</span><strong>Profile</strong><small>Pick profile, size, target, and orientation</small></div>
+        <div class="flow-step"><span>2</span><strong>Details</strong><small>Choose face traits or randomize details</small></div>
+        <div class="flow-step"><span>3</span><strong>Download</strong><small>Get one complete handoff pack</small></div>
+        <div class="flow-step"><span>4</span><strong>Test</strong><small>Use Face Calibration after in-game testing</small></div>
+        <div class="flow-step"><span>5</span><strong>Save</strong><small>Keep projects and presets for later</small></div>
+      </div>
+
+<section class="ai-panel app-panel" id="face-project-builder">
+        <div class="section-label" style="margin-top:0;">Face project builder</div>
+        <h2>Face details and texture choices</h2>
+        <p>Work from top to bottom. First choose the character profile and texture setup, then choose or randomize the face details. AuroraForge NT100 will package the prompt, profile, and reference files for you automatically in the final handoff pack.</p>
+        <div class="section-label">Project details</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="faceProjectName">Project name</label><input id="faceProjectName" value="Game-Ready Face Texture Project" placeholder="Example: Slade Custom Face"></div>
+          <div class="ai-field"><label for="faceTextureType">Face texture type</label><select id="faceTextureType"><option value="Face paint">Face paint</option><option value="Scars / wounds">Scars / wounds</option><option value="Makeup">Makeup</option><option value="Bruising / damage">Bruising / damage</option><option value="Skin detail / aging">Skin detail / aging</option><option value="Custom full-face look">Custom full-face look</option><option value="Full face texture">Full face texture</option><option value="Original CAW Face" selected>Original CAW Face</option></select></div>
+          <div class="ai-field"><label for="faceMappingProfile">Character face profile</label><select id="faceMappingProfile"><option value="">Loading character profiles…</option></select></div>
+          <div class="ai-field"><label for="faceOutputSize">Output size</label><select id="faceOutputSize"><option value="1024">1024 × 1024</option><option value="2048" selected>2048 × 2048</option><option value="4096">4096 × 4096</option></select></div>
+          <div class="ai-field"><label for="faceOutputTarget">Face output target</label><select id="faceOutputTarget"><option value="Face paint overlay">Face paint overlay</option><option value="Original base face texture" selected>Original base face texture</option><option value="Full face texture review image">Full face texture review image</option><option value="Scar / makeup overlay">Scar / makeup overlay</option><option value="Bruising / damage overlay">Bruising / damage overlay</option><option value="Skin detail / aging overlay">Skin detail / aging overlay</option><option value="Project handoff only">Project handoff only</option></select></div>
+          <div class="ai-field"><label for="faceTextureOrientation">Face texture orientation</label><select id="faceTextureOrientation"><option value="WWE 2K face-map vertical flip" selected>WWE 2K face-map vertical flip (default)</option><option value="Standard / no flip">Standard / no flip</option><option value="Project-specific orientation">Project-specific orientation</option></select></div>
+          <div class="ai-field"><label for="faceHandoffMode">Final handoff method</label><select id="faceHandoffMode"><option value="prompt_plus_profile" selected>Prompt + Profile JSON (recommended)</option><option value="embedded_prompt_only">Embedded Prompt Only</option><option value="full_pack">Full handoff pack</option></select></div>
+        </div>
+
+        <div class="section-label">Face details</div>
+        <div class="ai-actions" style="margin-top:10px; margin-bottom:16px;">
+          <button class="ai-btn secondary" type="button" onclick="randomizeFaceExamples()">Randomize Face Details</button>
+        </div>
+        <div class="ai-grid">
+          <input type="hidden" id="faceTheme" value="Create a clean game-ready custom wrestler face texture that matches the selected character layout: stock-style face-map footprint, realistic but softened skin detail, neutral body-matched skin tone, controlled brows, eye-socket shading instead of full portrait eyes, smooth jaw/chin blend, and reduced noisy side-wrap content.">
+          <input type="hidden" id="faceKeep" value="Keep the selected character face-map layout clean and game-ready: central face readable, eye sockets / lids aligned to the stock map, nose/mouth/chin aligned, skin detail softened, and outer side-wrap areas supportive instead of dominant.">
+          <input type="hidden" id="faceChange" value="Refine the face into a polished custom WWE 2K base face texture with cleaner placement, a stronger match to the selected character layout, softer brow/beard contrast, neutralized skin tone, and better in-game readability.">
+          <input type="hidden" id="faceRestrictions" value="No debug grid, no poster portrait, no body mockup, no random text, no full painted eyeballs, no harsh black brow blocks, no over-dark beard smear, and no noisy side-wrap interference.">
+          <div class="ai-field"><label for="faceCharacterStyle">Face style</label><select id="faceCharacterStyle"><option value="Arena-ready realistic" selected>Arena-ready realistic</option><option value="Stylized realistic">Stylized realistic</option><option value="Rugged veteran">Rugged veteran</option><option value="Clean modern wrestler">Clean modern wrestler</option><option value="Monster / intimidating">Monster / intimidating</option></select></div>
+          <div class="ai-field"><label for="faceGenderPresentation">Character presentation</label><select id="faceGenderPresentation"><option value="Male" selected>Male</option><option value="Female">Female</option><option value="Androgynous">Androgynous</option></select></div>
+          <div class="ai-field"><label for="faceAgeRange">Age range</label><select id="faceAgeRange"><option value="Young adult (20s)" selected>Young adult (20s)</option><option value="Prime adult (30s)">Prime adult (30s)</option><option value="Veteran (40s)">Veteran (40s)</option><option value="Older veteran (50+)">Older veteran (50+)</option></select></div>
+          <div class="ai-field"><label for="faceSkinTone">Skin tone</label><select id="faceSkinTone">
+              <option value="Fair cool">Fair cool</option>
+              <option value="Fair neutral">Fair neutral</option>
+              <option value="Fair warm">Fair warm</option>
+              <option value="Light cool">Light cool</option>
+              <option value="Light neutral">Light neutral</option>
+              <option value="Light warm">Light warm</option>
+              <option value="Light-medium neutral" selected>Light-medium neutral</option>
+              <option value="Light-medium warm">Light-medium warm</option>
+              <option value="Medium olive">Medium olive</option>
+              <option value="Medium tan neutral">Medium tan neutral</option>
+              <option value="Medium tan warm">Medium tan warm</option>
+              <option value="Medium-deep neutral">Medium-deep neutral</option>
+              <option value="Deep warm">Deep warm</option>
+              <option value="Deep neutral">Deep neutral</option>
+              <option value="Deep cool">Deep cool</option>
+            </select></div>
+          <div class="ai-field"><label for="faceArchetype">Wrestler archetype</label><select id="faceArchetype"><option value="Balanced all-around wrestler" selected>Balanced all-around wrestler</option><option value="Babyface hero">Babyface hero</option><option value="Cold heel">Cold heel</option><option value="Veteran brawler">Veteran brawler</option><option value="MMA fighter">MMA fighter</option><option value="Monster bruiser">Monster bruiser</option><option value="Gothic / horror">Gothic / horror</option></select></div>
+          <div class="ai-field"><label for="faceRealismLevel">Realism level</label><select id="faceRealismLevel"><option value="High realism">High realism</option><option value="Clean game realism" selected>Clean game realism</option><option value="Slightly stylized">Slightly stylized</option></select></div>
+          <div class="ai-field"><label for="faceEyebrowStyle">Eyebrow style</label><select id="faceEyebrowStyle">
+              <option value="Softer defined brows with controlled contrast" selected>Softer defined brows with controlled contrast</option>
+              <option value="Thick straight brows">Thick straight brows</option>
+              <option value="Thick arched brows">Thick arched brows</option>
+              <option value="Thin sharp brows">Thin sharp brows</option>
+              <option value="Natural uneven brows">Natural uneven brows</option>
+              <option value="Heavy rugged brows">Heavy rugged brows</option>
+              <option value="Clean athletic brows">Clean athletic brows</option>
+              <option value="Low intense brows">Low intense brows</option>
+              <option value="High relaxed brows">High relaxed brows</option>
+              <option value="Bushy veteran brows">Bushy veteran brows</option>
+              <option value="Trimmed modern brows">Trimmed modern brows</option>
+              <option value="Sparse light brows">Sparse light brows</option>
+              <option value="Dark angled heel brows">Dark angled heel brows</option>
+              <option value="Soft babyface brows">Soft babyface brows</option>
+              <option value="Scar-interrupted brow detail">Scar-interrupted brow detail</option>
+            </select></div>
+          <div class="ai-field"><label for="faceNoseType">Nose type</label><select id="faceNoseType">
+              <option value="Natural nose with clean bridge and tip definition" selected>Natural nose with clean bridge and tip definition</option>
+              <option value="Straight narrow nose">Straight narrow nose</option>
+              <option value="Straight medium nose">Straight medium nose</option>
+              <option value="Wide athletic nose">Wide athletic nose</option>
+              <option value="Broad broken-fighter nose">Broad broken-fighter nose</option>
+              <option value="Rounded nose tip">Rounded nose tip</option>
+              <option value="Sharper pointed nose">Sharper pointed nose</option>
+              <option value="Flattened bridge fighter nose">Flattened bridge fighter nose</option>
+              <option value="Slight crooked bridge">Slight crooked bridge</option>
+              <option value="Strong Roman nose">Strong Roman nose</option>
+              <option value="Short compact nose">Short compact nose</option>
+              <option value="Long narrow nose">Long narrow nose</option>
+              <option value="Wide nostril definition">Wide nostril definition</option>
+              <option value="Soft low-contrast nose">Soft low-contrast nose</option>
+              <option value="Weathered veteran nose">Weathered veteran nose</option>
+            </select></div>
+          <div class="ai-field"><label for="faceJawChinStyle">Jaw / chin style</label><select id="faceJawChinStyle">
+              <option value="Strong but softly blended jaw and chin" selected>Strong but softly blended jaw and chin</option>
+              <option value="Square jaw with broad chin">Square jaw with broad chin</option>
+              <option value="Rounded jaw with soft chin">Rounded jaw with soft chin</option>
+              <option value="Narrow jaw with pointed chin">Narrow jaw with pointed chin</option>
+              <option value="Heavy bruiser jaw">Heavy bruiser jaw</option>
+              <option value="Clean athletic jawline">Clean athletic jawline</option>
+              <option value="Veteran rugged chin">Veteran rugged chin</option>
+              <option value="Cleft chin detail">Cleft chin detail</option>
+              <option value="Soft babyface jaw">Soft babyface jaw</option>
+              <option value="Wide powerlifter jaw">Wide powerlifter jaw</option>
+              <option value="Lean MMA-style jaw">Lean MMA-style jaw</option>
+              <option value="Asymmetric broken-fighter jaw">Asymmetric broken-fighter jaw</option>
+              <option value="Short compact chin">Short compact chin</option>
+              <option value="Longer angular chin">Longer angular chin</option>
+              <option value="Heavy lower-face shadow blend">Heavy lower-face shadow blend</option>
+            </select></div>
+          <div class="ai-field"><label for="faceFacialHairShadow">Facial hair shadow</label><select id="faceFacialHairShadow">
+              <option value="Clean shaven">Clean shaven</option>
+              <option value="Controlled light stubble shadow, not harsh or muddy" selected>Controlled light stubble shadow, not harsh or muddy</option>
+              <option value="Soft five o'clock shadow">Soft five o'clock shadow</option>
+              <option value="Medium five o'clock shadow">Medium five o'clock shadow</option>
+              <option value="Heavy five o'clock shadow">Heavy five o'clock shadow</option>
+              <option value="Patchy fighter stubble">Patchy fighter stubble</option>
+              <option value="Short boxed beard shadow">Short boxed beard shadow</option>
+              <option value="Goatee shadow">Goatee shadow</option>
+              <option value="Mustache shadow only">Mustache shadow only</option>
+              <option value="Chin strap shadow">Chin strap shadow</option>
+              <option value="Jawline beard shadow">Jawline beard shadow</option>
+              <option value="Rugged veteran beard shadow">Rugged veteran beard shadow</option>
+              <option value="Salt-and-pepper stubble hint">Salt-and-pepper stubble hint</option>
+              <option value="Very faint upper-lip shadow">Very faint upper-lip shadow</option>
+              <option value="Dark lower-chin stubble focus">Dark lower-chin stubble focus</option>
+            </select></div>
+          <div class="ai-field"><label for="faceExpressionMood">Expression / mood</label><select id="faceExpressionMood">
+              <option value="Neutral focused forward-facing texture expression" selected>Neutral focused forward-facing texture expression</option>
+              <option value="Calm babyface confidence">Calm babyface confidence</option>
+              <option value="Cold heel intensity">Cold heel intensity</option>
+              <option value="Hard veteran stare">Hard veteran stare</option>
+              <option value="Quiet intimidating presence">Quiet intimidating presence</option>
+              <option value="Focused MMA fighter">Focused MMA fighter</option>
+              <option value="Angry but controlled">Angry but controlled</option>
+              <option value="Tired battle-worn look">Tired battle-worn look</option>
+              <option value="Smug confident heel">Smug confident heel</option>
+              <option value="Serious powerhouse">Serious powerhouse</option>
+              <option value="Stoic monster presence">Stoic monster presence</option>
+              <option value="Determined underdog">Determined underdog</option>
+              <option value="Arrogant champion">Arrogant champion</option>
+              <option value="Gritty street-fighter mood">Gritty street-fighter mood</option>
+              <option value="Blank neutral scanner-ready expression">Blank neutral scanner-ready expression</option>
+            </select></div>
+          <div class="ai-field"><label for="faceDistinctiveDetails">Distinctive details</label><select id="faceDistinctiveDetails">
+              <option value="Softened pores, natural under-eye detail, controlled redness, clean lips, neutral skin tone, reduced side-wrap noise, and a polished in-game texture-map finish." selected>Softened clean game texture detail</option>
+              <option value="Subtle forehead lines, mild under-eye texture, light cheek redness, and a clean neutral mouth area.">Subtle forehead / under-eye detail</option>
+              <option value="Rugged pores, mild nose redness, stronger cheek texture, and controlled jaw shadow for a veteran wrestler look.">Rugged veteran skin</option>
+              <option value="Clean youthful skin, soft cheeks, minimal stubble, light brow detail, and low facial blemish contrast.">Clean youthful skin</option>
+              <option value="Small cheek marks, faint healed scratches, natural skin freckles, and soft lower-face blending.">Minor marks and freckles</option>
+              <option value="Fighter-style nose redness, light under-eye wear, mild lip dryness, and controlled stubble noise.">Fighter wear</option>
+              <option value="Strong brow texture, sharper cheek planes, natural pores, and a more serious heel-style face read.">Sharper heel structure</option>
+              <option value="Soft babyface cheeks, relaxed mouth detail, clean jaw blend, and low-contrast skin variation.">Soft babyface finish</option>
+              <option value="Weathered forehead texture, faint crow's-feet, mild cheek roughness, and older veteran skin wear.">Older veteran detail</option>
+              <option value="MMA-inspired bruised nose tint, slight mouth wear, light under-eye bags, and realistic skin redness.">MMA fighter detail</option>
+              <option value="Very clean skin map with only subtle pores, neutral lips, controlled eye sockets, and no strong scars or marks.">Very clean skin map</option>
+              <option value="Slight asymmetry around brows, small facial blemishes, soft stubble, and natural uneven skin tone.">Natural asymmetry</option>
+              <option value="Heavy lower-face character with stronger chin shadow, denser stubble, and clean cheek-to-jaw blending.">Heavy lower-face character</option>
+              <option value="Light sun damage, mild forehead lines, warm cheek variation, and softened texture-map pores.">Sun-weathered skin</option>
+              <option value="Clean stock-game texture style with controlled brow density, eye-socket shading, soft side-wraps, and neutral body-matched tone.">Stock-game texture style</option>
+            </select></div>
+        </div>
+        <div class="change-notice face-builder-next-step-note"><strong>Next:</strong> scroll down and download the Final Handoff Pack. It includes the prompt, profile JSON, layout files, project notes, and bundled default texture when available.</div>
+      </section>
+
+<section class="ai-panel app-panel" id="face-prompt-review">
+  <div class="section-label" style="margin-top:0;">Review before export</div>
+  <h2>Your finished face-texture prompt</h2>
+  <p>Review the instructions AuroraForge NT100 assembled. This prompt is included in the Final Handoff Pack and is intended for the compatible AI or image tool you choose.</p>
+  <div class="ai-actions"><button class="ai-btn secondary" type="button" onclick="copyById('faceStage2Prompt', 'faceExportStatus')">Copy Prompt</button></div>
+  <textarea id="faceStage2Prompt" class="ai-textarea ai-output" readonly></textarea>
+</section>
+
+<section class="ai-panel app-panel">
+  <div class="section-label" style="margin-top:0;">Final export and handoff</div>
+  <p>Use this section to download one complete ZIP for your chosen compatible AI or image tool. The final handoff pack includes the prompt, selected profile JSON, layout reference PNG, 128×128 grid PNG, layout legend, upload checklist, project brief, orientation notes, project JSON, and the bundled default texture for supported profiles.</p>
+  <div class="change-notice"><strong>One download only:</strong> the Final Handoff Pack is now the only download end users need from this studio. It already contains the prompt and all reference files.</div>
+  <div class="ai-actions">
+    <button class="ai-btn" type="button" onclick="downloadFaceHandoffPack()">Download Final Handoff Pack</button>
+  </div>
+  <div class="change-notice"><strong>Included in the ZIP:</strong> prompt, selected profile JSON, layout reference PNG, 128×128 grid PNG, layout legend, upload checklist, project brief, orientation notes, project JSON, and bundled default texture when available.</div>
+  <div id="faceExportStatus" class="copy-status"></div>
+</section>
+</div>
+    
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Need a second pass?</div>
+        <h2>Face Calibration + In-Game Correction</h2>
+        <p>If you tested a face texture in game and the placement is close but not right, use the Face Calibration workflow. It compares the source texture to the in-game screenshot and generates correction notes for the next pass.</p>
+        <div class="ai-actions">
+          <a class="ai-btn" href="face-calibration-workflow.html">Open Face Calibration Workflow</a>
+          <a class="ai-btn secondary" href="tutorials.html#face-texture">Open Face Texture Lesson</a>
+        </div>
+      </section>
+
+<section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project save / load and presets</div>
+        <p>Save the current face setup after the prompt and export sections are finished, download it as a project file, or turn it into a reusable preset for other face texture work.</p>
+        <div class="project-preview-grid">
+          <div class="preview-help-card">
+            <strong>Project file</strong>
+            <p>Use this when you want to save or move the whole face project.</p>
+            <div class="ai-actions stacked-actions">
+              <button class="ai-btn secondary" type="button" onclick="saveFaceProjectToBrowser()">Save Project Locally</button>
+              <button class="ai-btn secondary" type="button" onclick="downloadFaceProjectJson()">Download Project JSON</button>
+              <label class="ai-btn secondary file-label-button" for="faceProjectImportInput">Load Project JSON</label>
+              <input id="faceProjectImportInput" class="hidden-file-input" type="file" accept=".json">
+            </div>
+          </div>
+          <div class="preview-help-card">
+            <strong>Preset library</strong>
+            <p>Use presets for reusable face texture setups.</p>
+            <div class="ai-field">
+              <label for="facePresetName">Preset name</label>
+              <input id="facePresetName" placeholder="Example: Slade Base Face Setup">
+            </div>
+            <div class="ai-field">
+              <label for="facePresetLibrary">Saved presets</label>
+              <select id="facePresetLibrary"><option value="">No saved presets yet</option></select>
+            </div>
+            <div class="ai-actions stacked-actions">
+              <button class="ai-btn secondary" type="button" onclick="saveFacePreset()">Save as Preset</button>
+              <button class="ai-btn secondary" type="button" onclick="applyFacePreset()">Apply Preset</button>
+              <button class="ai-btn secondary" type="button" onclick="deleteFacePreset()">Delete Preset</button>
+              <button class="ai-btn secondary" type="button" onclick="downloadFacePresetLibrary()">Export Presets</button>
+              <label class="ai-btn secondary file-label-button" for="facePresetImportInput">Import Presets</label>
+              <input id="facePresetImportInput" class="hidden-file-input" type="file" accept=".json">
+            </div>
+          </div>
+        </div>
+        <div id="faceProjectLibraryStatus" class="copy-status"></div>
+      </section>
+
+      <footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/face-profile-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/face-texture-studio.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

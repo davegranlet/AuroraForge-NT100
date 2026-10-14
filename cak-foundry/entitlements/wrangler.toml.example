@@ -1,0 +1,8 @@
+name = "aurora-entitlements"
+main = "worker.mjs"
+compatibility_date = "2026-09-11"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aurora-entitlements"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"

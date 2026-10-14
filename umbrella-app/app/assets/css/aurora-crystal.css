@@ -1,0 +1,333 @@
+/* ============================================================
+   AURORAFORGE NT100 - CRYSTAL THEME
+   Black base. Red energy. Silver highlights. Faceted glass.
+   Loaded last on every app page; overrides the Beta2-era sheets.
+   ============================================================ */
+
+:root {
+  --bg: #07080a;
+  --surface: #0d0f12;
+  --surface2: #12151a;
+  --border: #262b31;
+  --red: #e03131;
+  --red-dim: #8a1722;
+  --text: #ececee;
+  --text-dim: #abacae;
+  --text-mute: #7c7d7f;
+  --code-bg: #0a0c0f;
+  --crystal-black: #07080a;
+  --crystal-panel: #0d0f12;
+  --crystal-panel2: #12151a;
+  --crystal-silver: #e9e9ea;
+  --crystal-silver-dim: #a0a1a3;
+  --crystal-line: rgba(215, 221, 224, .18);
+  --crystal-line-strong: rgba(215, 221, 224, .32);
+  --crystal-red: #e03131;
+  --crystal-red-deep: #7e1620;
+  --crystal-glow: rgba(224, 49, 49, .22);
+  --crystal-sheen: linear-gradient(115deg, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, .07) 47%, rgba(255, 255, 255, 0) 53%);
+  --crystal-glass: linear-gradient(150deg, rgba(215, 221, 224, .07), rgba(215, 221, 224, 0) 44%), linear-gradient(180deg, rgba(13, 15, 18, .96), rgba(8, 9, 11, .92));
+  --crystal-metal-text: linear-gradient(180deg, #ffffff, #c9cacb 62%, #9c9d9f);
+}
+
+.forge-workspace-page {
+  --forge-red: #e03131;
+  --forge-red-soft: #ff6b6b;
+  --forge-silver: #e9e9ea;
+  --forge-muted: #9fa0a2;
+  --forge-line: rgba(215, 221, 224, .18);
+}
+
+/* ---------- base + faceted background ---------- */
+
+html, body {
+  background: #07080a !important;
+}
+
+body.forge-workspace-page,
+body.desktop-studio-shell {
+  background:
+    radial-gradient(1150px 560px at 76% -10%, rgba(224, 49, 49, .11), transparent 62%),
+    conic-gradient(from 208deg at 16% 6%, rgba(215, 221, 224, .045), transparent 22%, rgba(215, 221, 224, .02) 38%, transparent 58%, rgba(224, 49, 49, .03) 74%, transparent 88%),
+    linear-gradient(180deg, #08090b, #07080a 40%, #060708) !important;
+  color: var(--text) !important;
+}
+
+::selection { background: rgba(224, 49, 49, .55); color: #fff; }
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: #08090b; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #3a4046, #23272c); border: 2px solid #08090b; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #e03131, #8a1722); }
+
+:focus { outline: none; }
+:focus-visible { outline: 2px solid rgba(224, 49, 49, .75); outline-offset: 2px; }
+
+/* ---------- base: no browser-blue links, no default underlines ---------- */
+
+a, a:visited { color: #dcdcdd !important; text-decoration: none !important; }
+a:hover, a:focus { color: #ff6b6b !important; }
+::marker { color: #dcdcdd; }
+input, select, textarea, progress { accent-color: #e03131; }
+
+/* ---------- shell: sidebar ---------- */
+
+.app-sidebar {
+  background: linear-gradient(180deg, rgba(12, 14, 17, .97), rgba(7, 8, 10, .99)) !important;
+  border-right: 1px solid var(--crystal-line) !important;
+  box-shadow: 18px 0 60px rgba(0, 0, 0, .6), inset -1px 0 0 rgba(215, 221, 224, .05) !important;
+}
+
+.app-brand-title, .app-brand strong {
+  background: var(--crystal-metal-text) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  letter-spacing: .4px;
+}
+
+.app-brand-sub, .app-brand small { color: var(--crystal-silver-dim) !important; letter-spacing: 1.6px; text-transform: uppercase; font-size: 10px; }
+
+.forge-access-state {
+  background: linear-gradient(135deg, rgba(224, 49, 49, .14), rgba(215, 221, 224, .05)) !important;
+  border: 1px solid rgba(224, 49, 49, .4) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+  border-radius: 10px;
+}
+
+.app-nav-link {
+  border: 1px solid transparent !important;
+  border-radius: 10px !important;
+  transition: background .15s, border-color .15s, box-shadow .15s, transform .15s;
+}
+
+.app-nav-link:hover {
+  background: linear-gradient(90deg, rgba(224, 49, 49, .12), rgba(215, 221, 224, .05) 70%) !important;
+  border-color: var(--crystal-line) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06) !important;
+}
+
+.app-nav-link.active {
+  background: linear-gradient(90deg, rgba(224, 49, 49, .26), rgba(224, 49, 49, .05) 72%) !important;
+  border-color: rgba(224, 49, 49, .55) !important;
+  box-shadow: inset 3px 0 0 var(--crystal-red), inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+}
+
+.app-nav-link strong { color: var(--crystal-silver) !important; }
+.app-nav-link small { color: var(--crystal-silver-dim) !important; }
+.app-nav-link.active strong { color: #fff !important; }
+.nav-ico { filter: saturate(.2) brightness(1.25); }
+
+.app-nav-divider { background: linear-gradient(90deg, transparent, var(--crystal-line-strong), transparent) !important; }
+
+.app-sidebar-card, .forge-sidebar-card {
+  background: var(--crystal-glass) !important;
+  border: 1px solid var(--crystal-line) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 14px 34px rgba(0, 0, 0, .5) !important;
+}
+
+/* ---------- shell: topbar ---------- */
+
+.app-topbar, .forge-topbar {
+  position: relative;
+  overflow: hidden;
+  background: var(--crystal-glass) !important;
+  border: 1px solid var(--crystal-line-strong) !important;
+  border-radius: 14px !important;
+  clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 26px 60px rgba(0, 0, 0, .55), 0 0 40px rgba(224, 49, 49, .05) !important;
+}
+
+.app-topbar::after, .forge-topbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--crystal-sheen);
+  pointer-events: none;
+}
+
+.app-topbar h1, .forge-topbar h1 {
+  background: var(--crystal-metal-text) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  letter-spacing: .6px;
+}
+
+.eyebrow, .part-label, .section-label {
+  color: #ff6b6b !important;
+  letter-spacing: 2.6px !important;
+  text-transform: uppercase;
+}
+
+.sub { color: var(--crystal-silver-dim) !important; }
+
+.forge-build-chip {
+  background: linear-gradient(180deg, rgba(215, 221, 224, .12), rgba(215, 221, 224, .03)) !important;
+  border: 1px solid rgba(224, 49, 49, .5) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12) !important;
+}
+.forge-build-chip strong { color: #fff !important; }
+.forge-build-chip span, .forge-build-chip small { color: var(--crystal-silver-dim) !important; }
+
+/* ---------- hero ---------- */
+
+.forge-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--crystal-glass) !important;
+  border: 1px solid var(--crystal-line-strong) !important;
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 26px 100%, 0 calc(100% - 26px));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 34px 80px rgba(0, 0, 0, .6) !important;
+  backdrop-filter: blur(8px);
+}
+
+.forge-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--crystal-sheen);
+  pointer-events: none;
+}
+
+.forge-hero-copy h2, .forge-section-heading h2 {
+  background: var(--crystal-metal-text) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  letter-spacing: .4px;
+}
+
+.forge-mark-number {
+  background: linear-gradient(180deg, #ff7a7a, #e03131 55%, #8a1722) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.forge-mark-rule { background: linear-gradient(90deg, var(--crystal-red), transparent) !important; }
+.forge-hero-mark strong { color: var(--crystal-silver) !important; letter-spacing: 3px; }
+
+/* ---------- lanes + tool cards ---------- */
+
+.forge-lane, .forge-tool-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--crystal-glass) !important;
+  border: 1px solid var(--crystal-line) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 14px 34px rgba(0, 0, 0, .5) !important;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.forge-lane:hover, .forge-tool-card:hover {
+  border-color: rgba(224, 49, 49, .62) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09), 0 14px 34px rgba(0, 0, 0, .5) !important;
+}
+
+.forge-lane-hot {
+  border-color: rgba(224, 49, 49, .6) !important;
+  box-shadow: inset 3px 0 0 var(--crystal-red), inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+}
+
+.forge-lane-number {
+  background: linear-gradient(180deg, #ffffff, #aab4bc) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  font-weight: 800 !important;
+}
+
+.forge-arrow {
+  color: #d4d4d6 !important;
+  transition: color .15s ease, transform .15s ease;
+}
+.forge-lane:hover .forge-arrow, .forge-tool-card:hover .forge-arrow { color: #ff6b6b !important; transform: translateX(3px); }
+.forge-tool-card:hover .forge-tool-icon { color: #ff6b6b !important; border-color: rgba(224, 49, 49, .55) !important; }
+.forge-tool-icon { border: 1px solid var(--crystal-line) !important; border-radius: 9px; background: rgba(215, 221, 224, .06) !important; }
+
+/* ---------- panels + lists ---------- */
+
+.forge-status-panel, .forge-next-panel, .forge-section, .forge-status-list > div {
+  background: var(--crystal-glass) !important;
+  border: 1px solid var(--crystal-line) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 14px 34px rgba(0, 0, 0, .5) !important;
+}
+.forge-status-list > div { border-radius: 9px !important; }
+
+/* ---------- buttons + links ---------- */
+
+.ai-btn, .button {
+  border-radius: 10px !important;
+  letter-spacing: .5px;
+  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease, background .14s ease;
+}
+
+.ai-btn.forge-primary, .button-primary {
+  background: linear-gradient(180deg, #ff5252, #cf202f 52%, #8a1722) !important;
+  border: 1px solid rgba(255, 150, 150, .55) !important;
+  color: #fff !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3) !important;
+}
+.ai-btn.forge-primary:hover, .button-primary:hover {
+  filter: brightness(1.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .34) !important;
+}
+
+.ai-btn.secondary, .button-outline, .button-quiet {
+  background: linear-gradient(180deg, rgba(215, 221, 224, .13), rgba(215, 221, 224, .04)) !important;
+  border: 1px solid var(--crystal-line-strong) !important;
+  color: #ececee !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14) !important;
+}
+.ai-btn.secondary:hover { border-color: rgba(224, 49, 49, .55) !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16) !important; }
+
+.text-link, .forge-quiet-link { color: #dcdcdd !important; }
+.text-link:hover, .forge-quiet-link:hover { color: #ff6b6b !important; }
+
+/* ---------- forms ---------- */
+
+input, select, textarea {
+  background: rgba(8, 9, 11, .85) !important;
+  border: 1px solid var(--crystal-line) !important;
+  border-radius: 9px !important;
+  color: var(--text) !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(224, 49, 49, .65) !important;
+  box-shadow: 0 0 0 3px rgba(224, 49, 49, .14) !important;
+}
+
+/* ---------- tables + code ---------- */
+
+table { border-collapse: collapse; }
+thead th {
+  color: var(--crystal-silver) !important;
+  border-bottom: 1px solid rgba(224, 49, 49, .45) !important;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+tbody tr { border-bottom: 1px solid rgba(215, 221, 224, .07) !important; }
+tbody tr:hover { background: rgba(224, 49, 49, .05) !important; }
+code, pre { background: var(--code-bg) !important; border: 1px solid var(--crystal-line) !important; border-radius: 8px; }
+
+/* ---------- status chips ---------- */
+
+.forge-card-status, .tag, .badge {
+  border-radius: 7px !important;
+  letter-spacing: 1.4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12) !important;
+}
+.status-ready, .tag-ready { background: linear-gradient(180deg, rgba(46, 160, 90, .3), rgba(46, 160, 90, .12)) !important; border: 1px solid rgba(94, 214, 140, .5) !important; color: #c9f5da !important; }
+.status-experimental, .tag-experimental { background: linear-gradient(180deg, rgba(224, 49, 49, .3), rgba(224, 49, 49, .12)) !important; border: 1px solid rgba(255, 107, 107, .5) !important; color: #ffd4d4 !important; }
+.status-building, .status-research, .tag-research { background: linear-gradient(180deg, rgba(215, 221, 224, .16), rgba(215, 221, 224, .05)) !important; border: 1px solid var(--crystal-line-strong) !important; color: #e9e9ea !important; }
+
+/* ---------- misc ---------- */
+
+.forge-check { color: #7fe0a8 !important; }
+.modal, .dialog, .app-modal { background: var(--crystal-glass) !important; border: 1px solid var(--crystal-line-strong) !important; border-radius: 14px !important; box-shadow: 0 40px 100px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .1) !important; }
+hr, .rule { border-color: var(--crystal-line) !important; }

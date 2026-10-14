@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Face Calibration Workflow</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+<style>
+.face-cal-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1.1fr 1.1fr 1fr;
+}
+.face-cal-uploader {
+  border: 1px solid rgba(124, 160, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(8, 16, 30, 0.72);
+  padding: 18px;
+}
+.face-cal-uploader h3 {
+  margin: 0 0 8px;
+}
+.face-cal-preview {
+  min-height: 240px;
+  background: radial-gradient(circle at top, rgba(90,120,200,.18), rgba(8,12,20,.9));
+  border: 1px solid rgba(124, 160, 255, 0.12);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.face-cal-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+}
+.face-cal-preview .placeholder {
+  color: rgba(230,240,255,.65);
+  text-align: center;
+  padding: 24px;
+}
+.issue-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.issue-item {
+  border: 1px solid rgba(124, 160, 255, 0.16);
+  background: rgba(10, 18, 32, 0.68);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.issue-item label {
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  font-weight:600;
+}
+.issue-item small {
+  display:block;
+  color: rgba(220,230,255,.68);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+.calibration-textarea {
+  width: 100%;
+  min-height: 160px;
+  resize: vertical;
+}
+.compare-box {
+  background: rgba(8,16,30,.7);
+  border: 1px solid rgba(124,160,255,.16);
+  border-radius: 16px;
+  padding: 16px;
+}
+.compare-box .stat-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+@media (max-width: 1100px) {
+  .face-cal-grid { grid-template-columns: 1fr; }
+}
+</style>
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div>
+      <div>
+        <div class="app-brand-title">AuroraForge NT100</div>
+        <div class="app-brand-sub">by VikingStudios</div>
+      </div>
+    </div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div>
+        <div class="eyebrow">AuroraForge NT100 · Tools</div>
+        <h1>Face Calibration + In-Game Correction Workflow</h1>
+        <p class="sub">Compare your source face texture against the in-game result, mark what shifted, and generate clean correction notes for the next pass.</p>
+      </div>
+    </section>
+
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Guided workflow</div>
+        <h2>Turn test screenshots into real correction notes</h2>
+        <p>This workflow is for the moment after your first face texture test. If the face lands in the right general area but still looks wrong in-game, this page helps you describe exactly what shifted and what should change on the next texture pass.</p>
+        <div class="tool-grid">
+          <div class="tool-card"><div class="t-name">Upload Source Texture</div><div class="t-desc">Use the flat face texture you tested in the game.</div></div>
+          <div class="tool-card"><div class="t-name">Upload In-Game Screenshot</div><div class="t-desc">Use a front-facing screenshot from the Face Position screen or another neutral view.</div></div>
+          <div class="tool-card"><div class="t-name">Mark Problems</div><div class="t-desc">Select issues like brows too high, tone too warm, face too compressed, or detail too harsh.</div></div>
+          <div class="tool-card"><div class="t-name">Generate Notes</div><div class="t-desc">Create a correction brief and revised prompt notes for the next pass.</div></div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Step 1 · Compare the two images</div>
+        <div class="face-cal-grid">
+          <div class="face-cal-uploader">
+            <h3>Source face texture</h3>
+            <p>Use the face texture PNG you built or tested.</p>
+            <input id="faceCalSourceFile" type="file" accept="image/*">
+            <div class="face-cal-preview" id="faceCalSourcePreview">
+              <div class="placeholder">No source texture loaded yet.</div>
+              <img alt="Source face texture preview">
+            </div>
+          </div>
+          <div class="face-cal-uploader">
+            <h3>In-game result screenshot</h3>
+            <p>Use a clean screenshot showing how the texture actually landed in game.</p>
+            <input id="faceCalResultFile" type="file" accept="image/*">
+            <div class="face-cal-preview" id="faceCalResultPreview">
+              <div class="placeholder">No in-game screenshot loaded yet.</div>
+              <img alt="In-game result preview">
+            </div>
+          </div>
+          <div class="compare-box">
+            <h3 style="margin-top:0;">What to look for</h3>
+            <ul class="stat-list">
+              <li>Did the brows or eyes land too high or too low?</li>
+              <li>Does the face feel vertically compressed?</li>
+              <li>Is the forehead or hairline taking up too much space?</li>
+              <li>Does the skin tone clash with the body?</li>
+              <li>Did beard, brows, or pores become too harsh?</li>
+              <li>Is the mouth or chin shifted or compressed?</li>
+              <li>Does the overall face scale look too large or too small?</li>
+              <li><strong>Orientation check:</strong> was the final game-test copy flipped vertically before DDS conversion?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Step 2 · Mark the issues you see</div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="t-name">Calibration profile</div>
+            <div class="t-desc">
+              <label for="faceCalProfile">Character profile</label><br>
+              <select id="faceCalProfile">
+                <option value="Slade" selected>Slade</option>
+                <option value="ColeQuinn">Cole Quinn</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+          </div>
+          <div class="tool-card">
+            <div class="t-name">Correction strength</div>
+            <div class="t-desc">
+              <label for="faceCalSeverity">How strong are the corrections?</label><br>
+              <select id="faceCalSeverity">
+                <option value="slight">Slight</option>
+                <option value="moderate" selected>Moderate</option>
+                <option value="strong">Strong</option>
+              </select>
+            </div>
+          </div>
+          <div class="tool-card">
+            <div class="t-name">Primary goal</div>
+            <div class="t-desc">
+              <label for="faceCalGoal">Next-pass goal</label><br>
+              <select id="faceCalGoal">
+                <option value="better placement" selected>Better placement</option>
+                <option value="better skin tone match">Better skin tone match</option>
+                <option value="cleaner face detail">Cleaner face detail</option>
+                <option value="all of the above">All of the above</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="issue-grid" id="faceCalibrationIssues">
+          <div class="issue-item"><label><input type="checkbox" data-note="Core face should shift slightly lower in the placement zone."> Brows / eye band too high</label><small>The brows or eyes sit too high on the in-game head.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Core face should shift slightly higher in the placement zone."> Brows / eye band too low</label><small>The face is falling too low and leaving too much empty forehead.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Reduce top hairline / forehead dominance and prioritize the brows-to-chin region."> Forehead / hair area too dominant</label><small>The top region is consuming too much usable space.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Increase the size of the central front-face core slightly."> Face core too small</label><small>The actual face reads too small inside the texture area.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Reduce the size of the central front-face core slightly."> Face core too large</label><small>The face appears oversized or crowded.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Reduce vertical compression and give the brows, nose, mouth, and chin more natural spacing."> Face stack too compressed</label><small>Features feel squashed together vertically.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Soften eyebrow contrast and avoid heavy dark clustering around the eyes."> Eyebrows too harsh</label><small>Brows read like dark paint or heavy blocks.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Reduce beard / stubble contrast so the lower face reads more naturally in game."> Beard / stubble too harsh</label><small>Flat facial hair detail becomes muddy or too dark in game.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Lighten and neutralize the face texture to better match the in-game body tone."> Skin tone too warm / dark</label><small>The face looks too orange, too dark, or mismatched to the body.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Blend the jaw and chin more softly into the lower face and neck transition."> Jaw / chin blend too harsh</label><small>Lower-face shading or edge blending feels too abrupt.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Lower the mouth and chin details slightly and reduce lower-face compression."> Mouth / chin too high</label><small>The mouth or chin appears pushed too high.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Raise the mouth and chin details slightly to keep the lower face from sinking."> Mouth / chin too low</label><small>The mouth or chin is sagging lower than expected.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Use a front-priority face prep pass and reduce noisy side / wrap content."> Side wrap content interfering</label><small>Outer face or side content is confusing the final read.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Simplify micro skin noise and keep the texture focused on readable mid-level detail."> Fine detail not surviving</label><small>Small pores or marks disappear or turn mushy after testing.</small></div>
+          <div class="issue-item"><label><input type="checkbox" data-note="Confirm orientation. Use an unflipped working PNG for editing, then vertically flip the final game-test export before DDS conversion."> Texture not vertically flipped</label><small>The face map may be upside down or vertically inverted because the final game-test export was not flipped.</small></div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Step 3 · Add your notes</div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="t-name">Model / test notes</div>
+            <div class="t-desc">
+              <textarea id="faceCalModelNotes" class="calibration-textarea" placeholder="Example: Tested on the selected character slot. Face Position is centered. Default eye spacing. Large jaw."></textarea>
+            </div>
+          </div>
+          <div class="tool-card">
+            <div class="t-name">Freeform observations</div>
+            <div class="t-desc">
+              <textarea id="faceCalExtraNotes" class="calibration-textarea" placeholder="Write anything you noticed that the checkboxes do not cover."></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn" id="generateFaceCalibrationBtn" type="button">Generate Correction Notes</button>
+          <button class="ai-btn secondary" id="copyFaceCalibrationBtn" type="button">Copy Notes</button>
+          <button class="ai-btn secondary" id="downloadFaceCalibrationBtn" type="button">Download Notes TXT</button>
+          <button class="ai-btn secondary" id="resetFaceCalibrationBtn" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Generated correction brief</div>
+        <p>Use this output as the source-of-truth note set for your next face pass or your next AuroraForge NT100 project file.</p>
+        <textarea id="faceCalibrationOutput" class="calibration-textarea" style="min-height:260px;" placeholder="Your generated calibration notes will appear here."></textarea>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Recommended use</div>
+        <ol class="check-list">
+          <li class="ok"><span class="icon">1</span><span>Generate an original face or revised face texture in Face Texture Studio.</span></li>
+          <li class="ok"><span class="icon">2</span><span>Test the texture in game and take a front-facing screenshot.</span></li>
+          <li class="ok"><span class="icon">3</span><span>Use this calibration page to compare source vs in-game result.</span></li>
+          <li class="ok"><span class="icon">4</span><span>Generate correction notes and save them into your project files.</span></li>
+          <li class="ok"><span class="icon">5</span><span>Run the next face pass using the correction brief instead of guessing.</span></li>
+        </ol>
+        <div class="ai-actions">
+          <a class="ai-btn" href="face-texture-studio.html">Open Face Texture Studio</a>
+          <a class="ai-btn secondary" href="tutorials.html#face-texture">Open Face Texture Lesson</a>
+          <a class="ai-btn secondary" href="tutorials.html">Open Easy Guide</a>
+        </div>
+      </section>
+    </div>
+
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-app.js?v=20260726-r160d"></script>
+<script src="assets/js/face-calibration-workflow.js?v=20260726-r160d"></script>
+</body>
+</html>
+

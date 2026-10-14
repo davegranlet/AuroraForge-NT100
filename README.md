@@ -50,7 +50,18 @@ Aurora Forge v2.0 bundles this converter, the verified WWE 2K25 loader pair, the
 
 ## Repository Scope
 
-This repository contains compiled release downloads and public-facing release documentation. Source projects and research history are managed separately.
+This repository is the AuroraForge NT100 code base **and** the compiled release storefront. The full application source lives in this repository (this is the bleeding-edge branch of record):
+
+| Path | Contents |
+|---|---|
+| `umbrella-app/` | The AuroraForge NT100 desktop app: Electron shell, creator pages, bundled tools, 2K26 skeleton data, build + release scripts, docs |
+| `100-not-tribute/` | Tribute-replacement editors and creation suites: Entry Studio, PAC tools, DDS converter, custom music loaders, converter app |
+| `cak-foundry/` | CAK manipulator: view, extract, bake, rebuild, reopen, verify - plus the CakeTool engine integration and helper sources |
+| `animation/` | The WWE 2K19-to-modern animation conversion pipeline: converter app, clips codec, IR export, registration writers, Blender tools, docs |
+| `loaders/` | Secure DataCtrlLink (WWE 2K25 + 2K26) and the CAK mod loader lines |
+| `tutorials/` | In-app tutorial material |
+
+Compiled release downloads stay under this project's GitHub Releases and the self-hosted download links above; the source tree is kept in sync with the working base.
 
 ## Community
 

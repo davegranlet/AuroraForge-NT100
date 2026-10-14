@@ -1,0 +1,31 @@
+**Readability note:** I ran this document through an “explain like I am five” chatbot to improve readability, explainability, and usability. The chatbot helped present the material; it did not originate AuroraForge NT100, DataCtrlLink, their functionality, or the underlying development work.
+
+AuroraForge NT100 Mod File Inspector — Slade Sample Summary
+
+Input sample:
+- Original folder: 773_Slade
+- Modified folder: 773_Slade-modded
+
+Inspector conclusion:
+- This was a texture-only face replacement.
+- The modified build changed BaseModel/Textures/head_color.dds.
+- The modified build also included PNG working/reference files:
+  - BaseModel/Textures/head_color.png
+  - BaseModel/Textures/Slade-head_color.png
+- MCD files were unchanged.
+- MTLS files were unchanged.
+- JMTL material files were unchanged.
+- Attire.ycl was unchanged.
+
+Practical meaning:
+- For this Slade face texture workflow, no MCD, MTLS/JMTL, or YCL edit was required.
+- The game-facing change was replacing the matching head_color.dds texture.
+- A read-only inspector can safely help users confirm this before they test in game.
+
+DDS observation:
+- Original head_color.dds: 2048×2048, 12 mipmaps, DXT1-style DDS.
+- Modified head_color.dds: 2048×2048, 12 mipmaps, DX10 format 98, consistent with BC7-style DDS output.
+
+Safety note:
+- AuroraForge NT100 should inspect and report on MCD/MTL/YCL/JMTL files first.
+- Automatic binary editing should stay disabled unless future parser support is proven safe.

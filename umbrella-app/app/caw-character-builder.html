@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Complete Character</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div><div class="eyebrow">AuroraForge NT100 · Prompt Builders</div><h1>Complete Character</h1><p class="sub">Guide one original WWE 2K26 character project from identity through textures, gear, music, branding, installation planning, and in-game validation.</p></div>
+    </section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Connected character project</div>
+        <h2>One project record from first idea to final test</h2>
+        <p>Fill in only what matters to your build. AuroraForge NT100 saves the project locally and packages a complete handoff containing separate face, tattoo, mask, hair, gear, material, entrance, music, faction, arena, installation, and validation plans.</p>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="buildCawMasterPlan()">Refresh Master Plan</button>
+          <button class="ai-btn secondary" type="button" onclick="saveCawProjectLocal()">Save Locally</button>
+          <button class="ai-btn" type="button" onclick="downloadCawHandoffPack()">Download Complete Creator Pack</button>
+          <label class="ai-btn ghost" for="cawProjectImportInput">Open Project JSON</label>
+          <input id="cawProjectImportInput" type="file" accept=".json,application/json" hidden>
+        </div>
+        <div id="cawBuilderStatus" class="copy-status"></div>
+      </section>
+
+      <div class="pipeline-flow studio-flow caw-flow">
+        <div class="flow-step active-flow"><span>1</span><strong>Identity</strong><small>Character basics</small></div>
+        <div class="flow-step"><span>2</span><strong>Appearance</strong><small>Face, hair, tattoos</small></div>
+        <div class="flow-step"><span>3</span><strong>Gear</strong><small>Attire and materials</small></div>
+        <div class="flow-step"><span>4</span><strong>Presentation</strong><small>Entrance and music</small></div>
+        <div class="flow-step"><span>5</span><strong>Branding</strong><small>Faction and arena</small></div>
+        <div class="flow-step"><span>6</span><strong>Validate</strong><small>Preview and install</small></div>
+      </div>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">1 · Character identity</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="cawName">Wrestler name</label><input id="cawName" value="Raven Cross"></div>
+          <div class="ai-field"><label for="cawNickname">Nickname</label><input id="cawNickname" value="The Blacktop Saint"></div>
+          <div class="ai-field"><label for="cawAlignment">Alignment</label><select id="cawAlignment"><option>Face</option><option selected>Tweener</option><option>Heel</option></select></div>
+          <div class="ai-field"><label for="cawWrestlingStyle">Wrestling style</label><input id="cawWrestlingStyle" value="Technical striker with explosive heavyweight offense"></div>
+          <div class="ai-field"><label for="cawBodyType">Body type / build</label><input id="cawBodyType" value="Tall athletic heavyweight"></div>
+          <div class="ai-field"><label for="cawAgeRange">Apparent age</label><input id="cawAgeRange" value="Early 30s"></div>
+          <div class="ai-field"><label for="cawRealismLevel">Realism level</label><select id="cawRealismLevel"><option>Realistic broadcast</option><option selected>Stylized realism</option><option>Comic / fantasy</option></select></div>
+          <div class="ai-field"><label for="cawColorPalette">Signature palette</label><input id="cawColorPalette" value="Black, graphite, silver, deep crimson"></div>
+          <div class="ai-field"><label for="cawGimmick">Gimmick / personality</label><textarea id="cawGimmick">A disciplined street-born antihero who treats every match like a ritual trial.</textarea></div>
+          <div class="ai-field"><label for="cawVisualKeywords">Visual keywords</label><textarea id="cawVisualKeywords">Premium, severe, weathered, athletic, readable, grounded</textarea></div>
+        </div>
+        <label class="caw-checkline"><input id="cawStepIdentity" type="checkbox"> Identity direction approved</label>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">2 · Appearance</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="cawFaceDirection">Face texture direction</label><textarea id="cawFaceDirection">Original rugged face, neutral lighting, realistic pores, strong brows, controlled under-eye detail</textarea></div>
+          <div class="ai-field"><label for="cawFaceEffects">Face effects</label><textarea id="cawFaceEffects">Small healed eyebrow scar; no baked harsh shadows or glossy highlights</textarea></div>
+          <div class="ai-field"><label for="cawHairFacialHair">Hair / facial hair</label><textarea id="cawHairFacialHair">Short textured dark hair, close beard, separate hair material and alpha notes</textarea></div>
+          <div class="ai-field"><label for="cawMaskPlan">Luchador mask plan</label><textarea id="cawMaskPlan">No regular mask; optional alternate entrance mask using the selected real target profile</textarea></div>
+          <div class="ai-field"><label for="cawTattooStyle">Tattoo style</label><input id="cawTattooStyle" value="Black-and-grey illustrative linework"></div>
+          <div class="ai-field"><label for="cawTattooLocations">Tattoo locations</label><input id="cawTattooLocations" value="Left shoulder, upper back, right forearm"></div>
+          <div class="ai-field"><label for="cawTattooSubjects">Tattoo subjects</label><textarea id="cawTattooSubjects">Raven feathers, broken halo, roadway marker, subtle memorial dates</textarea></div>
+        </div>
+        <div class="caw-check-grid">
+          <label class="caw-checkline"><input id="cawStepFace" type="checkbox"> Face plan approved</label>
+          <label class="caw-checkline"><input id="cawStepHair" type="checkbox"> Hair / facial hair plan approved</label>
+          <label class="caw-checkline"><input id="cawStepTattoos" type="checkbox"> Tattoo plan approved</label>
+          <label class="caw-checkline"><input id="cawStepMask" type="checkbox"> Mask decision recorded</label>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">3 · Ring gear, logos, and materials</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="cawGearType">Gear type</label><input id="cawGearType" value="Long tights, kickpads, gloves, sleeveless entrance coat"></div>
+          <div class="ai-field"><label for="cawGearMaterials">Materials</label><textarea id="cawGearMaterials">Matte compression fabric, leather panels, brushed-metal trim, mesh ventilation</textarea></div>
+          <div class="ai-field"><label for="cawGearDesign">Gear design</label><textarea id="cawGearDesign">Asymmetric raven-wing panel flow with a strong center mark and controlled side-wrap graphics</textarea></div>
+          <div class="ai-field"><label for="cawLogoTheme">Logo / emblem system</label><textarea id="cawLogoTheme">Broken halo above a geometric raven wing; full, simplified, one-color, and embroidery variants</textarea></div>
+          <div class="ai-field"><label for="cawLogoNeeds">Logo file needs</label><textarea id="cawLogoNeeds">Transparent PNG, black/white mask, embroidery version, metallic version, small-icon version</textarea></div>
+          <div class="ai-field"><label for="cawMaterialPlan">Shader and support-map plan</label><textarea id="cawMaterialPlan">Matte fabric base, subtle leather gloss, metallic trim mask, stitching normal detail, no excessive shine</textarea></div>
+        </div>
+        <div class="caw-check-grid">
+          <label class="caw-checkline"><input id="cawStepGear" type="checkbox"> Gear plan approved</label>
+          <label class="caw-checkline"><input id="cawStepLogos" type="checkbox"> Logo system approved</label>
+          <label class="caw-checkline"><input id="cawStepMaterials" type="checkbox"> Material / normal plan approved</label>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">4 · Entrance, victory, music, and announcer</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="cawEntranceGear">Entrance gear</label><textarea id="cawEntranceGear">Long sleeveless coat with raised collar, removable half-mask, silver interior trim</textarea></div>
+          <div class="ai-field"><label for="cawEntranceVibe">Entrance presentation</label><textarea id="cawEntranceVibe">Slow blackout opening, single backlight silhouette, controlled crimson pulse, no comedy gestures</textarea></div>
+          <div class="ai-field"><label for="cawMusicTheme">Custom music plan</label><textarea id="cawMusicTheme">Licensed/original industrial rock track; record source rights, loop points, loudness, conversion target, and backup</textarea></div>
+          <div class="ai-field"><label for="cawAnnouncer">Announcer / name plan</label><textarea id="cawAnnouncer">Use the closest available announced name unless a permitted custom-audio workflow is confirmed</textarea></div>
+          <div class="ai-field"><label for="cawEntranceMotion">Entrance motion plan</label><textarea id="cawEntranceMotion">Deliberate walk, center-stage pause, minimal posing, strong camera silhouette</textarea></div>
+          <div class="ai-field"><label for="cawVictory">Victory motion / scene plan</label><textarea id="cawVictory">Quiet corner pose for regular wins; stronger center-ring title celebration for championships</textarea></div>
+        </div>
+        <div class="caw-check-grid">
+          <label class="caw-checkline"><input id="cawStepEntrance" type="checkbox"> Entrance and victory plan approved</label>
+          <label class="caw-checkline"><input id="cawStepMusic" type="checkbox"> Music and announcer plan approved</label>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">5 · Faction, arena, and universe branding</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="cawFactionName">Faction / brand name</label><input id="cawFactionName" value="Independent singles identity"></div>
+          <div class="ai-field"><label for="cawFactionNotes">Faction / shared identity notes</label><textarea id="cawFactionNotes">Keep the emblem reusable for other allies, while this character keeps a complete solo identity</textarea></div>
+          <div class="ai-field"><label for="cawArenaNotes">Arena / ring branding notes</label><textarea id="cawArenaNotes">Optional independent-show package using the halo-wing mark on apron, turnbuckles, and one stage screen</textarea></div>
+        </div>
+        <label class="caw-checkline"><input id="cawStepBranding" type="checkbox"> Branding decision recorded</label>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">6 · Installation and validation</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="cawInstallTarget">Target and toolchain</label><textarea id="cawInstallTarget">WWE 2K26 PC; document the target character/slot, CakeView extraction and bake path, Tribute steps where applicable, and CakeHook status</textarea></div>
+          <div class="ai-field"><label for="cawBackupPlan">Backup / rollback plan</label><textarea id="cawBackupPlan">Keep untouched originals, working copy, versioned release folder, project JSON, source PNGs, final DDS files, and an uninstall note</textarea></div>
+          <div class="ai-field"><label for="cawValidationNotes">Validation notes</label><textarea id="cawValidationNotes">Run Mod File Inspector, preview exported OBJ with real UVs, validate filenames and DDS properties, then test entrances, matches, victories, alternate attire, and restart persistence</textarea></div>
+        </div>
+        <div class="caw-check-grid">
+          <label class="caw-checkline"><input id="cawStepValidation" type="checkbox"> File and preview validation complete</label>
+          <label class="caw-checkline"><input id="cawStepGameTest" type="checkbox"> In-game test complete</label>
+          <label class="caw-checkline"><input id="cawStepExport" type="checkbox"> Final creator pack exported</label>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Open the connected tools</div>
+        <div class="workflow-mini-grid">
+          <a class="workflow-mini-card" href="face-texture-studio.html"><strong>Face Texture Studio</strong><span>Build the 2048 face handoff.</span></a>
+          <a class="workflow-mini-card" href="tattoo-pipeline.html"><strong>Tattoo</strong><span>Build body-art assets and placement notes.</span></a>
+          <a class="workflow-mini-card" href="lmask-project-studio.html"><strong>Luchador Mask Studio</strong><span>Use a real target mapping profile.</span></a>
+          <a class="workflow-mini-card" href="gear-attire-studio.html"><strong>Gear / Attire</strong><span>Plan ring and entrance attire.</span></a>
+          <a class="workflow-mini-card" href="faction-pack-builder.html"><strong>Faction Pack</strong><span>Coordinate shared member identity.</span></a>
+          <a class="workflow-mini-card" href="arena-ring-branding-studio.html"><strong>Arena / Ring</strong><span>Build event and ringside branding.</span></a>
+          <a class="workflow-mini-card" href="character-viewer.html"><strong>Character Viewer</strong><span>Preview user-imported real-UV OBJ files.</span></a>
+          <a class="workflow-mini-card" href="setup.html#external-programs"><strong>External Programs</strong><span>Check local paths and CakeHook presence.</span></a>
+          <a class="workflow-mini-card" href="mod-file-inspector.html"><strong>Mod File Inspector</strong><span>Compare original and modified folders.</span></a>
+          <a class="workflow-mini-card" href="tutorials.html#whole-character"><strong>Tutorials</strong><span>Follow the new-character steps one at a time.</span></a>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Master project plan</div>
+        <textarea id="cawMasterPlan" class="ai-textarea ai-output caw-master-output" readonly></textarea>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Prompt Builders</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/caw-builder.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

@@ -1,0 +1,353 @@
+{
+  "profile_id": "slade",
+  "display_name": "Slade",
+  "character_name": "Slade",
+  "game": "WWE 2K26",
+  "pipeline": "Face Texture Studio",
+  "profile_type": "character_face_map",
+  "description": "Character-specific face texture profile tuned to match the visible Slade stock face texture layout used by the game, including the lower neck / UV padding transition footprint and opaque edge padding.",
+  "default_canvas": "2048 x 2048",
+  "allowed_output_sizes": [
+    "2048 x 2048",
+    "1024 x 1024",
+    "4096 x 4096"
+  ],
+  "logic_grid": {
+    "columns": 128,
+    "rows": 128,
+    "origin": "top-left",
+    "x_axis": "left-to-right",
+    "y_axis": "top-to-bottom",
+    "cell_size_at_2048": "16 px",
+    "notes": "128 x 128 normalized face-layout grid. Each cell is exactly 16 px on a 2048 x 2048 texture."
+  },
+  "layout_orientation": "Visible working orientation. Match the Slade stock face texture layout: hair and scalp at the top, brow and eyes below, nose and cheeks in the middle, mouth and chin lower, side-wrap skin on the left and right edges, and the lower neck / UV padding transition zone at the bottom. The working PNG may still be vertically flipped at final export if the item workflow requires it. The lower third should remain a stock face-map transition/padding area, not a free portrait background.",
+  "layout_summary": "Match the Slade face texture layout exactly: upper hair mass at the top, strong forehead / brow placement, eyes in the upper-middle, nose centered, cheeks and mouth beneath, chin lower, side-wrap skin around the outer edges, and the stock lower neck / UV padding transition zone at the bottom. Preserve the stock lower neck / upper chest padding shape; do not simplify it into a generic portrait-style bust or a smooth blank square.",
+  "eye_rendering_guidance": "Do not render complete open eyeballs into the texture. Use eyelid / eye-socket shading and let the in-game eye system do the rest.",
+  "generation_layout_rules": [
+    "This is a character-specific profile. Do not output a generic upright portrait that ignores the Slade stock texture footprint.",
+    "Build the face in the same visible working layout as the Slade texture reference: hair at the top, forehead below the hair, eyes in the upper-middle, nose in the center, mouth below the nose, chin below the mouth, and neck transition at the bottom.",
+    "Match the Slade face proportions: rugged jaw, moderate stubble region, slightly compressed side-wraps, and a centered front face that does not drift too high or too low.",
+    "Keep the ears in the side mid-zones and keep the side-wrap skin broad, soft, and lower detail than the central face.",
+    "Do not paint complete eyeballs or portrait-style gaze into the map. Keep the eye areas as texture-map eye sockets / lids.",
+    "The final image should look like a stock WWE face texture map, not like a clean portrait photo pasted onto a square.",
+    "Keep the lower neck / UV padding transition zone soft, skin-tone matched, and structurally similar to the stock texture. Do not crop it out, leave it blank, or treat it as transparency.",
+    "The output must be generated as a full 2048 \u00d7 2048 texture when 2048 is selected. Do not output 1254 \u00d7 1254 or any non-selected size.",
+    "Match the stock lower neck / upper chest UV padding footprint. This area is opaque texture space, not transparency.",
+    "Do not replace the lower third with generic portrait shoulders, a studio portrait background, or a smooth empty field of skin.",
+    "Preserve the same overall stock face-map silhouette: hair/scalp mass at top, central face upper-middle, side wraps/ears, and broad lower neck/chest transition padding.",
+    "Do not generate from text alone for this character profile. Use the uploaded stock character texture as the visual layout reference.",
+    "The lower third must visually follow the stock reference image footprint, including irregular edge padding and opaque neck/chest UV bleed areas.",
+    "A smooth, centered portrait bust with a plain chest gradient is a failure for this profile because it ignores the stock lower UV footprint.",
+    "The stock reference controls layout only. The new generated face can be original, but the UV footprint must remain stock-like.",
+    "Use the included 128 x 128 layout reference PNG as a visual placement guide together with the stock character texture.",
+    "Use the technical 128 x 128 grid reference only for placement accuracy; do not copy grid lines, labels, or guide colors into the final texture.",
+    "Treat the JSON grid coordinates as 128 x 128 normalized layout coordinates for a 2048 x 2048 face texture.",
+    "Use the technical 128 x 128 grid reference for exact placement correction; every cell equals 16 px on a 2048 x 2048 face texture.",
+    "Keep lip color natural and muted: subtle red/brown variation only, no purple/magenta/glossy lipstick effect, and no harsh horizontal color banding."
+  ],
+  "anchor_points": {
+    "canvas_center_x": 1024,
+    "hairline_band_y": "320-500",
+    "eye_band_y": "660-910",
+    "nose_band_y": "860-1130",
+    "mouth_band_y": "1130-1320",
+    "chin_band_y": "1320-1540",
+    "neck_transition_y": "1520-2048"
+  },
+  "zones": {
+    "full_face_safe_area": {
+      "columns": [
+        30,
+        99
+      ],
+      "rows": [
+        21,
+        103
+      ],
+      "purpose": "Main visible Slade face area in upright working orientation."
+    },
+    "forehead": {
+      "columns": [
+        39,
+        90
+      ],
+      "rows": [
+        26,
+        44
+      ],
+      "purpose": "Forehead and upper brow mass."
+    },
+    "left_eye_area": {
+      "columns": [
+        39,
+        61
+      ],
+      "rows": [
+        39,
+        57
+      ],
+      "purpose": "Left eye socket / eyelid zone."
+    },
+    "right_eye_area": {
+      "columns": [
+        68,
+        90
+      ],
+      "rows": [
+        39,
+        57
+      ],
+      "purpose": "Right eye socket / eyelid zone."
+    },
+    "nose_bridge": {
+      "columns": [
+        56,
+        73
+      ],
+      "rows": [
+        47,
+        64
+      ],
+      "purpose": "Nose bridge and upper nose."
+    },
+    "nose_tip": {
+      "columns": [
+        56,
+        73
+      ],
+      "rows": [
+        59,
+        73
+      ],
+      "purpose": "Nose tip and nostril area."
+    },
+    "left_cheek": {
+      "columns": [
+        30,
+        61
+      ],
+      "rows": [
+        52,
+        82
+      ],
+      "purpose": "Left cheek and under-eye support zone."
+    },
+    "right_cheek": {
+      "columns": [
+        68,
+        99
+      ],
+      "rows": [
+        52,
+        82
+      ],
+      "purpose": "Right cheek and under-eye support zone."
+    },
+    "mouth_lips": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        68,
+        82
+      ],
+      "purpose": "Mouth / lips zone."
+    },
+    "chin": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        81,
+        99
+      ],
+      "purpose": "Chin and beard shadow zone."
+    },
+    "left_jaw": {
+      "columns": [
+        30,
+        57
+      ],
+      "rows": [
+        72,
+        99
+      ],
+      "purpose": "Left jaw / beard support zone."
+    },
+    "right_jaw": {
+      "columns": [
+        72,
+        99
+      ],
+      "rows": [
+        72,
+        99
+      ],
+      "purpose": "Right jaw / beard support zone."
+    },
+    "left_temple_side": {
+      "columns": [
+        17,
+        39
+      ],
+      "rows": [
+        30,
+        90
+      ],
+      "purpose": "Left temple and side-wrap support."
+    },
+    "right_temple_side": {
+      "columns": [
+        90,
+        112
+      ],
+      "rows": [
+        30,
+        90
+      ],
+      "purpose": "Right temple and side-wrap support."
+    },
+    "left_ear_risk": {
+      "columns": [
+        8,
+        31
+      ],
+      "rows": [
+        43,
+        73
+      ],
+      "purpose": "Ear-risk zone. Keep detail simple."
+    },
+    "right_ear_risk": {
+      "columns": [
+        98,
+        121
+      ],
+      "rows": [
+        43,
+        73
+      ],
+      "purpose": "Ear-risk zone. Keep detail simple."
+    },
+    "hairline_risk": {
+      "columns": [
+        30,
+        103
+      ],
+      "rows": [
+        1,
+        35
+      ],
+      "purpose": "Hair / hairline zone in upright orientation."
+    },
+    "neck_transition": {
+      "columns": [
+        26,
+        103
+      ],
+      "rows": [
+        98,
+        128
+      ],
+      "purpose": "Lower neck / upper chest UV padding transition footprint. Opaque stock texture space; keep it soft, skin-tone matched, irregular like the stock map, and not transparent."
+    },
+    "centerline_balance": {
+      "columns": [
+        59,
+        70
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Keep facial features centered on the Slade map."
+    },
+    "lower_edge_padding": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        111,
+        128
+      ],
+      "purpose": "Bottom edge stock UV padding / bleed area. Preserve soft skin-tone padding and irregular stock edge behavior; no important facial features here."
+    },
+    "outer_corner_padding": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Outer-corner face-map padding / unused-edge behavior. Keep color compatible with adjacent stock texture areas; do not place key features in the corners."
+    },
+    "lower_third_stock_footprint": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        77,
+        128
+      ],
+      "purpose": "Mandatory stock lower-third footprint reference zone. Match uploaded stock texture behavior: lower neck/chest padding, corner/edge padding, opaque UV bleed shapes, no portrait-background simplification."
+    },
+    "stock_reference_match_priority": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Use the uploaded stock texture image as the whole-canvas layout authority. JSON coordinates support the reference image; they do not replace it."
+    }
+  },
+  "profile_rules": {
+    "must": [
+      "Use the selected Slade profile as the placement guide.",
+      "Match the visible Slade texture layout, not a generic face layout.",
+      "Keep the central face readable and game-ready while leaving the side wraps softer and simpler.",
+      "Build a true face texture map, not a portrait render or mockup.",
+      "Keep the eye treatment map-like: eyelids / sockets instead of fully rendered eyeballs.",
+      "Preserve the lower neck / UV padding transition area as part of the stock texture footprint.",
+      "Use exact selected canvas size; 2048 \u00d7 2048 is the default for face textures.",
+      "Preserve the stock lower neck / UV padding footprint as opaque texture space.",
+      "Upload the selected stock character texture image with the generation prompt.",
+      "Use the stock reference image to match the lower third and edge-padding footprint."
+    ],
+    "avoid": [
+      "Do not output a normal portrait composition that ignores the Slade stock layout.",
+      "Do not let the face float too low or too high compared with the Slade map.",
+      "Do not over-detail the side-wrap areas.",
+      "Do not add labels, guides, grids, or poster styling.",
+      "Do not make the lower neck / padding area transparent, blank, or unrelated to the stock layout.",
+      "Do not output 1254 \u00d7 1254 or any non-selected canvas size.",
+      "Do not make the lower neck / padding area transparent, blank, or generic portrait shoulders.",
+      "Do not generate the face from text-only profile guidance when matching the stock lower UV footprint is required.",
+      "Do not accept a smooth portrait-style lower chest area as a correct stock face map.",
+      "Do not over-saturate the lips or make them purple/magenta/lipstick-like unless makeup is requested."
+    ]
+  },
+  "texture_footprint_notes": "The stock Slade head_color texture is a full 2048 \u00d7 2048 opaque face map, not a portrait. It includes hair/scalp at the top, central face in the upper-middle, side-wrap skin and ears, and broad lower neck / upper chest UV padding at the bottom with irregular stock texture edges. The stock reference image must be uploaded with the prompt because text alone is not reliable enough for matching the lower neck / UV padding footprint.",
+  "neck_uv_padding_guidance": "For Slade, the lower third should not become a smooth portrait chest. It should follow the stock Slade lower UV footprint: wide neck/chest padding, soft skin-tone bleed, irregular bottom-edge/corner padding, and no important facial features below the chin zone. Do not smooth this into a generic portrait bust.",
+  "alpha_guidance": "Alpha guidance: treat the Slade stock texture as opaque. The strange lower neck and edge shapes are texture footprint / UV padding, not transparent cutouts. Keep the full square opaque unless the extracted source file proves otherwise.",
+  "stock_reference_required": true,
+  "reference_texture_filename": "Slade stock head_color texture, 2048 x 2048",
+  "reference_usage": "Use the uploaded Slade stock head_color texture as the mandatory layout reference. Match its square canvas, top hair/scalp mass, side ears and side-wrap skin, blank eye socket behavior, and especially the broad opaque lower neck / upper chest UV padding footprint.",
+  "lower_third_footprint_guidance": "For Slade, the lower third should not become a smooth portrait chest. It should follow the stock Slade lower UV footprint: wide neck/chest padding, soft skin-tone bleed, irregular bottom-edge/corner padding, and no important facial features below the chin zone.",
+  "layout_reference_filename": "Slade_layout_reference.png",
+  "technical_grid_reference_filename": "Slade_128x128_grid_reference.png",
+  "layout_legend_filename": "Slade_layout_legend.txt",
+  "layout_reference_usage": "Upload the layout reference PNG with the prompt and profile JSON. It is a placement guide only, not final art. The generator should follow the labeled zones and stock lower neck / UV padding footprint, but must not copy labels, colors, or grid lines into the final face texture. Use the 128 x 128 grid PNG for exact placement correction; each grid cell is 16 px on a 2048 texture.",
+  "lip_color_guidance": "Keep lips natural, muted, and body-tone compatible. Avoid purple, magenta, glossy lipstick-like saturation, overly dark lip bands, or obvious makeup unless the project explicitly asks for it.",
+  "default_texture_filename": "Slade_default_texture.png",
+  "default_texture_note": "Bundled stock/default texture included in the Final Handoff Pack. Use it as the footprint authority for neck padding, side-wrap behavior, ears, eye socket treatment, and lip placement context."
+}

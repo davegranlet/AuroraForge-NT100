@@ -1,0 +1,351 @@
+{
+  "profile_id": "cole_quinn",
+  "display_name": "Cole Quinn",
+  "character_name": "Cole Quinn",
+  "game": "WWE 2K26",
+  "pipeline": "Face Texture Studio",
+  "profile_type": "character_face_map",
+  "description": "Character-specific face texture profile tuned to match the visible Cole Quinn stock face texture layout used by the game, including the lower neck / UV padding transition footprint and opaque edge padding.",
+  "default_canvas": "2048 x 2048",
+  "allowed_output_sizes": [
+    "2048 x 2048",
+    "1024 x 1024",
+    "4096 x 4096"
+  ],
+  "logic_grid": {
+    "columns": 128,
+    "rows": 128,
+    "origin": "top-left",
+    "x_axis": "left-to-right",
+    "y_axis": "top-to-bottom",
+    "cell_size_at_2048": "16 px",
+    "notes": "128 x 128 normalized face-layout grid. Each cell is exactly 16 px on a 2048 x 2048 texture."
+  },
+  "layout_orientation": "Visible working orientation. Match the Cole Quinn stock face texture layout: hair and scalp at the top, brow and eyes beneath it, nose and cheeks through the center, mouth and chin lower, side-wrap skin on the left and right edges, and the lower neck / UV padding transition zone at the bottom. The lower third should remain a stock face-map transition/padding area, not a free portrait background.",
+  "layout_summary": "Match the Cole Quinn face texture layout exactly: upper hair mass at the top, forehead / brow beneath, softer eyes in the upper-middle, nose centered, cheeks and mouth beneath, chin lower, lighter side-wrap skin on the outer edges, and the stock lower neck / UV padding transition zone at the bottom. Preserve the stock lower neck / upper chest padding shape; do not simplify it into a generic portrait-style bust or a smooth blank square.",
+  "eye_rendering_guidance": "Do not render complete open eyeballs into the texture. Use subtle eyelid / eye-socket shading and let the in-game eye system carry the eyes.",
+  "generation_layout_rules": [
+    "Treat Cole Quinn as a character layout profile, not a generic face template.",
+    "Build the final texture in the same visible working layout as the Cole Quinn stock face map: hair at the top, forehead and brow beneath it, eyes in the upper-middle, nose in the center, mouth lower, chin below the mouth, and neck transition at the bottom.",
+    "Match the Cole Quinn proportions: fuller rounded face, softer cheeks, a wider mouth area, lighter beard/stubble treatment, and a lower fuller hair/fringe band than Slade.",
+    "Keep the ears in the side mid-zones and keep the side-wrap skin broad and softer than the front face.",
+    "Do not paint complete eyeballs or beauty-render eyes into the map. Keep the eye areas as texture-map eye sockets / lids.",
+    "The final image should resemble a stock WWE face texture map, not a portrait.",
+    "Keep the lower neck / UV padding transition zone soft, skin-tone matched, and structurally similar to the stock texture. Do not crop it out, leave it blank, or treat it as transparency.",
+    "The output must be generated as a full 2048 \u00d7 2048 texture when 2048 is selected. Do not output 1254 \u00d7 1254 or any non-selected size.",
+    "Match the stock lower neck / upper chest UV padding footprint. This area is opaque texture space, not transparency.",
+    "Do not replace the lower third with generic portrait shoulders, a studio portrait background, or a smooth empty field of skin.",
+    "Preserve the same overall stock face-map silhouette: hair/scalp mass at top, central face upper-middle, side wraps/ears, and broad lower neck/chest transition padding.",
+    "Do not generate from text alone for this character profile. Use the uploaded stock character texture as the visual layout reference.",
+    "The lower third must visually follow the stock reference image footprint, including irregular edge padding and opaque neck/chest UV bleed areas.",
+    "A smooth, centered portrait bust with a plain chest gradient is a failure for this profile because it ignores the stock lower UV footprint.",
+    "The stock reference controls layout only. The new generated face can be original, but the UV footprint must remain stock-like.",
+    "Use the included 128 x 128 layout reference PNG as a visual placement guide together with the stock character texture.",
+    "Use the technical 128 x 128 grid reference only for placement accuracy; do not copy grid lines, labels, or guide colors into the final texture.",
+    "Treat the JSON grid coordinates as 128 x 128 normalized layout coordinates for a 2048 x 2048 face texture.",
+    "Use the technical 128 x 128 grid reference for exact placement correction; every cell equals 16 px on a 2048 x 2048 face texture.",
+    "Keep lip color natural and muted: subtle red/brown variation only, no purple/magenta/glossy lipstick effect, and no harsh horizontal color banding."
+  ],
+  "anchor_points": {
+    "canvas_center_x": 1024,
+    "hairline_band_y": "280-560",
+    "eye_band_y": "690-940",
+    "nose_band_y": "890-1150",
+    "mouth_band_y": "1180-1400",
+    "chin_band_y": "1400-1600",
+    "neck_transition_y": "1580-2048"
+  },
+  "zones": {
+    "full_face_safe_area": {
+      "columns": [
+        30,
+        99
+      ],
+      "rows": [
+        21,
+        108
+      ],
+      "purpose": "Main visible Cole Quinn face area in upright working orientation."
+    },
+    "forehead": {
+      "columns": [
+        39,
+        90
+      ],
+      "rows": [
+        30,
+        48
+      ],
+      "purpose": "Forehead and upper brow mass beneath the fuller fringe."
+    },
+    "left_eye_area": {
+      "columns": [
+        39,
+        61
+      ],
+      "rows": [
+        43,
+        61
+      ],
+      "purpose": "Left eye socket / eyelid zone."
+    },
+    "right_eye_area": {
+      "columns": [
+        68,
+        90
+      ],
+      "rows": [
+        43,
+        61
+      ],
+      "purpose": "Right eye socket / eyelid zone."
+    },
+    "nose_bridge": {
+      "columns": [
+        56,
+        73
+      ],
+      "rows": [
+        52,
+        70
+      ],
+      "purpose": "Nose bridge."
+    },
+    "nose_tip": {
+      "columns": [
+        56,
+        73
+      ],
+      "rows": [
+        65,
+        77
+      ],
+      "purpose": "Nose tip and nostril area."
+    },
+    "left_cheek": {
+      "columns": [
+        30,
+        61
+      ],
+      "rows": [
+        56,
+        86
+      ],
+      "purpose": "Left cheek and under-eye support zone."
+    },
+    "right_cheek": {
+      "columns": [
+        68,
+        99
+      ],
+      "rows": [
+        56,
+        86
+      ],
+      "purpose": "Right cheek and under-eye support zone."
+    },
+    "mouth_lips": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        72,
+        90
+      ],
+      "purpose": "Mouth / lips zone."
+    },
+    "chin": {
+      "columns": [
+        43,
+        86
+      ],
+      "rows": [
+        85,
+        103
+      ],
+      "purpose": "Chin zone."
+    },
+    "left_jaw": {
+      "columns": [
+        30,
+        57
+      ],
+      "rows": [
+        77,
+        103
+      ],
+      "purpose": "Left jaw support zone."
+    },
+    "right_jaw": {
+      "columns": [
+        72,
+        99
+      ],
+      "rows": [
+        77,
+        103
+      ],
+      "purpose": "Right jaw support zone."
+    },
+    "left_temple_side": {
+      "columns": [
+        17,
+        39
+      ],
+      "rows": [
+        30,
+        95
+      ],
+      "purpose": "Left temple and side-wrap support."
+    },
+    "right_temple_side": {
+      "columns": [
+        90,
+        112
+      ],
+      "rows": [
+        30,
+        95
+      ],
+      "purpose": "Right temple and side-wrap support."
+    },
+    "left_ear_risk": {
+      "columns": [
+        8,
+        31
+      ],
+      "rows": [
+        47,
+        77
+      ],
+      "purpose": "Ear-risk zone. Keep detail simple."
+    },
+    "right_ear_risk": {
+      "columns": [
+        98,
+        121
+      ],
+      "rows": [
+        47,
+        77
+      ],
+      "purpose": "Ear-risk zone. Keep detail simple."
+    },
+    "hairline_risk": {
+      "columns": [
+        26,
+        103
+      ],
+      "rows": [
+        1,
+        39
+      ],
+      "purpose": "Hair / fringe zone in upright orientation."
+    },
+    "neck_transition": {
+      "columns": [
+        26,
+        103
+      ],
+      "rows": [
+        98,
+        128
+      ],
+      "purpose": "Lower neck / upper chest UV padding transition footprint. Opaque stock texture space; keep it soft, skin-tone matched, irregular like the stock map, and not transparent."
+    },
+    "centerline_balance": {
+      "columns": [
+        59,
+        70
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Keep features centered on the Cole Quinn map."
+    },
+    "lower_edge_padding": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        111,
+        128
+      ],
+      "purpose": "Bottom edge stock UV padding / bleed area. Preserve soft skin-tone padding and irregular stock edge behavior; no important facial features here."
+    },
+    "outer_corner_padding": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Outer-corner face-map padding / unused-edge behavior. Keep color compatible with adjacent stock texture areas; do not place key features in the corners."
+    },
+    "lower_third_stock_footprint": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        77,
+        128
+      ],
+      "purpose": "Mandatory stock lower-third footprint reference zone. Match uploaded stock texture behavior: lower neck/chest padding, corner/edge padding, opaque UV bleed shapes, no portrait-background simplification."
+    },
+    "stock_reference_match_priority": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Use the uploaded stock texture image as the whole-canvas layout authority. JSON coordinates support the reference image; they do not replace it."
+    }
+  },
+  "profile_rules": {
+    "must": [
+      "Use the selected Cole Quinn profile as the placement guide.",
+      "Treat the final image as a stock-style face texture map with the Cole Quinn footprint.",
+      "Keep the central face readable and the side-wrap skin simpler and softer.",
+      "Keep the eye treatment map-like: eyelids / sockets instead of fully rendered eyeballs.",
+      "Preserve the lower neck / UV padding transition area as part of the stock texture footprint.",
+      "Use exact selected canvas size; 2048 \u00d7 2048 is the default for face textures.",
+      "Preserve the stock lower neck / UV padding footprint as opaque texture space.",
+      "Upload the selected stock character texture image with the generation prompt.",
+      "Use the stock reference image to match the lower third and edge-padding footprint."
+    ],
+    "avoid": [
+      "Do not output a generic upright portrait that ignores the Cole Quinn footprint.",
+      "Do not over-detail the side-wrap zones.",
+      "Do not add labels, grids, or poster framing.",
+      "Do not make the lower neck / padding area transparent, blank, or unrelated to the stock layout.",
+      "Do not output 1254 \u00d7 1254 or any non-selected canvas size.",
+      "Do not make the lower neck / padding area transparent, blank, or generic portrait shoulders.",
+      "Do not generate the face from text-only profile guidance when matching the stock lower UV footprint is required.",
+      "Do not accept a smooth portrait-style lower chest area as a correct stock face map.",
+      "Do not over-saturate the lips or make them purple/magenta/lipstick-like unless makeup is requested."
+    ]
+  },
+  "texture_footprint_notes": "The stock Cole Quinn head_color texture is a full 2048 \u00d7 2048 opaque face map, not a portrait. It includes hair/scalp at the top, central face in the upper-middle, side-wrap skin and ears, and broad lower neck / upper chest UV padding at the bottom with irregular stock texture edges. The stock reference image must be uploaded with the prompt because text alone is not reliable enough for matching the lower neck / UV padding footprint.",
+  "neck_uv_padding_guidance": "For Cole Quinn, the lower third should not become a smooth portrait chest. It should follow the stock Cole Quinn lower UV footprint: wide neck/chest padding, soft lighter skin-tone bleed, irregular bottom-edge/corner padding, and no important facial features below the chin zone. Do not smooth this into a generic portrait bust.",
+  "alpha_guidance": "Alpha guidance: treat the Cole Quinn stock texture as opaque. The strange lower neck and edge shapes are texture footprint / UV padding, not transparent cutouts. Keep the full square opaque unless the extracted source file proves otherwise.",
+  "stock_reference_required": true,
+  "reference_texture_filename": "Cole Quinn stock head_color texture, 2048 x 2048",
+  "reference_usage": "Use the uploaded Cole Quinn stock head_color texture as the mandatory layout reference. Match its square canvas, top hair/scalp mass, side ears and side-wrap skin, blank eye socket behavior, and especially the broad opaque lower neck / upper chest UV padding footprint.",
+  "lower_third_footprint_guidance": "For Cole Quinn, the lower third should not become a smooth portrait chest. It should follow the stock Cole Quinn lower UV footprint: wide neck/chest padding, soft lighter skin-tone bleed, irregular bottom-edge/corner padding, and no important facial features below the chin zone.",
+  "layout_reference_filename": "ColeQuinn_layout_reference.png",
+  "technical_grid_reference_filename": "ColeQuinn_128x128_grid_reference.png",
+  "layout_legend_filename": "ColeQuinn_layout_legend.txt",
+  "layout_reference_usage": "Upload the layout reference PNG with the prompt and profile JSON. It is a placement guide only, not final art. The generator should follow the labeled zones and stock lower neck / UV padding footprint, but must not copy labels, colors, or grid lines into the final face texture. Use the 128 x 128 grid PNG for exact placement correction; each grid cell is 16 px on a 2048 texture.",
+  "lip_color_guidance": "Keep lips natural, muted, and body-tone compatible. Avoid purple, magenta, glossy lipstick-like saturation, overly dark lip bands, or obvious makeup unless the project explicitly asks for it.",
+  "default_texture_filename": "ColeQuinn_default_texture.png",
+  "default_texture_note": "Bundled stock/default texture included in the Final Handoff Pack. Use it as the footprint authority for neck padding, side-wrap behavior, ears, eye socket treatment, and lip placement context."
+}

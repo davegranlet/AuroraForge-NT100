@@ -1,0 +1,246 @@
+{
+  "profile_id": "ReyMysterio2019",
+  "display_name": "Rey Mysterio 2019",
+  "game": "WWE 2K26",
+  "pipeline": "lmask",
+  "profile_type": "flat_uv_cutout_luchador_mask",
+  "description": "Character-specific lmask profile based on the bundled Rey Mysterio 2019 mask_color texture. This is a 2048 x 2048 flat UV / cutout-style mask_color layout with separate mask islands, lower bib/panel zones, side/corner padding, and visible artwork islands.",
+  "default_canvas": {
+    "width": 2048,
+    "height": 2048
+  },
+  "allowed_output_sizes": [
+    2048,
+    1024,
+    4096
+  ],
+  "logic_grid": {
+    "columns": 128,
+    "rows": 128,
+    "origin": "top-left",
+    "x_axis": "left-to-right",
+    "y_axis": "top-to-bottom",
+    "cell_size_at_2048": "16 px",
+    "notes": "128 x 128 normalized lmask-layout grid. Each cell is exactly 16 px on a 2048 x 2048 texture."
+  },
+  "default_texture_filename": "ReyMysterio2019_default_mask_color.png",
+  "default_texture_note": "Bundled Rey Mysterio 2019 stock/default mask_color texture included in the Final Handoff Pack. Use it as the UV footprint authority for mask island shapes, side-wrap behavior, eye openings, lower bib panels, corner padding, and opaque edge padding.",
+  "layout_reference_filename": "ReyMysterio2019_layout_reference.png",
+  "technical_grid_reference_filename": "ReyMysterio2019_128x128_grid_reference.png",
+  "layout_legend_filename": "ReyMysterio2019_layout_legend.txt",
+  "layout_reference_usage": "Upload the layout reference PNG and 128 x 128 grid PNG with the final handoff pack. These are placement guides only; do not copy guide colors, labels, or grid lines into the final mask texture.",
+  "reference_usage": "Use the bundled default texture as the layout/UV footprint authority, not as artwork to copy exactly. Generate original mask_color.png artwork that follows this profile footprint, plus mask_mask1.png and mask_nrm.png.",
+  "zones": {
+    "full_canvas": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Full mask_color canvas; keep 2048 x 2048 square."
+    },
+    "background_padding": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Dark/opaque UV padding and non-feature areas. Do not make transparent unless the actual source alpha proves it."
+    },
+    "upper_left_crown_island": {
+      "columns": [
+        10,
+        43
+      ],
+      "rows": [
+        1,
+        35
+      ],
+      "purpose": "Upper-left curved crown/strap island from stock texture."
+    },
+    "upper_right_crown_island": {
+      "columns": [
+        86,
+        119
+      ],
+      "rows": [
+        1,
+        35
+      ],
+      "purpose": "Upper-right curved crown/strap island from stock texture."
+    },
+    "left_side_mask_island": {
+      "columns": [
+        19,
+        47
+      ],
+      "rows": [
+        28,
+        83
+      ],
+      "purpose": "Left tall curved side mask island with main color/trim."
+    },
+    "right_side_mask_island": {
+      "columns": [
+        82,
+        110
+      ],
+      "rows": [
+        28,
+        83
+      ],
+      "purpose": "Right tall curved side mask island with main color/trim."
+    },
+    "center_forehead_spine": {
+      "columns": [
+        59,
+        70
+      ],
+      "rows": [
+        33,
+        87
+      ],
+      "purpose": "Central vertical forehead/spine design strip."
+    },
+    "center_front_emblem": {
+      "columns": [
+        49,
+        80
+      ],
+      "rows": [
+        35,
+        83
+      ],
+      "purpose": "Central front emblem/forehead/chin identity zone."
+    },
+    "left_eye_opening_zone": {
+      "columns": [
+        27,
+        43
+      ],
+      "rows": [
+        45,
+        61
+      ],
+      "purpose": "Left eye/opening and trim-safe zone."
+    },
+    "right_eye_opening_zone": {
+      "columns": [
+        86,
+        102
+      ],
+      "rows": [
+        45,
+        61
+      ],
+      "purpose": "Right eye/opening and trim-safe zone."
+    },
+    "left_wing_cheek_panel": {
+      "columns": [
+        40,
+        60
+      ],
+      "rows": [
+        50,
+        85
+      ],
+      "purpose": "Left cheek/wing flow panel."
+    },
+    "right_wing_cheek_panel": {
+      "columns": [
+        69,
+        89
+      ],
+      "rows": [
+        50,
+        85
+      ],
+      "purpose": "Right cheek/wing flow panel."
+    },
+    "lower_left_bib_panel": {
+      "columns": [
+        5,
+        44
+      ],
+      "rows": [
+        100,
+        128
+      ],
+      "purpose": "Lower-left bib/front panel island."
+    },
+    "lower_right_bib_panel": {
+      "columns": [
+        85,
+        124
+      ],
+      "rows": [
+        100,
+        128
+      ],
+      "purpose": "Lower-right bib/front panel island."
+    },
+    "left_name_tag": {
+      "columns": [
+        1,
+        14
+      ],
+      "rows": [
+        34,
+        72
+      ],
+      "purpose": "Far-left vertical name/text island on stock texture. Avoid text unless intentionally requested."
+    },
+    "lower_center_padding": {
+      "columns": [
+        45,
+        84
+      ],
+      "rows": [
+        90,
+        128
+      ],
+      "purpose": "Lower center dark/padding area. Do not place main identity here unless the selected stock item uses it."
+    },
+    "outer_corner_padding": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Outer corner UV padding/bleed. Keep compatible colors; avoid major artwork in corners."
+    }
+  },
+  "rules": {
+    "must": [
+      "Use 2048 x 2048 as the default production canvas.",
+      "Use the bundled Rey Mysterio 2019 default mask_color texture as the UV footprint authority.",
+      "Follow the separate cutout islands and do not reinterpret this as a continuous hood-wrap mask.",
+      "Use the 128 x 128 layout/grid references for placement accuracy.",
+      "Generate mask_color.png, mask_mask1.png, and mask_nrm.png together for final output."
+    ],
+    "avoid": [
+      "Do not copy guide colors, labels, or grid lines into final mask_color.png.",
+      "Do not turn this into face paint, a poster, a portrait, or a full wrestler body mockup.",
+      "Do not ignore the cutout islands, lower bib panels, side islands, or outer padding."
+    ]
+  },
+  "output_files": [
+    "mask_color.png",
+    "mask_mask1.png",
+    "mask_nrm.png"
+  ],
+  "final_dds_names": [
+    "mask_color.dds",
+    "mask_mask1.dds",
+    "mask_nrm.dds"
+  ]
+}
