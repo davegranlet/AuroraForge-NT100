@@ -1,0 +1,14 @@
+Microsoft DirectXTex texconv
+
+Component: texconv.exe (Windows x64)
+Release: May 2026 (tag: may2026)
+Published: May 8, 2026
+Project: https://github.com/microsoft/DirectXTex
+Release: https://github.com/microsoft/DirectXTex/releases/tag/may2026
+Binary: https://github.com/microsoft/DirectXTex/releases/download/may2026/texconv.exe
+License: MIT; see LICENSE.txt in this folder.
+SHA-256: DCFDEC10244E02CF5037FBA089C55FB7E1326B1C8181742D77D15FA5CB5EEF06
+
+Aurora Forge invokes this unmodified command-line utility only when the user
+starts a conversion. Microsoft DirectXTex is a separate open-source project
+and is not created or maintained by Aurora Forge or VikingStudios.
