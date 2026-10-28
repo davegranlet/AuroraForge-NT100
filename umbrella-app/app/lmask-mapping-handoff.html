@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>WWE 2K26 — Luchador Mask Mapping</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div>
+      <div>
+        <div class="app-brand-title">AuroraForge NT100</div>
+        <div class="app-brand-sub">by VikingStudios</div>
+      </div>
+    </div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div>
+        <div class="eyebrow">AuroraForge NT100 · Prompt Builders</div>
+        <h1>Luchador Mask Studio · Mapping Builder</h1>
+        <p class="sub">Stage 2: remap approved mask art with selectable modular mapping profiles.</p>
+      </div>
+    </section>
+<div class="wrap">
+  <section class="ai-hero hero-glow">
+    <div class="part-label">Studio Step 4</div>
+    <h2>Mapping Handoff Prompt Builder</h2>
+    <p>Use this after the user already has an approved luchador mask design image. AuroraForge NT100 loads mapping profiles from <code>/profiles/lmask/profiles.json</code>, previews the selected profile zones, and builds prompts that either embed profile data or clearly tell the user to upload the profile JSON.</p>
+    <div class="change-notice"><strong>Important:</strong> Profile name alone is not enough with your chosen compatible AI tool. Use Full/Compact mode to embed the profile, or use Upload profile file and upload the JSON profile with the approved image.</div>
+    <div class="change-notice"><strong>Tip:</strong> For regular projects, use <a href="lmask-project-studio.html" >Luchador Mask Studio</a> to save settings and download a complete handoff pack. This page is the direct mapping-prompt builder.</div>
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="buildHandoffPrompt()">Build Final Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="copyById('handoffRequestOutput', 'handoffStatus')">Copy Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadPromptTxt()">Download Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadSelectedProfileJson()">Download Profile JSON</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadPromptProfileZip()">Download Prompt + Profile ZIP</button>
+    </div>
+    <div id="handoffStatus" class="copy-status"></div>
+    <div id="profileLoadStatus" class="copy-status"></div>
+  </section>
+
+  <div class="pipeline-flow">
+    <div class="flow-step"><span>1</span><strong>Approved Art</strong><small>Download image</small></div>
+    <div class="flow-step active-flow"><span>2</span><strong>Select Profile</strong><small>Manifest JSON</small></div>
+    <div class="flow-step"><span>3</span><strong>Build Prompt</strong><small>Choose mode</small></div>
+    <div class="flow-step"><span>4</span><strong>Final Chat</strong><small>Image + prompt/profile</small></div>
+    <div class="flow-step"><span>5</span><strong>Texture Set</strong><small>PNG masters</small></div>
+  </div>
+
+  <section class="ai-panel">
+    <div class="section-label" style="margin-top:0;">Stage 2 Profile + Prompt Settings</div>
+    <p>The selected profile file controls the placement. The app calculates pixel ranges from the 30 × 30 profile grid for 1024, 2048, or 4096 output.</p>
+
+    <div class="ai-grid">
+      <div class="ai-field">
+        <label for="mappingProfile">Mapping Profile</label>
+        <select id="mappingProfile">
+          <option value="">Loading profiles…</option>
+        </select>
+      </div>
+      <div class="ai-field">
+        <label for="promptMode">Final prompt style</label>
+        <select id="promptMode">
+          <option value="full">Full prompt</option>
+          <option value="compact" selected>Compact prompt</option>
+          <option value="profile_file">Upload profile file</option>
+          <option value="expert">Short expert prompt</option>
+        </select>
+      </div>
+      <div class="ai-field">
+        <label for="handoffSize">Output Size</label>
+        <select id="handoffSize">
+          <option value="1024" selected>1024 × 1024</option>
+          <option value="2048">2048 × 2048</option>
+          <option value="4096">4096 × 4096</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-panel">
+    <div class="section-label" style="margin-top:0;">Design idea Starter</div>
+    <p>Need a quick non-biker starting point? Choose one of the 25 built-in design ideas, apply it to the Stage 2 text fields, then fine-tune from there.</p>
+    <div class="app-two-col">
+      <div>
+        <div class="ai-field">
+          <label for="designIdeaPreset">Design idea</label>
+          <select id="designIdeaPreset"><option value="">Loading default ideas…</option></select>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="applySelectedStage2Idea()">Use this idea</button>
+          <button class="ai-btn secondary" type="button" onclick="chooseRandomIdea('designIdeaPreset', 'designIdeaPreview')">Random Idea</button>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-top:0;">Idea details</h3>
+        <pre id="designIdeaPreview" class="mini-output">Loading default design idea…</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-panel">
+    <div class="section-label" style="margin-top:0;">Custom Handoff Fields</div>
+    <p>These fields do not change the locked mapping profile. They tell your chosen compatible AI tool what to preserve or correct from the approved artwork.</p>
+
+    <div class="ai-grid">
+      <div class="ai-field">
+        <label for="handoffTheme">Approved design summary</label>
+        <textarea id="handoffTheme">Approved Gothic Biker Luchador multi-view turnaround sheet with a controlled horned skull centerpiece, raven wing side panels, chains, gothic trim, black/charcoal base, darker gunmetal silver trim, deep blood red accents, rear lacing, and top/crown reference.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="handoffPreserve">Preserve</label>
+        <textarea id="handoffPreserve">Preserve the overall style, premium mask craftsmanship, color palette, forehead centerpiece, sharp raised eye trim, cheek-to-jaw flow, side panel style, stitching, seams, metallic trim, material feel, and rear lacing.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="handoffChanges">Mapping notes</label>
+        <textarea id="handoffChanges">Do not redesign the mask. Remap the approved artwork into the selected modular mapping profile. Keep the rear seam dark and simple. Keep top/crown shapes broad. Darken over-bright white and silver areas into darker gunmetal. Keep the result production quality, not a test image.</textarea>
+      </div>
+      <div class="ai-field">
+        <label for="handoffPriority">Priority Elements</label>
+        <textarea id="handoffPriority">Forehead identity must land in the front-safe upper center. Eye surrounds must land in mapped eye zones. Cheek and jaw panels must read clearly. Chin/mouth identity must land in the lower center chin zone. Side panels should wrap outward from cheek/jaw zones, while the top/back stays dark and simple.</textarea>
+      </div>
+    </div>
+
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="buildHandoffPrompt()">Build Final Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="copyById('handoffRequestOutput', 'handoffStatus2')">Copy Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadPromptTxt()">Download Prompt</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadSelectedProfileJson()">Download Profile JSON</button>
+      <button class="ai-btn secondary" type="button" onclick="downloadPromptProfileZip()">Download Prompt + Profile ZIP</button>
+    </div>
+    <div id="handoffStatus2" class="copy-status"></div>
+
+    <div class="ai-field" style="margin-top:14px;">
+      <label for="handoffRequestOutput">Stage 2 prompt</label>
+      <textarea id="handoffRequestOutput" class="ai-textarea ai-output" readonly></textarea>
+    </div>
+  </section>
+
+  <section class="ai-panel">
+    <div class="section-label" style="margin-top:0;">Selected profile preview</div>
+    <p>This preview is calculated live from the selected JSON profile and selected output size. Pixel ranges use top-left origin, X left-to-right, Y top-to-bottom, and inclusive logical grid ranges.</p>
+    <div id="profilePreview" class="profile-preview">
+      <p>Loading selected profile preview…</p>
+    </div>
+  </section>
+
+  <section class="ai-panel good-panel">
+    <div class="section-label" style="margin-top:0;">Adding More Profiles</div>
+    <p>Put new luchador mask profile JSON files in <code>/profiles/lmask/</code>, then list the filename in <code>/profiles/lmask/profiles.json</code>. The dropdown loads from that manifest.</p>
+  </section>
+</div>
+
+
+<footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+      <script src="assets/js/lmask-profile-loader.js?v=20260726-r160d"></script>
+      <script src="assets/js/lmask-prompt-compiler.js?v=20260726-r160d"></script>
+  <script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

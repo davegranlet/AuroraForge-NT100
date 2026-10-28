@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 - Entry Studio</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260805-r160g">
+<link rel="stylesheet" href="assets/css/aurora-crystal.css">
+<style>
+  .es-grid { display: grid; grid-template-columns: minmax(420px, 1fr) minmax(380px, 460px); gap: 14px; align-items: start; }
+  @media (max-width: 1180px) { .es-grid { grid-template-columns: 1fr; } }
+  .es-filelist { height: 340px; overflow: auto; border: 1px dashed var(--crystal-line-strong); border-radius: 10px; background: var(--code-bg); }
+  .es-file { display: flex; align-items: center; gap: 8px; padding: 4px 9px; border-bottom: 1px solid rgba(215,221,224,.07); }
+  .es-file:hover { background: var(--surface2); }
+  .es-file .name { flex: 1; font-family: Consolas, monospace; font-size: 12.5px; color: var(--text); }
+  .es-file .size { color: var(--text-mute); font-size: 12px; }
+  .es-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+  .es-row input[type=text], .es-row input[type=number], .es-row select, .es-field input, .es-field select { background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 7px; color: var(--text); padding: 6px 9px; font: inherit; }
+  .es-field { display: grid; grid-template-columns: 158px 1fr; gap: 8px; align-items: center; margin-bottom: 7px; }
+  .es-field label { color: var(--text-dim); font-size: 13px; }
+  .es-field input, .es-field select { width: 100%; }
+  .es-log { font-family: Consolas, monospace; font-size: 12px; background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 10px; padding: 9px; height: 150px; overflow: auto; white-space: pre-wrap; margin-top: 8px; color: var(--text-dim); }
+  .es-muted { color: var(--text-mute); font-size: 12px; }
+  .es-badge { display: inline-block; padding: 1px 9px; border-radius: 10px; font-size: 11px; background: var(--surface2); border: 1px solid var(--crystal-line); color: var(--text-dim); }
+  .es-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--red); margin-right: 6px; }
+  .es-dot.ok { background: #43c07a; }
+  .es-folder-line { display: flex; gap: 8px; align-items: center; margin-bottom: 7px; }
+  .es-folder-line input { flex: 1; background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 7px; color: var(--text-dim); padding: 6px 9px; font: inherit; font-size: 12.5px; }
+  .es-locked { color: #d8b25e; font-size: 12px; }
+</style>
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Entry Studio</div><strong>Create · Convert · Bake</strong><span>Runs inside the app. No browser, no local server.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Tools</div><h1>WWE 2K19 to WWE 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 Entry Studio</h1><p class="sub">Create a new Create-an-Entrance entry, convert a WWE 2K19 motion into the 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 clips formats, edit its fields, bake a loader-ready CAK, and stage it — all inside the app.</p></div><div class="es-badge" id="treeBadge">work tree: not built</div></section>
+    <div class="wrap app-wrap">
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Folders</div>
+        <div class="es-folder-line"><span class="es-dot" id="dotBinsEntrance"></span><input id="cfgBinsEntrance" readonly placeholder="2K19 decoded entrance .bin folder"><button class="ai-btn secondary" type="button" data-cfg="binsEntrance">Choose</button></div>
+        <div class="es-folder-line"><span class="es-dot" id="dotBinsVictory"></span><input id="cfgBinsVictory" readonly placeholder="2K19 decoded victory .bin folder"><button class="ai-btn secondary" type="button" data-cfg="binsVictory">Choose</button></div>
+        <div class="es-folder-line"><span class="es-dot" id="dotExtraction"></span><input id="cfgExtraction" readonly placeholder="Extracted 2K25 game tree (Entrances, Sdb, Audio)"><button class="ai-btn secondary" type="button" data-cfg="extraction">Choose</button></div>
+        <div class="es-folder-line"><span class="es-dot" id="dotGameRoot"></span><input id="cfgGameRoot" readonly placeholder="2K25 game install (bakedfile03.cak for ENG.sdb)"><button class="ai-btn secondary" type="button" data-cfg="gameRoot">Choose</button></div>
+        <div class="es-folder-line"><span class="es-dot" id="dotMods"></span><input id="cfgMods" readonly placeholder="Game mods folder for staging"><button class="ai-btn secondary" type="button" data-cfg="mods">Choose</button></div>
+        <div class="es-muted">Folders are saved automatically. The work tree is kept in your AuroraForge NT100 app data folder.</div>
+      </section>
+
+      <div class="es-grid">
+        <section class="ai-panel app-panel">
+          <div class="section-label" style="margin-top:0;">1 · Select 2K19 animations</div>
+          <div class="es-row">
+            <input type="text" id="folder" placeholder="folder with decoded .bin animations" style="flex:1 1 200px">
+            <button class="ai-btn secondary" id="scanBtn" type="button">Scan</button>
+            <button class="ai-btn secondary" id="entranceBtn" type="button">Entrances</button>
+            <button class="ai-btn secondary" id="victoryBtn" type="button">Victories</button>
+            <button class="ai-btn secondary" id="addFilesBtn" type="button">Add Files</button>
+          </div>
+          <div class="es-row">
+            <label><input type="checkbox" id="all"> Select all</label>
+            <span class="es-muted" id="count">0 selected</span>
+          </div>
+          <div class="es-filelist" id="files"></div>
+          <div class="es-row" style="margin-top:10px">
+            <button class="ai-btn" id="convertBtn" type="button" disabled>Convert selected →</button>
+            <span class="es-muted">creates the new entries + converted animations in the work tree</span>
+          </div>
+        </section>
+
+        <section class="ai-panel app-panel">
+          <div class="section-label" style="margin-top:0;">2 · New entry (cloned from DIRE INTENTIONS)</div>
+          <div class="es-row">
+            <button class="ai-btn" id="createEntryBtn" type="button">＋ Create new entry (DIRE clone)</button>
+            <span class="es-muted" id="created"></span>
+          </div>
+          <div class="section-label" style="margin-top:14px;">3 · Set up the entry (pick animation + name, save)</div>
+          <div class="es-row">
+            <input type="number" id="entryId" placeholder="entry id (e.g. 14000)" style="width:150px">
+            <button class="ai-btn secondary" id="loadEntry" type="button">Load entry</button>
+            <select id="entryPick" style="max-width:190px"><option value="">— entries in tree —</option></select>
+          </div>
+          <div class="es-field"><label>2K19 animation</label><span><input type="text" id="animPath" placeholder="select from the list, or paste a path"><button class="ai-btn secondary" id="useSelected" type="button" style="margin-top:5px">Use first selected file</button></span></div>
+          <div class="es-field"><label>Name (SDB)</label><input type="text" id="f_name" placeholder="AURORA 14010"></div>
+          <div class="es-field"><label>MOTION (f4)</label><span><input type="number" id="f_motion"><span class="es-locked" id="motionNote"></span></span></div>
+          <div class="es-field"><label>Type</label><input type="number" id="f_type"></div>
+          <div class="es-field"><label>Title motion (f5)</label><input type="number" id="f_field5"></div>
+          <div class="es-field"><label>MITB motion (f6)</label><input type="number" id="f_field6"></div>
+          <div class="es-field"><label>Double title (f7)</label><input type="number" id="f_field7"></div>
+          <div class="es-field"><label>Entrance music (f8)</label><select id="f_field8"><option value="">— load music list —</option></select></div>
+          <div class="es-field"><label>Titantron/GFX (f9)</label><input type="number" id="f_field9"></div>
+          <div class="es-row">
+            <button class="ai-btn" id="saveEntry" type="button">SAVE (convert animation + write files)</button>
+            <button class="ai-btn secondary" id="viewRow" type="button">View row JSON</button>
+          </div>
+          <div class="es-field"><label>Entry info</label><input type="text" id="f_note" readonly></div>
+          <div class="section-label" style="margin-top:14px;">4 · Bake &amp; stage</div>
+          <div class="es-row">
+            <button class="ai-btn" id="bakeBtn" type="button">Bake CAK</button>
+            <button class="ai-btn" id="stageBtn" type="button" disabled>Stage to game mods</button>
+          </div>
+          <div class="es-log" id="log"></div>
+        </section>
+      </div>
+
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Entry Studio</footer>
+  </main>
+</div>
+<script src="assets/js/app-config-loader.js?v=20260805-r160g"></script>
+<script src="assets/js/desktop-bridge.js?v=20260805-r160g"></script>
+<script src="assets/js/entry-studio-page.js?v=20261002"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 - WWE 2K20 CAK Workbench</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260825-cak20">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell cak20-page">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Safety rule</div><strong>Read first</strong><span>2K20 archive writing stays locked until the format is verified.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 - WWE 2K20 tools</div><h1>WWE 2K20 CAK Workbench</h1><p class="sub">Browse decoded 2K20 CAK catalogs and extract verified files without editing the originals.</p></div></section>
+    <div class="wrap app-wrap cak20-wrap">
+      <section class="ai-hero app-hero cak20-hero">
+        <div><div class="part-label">Standalone archive workbench</div><h2>Open 2K20 CAKs without touching the originals.</h2><p>WWE 2K20 uses <code>bakedfile*.cak</code> archives and <code>oo2core_7_win64.dll</code>. AuroraForge NT100 can decode the catalog and extract verified file families to a separate folder. Rebuilding stays locked until the writer is tested.</p></div>
+        <div class="cak-hero-status"><span id="cak20ReadyBadge" class="cak-status-badge">Checking...</span><small id="cak20ReadyText">Looking for WWE 2K20.</small></div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Tool setup</div>
+        <h2>Set the WWE 2K20 install folder</h2>
+        <p>Choose the folder that contains <code>WWE2K20_x64.exe</code>, <code>oo2core_7_win64.dll</code>, and <code>bakedfile00.cak</code>. AuroraForge NT100 reads the installed CAK files directly and extracts to a separate folder you choose.</p>
+        <div class="archive-setup-grid" aria-label="WWE 2K20 setup status">
+          <div><span>Runtime</span><strong id="cak20RuntimeMode">Checking...</strong></div>
+          <div><span>Game folder</span><code id="cak20GamePath">Checking...</code></div>
+          <div><span>Oodle DLL</span><code id="cak20OodlePath">Checking...</code></div>
+          <div><span>Extractor engine</span><strong id="cak20EngineStatus">Checking...</strong></div>
+        </div>
+        <div class="cak-path-row"><button id="cak20ChooseGame" class="ai-btn secondary" type="button">Set WWE 2K20 Folder</button></div>
+        <p id="cak20SetupMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">1 - Archive scan</div>
+        <h2>Detected CAK archives</h2>
+        <div class="cak-summary-grid">
+          <div><strong id="cak20ArchiveCount">0</strong><span>CAK files</span></div>
+          <div><strong id="cak20TotalSize">0 B</strong><span>Total size</span></div>
+          <div><strong id="cak20FdirCount">0</strong><span>FDIR headers</span></div>
+          <div><strong id="cak20EngineReady">Locked</strong><span>Extract/rebuild</span></div>
+        </div>
+        <div class="cak-table-shell cak20-table-shell">
+          <table class="cak-table cak20-table">
+            <thead><tr><th>Archive</th><th>Header</th><th>Size</th><th>Reader state</th></tr></thead>
+            <tbody id="cak20Rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="ai-panel warn-panel app-panel">
+        <div class="section-label" style="margin-top:0;">2 - Extract and rebuild</div>
+        <h2>Extract verified 2K20 files</h2>
+        <p>AuroraForge NT100 can read the 2K20 catalog and extract known file families without changing the source CAK. Rebuilding stays locked until the write path is tested against disposable archives.</p>
+        <div class="archive-controls">
+          <input id="cak20Search" type="search" placeholder="Search decoded file names or types, for example pac/career or TEX!">
+          <button id="cak20LoadFiles" class="ai-btn secondary" type="button">Load Files</button>
+        </div>
+        <p id="cak20FileMessage" class="cak-message">Load the decoded file list, then select entries to extract.</p>
+        <div class="cak-table-shell cak20-table-shell">
+          <table class="cak-table cak20-table">
+            <thead><tr><th><input id="cak20ToggleVisible" type="checkbox" aria-label="Select visible extractable files"></th><th>File</th><th>Archive</th><th>Type</th><th>Size</th><th>Decode</th></tr></thead>
+            <tbody id="cak20FileRows"></tbody>
+          </table>
+        </div>
+        <div class="archive-controls">
+          <code id="cak20OutputPath">Choose a separate output folder.</code>
+          <button id="cak20ChooseOutput" class="ai-btn secondary" type="button">Choose Output Folder</button>
+        </div>
+        <label class="cak-check"><input id="cak20Overwrite" type="checkbox"> Replace same-name files already in the output folder</label>
+        <div class="ai-actions"><button id="cak20ExtractSelected" class="ai-btn" type="button" disabled>Extract Selected Files</button><button id="cak20ExtractAll" class="ai-btn secondary" type="button" disabled>Extract All Verified Files</button><button id="cak20OpenOutput" class="ai-btn secondary" type="button">Open Output Folder</button><button class="ai-btn secondary" type="button" disabled>Build New CAK - Coming Soon</button></div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="assets/js/cak20-explorer.js"></script>
+</body>
+</html>

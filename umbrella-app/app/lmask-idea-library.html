@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>WWE 2K26 — Luchador Mask Idea Library</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div>
+      <div>
+        <div class="app-brand-title">AuroraForge NT100</div>
+        <div class="app-brand-sub">by VikingStudios</div>
+      </div>
+    </div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div>
+        <div class="eyebrow">AuroraForge NT100 · Prompt Builders</div>
+        <h1>Luchador Mask Studio · Idea Library</h1>
+        <p class="sub">Manage the design ideas used by the Luchador Mask Studio workflow.</p>
+      </div>
+    </section>
+<div class="wrap app-wrap">
+  <section class="ai-panel app-panel">
+    <div class="section-label" style="margin-top:0;">Part of Luchador Mask Studio</div>
+    <p>This is a Studio tool. Use it when that step is needed, then return to Luchador Mask Studio to continue the start-to-finish workflow.</p>
+    <div class="ai-actions">
+      <a class="ai-btn secondary" href="lmask-project-studio.html">Back to Luchador Mask Studio</a>
+    </div>
+  </section>
+
+  <section class="ai-hero hero-glow app-hero">
+    <div class="part-label">Idea Library</div>
+    <h2>Studio Idea Library</h2>
+    <p>The built-in 25 design ideas are protected defaults. Add your own custom ideas, duplicate built-ins, tag/filter them, then export/import idea packs for backup or sharing.</p>
+    <div class="change-notice"><strong>Tip:</strong> Keep ideas and mapping profiles separate. Ideas control the look of the mask; profiles control where the artwork lands in game.</div>
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="newBlankIdea()">New Custom Idea</button>
+      <button class="ai-btn secondary" type="button" onclick="saveLibraryIdea()">Save Custom Idea</button>
+      <button class="ai-btn secondary" type="button" onclick="duplicateLibraryIdea()">Duplicate Selected</button>
+      <button id="deleteIdeaButton" class="ai-btn secondary" type="button" onclick="deleteLibraryIdea()">Delete Custom Idea</button>
+    </div>
+    <div id="ideaLibraryStatus" class="copy-status"></div>
+  </section>
+
+  <div class="pipeline-flow studio-flow">
+    <div class="flow-step active-flow"><span>1</span><strong>Browse</strong><small>Built-in + custom</small></div>
+    <div class="flow-step"><span>2</span><strong>Edit</strong><small>Custom copy</small></div>
+    <div class="flow-step"><span>3</span><strong>Tag</strong><small>Filter later</small></div>
+    <div class="flow-step"><span>4</span><strong>Export</strong><small>Idea pack</small></div>
+    <div class="flow-step"><span>5</span><strong>Use</strong><small>Stage 1 / Stage 2</small></div>
+  </div>
+
+  <section class="ai-panel app-panel">
+    <div class="section-label" style="margin-top:0;">Browse Ideas</div>
+    <div class="app-two-col">
+      <div>
+        <div class="ai-grid">
+          <div class="ai-field">
+            <label for="ideaSearch">Search Ideas</label>
+            <input id="ideaSearch" placeholder="Example: ocean, tiger, cyber, regal">
+          </div>
+          <div class="ai-field">
+            <label for="ideaSourceFilter">Source</label>
+            <select id="ideaSourceFilter">
+              <option value="">All sources</option>
+              <option value="built_in">Built-in only</option>
+              <option value="custom">Custom only</option>
+            </select>
+          </div>
+          <div class="ai-field">
+            <label for="ideaTagFilter">Tag</label>
+            <select id="ideaTagFilter"><option value="">All tags</option></select>
+          </div>
+        </div>
+        <div class="ai-field">
+          <label for="ideaLibraryList">Idea List</label>
+          <select id="ideaLibraryList" size="12" style="min-height:260px;"></select>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-top:0;">Library Summary</h3>
+        <pre id="ideaLibrarySummary" class="mini-output">Loading idea library…</pre>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="exportCustomIdeas()">Export Custom Ideas JSON</button>
+          <button class="ai-btn secondary" type="button" onclick="exportAllIdeas()">Export All Ideas JSON</button>
+        </div>
+        <div class="ai-field" style="margin-top:12px;">
+          <label for="ideaImportFile">Import Idea Pack JSON</label>
+          <input id="ideaImportFile" type="file" accept="application/json,.json">
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="importIdeaPack()">Import as Custom Ideas</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-panel app-panel">
+    <div class="section-label" style="margin-top:0;">Idea Editor</div>
+    <p>Built-in ideas cannot be overwritten. Saving a built-in idea creates a custom editable copy.</p>
+    <div class="ai-grid">
+      <div class="ai-field"><label for="ideaSource">Source</label><input id="ideaSource" readonly></div>
+      <div class="ai-field"><label for="ideaId">Idea ID</label><input id="ideaId" placeholder="custom_idea_id"></div>
+      <div class="ai-field"><label for="ideaTitle">Title</label><input id="ideaTitle"></div>
+      <div class="ai-field"><label for="ideaTags">Tags</label><input id="ideaTags" placeholder="ocean, clown, bright"></div>
+      <div class="ai-field"><label for="ideaProjectName">Project Name</label><input id="ideaProjectName"></div>
+      <div class="ai-field"><label for="ideaGenre">Genre</label><input id="ideaGenre"></div>
+      <div class="ai-field"><label for="ideaMaskType">Mask Type</label><input id="ideaMaskType"></div>
+      <div class="ai-field"><label for="ideaColors">Colors</label><input id="ideaColors"></div>
+      <div class="ai-field"><label for="ideaEyes">Eye / Expression Style</label><input id="ideaEyes"></div>
+      <div class="ai-field"><label for="ideaTheme">Stage 1 Theme</label><textarea id="ideaTheme"></textarea></div>
+      <div class="ai-field"><label for="ideaDetails">Stage 1 Details</label><textarea id="ideaDetails"></textarea></div>
+      <div class="ai-field"><label for="ideaRemove">Remove / Avoid</label><textarea id="ideaRemove"></textarea></div>
+      <div class="ai-field"><label for="ideaStage2Summary">Stage 2 Approved Design Summary</label><textarea id="ideaStage2Summary"></textarea></div>
+      <div class="ai-field"><label for="ideaStage2Preserve">Stage 2 Preserve</label><textarea id="ideaStage2Preserve"></textarea></div>
+      <div class="ai-field"><label for="ideaStage2Changes">Stage 2 Mapping notes</label><textarea id="ideaStage2Changes"></textarea></div>
+      <div class="ai-field"><label for="ideaStage2Priority">Stage 2 Priority Elements</label><textarea id="ideaStage2Priority"></textarea></div>
+    </div>
+    <div class="ai-actions">
+      <button class="ai-btn" type="button" onclick="saveLibraryIdea()">Save Custom Idea</button>
+      <button class="ai-btn secondary" type="button" onclick="duplicateLibraryIdea()">Duplicate Selected</button>
+      <button class="ai-btn secondary" type="button" onclick="newBlankIdea()">New Blank Idea</button>
+    </div>
+  </section>
+
+  <section class="ai-panel good-panel app-panel">
+    <div class="section-label" style="margin-top:0;">How custom ideas are used</div>
+    <p>After saving a custom idea, it appears in the Design idea dropdowns on Luchador Mask Art, Luchador Mask Studio, and Mapping Handoff. Custom ideas are saved in your browser using localStorage. Export a JSON idea pack when you want a backup.</p>
+  </section>
+</div>
+
+
+<footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+      <script src="assets/js/lmask-idea-library.js?v=20260726-r160d"></script>
+  <script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+build/
+release/
+*.cak
+*.pck
+*.bnk
+*.dll
+*.exe
+*.ftrib
+*.log
+*.dmp
+*.i64
+*.idb
+*.rep/
+research/
+rollback/
+captured/
+

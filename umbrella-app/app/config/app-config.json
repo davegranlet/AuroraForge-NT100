@@ -1,0 +1,19 @@
+{
+  "productName": "AuroraForge NT100",
+  "release": "2.1",
+  "releaseTitle": "Beta 4",
+  "runtime": "Portable AuroraForge NT100 desktop app",
+  "defaultProjectFolderName": "AuroraForge NT100 Projects",
+  "defaultExportFolderName": "AuroraForge NT100 Exports",
+  "expectedLmaskOutputs": [
+    "mask_color.png",
+    "mask_mask1.png",
+    "mask_nrm.png"
+  ],
+  "dataFolders": {
+    "ideas": "ideas/lmask/",
+    "profiles": "profiles/lmask/",
+    "config": "config/",
+    "faceProfiles": "profiles/face/"
+  }
+}

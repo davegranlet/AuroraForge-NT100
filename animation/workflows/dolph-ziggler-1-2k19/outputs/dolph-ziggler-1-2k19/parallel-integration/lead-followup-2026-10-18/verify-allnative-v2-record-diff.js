@@ -1,0 +1,55 @@
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const L = require('../lib/integration.js');
+const root = path.resolve(__dirname, '..');
+const builds = path.join(root, 'builds');
+const baseDir = path.join(builds, 'p14002-pairfix-v2');
+const candDir = path.join(builds, 'p14002-diag-allnative-v2');
+const baseMerge = JSON.parse(fs.readFileSync(path.join(baseDir, 'merge-report.json'), 'utf8'));
+const candMerge = JSON.parse(fs.readFileSync(path.join(candDir, 'merge-report.json'), 'utf8'));
+const baseIntent = JSON.parse(fs.readFileSync(path.join(baseDir, 'build-intent.json'), 'utf8'));
+const candIntent = JSON.parse(fs.readFileSync(path.join(candDir, 'build-intent.json'), 'utf8'));
+const results = [];
+for (const phase of [100, 110, 120, 130, 140]) {
+  const basePhase = baseMerge.phases.find(x => x.phase === phase);
+  const candPhase = candMerge.phases.find(x => x.phase === phase);
+  const expectedChanged = basePhase.overlays.filter(x => ['body', 'facial'].includes(x.component)).map(x => x.recordIndex).sort((a,b)=>a-b);
+  const file = `${phase / 10}14002.clips`;
+  const rel = `Animation/CaeAdvanced/${file}`;
+  const baseBuf = fs.readFileSync(path.join(baseDir, 'staging', ...rel.split('/')));
+  const candBuf = fs.readFileSync(path.join(candDir, 'staging', ...rel.split('/')));
+  const nativeBuf = fs.readFileSync(candPhase.nativeContainer.path);
+  const native = L.parseClips(nativeBuf);
+  const b = L.parseClips(baseBuf), c = L.parseClips(candBuf);
+  const changed = [];
+  const nativePayloadChecks = [];
+  let structureSame = b.records.length === c.records.length && c.records.length === native.records.length;
+  for (let i=0; i<Math.min(b.records.length,c.records.length,native.records.length); i++) {
+    const br=b.records[i], cr=c.records[i], nr=native.records[i];
+    const idsSame=BigInt(br.id)===BigInt(cr.id);
+    const framesSame=br.frameValue===cr.frameValue;
+    const tracksSame=JSON.stringify(br.trackIdentifiers.map(String))===JSON.stringify(cr.trackIdentifiers.map(String));
+    const payloadSame=baseBuf.subarray(br.offset+8,br.offset+br.length).equals(candBuf.subarray(cr.offset+8,cr.offset+cr.length));
+    const nativeSame=nativeBuf.subarray(nr.offset+8,nr.offset+nr.length).equals(candBuf.subarray(cr.offset+8,cr.offset+cr.length));
+    if (!idsSame || !framesSame || !tracksSame) structureSame=false;
+    if (!payloadSame) changed.push(i);
+    if (expectedChanged.includes(i)) nativePayloadChecks.push({index:i,name:basePhase.recordLedger[i].name,exactNativePayloadBeyondId:nativeSame});
+  }
+  const changedExpected=JSON.stringify(changed)===JSON.stringify(expectedChanged);
+  const nativePayloadPass=nativePayloadChecks.length===2&&nativePayloadChecks.every(x=>x.exactNativePayloadBeyondId);
+  const targetNames=expectedChanged.map(i=>basePhase.recordLedger[i].name);
+  results.push({phase,file,recordCountBase:b.records.length,recordCountCandidate:c.records.length,recordIdsFramesTracksStable:structureSame,expectedChangedIndices:expectedChanged,expectedRecordNames:targetNames,changedRecordIndices:changed,nativePayloadChecks,pass:structureSame&&changedExpected&&nativePayloadPass});
+}
+const baseMembers=new Map(baseIntent.members.map(x=>[x.archive,x.sha256]));
+const candMembers=new Map(candIntent.members.map(x=>[x.archive,x.sha256]));
+const missing=[...baseMembers.keys()].filter(x=>!candMembers.has(x));
+const extra=[...candMembers.keys()].filter(x=>!baseMembers.has(x));
+const diffs=[...baseMembers.keys()].filter(x=>baseMembers.get(x)!==candMembers.get(x));
+const expectedDiffs=[100,110,120,130,140].map(p=>`Animation/CaeAdvanced/${p/10}14002.clips`);
+const payloadMemberPass=!missing.length&&!extra.length&&JSON.stringify(diffs.sort())===JSON.stringify(expectedDiffs.sort());
+const report={schema:'aurora-forge-allnative-control-record-audit/v1',baseCakSha256:JSON.parse(fs.readFileSync(path.join(baseDir,'build-report.json'),'utf8')).cakSha256,candidateCakSha256:JSON.parse(fs.readFileSync(path.join(candDir,'build-report.json'),'utf8')).cakSha256,phases:results,payloadMembers:{pass:payloadMemberPass,changed:diffs,missing,extra},pass:results.every(x=>x.pass)&&payloadMemberPass};
+const out=path.join(candDir,'allnative-v2-record-audit.json');
+fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(report,null,2));
+if(!report.pass) process.exit(1);

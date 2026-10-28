@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Reference Cleanup Pipeline</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell" data-active-studio="cleanup">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div><div class="eyebrow">AuroraForge NT100 · Prompt Builders</div><h1>Reference Cleanup Pipeline</h1><p class="sub">Turn permitted source images into clear, traceable, texture-ready references without hiding uncertainty or inventing critical detail.</p></div>
+    </section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Source preparation workflow</div>
+        <h2>Clean the reference before designing from it</h2>
+        <p>Plan background removal, perspective correction, lighting cleanup, alpha edges, reconstruction limits, and source provenance in one controlled handoff.</p>
+        <div class="change-notice"><strong>Source rights still matter.</strong> Only use images you own, created, licensed, or are otherwise permitted to use. Record the source and do not remove creator marks to conceal origin.</div>
+      </section>
+      <section class="ai-panel app-panel active-studio-workflow-panel">
+        <div class="section-label" style="margin-top:0;">Cleanup details</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="projectName">Project name</label><input id="projectName" value="Texture Reference Cleanup"></div>
+          <div class="ai-field"><label for="primaryType">Reference type</label><select id="primaryType"><option>Logo / emblem</option><option>Face photo</option><option>Tattoo reference</option><option>Fabric / material sample</option><option>Gear photograph</option><option>Arena graphic</option><option>Scanned sketch</option></select></div>
+          <div class="ai-field"><label for="secondaryType">Target use</label><textarea id="secondaryType">Transparent design reference for a WWE 2K26 texture workflow; not a final game texture by itself</textarea></div>
+          <div class="ai-field"><label for="styleTheme">Preserve / restyle direction</label><textarea id="styleTheme">Preserve the source silhouette and identifying shapes; clean only defects, perspective, and unwanted background</textarea></div>
+          <div class="ai-field"><label for="colorPalette">Color correction target</label><input id="colorPalette" value="Neutral white balance, recovered midtones, no crushed shadows, no clipped highlights"></div>
+          <div class="ai-field"><label for="materials">Surface / lighting notes</label><textarea id="materials">Remove baked directional lighting only where clearly recoverable; preserve real material texture</textarea></div>
+          <div class="ai-field"><label for="logoNotes">Text, logo, and provenance notes</label><textarea id="logoNotes">Record source filename, creator/license if known, permitted use, and any text that must remain exact</textarea></div>
+          <div class="ai-field"><label for="frontNotes">Background and alpha cleanup</label><textarea id="frontNotes">Create clean transparent edges with no white halo, dark fringe, missing internal cutouts, or accidental transparency</textarea></div>
+          <div class="ai-field"><label for="backNotes">Lighting and perspective cleanup</label><textarea id="backNotes">Square obvious planes, remove color cast, reduce glare, and keep proportions unchanged</textarea></div>
+          <div class="ai-field"><label for="sideNotes">Edge, crop, and reconstruction notes</label><textarea id="sideNotes">Reconstruct only small missing edge sections supported by symmetry or clear neighboring evidence; flag larger unknown areas</textarea></div>
+          <div class="ai-field"><label for="seamNotes">Do-not-invent / legal / safety limits</label><textarea id="seamNotes">Do not invent logos, faces, lettering, signatures, or texture details; do not erase attribution to misrepresent the source</textarea></div>
+          <div class="ai-field"><label for="outputNotes">Output and validation notes</label><textarea id="outputNotes">Keep the original untouched, export clean PNG and transparent PNG when appropriate, plus a decision log and readiness checklist</textarea></div>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" type="button" onclick="buildActiveStudioPrompt()">Refresh Cleanup Brief</button>
+          <button class="ai-btn" type="button" onclick="downloadActiveStudioHandoffPack()">Download Complete Cleanup Pack</button>
+        </div>
+        <div id="activeStudioStatus" class="copy-status"></div>
+      </section>
+      <section class="ai-panel app-panel"><div class="section-label" style="margin-top:0;">Generated cleanup prompt</div><textarea id="activeStudioPrompt" class="ai-textarea ai-output" readonly></textarea></section>
+      <section class="ai-panel app-panel"><div class="section-label" style="margin-top:0;">Cleanup brief and readiness checklist</div><div class="project-preview-grid"><textarea id="activeStudioBrief" class="ai-textarea ai-output studio-output-preview" readonly></textarea><pre id="activeStudioChecklist" class="code-block studio-output-preview"></pre></div></section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Prompt Builders</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/active-studio-workflow.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

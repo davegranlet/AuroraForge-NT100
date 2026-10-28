@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 - Animation Converter</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260805-r160g">
+<link rel="stylesheet" href="assets/css/aurora-crystal.css">
+<style>
+  .cv-grid { display: grid; grid-template-columns: minmax(520px, 1.25fr) minmax(440px, 1fr); gap: 14px; align-items: start; }
+  @media (max-width: 1280px) { .cv-grid { grid-template-columns: 1fr; } }
+  .cv-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+  .cv-row select, .cv-field select { background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 7px; color: var(--text); padding: 7px 9px; font: inherit; }
+  .cv-folder-line { display: flex; gap: 8px; align-items: center; margin-bottom: 7px; }
+  .cv-folder-line input { flex: 1; background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 7px; color: var(--text-dim); padding: 6px 9px; font: inherit; font-size: 12.5px; }
+  .cv-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--red); margin-right: 6px; }
+  .cv-dot.ok { background: #43c07a; }
+  .cv-task { border: 1px solid var(--crystal-line); border-radius: 10px; padding: 10px 12px; margin-bottom: 9px; background: var(--surface2); display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .cv-task.active { border-color: var(--crystal-accent, #f0c96a); }
+  .cv-task input { margin-top: 3px; }
+  .cv-task strong { display: block; font-size: 13.5px; }
+  .cv-task small { color: var(--text-mute); font-size: 12px; }
+  .cv-log { font-family: Consolas, monospace; font-size: 12px; background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 10px; padding: 9px; height: 260px; overflow: auto; white-space: pre-wrap; margin-top: 8px; color: var(--text-dim); }
+  .cv-muted { color: var(--text-mute); font-size: 12px; }
+  .cv-field { margin: 10px 0; }
+  .cv-field-label { display: block; color: var(--text-mute); font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 4px; }
+  .cv-field-label .required { color: #e03131; }
+  .cv-result { border: 1px solid var(--crystal-line); border-radius: 10px; padding: 10px 12px; background: var(--surface2); font-size: 13px; margin-top: 9px; display: none; }
+  .cv-result.show { display: block; }
+  .cv-result code { font-family: Consolas, monospace; font-size: 12px; word-break: break-all; color: #f0c96a; }
+</style>
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Animation Converter</div><strong>2K19 → 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26</strong><span>Decode 2K19 motion and register it as new entrance and victory entries, baked into one CAK.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Tools</div><h1>Animation Converter — 2K19 to 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26</h1><p class="sub">Runs inside the main app: pick your source and target game folders, then convert the whole motion library into new entrance and victory entries and bake the CAK.</p></div></section>
+    <div class="wrap app-wrap">
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Game folders</div>
+        <div class="cv-row"><label class="cv-muted" for="pipelineSelect">One-click bake target</label><select id="pipelineSelect">
+          <option value="2k19-2k20">WWE 2K19 → WWE 2K20</option>
+          <option value="2k19-2k22">WWE 2K19 → WWE 2K22</option>
+          <option value="2k19-2k23">WWE 2K19 → WWE 2K23</option>
+          <option value="2k19-2k24">WWE 2K19 → WWE 2K24</option>
+          <option value="2k19-2k25">WWE 2K19 → WWE 2K25</option>
+          <option value="2k19-2k26" selected>WWE 2K19 → WWE 2K26</option>
+        </select><span class="cv-muted" id="pipelineNote"></span></div>
+        <div class="cv-muted">Full conversion matrix: 2K19 to 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26, plus cross-generation combinations. The selector above is the one-click bake target.</div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgGame19">WWE 2K19 source folder <span class="required">required</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotGame19"></span><input id="cfgGame19" readonly placeholder="Your WWE 2K19 game folder"><button class="ai-btn secondary" type="button" data-cfg="game19">Choose</button></div></div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgGame26">Target game folder <span class="required">required</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotGame26"></span><input id="cfgGame26" readonly placeholder="Your WWE 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 game folder"><button class="ai-btn secondary" type="button" data-cfg="game26">Choose</button></div></div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgOutput">Output CAK <span class="required">required</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotOutput"></span><input id="cfgOutput" readonly placeholder="Output CAK (new entry library)"><button class="ai-btn secondary" type="button" id="chooseOutput">Choose</button></div></div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgExtract">2K19 extraction folder <span>optional</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotExtract"></span><input id="cfgExtract" readonly placeholder="2K19 extraction folder (optional; used for extract-only)"><button class="ai-btn secondary" type="button" data-cfg="extractFolder">Choose</button></div></div>
+        <div class="cv-muted">The converter refreshes its registration skeleton from your own game CAKs first, so no other game's data is shipped into the target. This runs the same verified toolchain as the standalone converter, inside the app.</div>
+      </section>
+
+      <div class="cv-grid">
+        <section class="ai-panel app-panel">
+          <div class="section-label" style="margin-top:0;">Task</div>
+          <label class="cv-task active" id="taskConvert"><input type="radio" name="cvTask" value="convert" checked><span><strong>Convert the full 2K19 library to new entries</strong><small>Refresh skeleton → decode every 2K19 entrance and victory → append new entry rows → bake one CAK. Use the loader manifest to stage it.</small></span></label>
+          <label class="cv-task" id="taskExtract"><input type="radio" name="cvTask" value="extract"><span><strong>Extract 2K19 animations only</strong><small>Decode the 2K19 animation files into a folder without baking a CAK. Useful for inspection or reuse.</small></span></label>
+          <div class="cv-row" style="margin-top:12px"><button class="ai-btn" id="runBtn" type="button">Start</button><span class="cv-muted" id="runHint"></span></div>
+          <div class="cv-result" id="result"></div>
+        </section>
+
+        <section class="ai-panel app-panel">
+          <div class="section-label" style="margin-top:0;">Progress log</div>
+          <div class="cv-log" id="log"></div>
+          <div class="cv-row" style="margin-top:8px"><button class="ai-btn secondary" id="clearLog" type="button">Clear</button><span class="cv-muted" id="toolsHint"></span></div>
+        </section>
+      </div>
+
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Animation Converter</footer>
+  </main>
+</div>
+<script src="assets/js/app-config-loader.js?v=20260805-r160g"></script>
+<script src="assets/js/desktop-bridge.js?v=20260805-r160g"></script>
+<script src="assets/js/animation-converter-page.js?v=20261004"></script>
+</body>
+</html>

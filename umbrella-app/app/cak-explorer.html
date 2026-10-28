@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 - Aurora CAK Foundry</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260807-r160h">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Safety rule</div><strong>Read - Copy - Check</strong><span>Archives are opened read-only. Extracted files go somewhere else.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 - Built-in tools</div><h1>Aurora CAK Foundry</h1><p class="sub">Browse and extract files from your own WWE 2K26 CAK archives without changing the game files.</p></div></section>
+    <div class="wrap app-wrap cak-explorer-wrap">
+      <section class="ai-hero hero-glow app-hero cak-hero">
+        <div><div class="part-label">Free local archive access</div><h2>Find the file. Copy it out. Leave the archive untouched.</h2><p>AuroraForge NT100 reads the selected archive and uses the Oodle library already included with your installed game. It does not bundle game files or write back into a CAK.</p></div>
+        <div class="cak-hero-status"><span id="cakReadyBadge" class="cak-status-badge">Checking...</span><small id="cakReadyText">Checking your Setup locations.</small></div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Setup - Locate your installed game</div>
+        <h2>Choose your WWE 2K game folder</h2>
+        <p>The extractor uses this folder to find every <code>.cak</code> archive and the game-provided Oodle decompressor. You only need to choose it once. Pick the version you are working on below, or leave auto-detect on: WWE 2K25 opens through the bundled native backend, 2K22-2K26 through the built-in readers, and WWE 2K19 archives are PAC files handled by the PAC Explorer.</p>
+        <div class="cak-path-row"><label for="cakGameVersion" style="min-width:110px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a7b0b8">Game version</label><select id="cakGameVersion" style="flex:1;max-width:360px;background:rgba(8,9,11,.85);border:1px solid rgba(215,221,224,.2);border-radius:9px;color:inherit;padding:8px 10px;font:inherit"><option value="">Auto-detect from archive</option><option value="2k19">WWE 2K19 (PAC files - use PAC Explorer)</option><option value="2k20">WWE 2K20 (CAK)</option><option value="2k22">WWE 2K22 (FDIR 8.3)</option><option value="2k23">WWE 2K23 (FDIR 8.3)</option><option value="2k24">WWE 2K24 (FDIR 9.x)</option><option value="2k25">WWE 2K25 (FDIR 9.3 - native backend)</option><option value="2k26">WWE 2K26 (FDIR 9.9)</option></select></div>
+        <div class="cak-path-row"><code id="cakGameFolderPath">No game folder selected.</code><button id="cakChooseGameFolder" class="ai-btn" type="button">Choose Game Folder</button></div>
+        <p id="cakSetupMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">1 - Choose an archive</div>
+        <div class="cak-control-grid">
+          <label class="cak-field"><span>Archives found in your game folder</span><select id="cakArchiveSelect"><option value="">Choose an archive...</option></select></label>
+          <div class="cak-field"><span>Or choose a CAK anywhere</span><button id="cakBrowseArchive" class="ai-btn secondary" type="button">Browse for CAK</button></div>
+        </div>
+        <div class="cak-path-row"><code id="cakArchivePath">No archive selected.</code><button id="cakOpenArchive" class="ai-btn" type="button" disabled>Open Selected CAK</button><button id="cakBrowseAll" class="ai-btn secondary" type="button">Open All Game CAKs</button></div>
+        <p class="cak-message">Open Selected CAK reads the archive chosen above. Open All Game CAKs combines every .cak found in the configured game folder into one searchable browser.</p>
+        <div class="ai-actions cak-extract-all-main"><button id="cakExtractAllArchives" class="ai-btn" type="button">Extract All CAK Files</button></div>
+        <p id="cakOpenMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section id="cakBrowserPanel" class="ai-panel app-panel" hidden>
+        <div class="cak-summary-grid">
+          <div><strong id="cakSummaryFiles">0</strong><span>Files</span></div>
+          <div><strong id="cakSummaryFolders">0</strong><span>Folders</span></div>
+          <div><strong id="cakSummarySize">0 B</strong><span>Expanded size</span></div>
+          <div><strong id="cakSummaryNames">0</strong><span>Ready to extract</span></div>
+        </div>
+        <div class="section-label">2 - Find files</div>
+        <div class="cak-search-row">
+          <input id="cakSearch" type="search" placeholder="Search by name, hash, or type">
+          <select id="cakScope"><option value="resolved">Ready files</option><option value="unresolved">Raw hashes / external references</option><option value="all">All catalog entries</option></select>
+          <select id="cakType"><option value="">All file types</option></select>
+          <button id="cakSearchButton" class="ai-btn secondary" type="button">Search</button>
+        </div>
+        <div class="cak-table-shell">
+          <table class="cak-table">
+            <thead><tr><th><input id="cakSelectPage" type="checkbox" aria-label="Select this page"></th><th>Name</th><th>Type</th><th>Stored</th><th>Expanded</th><th>Folder</th></tr></thead>
+            <tbody id="cakResults"></tbody>
+          </table>
+        </div>
+        <div class="cak-pagination"><button id="cakPrevious" class="ai-btn secondary" type="button">Previous</button><span id="cakPageLabel">Page 1</span><button id="cakNext" class="ai-btn secondary" type="button">Next</button></div>
+      </section>
+
+      <section id="cakExtractPanel" class="ai-panel good-panel app-panel" hidden>
+        <div class="section-label" style="margin-top:0;">3 - Extract your selected files</div>
+        <h2><span id="cakSelectedCount">0</span> file(s) selected</h2>
+        <div class="cak-path-row"><code id="cakOutputPath">Choose a separate output folder.</code><button id="cakChooseOutput" class="ai-btn secondary" type="button">Choose Output Folder</button></div>
+        <label class="cak-check"><input id="cakOverwrite" type="checkbox"> Replace same-name files already in the output folder</label>
+        <div class="ai-actions"><button id="cakExtract" class="ai-btn" type="button" disabled>Extract Selected Files</button><button id="cakOpenOutput" class="ai-btn secondary" type="button" disabled>Open Output Folder</button></div>
+        <p id="cakExtractMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <pre id="cakDevDetails" hidden>No archive is open.</pre>
+
+      <section class="ai-panel app-panel" id="cak-baker">
+        <div class="section-label" style="margin-top:0;">Aurora CAK Foundry</div>
+        <h2>Rebuild an extracted mod folder into a game-ready CAK</h2>
+        <p>Extract files above, edit them without changing their relative paths, then choose that output folder here. AuroraForge NT100 excludes the selected folder's own name and rebuilds its contents as a protected WWE 2K26 FDIR archive.</p>
+        <p>The saved <code>.cak</code> filename is part of WWE 2K26's encryption key. Aurora derives the correct v9.9 key from the final filename automatically, so you may choose any name—but do not rename the CAK after building it. Rebuild it under the new name instead.</p>
+        <p><code>_textures.tdb</code> is not baked into separate mod CAKs. Texture replacements rely on existing metadata so multiple active mods do not fight over duplicate root texture databases.</p>
+        <div class="cak-path-row"><code id="repackSourcePath">No BakeMe folder selected.</code><button id="repackChooseSource" class="ai-btn secondary" type="button">Choose BakeMe Folder</button></div>
+        <div class="ai-actions"><button id="repackBuild" class="ai-btn" type="button" disabled>Build Game-Ready CAK</button><button id="repackVerify" class="ai-btn secondary" type="button" disabled>Verify Every Payload</button><button id="repackOpenOutput" class="ai-btn secondary" type="button" disabled>Open Output Folder</button></div>
+        <p class="cak-message">The source folder stays unchanged. The rebuild uses hashed virtual paths, protected payloads, FDIR v9 metadata, and independent byte-for-byte recovery checks.</p>
+        <p id="repackMessage" class="cak-message" role="status"></p>
+      </section>
+
+      <section class="ai-panel warn-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Important</div>
+        <h2>Original game archives remain read-only</h2>
+        <p>AuroraForge NT100 never changes the selected CAK. Every confirmed path is built into the release. A payload with an unknown name can still be extracted into an <code>Unresolved</code> folder under a generated hash name. An external reference cannot be extracted from the selected CAK because that catalog record contains no payload bytes. Keep extracted game assets for personal modding and do not redistribute copyrighted game content.</p>
+        <div class="ai-actions"><a class="ai-btn secondary" href="tutorials.html#cak-explorer">Open the child-friendly tutorial</a><a class="ai-btn secondary" href="setup.html#external-programs">Open full app Setup</a></div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="assets/js/cak-explorer.js"></script>
+</body>
+</html>
+

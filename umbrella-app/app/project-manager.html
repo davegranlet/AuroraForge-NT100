@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Projects</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link active" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Projects</div><strong>Save · Open · Continue</strong><span>Keep every project together.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Project library</div><h1>Projects</h1><p class="sub">Create project folders, save project files, reopen earlier work, and keep outputs together.</p></div></section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Your project starts here</div>
+        <h2>Create, open, or continue</h2>
+        <p>Use one folder and one project file for each job. Keep references, generated files, screenshots, notes, and exports inside that project folder.</p>
+        <div class="ai-actions">
+          <button class="ai-btn" id="pmCreateFolder" type="button">Create Project Folder</button>
+          <button class="ai-btn secondary" id="pmOpenProject" type="button">Open Project File</button>
+          <button class="ai-btn secondary" id="pmSaveProjectTop" type="button">Save Project File</button>
+          <a class="ai-btn secondary" href="creative-studios.html">Open Creative Studios</a>
+        </div>
+        <div id="projectManagerStatus" class="copy-status"></div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project folders</div>
+        <h2>Open the places you use</h2>
+        <p>These buttons use the folder locations selected in Setup.</p>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" id="pmOpenProjectsFolder" type="button">Open Projects Folder</button>
+          <button class="ai-btn secondary" id="pmOpenExportsFolder" type="button">Open Exports Folder</button>
+          <button class="ai-btn secondary" id="pmChooseFolder" type="button">Choose an Existing Folder</button>
+          <a class="ai-btn secondary" href="setup.html#storage">Change Folder Locations</a>
+        </div>
+        <div id="desktopStatus" class="copy-status"></div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project details</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="pmProjectName">Project Name</label><input id="pmProjectName" value="New WWE 2K26 Project"></div>
+          <div class="ai-field">
+            <label for="pmProjectType">Project Type</label>
+            <select id="pmProjectType">
+              <option value="complete_caw" selected>Complete Character</option>
+              <option value="face_texture">Face Texture</option>
+              <option value="tattoo">Tattoo</option>
+              <option value="lmask">Luchador Mask</option>
+              <option value="gear_attire">Gear / Attire</option>
+              <option value="entrance_gear">Entrance Gear</option>
+              <option value="logo_emblem">Logo / Emblem</option>
+              <option value="materials">Material / Fabric</option>
+              <option value="belt">Championship Belt</option>
+              <option value="arena_branding">Arena / Ring Branding</option>
+              <option value="faction_pack">Faction Pack</option>
+              <option value="reference_cleanup">Reference Cleanup</option>
+              <option value="mixed">Mixed Project</option>
+            </select>
+          </div>
+          <div class="ai-field"><label for="pmOutputSize">Default Texture Size</label><select id="pmOutputSize"><option value="1024">1024 × 1024</option><option value="2048" selected>2048 × 2048</option><option value="4096">4096 × 4096</option></select></div>
+          <div class="ai-field"><label for="pmStatus">Project Status</label><select id="pmStatus"><option value="planning" selected>Planning</option><option value="creating">Creating Assets</option><option value="handoff_ready">Ready for Handoff</option><option value="testing">Testing In Game</option><option value="complete">Complete</option></select></div>
+          <div class="ai-field"><label for="pmDesignIdea">Design Idea or Theme</label><input id="pmDesignIdea" value=""></div>
+          <div class="ai-field"><label for="pmMappingProfile">Profile or Template</label><input id="pmMappingProfile" value=""></div>
+          <div class="ai-field"><label for="pmApprovedImage">Main Reference Image</label><input id="pmApprovedImage" value=""></div>
+          <div class="ai-field"><label for="pmProjectPath">Current Project File</label><input id="pmProjectPath" readonly value="Not saved yet"></div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project notes</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="pmSummary">Project Summary</label><textarea id="pmSummary">Describe what you are making.</textarea></div>
+          <div class="ai-field"><label for="pmPreserve">Keep These Details</label><textarea id="pmPreserve">List the colors, shapes, logos, materials, and identity details that must not change.</textarea></div>
+          <div class="ai-field"><label for="pmMappingNotes">Texture and Mapping Notes</label><textarea id="pmMappingNotes">Add target texture names, profiles, placement notes, or material instructions.</textarea></div>
+          <div class="ai-field"><label for="pmPrivateNotes">Notes</label><textarea id="pmPrivateNotes"></textarea></div>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn" id="pmSaveProjectBottom" type="button">Save Project File</button>
+          <button class="ai-btn secondary" id="pmSaveSummary" type="button">Save Summary</button>
+        </div>
+      </section>
+
+      <section class="ai-panel good-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project file preview</div>
+        <pre id="projectJsonPreview" class="mini-output">Loading project preview…</pre>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Projects</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-app.js?v=20260726-r160d"></script>
+<script src="assets/js/project-manager.js?v=20260726-r160d"></script>
+</body>
+</html>
+

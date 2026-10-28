@@ -1,0 +1,8 @@
+'use strict';
+const fs=require('node:fs');
+const {parse}=require('../../../../tools/clips-layout');
+const {parseClipsRecordBuffer}=require('../../../../tools/clips-codec/parse-clips-record');
+const {evalGroup}=require('../../../../tools/clips-codec/eval-group');
+function series(bytes,rec,index){const p=parseClipsRecordBuffer(bytes,rec.index),stream=bytes.subarray(p.base,p.base+p.group.bytes);return [0,1].map(g=>{const d=[0,1,2].map(a=>{const x=p.rec.raw.group78[index*6+g*3+a];return{scale:Buffer.from(x.hex.slice(0,2),'hex').readInt8(0),width:parseInt(x.hex.slice(2,4),16),rest:x.candidate.f32le[1]}});return evalGroup(stream,p.bones[index].groups[g],d,rec.frameValue)||Array.from({length:rec.frameValue},()=>d.map(x=>x.rest))});}
+for(const file of process.argv.slice(2)){const b=fs.readFileSync(file),l=parse(b,{includeRaw:false}); const br=l.records.find(r=>r.trackIdentifiers.includes('0x1F4DA262FC146772'));const cr=l.records.find(r=>r.trackIdentifiers.length===3&&r.trackIdentifiers.includes('0x54D1B2A64667E32E')); console.log('\n'+file+'\nframes='+br?.frameValue+' body='+br?.id+' camera='+cr?.id);if(!br||!cr)continue;const yaw=series(b,br,br.trackIdentifiers.indexOf('0x1F4DA262FC146772'))[1];const roots=series(b,br,br.trackIdentifiers.indexOf('0x1F4DA262FC146772'))[0];const cam=cr.trackIdentifiers.map(id=>series(b,cr,cr.trackIdentifiers.indexOf(id)));const nums=[0,.1,.25,.5,.75,.9,1].map(x=>Math.round((br.frameValue-1)*x));for(const f of nums){const c=Math.round(f*(cr.frameValue-1)/(br.frameValue-1));console.log(JSON.stringify({frame:f,cameraFrame:c,root:roots[f],yaw:yaw[f],camera:cam.map(x=>({pos:x[0][c],rot:x[1][c]}))}));}}
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Setup</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link active" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Setup</div><strong>Choose · Check · Save</strong><span>Keep every location in one place.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · App Setup</div><h1>Setup</h1><p class="sub">Choose storage, game, and supported creative-program locations, then check that AuroraForge NT100 can find them.</p></div></section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Complete app setup</div>
+        <h2>Put every location in one place</h2>
+        <p>Choose each folder or supported program once. AuroraForge NT100 remembers the location and uses it when you open projects or coordinate the Beta3 workflow.</p>
+        <div class="ai-actions">
+          <button class="ai-btn" id="setupCheckEverything" type="button">Check Everything</button>
+          <button class="ai-btn secondary" id="setupCheckAuroraLoader" type="button">Check Aurora Loader</button>
+          <button class="ai-btn secondary" id="setupMarkComplete" type="button">Mark Setup Complete</button>
+        </div>
+        <div id="setupStatus" class="copy-status"></div>
+        <div id="toolCenterStatus" class="copy-status"></div>
+      </section>
+
+      <nav class="hub-jump-nav" aria-label="Setup sections">
+        <a href="#storage">Storage</a>
+        <a href="#game-locations">WWE 2K26</a>
+        <a href="#cross-generation">WWE 2K25 Reference</a>
+        <a href="#external-programs">Creative Programs</a>
+        <a href="#preferences">Preferences</a>
+        <a href="#setup-check">Check Setup</a>
+      </nav>
+
+      <section class="ai-panel app-panel hub-section" id="storage">
+        <div class="section-label" style="margin-top:0;">Storage locations</div>
+        <h2>Choose where your work goes</h2>
+        <p>Projects holds working files. Exports holds final packs. Mod workspace holds extracted and modified copies. Backups holds untouched originals.</p>
+        <div id="storageLocationGrid" class="tool-config-grid"></div>
+        <div class="ai-actions">
+          <button class="ai-btn secondary" id="setupOpenProjects" type="button">Open Projects Folder</button>
+          <button class="ai-btn secondary" id="setupOpenExports" type="button">Open Exports Folder</button>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel hub-section" id="game-locations">
+        <div class="section-label" style="margin-top:0;">WWE 2K26 locations</div>
+        <h2>Choose the game folder</h2>
+        <p>Select the folder containing the WWE 2K26 executable. AuroraForge NT100 uses it for safe game checks, archive selection, and the game-owned decompression library.</p>
+        <div id="gameLocationGrid" class="tool-config-grid"></div>
+        <div class="section-label">Aurora loader check</div>
+        <p>This check looks for the game executable, the Aurora loader DLL, and the Aurora plugin folder. It does not install, repair, or configure third-party loaders.</p>
+        <div id="auroraLoaderReport" class="validation-results"><div class="validation-result neutral"><strong>Not checked yet.</strong><span>Choose the game folder, then press Check Aurora Loader.</span></div></div>
+      </section>
+
+      <section class="ai-panel app-panel hub-section" id="external-programs">
+        <div class="section-label" style="margin-top:0;">Supported creative programs</div>
+        <h2>Choose creative programs you already installed</h2>
+        <p>AuroraForge NT100 stores only the local paths for supported creative dependencies such as Blender, image editing, audio editing, and video preparation. Aurora-owned conversion, archive, loader, and packaging tools are bundled with the app instead of configured here.</p>
+        <div id="externalToolGrid" class="tool-config-grid"></div>
+        <div class="change-notice"><strong>Beta3 boundary:</strong> Legacy third-party setup flows are not part of the public setup path. Use AuroraForge NT100 tools first, then connect only the creative programs your project actually needs.</div>
+      </section>
+
+      <section class="ai-panel app-panel hub-section" id="preferences">
+        <div class="section-label" style="margin-top:0;">App preferences</div>
+        <h2>Choose your normal defaults</h2>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="setupDefaultSize">Default Texture Size</label><select id="setupDefaultSize"><option value="1024">1024 × 1024</option><option value="2048" selected>2048 × 2048</option><option value="4096">4096 × 4096</option></select></div>
+          <div class="ai-field"><label for="setupHelpLevel">Help Style</label><select id="setupHelpLevel"><option value="beginner" selected>Simple step-by-step help</option><option value="advanced">Show advanced reference first</option></select></div>
+          <div class="ai-field"><label class="check-row"><input id="setupConfirmFileActions" type="checkbox" checked> Ask before important file actions</label></div>
+          <div class="ai-field"><label class="check-row"><input id="setupRememberSection" type="checkbox" checked> Remember my last main section</label></div>
+        </div>
+        <div class="ai-actions"><button class="ai-btn" id="setupSavePreferences" type="button">Save Preferences</button><button class="ai-btn secondary" id="setupResetPreferences" type="button">Reset Preferences</button></div>
+      </section>
+
+      <section class="ai-panel good-panel app-panel hub-section" id="setup-check">
+        <div class="section-label" style="margin-top:0;">Setup summary</div>
+        <h2>Ready to work?</h2>
+        <pre id="setupAppInfo" class="mini-output">Checking setup…</pre>
+        <div class="ai-actions"><a class="ai-btn" href="project-manager.html">Open Projects</a><a class="ai-btn secondary" href="creative-studios.html">Open Creative Studios</a></div>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Setup</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-app.js?v=20260726-r160d"></script>
+<script src="assets/js/tool-center.js?v=20260726-r160d"></script>
+<script src="assets/js/setup.js?v=20260726-r160d"></script>
+</body>
+</html>
+

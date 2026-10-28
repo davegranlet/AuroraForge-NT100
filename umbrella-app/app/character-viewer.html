@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Live Character Viewer</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div><div class="eyebrow">AuroraForge NT100 · Tools</div><h1>Live Character Viewer</h1><p class="sub">Preview your own OBJ meshes with their real UV coordinates, then compare original and replacement textures before testing in game.</p></div>
+    </section>
+    <div class="wrap app-wrap viewer-page">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Real-UV character preview</div>
+        <h2>Your exported model, your local textures</h2>
+        <p>AuroraForge NT100 does not include or extract game models. Import OBJ files you exported from files you are permitted to use. The preview keeps the OBJ UVs and never writes back to MCD, MTLS, JMTL, YCL, OBJ, or DDS files.</p>
+        <div class="change-notice"><strong>Accuracy boundary:</strong> UV placement can be highly useful, but lighting and materials are approximations, not a copy of WWE 2K26's renderer. Always perform the final check in game.</div>
+      </section>
+
+      <section class="viewer-workspace">
+        <div class="viewer-controls ai-panel">
+          <div class="section-label" style="margin-top:0;">1 · Import geometry</div>
+          <div class="ai-field">
+            <label for="viewerObjFiles">OBJ mesh files</label>
+            <input id="viewerObjFiles" type="file" accept=".obj,text/plain" multiple>
+            <small>Select every exported part together: body, head, eyes, mouth, teeth, eyelashes, attire, and hair when available.</small>
+          </div>
+          <div class="ai-actions compact-actions">
+            <button id="loadViewerModel" class="ai-btn" type="button">Load selected OBJ files</button>
+            <button id="clearViewerModel" class="ai-btn ghost" type="button">Clear</button>
+          </div>
+
+          <div class="section-label">2 · Add preview textures</div>
+          <div class="viewer-texture-grid">
+            <div class="ai-field"><label for="originalHeadTexture">Original head</label><input id="originalHeadTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="ai-field"><label for="replacementHeadTexture">Replacement head</label><input id="replacementHeadTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="ai-field"><label for="originalBodyTexture">Original body</label><input id="originalBodyTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="ai-field"><label for="replacementBodyTexture">Replacement body / tattoo</label><input id="replacementBodyTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="ai-field"><label for="headNormalTexture">Head normal</label><input id="headNormalTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="ai-field"><label for="bodyNormalTexture">Body normal</label><input id="bodyNormalTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="ai-field"><label for="eyeTexture">Eye color</label><input id="eyeTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="ai-field"><label for="otherTexture">Attire / other color</label><input id="otherTexture" type="file" accept="image/png,image/jpeg,image/webp"></div>
+          </div>
+          <p class="field-help">For preview, convert DDS to PNG without changing its dimensions or orientation. Keep the DDS as your real game asset.</p>
+
+          <div class="section-label">3 · View controls</div>
+          <div class="ai-grid viewer-settings-grid">
+            <div class="ai-field"><label for="viewerTextureMode">Texture set</label><select id="viewerTextureMode"><option value="modified">Replacement when available</option><option value="original">Original</option></select></div>
+            <div class="ai-field"><label for="viewerLighting">Lighting</label><select id="viewerLighting"><option value="studio">Neutral studio</option><option value="arena">Bright arena</option><option value="dark">Dark entrance</option><option value="flat">Flat UV check</option></select></div>
+          </div>
+          <div class="viewer-toggles">
+            <label><input id="viewerWireframe" type="checkbox"> Wireframe</label>
+            <label><input id="viewerGrid" type="checkbox" checked> Ground grid</label>
+            <label><input id="viewerFlipY" type="checkbox" checked> Flip image textures vertically</label>
+          </div>
+          <div class="camera-button-grid" aria-label="Camera presets">
+            <button type="button" data-view="front">Front</button><button type="button" data-view="back">Back</button>
+            <button type="button" data-view="left">Left</button><button type="button" data-view="right">Right</button>
+            <button type="button" data-view="top">Top</button><button type="button" data-view="reset">Reset</button>
+          </div>
+          <div class="ai-actions compact-actions">
+            <button id="viewerScreenshot" class="ai-btn secondary" type="button">Save screenshot PNG</button>
+          </div>
+          <div id="viewerStatus" class="copy-status" role="status">Viewer ready. Import OBJ files to begin.</div>
+          <div class="viewer-parts">
+            <strong>Loaded parts</strong>
+            <div id="viewerPartsList" class="viewer-parts-list"><span class="muted">None loaded</span></div>
+          </div>
+        </div>
+
+        <div class="viewer-stage-panel">
+          <div class="viewer-stage-toolbar"><span>Drag to rotate · Wheel to zoom · Right-drag to pan</span><span id="viewerMeshCount">0 meshes</span></div>
+          <div id="characterViewerStage" class="character-viewer-stage" aria-label="Interactive 3D character preview"></div>
+          <div class="viewer-stage-footer">
+            <span>Local-only preview</span>
+            <span>Three.js · OBJLoader · no uploaded assets</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Recommended OBJ set</div>
+        <div class="workflow-mini-grid">
+          <div class="workflow-mini-card"><strong>Base model</strong><span>Body, head, eyes, caruncles, mouth, tongue, teeth, and eyelashes.</span></div>
+          <div class="workflow-mini-card"><strong>Attire</strong><span>Export every visible attire mesh from the target Attire.mcd.</span></div>
+          <div class="workflow-mini-card"><strong>Hair</strong><span>Keep hair and facial-hair meshes separate when your source workflow exposes them.</span></div>
+          <div class="workflow-mini-card"><strong>Textures</strong><span>Keep original DDS files untouched; make PNG copies only for this preview.</span></div>
+        </div>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · Tools</footer>
+  </main>
+</div>
+<script type="module" src="assets/js/character-viewer.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+</body>
+</html>
+

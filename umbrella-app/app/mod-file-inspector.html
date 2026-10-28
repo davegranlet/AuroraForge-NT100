@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Mod File Inspector</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+<style>
+.inspector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.inspector-drop {
+  border: 1px solid rgba(124, 180, 255, .24);
+  background: rgba(8, 16, 30, .72);
+  border-radius: 18px;
+  padding: 18px;
+}
+.inspector-drop input {
+  width: 100%;
+  margin-top: 12px;
+}
+.inspector-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.inspector-stat {
+  border: 1px solid rgba(124, 180, 255, .18);
+  border-radius: 16px;
+  background: rgba(12, 22, 38, .72);
+  padding: 16px;
+}
+.inspector-stat strong {
+  display: block;
+  font-size: 26px;
+  color: #9adfff;
+}
+.inspector-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 14px;
+}
+.inspector-table th,
+.inspector-table td {
+  border-bottom: 1px solid rgba(124, 180, 255, .14);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.inspector-table th {
+  color: #9adfff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.inspector-table td {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.inspector-report {
+  min-height: 340px;
+  font-family: var(--mono);
+  white-space: pre-wrap;
+}
+.safe-badge {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid rgba(96, 220, 170, .24);
+  background: rgba(48, 140, 105, .12);
+  color: #9affd2;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.warning-badge {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid rgba(255, 210, 120, .28);
+  background: rgba(180, 120, 30, .12);
+  color: #ffd278;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+</style>
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div>
+      <div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div>
+    </div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link active" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+
+  <main class="app-main">
+    <section class="app-topbar">
+      <div>
+        <div class="eyebrow">AuroraForge NT100 · Tools</div>
+        <h1>Mod File Inspector</h1>
+        <p class="sub">Compare original and modified WWE 2K26 mod folders, read texture references, inspect DDS headers, and generate a safe install report.</p>
+      </div>
+    </section>
+
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Safe file checks</div>
+        <h2>Inspect first. Edit later.</h2>
+        <p>This tool does not modify MCD, MTLS, JMTL, YCL, DDS, or PNG files. It only reads selected folders in your browser and builds a report you can copy or save.</p>
+        <div class="ai-actions">
+          <span class="safe-badge">✅ Read-only</span>
+          <span class="warning-badge">⚠️ No binary editing</span>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">1. Select folders</div>
+        <h2>Original vs modified folder comparison</h2>
+        <p class="muted">Choose the top-level original folder and the matching modified folder. Example: <code>773_Slade</code> and <code>773_Slade-modded</code>.</p>
+        <div class="inspector-grid">
+          <div class="inspector-drop">
+            <h3>Original folder</h3>
+            <p class="muted">Before replacement.</p>
+            <input type="file" id="originalFolderInput" webkitdirectory directory multiple>
+          </div>
+          <div class="inspector-drop">
+            <h3>Modified folder</h3>
+            <p class="muted">After replacement.</p>
+            <input type="file" id="modifiedFolderInput" webkitdirectory directory multiple>
+          </div>
+        </div>
+        <div class="ai-actions">
+          <button type="button" class="ai-btn" id="analyzeModFilesBtn">Analyze Selected Folders</button>
+          <button type="button" class="ai-btn secondary" id="copyModReportBtn">Copy Report</button>
+          <button type="button" class="ai-btn secondary" id="downloadModReportBtn">Download Report TXT</button>
+          <button type="button" class="ai-btn secondary" id="clearModInspectorBtn">Clear</button>
+        </div>
+        <p id="modInspectorStatus" class="muted"></p>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">2. Summary</div>
+        <h2>Inspection summary</h2>
+        <div class="inspector-summary-grid">
+          <div class="inspector-stat"><span>Original files</span><strong id="statOriginalFiles">0</strong></div>
+          <div class="inspector-stat"><span>Modified files</span><strong id="statModifiedFiles">0</strong></div>
+          <div class="inspector-stat"><span>Changed files</span><strong id="statChangedFiles">0</strong></div>
+          <div class="inspector-stat"><span>DDS files</span><strong id="statDdsFiles">0</strong></div>
+          <div class="inspector-stat"><span>Texture refs</span><strong id="statTextureRefs">0</strong></div>
+          <div class="inspector-stat"><span>Missing refs</span><strong id="statMissingRefs">0</strong></div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">3. Changed files</div>
+        <h2>What changed?</h2>
+        <table class="inspector-table" id="changedFilesTable">
+          <thead><tr><th>Status</th><th>Path</th><th>Original</th><th>Modified</th></tr></thead>
+          <tbody><tr><td colspan="4">Run an inspection to see changed, added, or removed files.</td></tr></tbody>
+        </table>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">4. DDS header details</div>
+        <h2>Texture size / format check</h2>
+        <table class="inspector-table" id="ddsDetailsTable">
+          <thead><tr><th>Path</th><th>Width</th><th>Height</th><th>Mips</th><th>Format</th><th>Source</th></tr></thead>
+          <tbody><tr><td colspan="6">Run an inspection to list DDS files.</td></tr></tbody>
+        </table>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">5. Full report</div>
+        <h2>Copy this into notes or Discord</h2>
+        <textarea id="modInspectorReport" class="inspector-report" readonly>AuroraForge NT100 Mod File Inspector report will appear here.</textarea>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Known safe result</div>
+        <h2>What the Slade sample proved</h2>
+        <p>The first tested Slade sample showed a face texture-only replacement: <code>BaseModel/Textures/head_color.dds</code> changed, while MCD, MTLS, JMTL, and YCL files stayed unchanged. That means a read-only inspector can help confirm when a replacement is texture-only before the user tests in game.</p>
+        <div class="ai-actions">
+          <a class="ai-btn secondary" href="docs/mod-file-inspector-sample-slade-summary.txt">Open Slade Sample Summary</a>
+        </div>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/mod-file-inspector.js"></script>
+</body>
+</html>
+

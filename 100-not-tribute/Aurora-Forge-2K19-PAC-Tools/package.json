@@ -1,0 +1,1 @@
+{"name":"aurora-forge-2k19-pac-tools","version":"1.0.0","private":false,"type":"commonjs","scripts":{"check":"node --check tools/inspect_2k19_archive.js"},"license":"UNLICENSED"}

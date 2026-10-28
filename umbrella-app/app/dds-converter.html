@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 - DDS Converter</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260805-r160g">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+    <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">DDS Converter</div><strong>Choose · Match · Convert</strong><span>Keep originals in a separate folder.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Tools</div><h1>DDS Converter</h1><p class="sub">Convert DDS and PNG files with buttons—no command-line entries required.</p></div></section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero dds-converter-hero">
+        <div class="part-label">Automatic texture conversion</div>
+        <h2>DDS and PNG without Photoshop</h2>
+        <p>Choose individual files or press <b>Convert a Folder</b>. AuroraForge NT100 handles the converter commands internally. For PNG to DDS, the safest mode automatically matches same-name original DDS files.</p>
+        <div id="ddsToolStatus" class="dds-tool-status"><strong>Checking the included converter…</strong><span></span></div>
+        <div class="ai-actions"><a class="ai-btn secondary" href="tutorials.html#dds-without-photoshop">Open Tutorial</a><a class="ai-btn secondary" href="setup.html#external-programs">Optional Converter Override</a></div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">1. Conversion direction</div>
+        <div class="dds-mode-grid" role="group" aria-label="Conversion direction">
+          <button class="dds-mode-card active" type="button" data-mode="dds-to-png"><strong>DDS → PNG</strong><span>Create editable PNG copies.</span></button>
+          <button class="dds-mode-card" type="button" data-mode="png-to-dds"><strong>PNG → DDS</strong><span>Create game-ready DDS files.</span></button>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">2. Files and folders</div>
+        <div class="dds-converter-grid">
+          <div class="ai-field dds-wide-field"><label for="ddsInputList">Input files</label><textarea id="ddsInputList" readonly placeholder="No files selected"></textarea><div class="ai-actions"><button id="ddsChooseInputs" class="ai-btn secondary" type="button">Choose DDS Files</button><button id="ddsConvertAll" class="ai-btn" type="button">Convert a DDS Folder</button></div><small>The folder button asks where to save the results, then starts the conversion automatically.</small></div>
+          <div class="ai-field"><label for="ddsOutputFolder">Separate output folder</label><input id="ddsOutputFolder" readonly placeholder="Choose where converted files will be written"><button id="ddsChooseOutput" class="ai-btn secondary" type="button">Choose Output Folder</button></div>
+          <div class="ai-field dds-reference-field" hidden><label for="ddsReferenceFolder">Original DDS folder for automatic matching</label><input id="ddsReferenceFolder" readonly placeholder="Recommended: folder containing untouched originals"><button id="ddsChooseReferences" class="ai-btn secondary" type="button">Choose Original DDS Folder</button><small>AuroraForge NT100 matches each PNG to a same-name DDS and copies its format, dimensions, and mipmap count.</small></div>
+        </div>
+      </section>
+
+      <section class="ai-panel app-panel dds-options-panel" hidden>
+        <div class="section-label" style="margin-top:0;">3. DDS output settings</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="ddsManualFormat">Manual fallback format</label><select id="ddsManualFormat"><option value="">Choose only when no matching original exists</option><option>BC1_UNORM</option><option>BC1_UNORM_SRGB</option><option>BC2_UNORM</option><option>BC2_UNORM_SRGB</option><option>BC3_UNORM</option><option>BC3_UNORM_SRGB</option><option>BC4_UNORM</option><option>BC4_SNORM</option><option>BC5_UNORM</option><option>BC5_SNORM</option><option>BC6H_UF16</option><option>BC6H_SF16</option><option>BC7_UNORM</option><option>BC7_UNORM_SRGB</option><option>R8_UNORM</option><option>R8G8_UNORM</option><option>R8G8B8A8_UNORM</option><option>R8G8B8A8_UNORM_SRGB</option><option>B8G8R8A8_UNORM</option><option>B8G8R8X8_UNORM</option><option>B8G8R8A8_UNORM_SRGB</option><option>B8G8R8X8_UNORM_SRGB</option></select><small>Do not guess. Match the stock DDS whenever possible.</small></div>
+          <div class="ai-field"><label for="ddsMipMode">Mipmaps</label><select id="ddsMipMode"><option value="match" selected>Match original DDS</option><option value="full">Generate full mipmap chain</option><option value="none">No mipmaps</option></select></div>
+        </div>
+      </section>
+
+      <section class="ai-panel good-panel app-panel">
+        <div class="section-label" style="margin-top:0;">4. Convert</div>
+        <label class="check-row"><input id="ddsOverwrite" type="checkbox"> Allow replacing files already present in the output folder</label>
+        <div class="change-notice"><strong>Originals are protected:</strong> AuroraForge NT100 rejects an output folder that would overwrite an original DDS used for automatic matching.</div>
+        <div class="ai-actions"><button id="ddsRunConversion" class="ai-btn" type="button">Convert Files</button><button id="ddsOpenOutput" class="ai-btn secondary" type="button" disabled>Open Output Folder</button><button id="ddsClear" class="ai-btn ghost" type="button">Clear</button></div>
+        <div id="ddsConversionStatus" class="copy-status" aria-live="polite"></div>
+        <div id="ddsConversionResults" class="dds-conversion-results"></div>
+      </section>
+
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Automatic checks</div>
+        <div class="workflow-mini-grid">
+          <div class="workflow-mini-card"><strong>Format match</strong><span>Reads recognized DX10 and common legacy DDS headers.</span></div>
+          <div class="workflow-mini-card"><strong>Size match</strong><span>Stops PNG conversion when dimensions differ from the same-name original DDS.</span></div>
+          <div class="workflow-mini-card"><strong>Mipmap match</strong><span>Copies the original mipmap count when Match Original is selected.</span></div>
+          <div class="workflow-mini-card"><strong>Batch report</strong><span>Shows exactly which files succeeded or need attention.</span></div>
+        </div>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios · DDS Converter</footer>
+  </main>
+</div>
+<script src="assets/js/app-config-loader.js?v=20260805-r160g"></script>
+<script src="assets/js/desktop-bridge.js?v=20260805-r160g"></script>
+<script src="assets/js/dds-converter.js?v=20260805-r160g"></script>
+</body>
+</html>
+

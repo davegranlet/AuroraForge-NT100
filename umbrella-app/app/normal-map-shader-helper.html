@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>AuroraForge NT100 — Normal / Shader Helper</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20260726-r160d">
+  <link rel="stylesheet" href="assets/css/aurora-crystal.css">
+</head>
+<body class="desktop-studio-shell" data-active-studio="normal">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-brand"><div class="app-mark app-mark-logo"><img src="assets/img/aurora-forge-mark.png" alt="AuroraForge NT100 logo"></div><div><div class="app-brand-title">AuroraForge NT100</div><div class="app-brand-sub">by VikingStudios</div></div></div>
+        <nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link active" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav>
+    <div class="app-sidebar-card"><div class="mini-label">Workflow</div><strong>Create · Check · Export</strong><span>Keep every project organized.</span></div>
+  </aside>
+  <main class="app-main">
+    <section class="app-topbar">
+      <div><div class="eyebrow">AuroraForge NT100 · Prompt Builders</div><h1>Normal / Shader Helper</h1><p class="sub">Plan support-map work for normal maps, shader masks, metallic zones, matte/gloss areas, raised stitching, embossed logos, and material response notes.</p></div>
+    </section>
+    <div class="wrap app-wrap">
+      <section class="ai-hero hero-glow app-hero">
+        <div class="part-label">Guided workflow</div>
+        <h2>Normal / Shader Helper</h2>
+        <p>Create structured support-map directions for normals, shader masks, metallic areas, gloss/matte separation, embossed details, raised stitching, and DDS-safe helper files.</p>
+        <div class="change-notice"><strong>Workflow status:</strong> This is now an active starter studio. It builds support-map prompts, project briefs, JSON project files, checklists, and handoff packs.</div>
+      </section>
+      <section class="ai-panel app-panel active-studio-workflow-panel">
+        <div class="section-label" style="margin-top:0;">Project details</div>
+        <div class="ai-grid">
+          <div class="ai-field"><label for="projectName">Project name</label><input id="projectName" value="Normal / Shader Helper Project"></div>
+          <div class="ai-field"><label for="primaryType">Support map type</label><select id="primaryType"><option value="Normal map guidance" selected>Normal map guidance</option><option value="Shader mask planning">Shader mask planning</option><option value="Metallic / roughness notes">Metallic / roughness notes</option><option value="Raised stitching / embroidery">Raised stitching / embroidery</option><option value="Embossed logo detail">Embossed logo detail</option><option value="Leather grain support">Leather grain support</option><option value="Fabric weave support">Fabric weave support</option><option value="Damage / wear depth">Damage / wear depth</option><option value="Full support-map plan">Full support-map plan</option></select></div>
+          <div class="ai-field"><label for="secondaryType">Secondary / variants</label><input id="secondaryType" value="Gear, mask, face, tattoo, belt, entrance gear, or logo texture support"></div>
+          <div class="ai-field"><label for="styleTheme">Style / theme</label><textarea id="styleTheme">Support-map plan for raised stitching, embossed logos, leather/fabric grain, metallic accents, and controlled material separation</textarea></div>
+          <div class="ai-field"><label for="colorPalette">Color palette</label><input id="colorPalette" value="Channel/mask notes: raised detail, metallic zones, matte areas, glossy trim, cloth vs leather separation"></div>
+          <div class="ai-field"><label for="materials">Materials / finish</label><textarea id="materials">Normal depth should be readable but not noisy; shader areas should clearly separate cloth, leather, metal, rubber, and matte/gloss finishes</textarea></div>
+          <div class="ai-field"><label for="logoNotes">Logo / symbol placement</label><textarea id="logoNotes">Raised stitching, embossed logos, engraved plates, beveled trim, recessed seams, scar/wear depth, and patch borders</textarea></div>
+          <div class="ai-field"><label for="frontNotes">Front notes</label><textarea id="frontNotes">Normal map plan: define what should rise, what should recess, and what should remain flat</textarea></div>
+          <div class="ai-field"><label for="backNotes">Back notes</label><textarea id="backNotes">Shader/mask plan: define metallic areas, rough cloth zones, glossy leather zones, rubber, matte paint, and worn edges</textarea></div>
+          <div class="ai-field"><label for="sideNotes">Side / secondary view notes</label><textarea id="sideNotes">Channel notes: keep metallic/gloss/matte decisions clear enough for later Photoshop/DDS work</textarea></div>
+          <div class="ai-field"><label for="seamNotes">Risk / readability notes</label><textarea id="seamNotes">Avoid noisy height detail, harsh seams, one-pixel scratches, extreme depth, and support-map artifacts that shimmer in-game</textarea></div>
+          <div class="ai-field"><label for="outputNotes">Output notes</label><textarea id="outputNotes">Create support-map guidance notes first, then use them to build or check normal maps, shader masks, and material separation files.</textarea></div>
+        </div>
+        <div class="workflow-mini-grid">
+          <div class="workflow-mini-card"><strong>1. Define</strong><span>Pick the support-map type, related texture, material response, and safety limits.</span></div>
+          <div class="workflow-mini-card"><strong>2. Build prompt</strong><span>Generate a focused support-map prompt for normals, shader masks, and material separation.</span></div>
+          <div class="workflow-mini-card"><strong>3. Review</strong><span>Use the brief and checklist before creating final support files.</span></div>
+          <div class="workflow-mini-card"><strong>4. Export</strong><span>Download a handoff pack for Photoshop, DDS, or a new support-map chat.</span></div>
+        </div>
+        <div class="ai-actions">
+          <button class="ai-btn" type="button" onclick="buildActiveStudioPrompt()">Build Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="copyActiveStudioPrompt()">Copy Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioPrompt()">Download Prompt</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioProjectJson()">Download Project JSON</button>
+          <button class="ai-btn secondary" type="button" onclick="downloadActiveStudioHandoffPack()">Download Handoff Pack</button>
+        </div>
+        <div id="activeStudioStatus" class="copy-status"></div>
+      </section>
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Generated prompt</div>
+        <textarea id="activeStudioPrompt" class="ai-textarea ai-output" readonly></textarea>
+      </section>
+      <section class="ai-panel app-panel">
+        <div class="section-label" style="margin-top:0;">Project brief and checklist</div>
+        <div class="project-preview-grid">
+          <textarea id="activeStudioBrief" class="ai-textarea ai-output studio-output-preview" readonly></textarea>
+          <pre id="activeStudioChecklist" class="code-block studio-output-preview"></pre>
+        </div>
+        <div class="studio-pack-note">The handoff pack includes the prompt, project brief, checklist, project JSON, and a README.</div>
+      </section>
+    </div>
+    <footer class="app-footer">AuroraForge NT100 · VikingStudios Texture Workflow</footer>
+  </main>
+</div>
+<script src="assets/js/main.js?v=20260726-r160d"></script>
+<script src="assets/js/active-studio-workflow.js?v=20260726-r160d"></script>
+<script src="assets/js/app-config-loader.js?v=20260726-r160d"></script>
+<script src="assets/js/desktop-bridge.js?v=20260726-r160d"></script>
+</body>
+</html>
+

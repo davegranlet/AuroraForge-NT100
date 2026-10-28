@@ -1,0 +1,53 @@
+{
+  "name": "auroraforge-nt100",
+  "version": "2.1.0",
+  "description": "Aurora Forge current-source workbench with archive, animation and one-off tools in one desktop app.",
+  "main": "electron/main.js",
+  "private": true,
+  "author": "VikingStudios",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build:workbench": "node scripts/build-current-workbench.js",
+    "verify": "node scripts/verify-package.js",
+    "verify:dds": "node scripts/verify-dds-converter.js",
+    "verify:cak": "node scripts/verify-cak-extraction.js",
+    "verify:repack": "node scripts/verify-repackager.js",
+    "build:cak-helper": "node scripts/build-cak-helper.js",
+    "build:pac19-helper": "node scripts/build-pac19-helper.js",
+    "verify:pac19": "node scripts/verify-pac19-helper.js",
+    "verify:cak20": "node scripts/verify-cak20-reader.js",
+    "verify:workshop": "node scripts/verify-mod-workshop-services.js",
+    "verify:manifest": "node scripts/verify-mod-manifest-manager.js",
+    "analyze:2k22": "node scripts/analyze-2k22-format.js",
+    "catalog:audit": "node scripts/audit-extracted-layouts.js",
+    "prepare:runtime": "node scripts/prepare-runtime-staging.js",
+    "clean:dist": "node scripts/clean-dist.js",
+    "pack:win": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon.ico --app-version=2.1.0 --build-version=2.1.0 --extra-resource=build/library/sl",
+    "pack:linux": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=linux --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon-256.png --app-version=2.1.0 --build-version=2.1.0 --extra-resource=build/library/sl",
+    "build:standalones": "node scripts/build-standalone-windows.js",
+    "build:pac19-standalone": "node scripts/build-standalone-windows.js pac19",
+    "build:cak20-standalone": "node scripts/build-standalone-windows.js cak20",
+    "verify:standalones": "node scripts/verify-standalone-staging.js",
+    "build:portable": "node scripts/build-true-portable-windows.js",
+    "build:linux": "node scripts/build-native-linux.js",
+    "verify:portable": "node scripts/verify-final-portable.js",
+    "audit": "npm audit --omit=optional",
+    "doctor": "node scripts/check-environment.js"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.0.4",
+    "electron": "43.2.0"
+  },
+  "packageManager": "npm@11.16.0",
+  "extraMetadata": {
+    "version": "2.1.0"
+  },
+  "dependencies": {
+    "three": "0.185.1"
+  },
+  "overrides": {
+    "@xmldom/xmldom": "0.9.12",
+    "undici": "7.29.0"
+  }
+}

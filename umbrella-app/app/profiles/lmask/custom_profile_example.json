@@ -1,0 +1,237 @@
+{
+  "profile_id": "custom_profile_example",
+  "display_name": "Custom Profile Example",
+  "game": "WWE 2K26",
+  "pipeline": "lmask",
+  "profile_type": "continuous_wrapped_hood_example",
+  "description": "Editable starter profile for creating a new WWE 2K26 Luchador Mask mapping profile. Copy this file, rename the profile_id/display_name, adjust zones and rules, then add the new JSON filename to profiles.json. The zones below intentionally mirror generic_hood_wrap_v1 until a real custom mapping is measured.",
+  "default_canvas": {
+    "width": 2048,
+    "height": 2048
+  },
+  "allowed_output_sizes": [
+    2048,
+    1024,
+    4096
+  ],
+  "logic_grid": {
+    "columns": 128,
+    "rows": 128,
+    "origin": "top-left",
+    "x_axis": "left-to-right",
+    "y_axis": "top-to-bottom",
+    "cell_size_at_2048": "16 px",
+    "range_rule": "Column and row ranges are inclusive logical ranges.",
+    "notes": "128 x 128 normalized lmask-layout grid. Each cell is exactly 16 px on a 2048 x 2048 texture."
+  },
+  "coordinate_rules": {
+    "cell_width": "canvasWidth / 128",
+    "cell_height": "canvasHeight / 128",
+    "pixel_x_start": "floor((columnStart - 1) * cellWidth)",
+    "pixel_x_end": "floor(columnEnd * cellWidth) - 1",
+    "pixel_y_start": "floor((rowStart - 1) * cellHeight)",
+    "pixel_y_end": "floor(rowEnd * cellHeight) - 1",
+    "clamp_rule": "Clamp final end values to canvasSize - 1 so calculated pixels never exceed canvas bounds."
+  },
+  "zones": {
+    "main_front_safe_area": {
+      "columns": [
+        30,
+        99
+      ],
+      "rows": [
+        13,
+        99
+      ],
+      "purpose": "Main visible front identity zone."
+    },
+    "front_center": {
+      "columns": [
+        56,
+        73
+      ],
+      "rows": [
+        13,
+        99
+      ],
+      "purpose": "Strongest central front identity balance zone."
+    },
+    "forehead_identity": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        13,
+        39
+      ],
+      "purpose": "Forehead emblem, controlled skull centerpiece, or front identity."
+    },
+    "left_eye_surround": {
+      "columns": [
+        30,
+        60
+      ],
+      "rows": [
+        26,
+        69
+      ],
+      "purpose": "Raised trim around left eye zone."
+    },
+    "right_eye_surround": {
+      "columns": [
+        69,
+        99
+      ],
+      "rows": [
+        26,
+        69
+      ],
+      "purpose": "Raised trim around right eye zone."
+    },
+    "cheek_jaw_overall": {
+      "columns": [
+        26,
+        103
+      ],
+      "rows": [
+        56,
+        94
+      ],
+      "purpose": "Overall cheek and jaw flow zone."
+    },
+    "left_cheek_jaw": {
+      "columns": [
+        26,
+        60
+      ],
+      "rows": [
+        56,
+        94
+      ],
+      "purpose": "Left cheek and jaw panel flow."
+    },
+    "right_cheek_jaw": {
+      "columns": [
+        69,
+        103
+      ],
+      "rows": [
+        56,
+        94
+      ],
+      "purpose": "Right cheek and jaw panel flow."
+    },
+    "chin_lower_mouth": {
+      "columns": [
+        47,
+        77
+      ],
+      "rows": [
+        73,
+        107
+      ],
+      "purpose": "Chin plate and lower mouth identity."
+    },
+    "left_side_wrap": {
+      "columns": [
+        1,
+        35
+      ],
+      "rows": [
+        30,
+        103
+      ],
+      "purpose": "Left side panel wrap."
+    },
+    "right_side_wrap": {
+      "columns": [
+        94,
+        128
+      ],
+      "rows": [
+        30,
+        103
+      ],
+      "purpose": "Right side panel wrap."
+    },
+    "rear_seam_left": {
+      "columns": [
+        1,
+        13
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Rear seam-safe edge."
+    },
+    "rear_seam_right": {
+      "columns": [
+        116,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Rear seam-safe edge."
+    },
+    "top_crown": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        1,
+        26
+      ],
+      "purpose": "Compressed top/crown safety zone."
+    },
+    "bottom_neck_transition": {
+      "columns": [
+        1,
+        128
+      ],
+      "rows": [
+        99,
+        128
+      ],
+      "purpose": "Lower neck and transition zone."
+    }
+  },
+  "rules": {
+    "must": [
+      "Paint directly onto the full square canvas.",
+      "Use the profile zones for element placement.",
+      "Keep front identity centered.",
+      "Keep eye surrounds in mapped eye zones.",
+      "Keep cheek and jaw panels flowing downward from the eye zones.",
+      "Keep chin/mouth identity in the lower center zone.",
+      "Wrap side panels outward from the cheek/jaw zones.",
+      "Keep rear seam dark and simple.",
+      "Keep top/crown broad, dark, and simple.",
+      "Use full square texture canvas only.",
+      "Use 2048 x 2048 as the default production canvas unless another size is explicitly selected.",
+      "Use the 128 x 128 layout/grid references for placement accuracy.",
+      "Do not copy guide colors, labels, or grid lines into final mask_color.png."
+    ],
+    "avoid": [
+      "Do not create a UV island sheet.",
+      "Do not create a cutout mask template.",
+      "Do not create a blue grid.",
+      "Do not create a debug coordinate layout.",
+      "Do not show labels, boxes, or numbers in final output.",
+      "Do not place major logos, text, skulls, or faces on rear seam.",
+      "Do not place circular emblems on top/back seam.",
+      "Do not cut literal transparent eye holes.",
+      "Do not make a front-view product render.",
+      "Do not make a concept sheet or turnaround sheet during Stage 2."
+    ]
+  },
+  "example_note": "Do not treat this as a separate verified game profile until you replace the copied zones with tested mapping data.",
+  "layout_reference_filename": "customprofileexample_layout_reference.png",
+  "technical_grid_reference_filename": "customprofileexample_128x128_grid_reference.png",
+  "layout_legend_filename": "customprofileexample_layout_legend.txt",
+  "layout_reference_usage": "Upload the layout reference PNG with the final handoff prompt and profile JSON. It is a placement guide only, not final art. Use the 128 x 128 technical grid for exact placement correction; each cell is 16 px on a 2048 texture."
+}

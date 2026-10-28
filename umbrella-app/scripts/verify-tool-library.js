@@ -1,0 +1,31 @@
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+const assert = require('assert/strict');
+const { createToolLibraryService } = require('../electron/services/tool-library-service');
+async function main() {
+  const library = path.resolve(__dirname, '../app/tools/sl');
+  const manifest = JSON.parse(fs.readFileSync(path.join(library, 'tool-library.json'), 'utf8'));
+  const service = createToolLibraryService({ root: library });
+  for (const item of manifest.tools) service.source(item.id);
+  const build = path.resolve(__dirname, '../build');
+  fs.mkdirSync(build, { recursive: true });
+  const fixture = fs.mkdtempSync(path.join(build, 'library-verification-'));
+  const source = "console.log(JSON.stringify(process.argv.slice(2)));\n";
+  fs.writeFileSync(path.join(fixture, 'echo.js'), source);
+  const sha256 = crypto.createHash('sha256').update(source).digest('hex');
+  fs.writeFileSync(path.join(fixture, 'tool-library.json'), JSON.stringify({ tools: [{ id: 'echo', path: 'echo.js', runtime: 'node-cli', sha256 }] }));
+  const fixtureService = createToolLibraryService({ root: fixture });
+  const args = ['a b', '$(echo unsafe)', '& whoami', 'quote"value'];
+  const result = await fixtureService.run({ id: 'echo', args, cwd: fixture });
+  assert.equal(result.code, 0);
+  assert.deepEqual(JSON.parse(result.stdout), args);
+  assert.throws(() => fixtureService.source('unknown'), /Unknown tool/);
+  fs.appendFileSync(path.join(fixture, 'echo.js'), '// tampered');
+  assert.throws(() => fixtureService.source('echo'), /has changed/);
+  fs.writeFileSync(path.join(fixture, 'tool-library.json'), JSON.stringify({ tools: [{ id: 'escape', path: '../outside.js' }] }));
+  assert.throws(() => fixtureService.source('escape'), /escapes/);
+  console.log(JSON.stringify({ verifiedLibraryFiles: manifest.tools.length, literalArguments: true, unknownToolRejected: true, tamperRejected: true, traversalRejected: true }));
+}
+main().catch(error => { console.error(error); process.exitCode = 1; });

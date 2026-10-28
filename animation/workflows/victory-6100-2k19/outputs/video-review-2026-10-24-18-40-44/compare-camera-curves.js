@@ -1,0 +1,7 @@
+'use strict';
+const fs=require('node:fs');const crypto=require('node:crypto');
+const {parse,clipNameId}=require('../../../../tools/clips-layout');
+const {readRecordSeries}=require('../../../../tools/build-source19-camera-clips');
+const inputs=process.argv.slice(2);const id=clipNameId('6100_00_c0');
+function summarize(file){const bytes=fs.readFileSync(file),parsed=parse(bytes,{includeRaw:false}),found=parsed.records.filter(r=>r.id===id);if(found.length!==1)throw Error(`${file}: c0 matches ${found.length}`);const r=found[0],data=readRecordSeries(file,r.index),samples=[0,.1,.25,.5,.75,.9,1].map(x=>Math.round((r.frameValue-1)*x));const tracks=data.groups.map((groups,ti)=>({track:ti,trackId:String(r.trackIdentifiers[ti]).replace(/^0x/i,'0x'),groups:groups.map((rows,gi)=>({group:gi,frameCount:rows.length,min:[0,1,2].map(c=>Math.min(...rows.map(v=>v[c]))),max:[0,1,2].map(c=>Math.max(...rows.map(v=>v[c]))),samples:samples.map(frame=>({frame,value:rows[frame]}))}))}));const pos0=data.groups[0][0],pos1=data.groups[1][0],dist=pos0.map((p,i)=>Math.hypot(...p.map((v,c)=>v-pos1[i][c])));return{path:file,sha256:crypto.createHash('sha256').update(bytes).digest('hex').toUpperCase(),clipId:`0x${id.toString(16).toUpperCase()}`,index:r.index,frames:r.frameValue,cameraTargetDistance:{min:Math.min(...dist),max:Math.max(...dist),samples:samples.map(frame=>({frame,distance:dist[frame]}))},tracks};}
+console.log(JSON.stringify({schema:'aurora-forge/c0-camera-curve-side-by-side/v1',samples:inputs.map(summarize)},null,2));

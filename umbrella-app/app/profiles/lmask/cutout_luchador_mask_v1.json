@@ -1,0 +1,306 @@
+{
+  "profile_id": "cutout_luchador_mask_v1",
+  "display_name": "Cutout Luchador Mask v1",
+  "game": "WWE 2K26",
+  "pipeline": "lmask",
+  "profile_type": "flat_uv_cutout_luchador_mask",
+  "description": "Profile based on an uploaded in-game WWE 2K26 mask_color texture. This item behaves like a flat UV/cutout luchador mask texture with separate islands, lacing borders, a lower front bib panel, and side mask islands. Use this profile for cutout-style mask items, not continuous hood-wrap items.",
+  "default_canvas": {
+    "width": 2048,
+    "height": 2048
+  },
+  "allowed_output_sizes": [
+    2048,
+    1024,
+    4096
+  ],
+  "logic_grid": {
+    "columns": 128,
+    "rows": 128,
+    "origin": "top-left",
+    "x_axis": "left-to-right",
+    "y_axis": "top-to-bottom",
+    "cell_size_at_2048": "16 px",
+    "range_rule": "Column and row ranges are inclusive logical ranges.",
+    "notes": "128 x 128 normalized lmask-layout grid. Each cell is exactly 16 px on a 2048 x 2048 texture."
+  },
+  "zones": {
+    "upper_center_cap_top_crown": {
+      "columns": [
+        39,
+        90
+      ],
+      "rows": [
+        1,
+        30
+      ],
+      "purpose": "Actual tan top/crown cap and upper center fold area"
+    },
+    "central_front_design_safe": {
+      "columns": [
+        30,
+        99
+      ],
+      "rows": [
+        22,
+        77
+      ],
+      "purpose": "Main face/eye/forehead design panel"
+    },
+    "forehead_centerpiece": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        22,
+        43
+      ],
+      "purpose": "Upper spear/forehead centerpiece"
+    },
+    "left_eye_wing_panel": {
+      "columns": [
+        30,
+        64
+      ],
+      "rows": [
+        30,
+        64
+      ],
+      "purpose": "Left eye + red/gold wing"
+    },
+    "right_eye_wing_panel": {
+      "columns": [
+        65,
+        99
+      ],
+      "rows": [
+        30,
+        64
+      ],
+      "purpose": "Right eye + red/gold wing"
+    },
+    "mouth_logo_chin_plate": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        56,
+        77
+      ],
+      "purpose": "Mouth/logo/chin detail"
+    },
+    "lower_front_bib_panel": {
+      "columns": [
+        26,
+        103
+      ],
+      "rows": [
+        69,
+        128
+      ],
+      "purpose": "Large lower blue/white front panel"
+    },
+    "left_side_island": {
+      "columns": [
+        1,
+        26
+      ],
+      "rows": [
+        1,
+        52
+      ],
+      "purpose": "Far-left side mask island"
+    },
+    "right_side_island": {
+      "columns": [
+        103,
+        128
+      ],
+      "rows": [
+        1,
+        52
+      ],
+      "purpose": "Far-right side mask island"
+    },
+    "left_lacing_border": {
+      "columns": [
+        1,
+        26
+      ],
+      "rows": [
+        69,
+        128
+      ],
+      "purpose": "Lower left lacing/edge holes"
+    },
+    "right_lacing_border": {
+      "columns": [
+        103,
+        128
+      ],
+      "rows": [
+        69,
+        128
+      ],
+      "purpose": "Lower right lacing/edge holes"
+    },
+    "diagonal_strap_left": {
+      "columns": [
+        1,
+        43
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Large red/white diagonal side/strap flow"
+    },
+    "diagonal_strap_right": {
+      "columns": [
+        86,
+        128
+      ],
+      "rows": [
+        1,
+        128
+      ],
+      "purpose": "Large red/white diagonal side/strap flow"
+    },
+    "main_front_safe_area": {
+      "columns": [
+        30,
+        99
+      ],
+      "rows": [
+        22,
+        77
+      ],
+      "purpose": "Compatibility alias for main visible front design area on cutout mask profile."
+    },
+    "forehead_identity": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        22,
+        43
+      ],
+      "purpose": "Compatibility alias for forehead/centerpiece zone."
+    },
+    "left_eye_surround": {
+      "columns": [
+        30,
+        64
+      ],
+      "rows": [
+        30,
+        64
+      ],
+      "purpose": "Compatibility alias for left eye/wing zone."
+    },
+    "right_eye_surround": {
+      "columns": [
+        65,
+        99
+      ],
+      "rows": [
+        30,
+        64
+      ],
+      "purpose": "Compatibility alias for right eye/wing zone."
+    },
+    "chin_lower_mouth": {
+      "columns": [
+        47,
+        82
+      ],
+      "rows": [
+        56,
+        77
+      ],
+      "purpose": "Compatibility alias for mouth/logo/chin plate zone."
+    },
+    "left_side_wrap": {
+      "columns": [
+        1,
+        26
+      ],
+      "rows": [
+        1,
+        52
+      ],
+      "purpose": "Compatibility alias for left side cutout island."
+    },
+    "right_side_wrap": {
+      "columns": [
+        103,
+        128
+      ],
+      "rows": [
+        1,
+        52
+      ],
+      "purpose": "Compatibility alias for right side cutout island."
+    },
+    "top_crown": {
+      "columns": [
+        39,
+        90
+      ],
+      "rows": [
+        1,
+        30
+      ],
+      "purpose": "Compatibility alias for actual upper-center cap/crown zone."
+    },
+    "bottom_neck_transition": {
+      "columns": [
+        26,
+        103
+      ],
+      "rows": [
+        69,
+        128
+      ],
+      "purpose": "Compatibility alias for lower front/bib panel, not a normal hood neck band."
+    }
+  },
+  "rules": {
+    "must": [
+      "Treat this as a flat UV/cutout-style luchador mask texture, not a continuous hood wrap.",
+      "Preserve the central front face design inside central_front_design_safe.",
+      "Keep major eye/forehead identity inside the eye and forehead zones.",
+      "Treat the lower_front_bib_panel as its own large lower front design area.",
+      "Use far-left and far-right side islands for side mask artwork.",
+      "Keep lacing/hole border zones clean and do not cover them with important logos.",
+      "Use the diagonal strap zones for broad color flow and material pattern continuity.",
+      "Use 2048 x 2048 as the default production canvas unless another size is explicitly selected.",
+      "Use the 128 x 128 layout/grid references for placement accuracy.",
+      "Do not copy guide colors, labels, or grid lines into final mask_color.png."
+    ],
+    "avoid": [
+      "Do not use generic_hood_wrap_v1 for this item.",
+      "Do not place critical artwork in the far edge seams unless mirroring is intended.",
+      "Do not paint over lace holes or edge hardware with important details.",
+      "Do not treat the full top rows as one continuous crown zone."
+    ]
+  },
+  "profile_family": "flat_uv_cutout",
+  "source_reference": "Profile layout reference for compatible user-supplied mask textures.",
+  "coordinate_rules": {
+    "cell_width": "canvasWidth / 128",
+    "cell_height": "canvasHeight / 128",
+    "pixel_x_start": "floor((columnStart - 1) * cellWidth)",
+    "pixel_x_end": "floor(columnEnd * cellWidth) - 1",
+    "pixel_y_start": "floor((rowStart - 1) * cellHeight)",
+    "pixel_y_end": "floor(rowEnd * cellHeight) - 1",
+    "clamp_rule": "Clamp final end values to canvasSize - 1 so calculated pixels never exceed canvas bounds."
+  },
+  "layout_reference_filename": "cutoutluchadormaskv1_layout_reference.png",
+  "technical_grid_reference_filename": "cutoutluchadormaskv1_128x128_grid_reference.png",
+  "layout_legend_filename": "cutoutluchadormaskv1_layout_legend.txt",
+  "layout_reference_usage": "Upload the layout reference PNG with the final handoff prompt and profile JSON. It is a placement guide only, not final art. Use the 128 x 128 technical grid for exact placement correction; each cell is 16 px on a 2048 texture."
+}
