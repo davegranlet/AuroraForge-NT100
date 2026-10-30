@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Aurora Forge — Entry Studio</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.45 system-ui, Segoe UI, sans-serif; background: #14161c; color: #e8eaf0; }
+  header { padding: 14px 20px; background: linear-gradient(90deg, #1d2130, #14161c); border-bottom: 1px solid #2a2f3e; display:flex; align-items:center; gap:14px; }
+  header h1 { font-size: 17px; margin: 0; letter-spacing: .5px; }
+  header .badge { font-size: 11px; color: #9aa3b5; border: 1px solid #2f3648; padding: 2px 8px; border-radius: 10px; }
+  main { display: grid; grid-template-columns: minmax(420px, 1fr) minmax(380px, 460px); gap: 14px; padding: 14px; max-width: 1500px; margin: 0 auto; }
+  .panel { background: #191c24; border: 1px solid #262b38; border-radius: 10px; padding: 12px 14px; }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .8px; color: #9aa3b5; margin: 0 0 10px; }
+  .row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+  input[type=text], input[type=number], select { background: #10131a; border: 1px solid #2a3040; border-radius: 6px; color: #e8eaf0; padding: 6px 8px; font: inherit; }
+  input[type=text] { flex: 1 1 180px; }
+  button { background: #2b3b6b; border: 1px solid #3c5299; color: #eef1ff; border-radius: 6px; padding: 7px 12px; font: inherit; cursor: pointer; }
+  button:hover { background: #34477e; }
+  button.secondary { background: #20242f; border-color: #2f3648; }
+  button.good { background: #1f5c3d; border-color: #2f8a5c; }
+  button:disabled { opacity: .5; cursor: default; }
+  .filelist { height: 380px; overflow: auto; border: 1px dashed #2a3040; border-radius: 8px; background: #10131a; }
+  .filelist.dragover { border-color: #4d7bd6; background: #121a2c; }
+  .file { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-bottom: 1px solid #1a1e27; }
+  .file:hover { background: #161b26; }
+  .file .name { flex: 1; font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; }
+  .file .size { color: #8891a5; font-size: 12px; }
+  .muted { color: #8891a5; font-size: 12px; }
+  .entry-editor .field { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: center; margin-bottom: 7px; }
+  .entry-editor label { color: #b9c1d3; font-size: 13px; }
+  .locked { color: #e0b45c; font-size: 12px; }
+  .log { font-family: ui-monospace, Consolas, monospace; font-size: 12px; background: #0d1015; border: 1px solid #222836; border-radius: 8px; padding: 8px; height: 130px; overflow: auto; white-space: pre-wrap; margin-top: 8px; }
+  .pill { display:inline-block; padding: 1px 8px; border-radius: 9px; font-size: 11px; background:#233; border:1px solid #2f3648; color:#c7cddc; }
+  .tabs { display:flex; gap:6px; margin-bottom:8px; }
+  .tabs button { padding: 5px 10px; font-size: 12.5px; }
+  .tabs button.active { background:#3c5299; border-color:#4d6fd0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>⚡ Aurora Forge — Entry Studio</h1>
+  <span class="badge">2K19 → 2K25 SNME</span>
+  <span class="badge" id="treeBadge">work tree: not built</span>
+</header>
+<main>
+  <section class="panel">
+    <h2>1 · Select 2K19 animations</h2>
+    <div class="row">
+      <input type="text" id="folder" placeholder="folder with decoded .bin animations" />
+      <button class="secondary" id="scanBtn">Scan</button>
+      <button class="secondary" id="entranceBtn">Entrances</button>
+      <button class="secondary" id="victoryBtn">Victories</button>
+    </div>
+    <div class="row">
+      <label><input type="checkbox" id="all" /> Select all</label>
+      <span class="muted" id="count">0 selected</span>
+      <span class="muted">· drag &amp; drop .bin files/folders anywhere on the list</span>
+    </div>
+    <div class="filelist" id="files"></div>
+    <div class="row" style="margin-top:10px">
+      <button id="convertBtn" disabled>Convert selected →</button>
+      <span class="muted">creates the new entries + converted animations in the work tree</span>
+    </div>
+  </section>
+
+  <section class="panel entry-editor">
+    <h2>2 · New entry (cloned from DIRE INTENTIONS)</h2>
+    <div class="row">
+      <button id="createEntryBtn">＋ Create new entry (DIRE clone)</button>
+      <span class="muted" id="created"></span>
+    </div>
+    <h2 style="margin-top:14px">3 · Set up the entry (pick animation + name, save)</h2>
+    <div class="row">
+      <input type="number" id="entryId" placeholder="entry id (e.g. 14000)" style="width:140px" />
+      <button class="secondary" id="loadEntry">Load entry</button>
+      <select id="entryPick" style="max-width:180px"><option value="">— entries in tree —</option></select>
+    </div>
+    <div class="field"><label>2K19 animation</label>
+      <span><input type="text" id="animPath" placeholder="select from the list on the left, or paste a path" style="width:100%" /><br/>
+      <button class="secondary" id="useSelected" style="margin-top:4px">Use selected file(s) — first one</button></span></div>
+    <div class="field"><label>Name (SDB)</label><input type="text" id="f_name" placeholder="AURORA 14010" /></div>
+    <div class="field"><label>MOTION (f4)</label><input type="number" id="f_motion" /><span class="locked" id="motionNote"></span></div>
+    <div class="field"><label>Type</label><input type="number" id="f_type" /></div>
+    <div class="field"><label>Title motion (f5)</label><input type="number" id="f_field5" /></div>
+    <div class="field"><label>MITB motion (f6)</label><input type="number" id="f_field6" /></div>
+    <div class="field"><label>Double title (f7)</label><input type="number" id="f_field7" /></div>
+    <div class="field"><label>Entrance music (f8)</label><select id="f_field8"><option value="">— load music list —</option></select></div>
+    <div class="field"><label>Titantron/GFX (f9)</label><input type="number" id="f_field9" /></div>
+    <div class="row">
+      <button class="good" id="saveEntry">SAVE (convert animation + write files)</button>
+      <button class="secondary" id="viewRow">View row JSON</button>
+    </div>
+    <div class="field"><label>Entry info</label><input type="text" id="f_note" readonly /></div>
+    <h2 style="margin-top:14px">4 · Bake &amp; stage</h2>
+    <div class="row">
+      <button id="bakeBtn">Bake CAK</button>
+      <button id="stageBtn" disabled>Stage to game mods</button>
+    </div>
+    <div class="log" id="log"></div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const state = { files: [], selected: new Set(), cak: null, entryId: null, musicLoaded: false };
+function log(msg) { const el = $('log'); el.textContent += (typeof msg === 'string' ? msg : JSON.stringify(msg, null, 2)) + '\n'; el.scrollTop = el.scrollHeight; }
+async function api(method, url, payload) {
+  const res = await fetch(url, { method, headers: payload ? { 'content-type': 'application/json' } : undefined, body: payload ? JSON.stringify(payload) : undefined });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+}
+function renderFiles() {
+  const box = $('files'); box.innerHTML = '';
+  for (const f of state.files) {
+    const div = document.createElement('div'); div.className = 'file';
+    const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = state.selected.has(f.path);
+    cb.onchange = () => { cb.checked ? state.selected.add(f.path) : state.selected.delete(f.path); $('count').textContent = `${state.selected.size} selected`; $('convertBtn').disabled = state.selected.size === 0; };
+    const name = document.createElement('span'); name.className = 'name'; name.textContent = f.name;
+    const size = document.createElement('span'); size.className = 'size'; size.textContent = (f.size / 1024).toFixed(0) + ' KB';
+    div.append(cb, name, size); box.append(div);
+  }
+}
+async function scan(folder) {
+  const data = await api('POST', '/api/scan', { folder });
+  state.files = data.files; state.selected.clear(); renderFiles(); $('count').textContent = '0 selected'; $('convertBtn').disabled = true;
+  log(`scan: ${data.files.length} .bin files in ${data.folder}`);
+}
+$('scanBtn').onclick = () => scan($('folder').value).catch((e) => log('scan failed: ' + e.message));
+$('entranceBtn').onclick = async () => { const d = await api('GET', '/api/defaults'); $('folder').value = d.binsEntrance; scan(d.binsEntrance).catch((e) => log(e.message)); };
+$('victoryBtn').onclick = async () => { const d = await api('GET', '/api/defaults'); $('folder').value = d.binsVictory; scan(d.binsVictory).catch((e) => log(e.message)); };
+$('all').onchange = (e) => { state.selected = e.target.checked ? new Set(state.files.map((f) => f.path)) : new Set(); renderFiles(); $('count').textContent = `${state.selected.size} selected`; $('convertBtn').disabled = state.selected.size === 0; };
+
+const filesBox = $('files');
+filesBox.addEventListener('dragover', (e) => { e.preventDefault(); filesBox.classList.add('dragover'); });
+filesBox.addEventListener('dragleave', () => filesBox.classList.remove('dragover'));
+filesBox.addEventListener('drop', async (e) => {
+  e.preventDefault(); filesBox.classList.remove('dragover');
+  const items = [...(e.dataTransfer.items || [])];
+  const files = [...(e.dataTransfer.files || [])];
+  for (const f of files) {
+    if (!f.name.toLowerCase().endsWith('.bin')) continue;
+    const buf = await f.arrayBuffer();
+    const res = await fetch('/api/upload?name=' + encodeURIComponent(f.name), { method: 'POST', body: buf });
+    const up = await res.json();
+    state.files.push({ path: up.path, name: up.name, size: up.size });
+  }
+  renderFiles();
+  log(`dropped: ${files.length} file(s) processed`);
+});
+
+$('convertBtn').onclick = async () => {
+  const files = [...state.selected];
+  if (!files.length) return;
+  log(`converting ${files.length} animation(s)...`);
+  const data = await api('POST', '/api/convert', { files }).catch((e) => { log('convert failed: ' + e.message); });
+  if (!data) return;
+  $('treeBadge').textContent = 'work tree: ' + data.tree;
+  for (const r of data.results) log(r.ok ? `✓ ${r.source} → entry ${r.entryId} (${r.kind})` : `✗ ${r.source}: ${r.error}`);
+  const pick = $('entryPick'); pick.innerHTML = '<option value="">— converted entries —</option>';
+  for (const r of data.results.filter((x) => x.ok)) { const o = document.createElement('option'); o.value = r.entryId; o.textContent = `${r.entryId} (${r.kind})`; pick.append(o); }
+  if (data.results.some((r) => r.ok)) { const first = data.results.find((r) => r.ok); $('entryId').value = first.entryId; loadEntry(first.entryId); }
+};
+$('entryPick').onchange = (e) => { if (e.target.value) { $('entryId').value = e.target.value; loadEntry(Number(e.target.value)); } };
+
+$('createEntryBtn').onclick = async () => {
+  log('creating new entry from DIRE INTENTIONS clone...');
+  const data = await api('POST', '/api/create-entry', {}).catch((e) => { log('create failed: ' + e.message); });
+  if (!data) return;
+  $('created').textContent = `entry ${data.created.entryId} created (nameString ${data.created.nameString})`;
+  log('created entry ' + data.created.entryId + ' in: ' + data.created.files.join(', '));
+  $('entryId').value = data.created.entryId;
+  loadEntry(data.created.entryId);
+  refreshEntryPick();
+};
+async function refreshEntryPick() {
+  try {
+    const list = await api('GET', '/api/entries');
+    const pick = $('entryPick'); pick.innerHTML = '<option value="">— entries in tree —</option>';
+    for (const e of list.entries) { const o = document.createElement('option'); o.value = e.id; o.textContent = `${e.id}  ${e.name || ''}`; pick.append(o); }
+  } catch {}
+}
+$('useSelected').onclick = () => {
+  const first = [...state.selected][0];
+  if (!first) { log('nothing selected on the left'); return; }
+  $('animPath').value = first;
+  log('animation set: ' + first);
+};
+
+async function loadEntry(id) {
+  try {
+    const s = await api('GET', '/api/entry/' + id);
+    state.entryId = id;
+    if (s.entrance) {
+      $('f_name').value = s.name || '';
+      $('f_motion').value = s.entrance.field4 ?? '';
+      $('f_type').value = s.entrance.type ?? '';
+      $('f_field5').value = s.entrance.field5 ?? '';
+      $('f_field6').value = s.entrance.field6 ?? '';
+      $('f_field7').value = s.entrance.field7 ?? '';
+      $('f_field8').value = s.entrance.field8 ?? '';
+      $('f_field9').value = s.entrance.field9 ?? '';
+      $('f_note').value = `row id ${s.entrance.id} · nameString ${s.entrance.nameString} · section ${s.entrance.section} idx ${s.entrance.index}`;
+    } else {
+      $('f_note').value = 'no row yet — SAVE will create it';
+      $('f_name').value = s.descriptor ? s.descriptor.name : `AURORA ${id}`;
+      $('f_motion').value = id;
+    }
+    log(`entry ${id} loaded`);
+  } catch (e) { log('load failed: ' + e.message); }
+}
+$('loadEntry').onclick = () => loadEntry(Number($('entryId').value));
+
+async function loadMusic() {
+  if (state.musicLoaded) return;
+  const list = await api('GET', '/api/music').catch((e) => log('music failed: ' + e.message));
+  if (!list) return;
+  const sel = $('f_field8'); sel.innerHTML = '';
+  for (const m of list) { const o = document.createElement('option'); o.value = m.id; o.textContent = `${m.id} — ${m.title || ''} (${m.star || ''})`; sel.append(o); }
+  state.musicLoaded = true;
+}
+$('f_field8').onfocus = loadMusic;
+
+$('saveEntry').onclick = async () => {
+  const id = Number($('entryId').value);
+  const fields = {
+    name: $('f_name').value,
+    motion: $('f_motion').value,
+    type: $('f_type').value,
+    field6: $('f_field6').value,
+    field7: $('f_field7').value,
+    field8: $('f_field8').value,
+    field9: $('f_field9').value,
+  };
+  const animationPath = $('animPath').value.trim();
+  log(`saving entry ${id}${animationPath ? ' (converting ' + animationPath + ')' : ''}...`);
+  const data = await api('POST', '/api/entry', { entryId: id, fields, animationPath: animationPath || undefined, mode: 'minimal', kind: 'entrance' }).catch((e) => { log('save failed: ' + e.message); });
+  if (data) { log('saved:'); log(data.written); if (data.converted) log('converted: ' + JSON.stringify(data.converted).slice(0, 300)); loadEntry(id); refreshEntryPick(); }
+};
+$('viewRow').onclick = async () => { const s = await api('GET', '/api/entry/' + $('entryId').value).catch((e) => log(e.message)); if (s) log(s); };
+
+$('bakeBtn').onclick = async () => {
+  log('baking...');
+  const data = await api('POST', '/api/bake', {}).catch((e) => { log('bake failed: ' + e.message); });
+  if (data) { state.cak = data.out; $('stageBtn').disabled = false; log(`baked: ${data.out} (${data.bytes} bytes)`); }
+};
+$('stageBtn').onclick = async () => {
+  const data = await api('POST', '/api/stage', { cak: state.cak }).catch((e) => { log('stage failed: ' + e.message); });
+  if (data) log(`staged: ${data.staged}\nmanifest: ${JSON.stringify(data.manifest)}`);
+};
+
+(async () => { const d = await api('GET', '/api/defaults'); $('folder').value = d.binsEntrance; log('ready. scan, pick animations, convert, set fields, save, bake, stage.'); })();
+</script>
+</body>
+</html>

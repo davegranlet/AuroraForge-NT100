@@ -1,0 +1,3 @@
+'use strict';
+const fs=require('node:fs');const {inventory,diffInventories}=require('../../../../animation/tools/bakeme-orchestrator');
+const before=inventory(process.argv[2]);const after=inventory(process.argv[3]);const changedFiles=diffInventories(before,after);const report={sourceBakeMe:process.argv[2],candidateBakeMe:process.argv[3],sourceFiles:before.size,candidateFiles:after.size,changedFiles,pass:before.size===after.size&&changedFiles.length===1&&changedFiles[0].relative==='Animation/CaeAdvanced/1014003.clips'};fs.writeFileSync(process.argv[4],JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report,null,2));if(!report.pass)process.exitCode=1;

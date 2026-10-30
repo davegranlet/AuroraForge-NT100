@@ -9,14 +9,14 @@ const sha256 = buffer => crypto.createHash('sha256').update(buffer).digest('hex'
 const u64 = (buffer, offset) => `0x${buffer.readBigUInt64LE(offset).toString(16).toUpperCase().padStart(16, '0')}`;
 const align16 = value => (value + 0x0f) & ~0x0f;
 
-// Measured against the supplied `Clip #63036 [63036a000].clip` record: the
-// on-disk 64-bit identifier is lowercase UTF-8 FNV-1a of the clip name. This
+// Measured on native + community fixtures: the on-disk 64-bit identifier is
+// FNV-1a 64 of the LOWERCASED clip name (273_a_00_M_facial -> 0xC93E7DDB8B7141E1). This
 // resolves a named ADEF clip reference to a record lookup key; it does not
 // decode any motion data or author a new clip payload.
 function clipNameId(name) {
   if (typeof name !== 'string' || !name.length) throw new Error('clip name must be a non-empty string');
   let value = 0xcbf29ce484222325n;
-  for (const byte of Buffer.from(name, 'utf8')) {
+  for (const byte of Buffer.from(name.toLowerCase(), 'utf8')) {
     value ^= BigInt(byte);
     value = BigInt.asUintN(64, value * 0x100000001b3n);
   }

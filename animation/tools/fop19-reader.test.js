@@ -5,7 +5,9 @@ const fs = require('node:fs');
 const test = require('node:test');
 const { readFop19 } = require('./fop19-reader');
 
-const fixture = 'D:\\AuroraForge-Aug26\\_work\\2k19-victory-6100-event\\00_0CE8FE35827FD8DE.unpacked.0fop';
+const fixture = require('./resolve-2k19-extract-path').resolve2k19ExtractPath(
+  '_work/6100/00_0CE8FE35827FD8DE.unpacked.0fop',
+);
 
 test('reads the extracted 2K19 Victory 6100 0FOP event index', () => {
   assert.ok(fs.existsSync(fixture), `Missing authoritative 0FOP fixture: ${fixture}`);

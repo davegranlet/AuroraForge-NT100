@@ -1,11 +1,12 @@
 'use strict';
 // Clean-room WWE 2K25/2K26 SDB reader: u32 version, u32 record count, then
-// 12-byte (offset,length,id) records over a rolling-XOR string pool where the
-// first-byte seed derives from the absolute payload offset:
+// 12-byte (offset,length,id) records over either the legacy rolling-XOR pool
+// or the WWE 2K26 offset-keyed pool:
 //   key = (offset & 0xff) ^ 0xcd; out[i] = raw[i] ^ prev; prev = raw[i].
 // Records may alias one deduplicated payload. Returns records in table order:
 // [{ index, offset, length, id, text }]. Throws on structural violations.
 const fs = require('fs');
+const { transform: transform26 } = require('./sdb-2k26');
 
 function initialKey(offset) { return (offset & 0xff) ^ 0xcd; }
 function decode(bytes, offset) {
@@ -16,6 +17,7 @@ function decode(bytes, offset) {
 }
 function readSdbRecords(buffer) {
   if (buffer.length < 8) throw new Error('readSdbRecords: buffer too short');
+  const version = buffer.readUInt32LE(0);
   const count = buffer.readUInt32LE(4);
   const tableEnd = 8 + count * 12;
   if (tableEnd > buffer.length) throw new Error('readSdbRecords: record table exceeds buffer');
@@ -28,10 +30,11 @@ function readSdbRecords(buffer) {
       length: buffer.readUInt32LE(at + 4),
       id: buffer.readUInt32LE(at + 8),
     };
-    if (record.offset < tableEnd || record.offset + record.length >= buffer.length) {
+    if (record.offset < tableEnd || record.offset + record.length > buffer.length) {
       throw new Error(`readSdbRecords: invalid record ${index}`);
     }
-    record.text = decode(buffer.subarray(record.offset, record.offset + record.length), record.offset).toString('utf8');
+    const payload = buffer.subarray(record.offset, record.offset + record.length);
+    record.text = (version === 256 ? transform26(payload, record.offset) : decode(payload, record.offset)).toString('utf8');
     records.push(record);
   }
   return records;

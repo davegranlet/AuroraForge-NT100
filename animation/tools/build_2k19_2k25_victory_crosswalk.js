@@ -3,8 +3,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const { analyzeTarget } = require('../../AuroraForge_WWE_PC-Game_Modding_Tool/scripts/analyze-2k19-motion');
-const { analyzePair } = require('../../AuroraForge_WWE_PC-Game_Modding_Tool/scripts/analyze-2k26-animation-pair');
+const { analyzeTarget } = require('./analyze-2k19-motion');
+const { analyzePair } = require('./analyze-2k26-animation-pair');
 
 if (process.argv.length !== 7) {
   throw new Error('Usage: node build_2k19_2k25_victory_crosswalk.js <decoded-2k19-dir> <target.clips> <target.adefs> <decoded-target-adefs.bin> <output.json>');

@@ -27,7 +27,6 @@ Current verified scope:
   the skeleton scan is cached per game-file timestamps.
 - Bake targets route through the version registry: 2K26 = FDIR 9.9 (JS
   repackager), 2K25 = FDIR 9.3 (native).
-- Per-release verification challenge (see app/config/release-challenge.json).
 - Re-encodes selected motion groups into a .clips template.
 - Builds and reopens a loader-ready CAK through Aurora CAK Foundry.
 - Uses the verified boot-mount loader pair bundled separately with the umbrella app.

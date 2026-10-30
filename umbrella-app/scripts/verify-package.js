@@ -38,10 +38,10 @@ const knowledge = json('app', 'data', 'wwe2k26-modding-facts.json');
 const knowledge22 = json('app', 'data', 'wwe2k22-modding-facts.json');
 const projectCatalog = json('app', 'data', 'aurora-projects.json');
 
-ok(pkg.version === '2.1.2', 'standards-safe package version is 2.1.2');
-ok(lock.version === '2.1.2' && lock.packages[''].version === '2.1.2', 'package-lock root version matches');
-ok(manifest.release === '2.1.a' && manifest.releaseTitle === 'Beta 4', 'manifest identifies the free release');
-ok(config.release === '2.1.a' && config.releaseTitle === 'Beta 4', 'app config identifies the free release');
+ok(pkg.version === '2.1.3', 'standards-safe package version is 2.1.3');
+ok(lock.version === '2.1.3' && lock.packages[''].version === '2.1.3', 'package-lock root version matches');
+ok(manifest.release === '2.1.3' && manifest.releaseTitle === 'Beta 4', 'manifest identifies the free release');
+ok(config.release === '2.1.3' && config.releaseTitle === 'Beta 4', 'app config identifies the free release');
 ok(pkg.devDependencies.electron === '43.2.0', 'Electron is exactly pinned');
 ok(pkg.devDependencies['@electron/packager'] === '20.0.4', 'Electron Packager is exactly pinned');
 ok(pkg.dependencies.three === '0.185.1', 'Three.js is exactly pinned');
@@ -244,7 +244,7 @@ ok(mainJs.includes('projectsFolder') && mainJs.includes('exportsFolder'), 'Elect
 ok(mainJs.includes("desktop:check-aurora-loader") && preloadJs.includes('checkAuroraLoader'), 'Electron exposes Aurora loader setup check');
 ok(!/desktop:check-cakehook|cakeView:|tribute:/.test(mainJs + preloadJs), 'Electron setup allowlist excludes old third-party tool gates');
 ok(!/cakeView|tribute|texconv/.test(read('app', 'assets', 'js', 'tool-center.js')), 'Setup renderer only lists supported creative programs');
-ok(mainJs.includes('AuroraForge NT100 Beta 4') && mainJs.includes('Internal build 2.1.2'), 'Electron About uses the free release identity');
+ok(mainJs.includes('AuroraForge NT100 Beta 4') && mainJs.includes('Internal build 2.1.3'), 'Electron About uses the free release identity');
 ok(!mainJs.includes('toggleDevTools'), 'normal Electron menu does not expose developer tools');
 
 const studiosHtml = read('app', 'creative-studios.html');
@@ -320,7 +320,7 @@ ok(!tutorialsHtml.includes('complete-character-modding-guide.html') && !tutorial
 ok(read('app', 'knowledgebase.html').includes('url=tutorials.html'), 'old knowledgebase link redirects to Tutorials');
 
 const aboutHtml = read('app', 'about.html');
-ok(aboutHtml.includes('v2.1.2'), 'About displays visible version 2.1.a');
+ok(aboutHtml.includes('v2.1.3'), 'About displays visible version 2.1.3');
 ok(aboutHtml.includes('Microsoft DirectXTex') && aboutHtml.includes('MIT License'), 'About credits the bundled open-source converter');
 ok(aboutHtml.includes('Public source archives are available now') && aboutHtml.includes('Some extraction and encryption research remains private'), 'About explains the current public and private source boundary');
 ok(faqHtml.includes('public source archives are available now') && faqHtml.includes('Some extraction and encryption research remains private'), 'FAQ explains the current public and private source boundary');
@@ -389,4 +389,4 @@ if (failures) {
   console.error(`\nAuroraForge NT100 verification failed with ${failures} problem(s).`);
   process.exit(1);
 }
-console.log('\nAuroraForge NT100 v2.1.a source verification passed.');
+console.log('\nAuroraForge NT100 v2.1.3 source verification passed.');

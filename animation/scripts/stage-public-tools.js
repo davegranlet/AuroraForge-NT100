@@ -42,7 +42,6 @@ const ALLOW = [
   'append-2k25-charprofiletable-entry.js',
   'append-2k25-face-textures-entry.js',
   'append-2k25-teams-entry.js',
-  'append-hide-ctrl-entry.js',
   'clips-codec/append-cutscene-entry.js',
   'clips-codec/bit-reader.js',
   'clips-codec/bit-writer.js',
@@ -93,7 +92,7 @@ const ALLOW = [
 ];
 
 // Never-ship patterns: belt-and-suspenders AFTER the allowlist (defense in depth).
-const DENY = [/tbuf/i, /yanm20-2k25/i, /20-to-2[23]/i, /bake-2k20/i, /probe/i, /rosetta/i, /harvest/i, /\.test\.js$/i, /ghidra/i];
+const DENY = [/tbuf/i, /yanm20-2k25/i, /20-to-2[23]/i, /bake-2k20/i, /probe/i, /rosetta/i, /harvest/i, /hide/i, /\.test\.js$/i, /ghidra/i];
 
 for (const f of ALLOW) {
   if (DENY.some((re) => re.test(f))) throw new Error('ALLOW/DENY conflict (fail-closed): ' + f);

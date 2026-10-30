@@ -1,3 +1,5 @@
+# Preserve exact source bytes recorded by SOURCE-SNAPSHOT.json on every platform.
+* -text
 *.exe filter=lfs diff=lfs merge=lfs -text
 *.dll filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text

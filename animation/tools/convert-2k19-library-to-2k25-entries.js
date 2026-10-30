@@ -16,7 +16,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const { buildReplacement } = require('./build-2k19-to-2k25-replace-clips');
-const { appendCutsceneEntry } = require('./clips-codec/append-cutscene-entry');
+const { appendCutsceneEntryForGame } = require('./clips-codec/append-cutscene-entry-for-game');
 const { findEntranceEntry } = require('./find-2k25-entrance-entry');
 const { locateEntranceVectors } = require('./locate-entrance-vectors');
 const { readSdbRecords } = require('./sdb-read');
@@ -184,10 +184,15 @@ function buildLibrary(options) {
       '--name-string', String(nameString),
     ], ops);
 
-    const cutsceneEdited = appendCutsceneEntry(fs.readFileSync(cutscenePath), { templateId: baseId, newId: id, newNameStringId: nameString });
-    fs.writeFileSync(cutscenePath, cutsceneEdited);
+    const cutsceneResult = appendCutsceneEntryForGame(fs.readFileSync(cutscenePath), {
+      templateId: baseId,
+      newId: id,
+      newNameStringId: nameString,
+      gameVersion: gameId,
+    });
+    fs.writeFileSync(cutscenePath, cutsceneResult.output);
 
-    results.push({ id, nameString, label, kind: motion.kind, source: motion.file, clips: path.relative(workRoot, clipsOut).replace(/\\/g, '/'), groupsReEncoded: replacement.groupsReEncoded });
+    results.push({ id, nameString, label, kind: motion.kind, source: motion.file, clips: path.relative(workRoot, clipsOut).replace(/\\/g, '/'), groupsReEncoded: replacement.groupsReEncoded, cutsceneF7: cutsceneResult.f7Repair });
     } catch (error) {
       skipped.push({ source: motion.file, reason: String(error && error.message || error) });
     }

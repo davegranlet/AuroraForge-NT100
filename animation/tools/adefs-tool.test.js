@@ -2,14 +2,15 @@
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const { encode } = require('./adefs-container');
 const { compare, inspect, printableTokens, run } = require('./adefs-tool');
 
-test('reads and compares bounded ADEF envelopes without offering a writer', () => {
-  const work = fs.mkdtempSync(path.join(os.tmpdir(), 'aurora-adefs-tool-'));
+test('legacy envelope inspection remains bounded and rejects generic writes', () => {
+  const testRoot=path.resolve(__dirname,'../../.local/test-runs');
+  fs.mkdirSync(testRoot,{recursive:true});
+  const work = fs.mkdtempSync(path.join(testRoot, 'aurora-adefs-tool-'));
   try {
     const left = path.join(work, 'left.adefs'); const right = path.join(work, 'right.adefs');
     fs.writeFileSync(left, encode(Buffer.from('clip_name\0crowd_sound\0', 'ascii')));

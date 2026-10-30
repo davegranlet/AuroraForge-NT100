@@ -4,7 +4,7 @@
   "description": "Standalone WWE 2K25 and WWE 2K26 CAK archive extractor, rebuilder, baker, and validator.",
   "main": "electron/standalone-cak-main.js",
   "author": "VikingStudios",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "private": false,
   "scripts": {
     "build:helper": "node scripts/build-cak-helper.js",

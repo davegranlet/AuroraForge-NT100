@@ -1,0 +1,85 @@
+# Aurora Forge Competitor Checkpoint Matrix
+
+Generated: 2026-09-27
+
+Purpose: turn the Aurora Forge capability map into a goal map against the workflows users currently associate with Tribute, CakeHook, and CakeTool/CakeView. This is a product planning document, not a claim that Aurora Forge uses or copies competitor source. The target is behavior parity or better, built from Aurora-owned code, documented third-party OSS, and repeatable tests.
+
+## Baseline Notes
+
+- Tribute baseline is based on public Tribute/Kofi/Patreon copy and our local reverse/workflow observations. Public copy says Tribute is a suite that automates modding, and the 2K26 post lists custom music, ring announcer slots, 732 new character slots, 25 attire slots, Auto-Bake, and a CakeView/CakeHook dependency.
+- CakeTool/CakeView baseline is based on public PWM/wiki material and our local notes. Public docs describe selecting a `_mods` folder, baking a new CAK, and re-baking after changes.
+- CakeHook baseline is treated as game-side loading/runtime support. Our local handbook describes CakeHook as game-side loading support and warns not to assume similarly named DLLs are safe or compatible.
+- Public feature/pricing pages can change. Re-verify before using this table in marketing copy.
+
+References checked:
+
+- Tribute 26 Patreon post: https://www.patreon.com/TributeModding/posts/tribute-26-is-154757792
+- Tribute Ko-fi page: https://ko-fi.com/tributemodding
+- PWM install guide: https://wiki.prowrestlingmods.io/books/wwe-2k22/page/installing-your-first-mod
+- CakeTools preview repo: https://github.com/San847/CakeTools-AlphaPreview
+
+## Status Legend
+
+| Status | Meaning |
+| --- | --- |
+| Ready | In repo, working enough to rely on after normal release validation. |
+| Partial | In repo and useful, but still has known missing flow, version, UI, or in-game proof work. |
+| Research | Evidence and tooling exist, but it is not a finished user workflow. |
+| Planned | Product goal only; code may exist in fragments but no reliable user path yet. |
+| Verify | Needs fresh 2K26/current-release confirmation before we treat it as done. |
+
+## Checkpoint Table
+
+| ID | User workflow / capability | Tribute baseline | CakeHook baseline | CakeTool / CakeView baseline | Aurora Forge current state | Status | Beta2 / NT100 checkpoint |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| CP-001 | One app home screen / launcher | Separate tool suite experience around Tribute workflows. | Separate runtime dependency. | Separate archive/bake app. | AuroraForge NT100 umbrella shell, project catalog, tool center, setup/about/docs, creative studios, prompt builders, and embedded tools are tracked. | Partial | Finish branding cleanup so every route says `AuroraForge NT100`, and hide standalone-tool framing from normal users. |
+| CP-002 | Access / unlock flow | Public pages describe supporter/Discord access. | Usually obtained/used as part of PWM runtime setup. | Public docs point users at Patreon/download gated tools. | Two-tier Patreon + Discord role verifier is restored in `Aurora-Forge-Patreon-Verifier`; desktop release unlock persistence exists. | Ready | Deploy verifier worker, retest fresh user, lapsed user, Patreon-only, Discord-only, and release-persistent unlock. |
+| CP-003 | Game-side mod loading | Depends on CakeView/CakeHook for 2K26 per public Tribute post. | Primary job: inject/runtime load custom CAKs/plugins. | Bake output needs a loader/patched game path. | Secure DataCtrlLink / CAK mod loader code, plugin runtime, diagnostics, profiles, collision checks, and 2K25-to-2K26 upgrade work are tracked. | Partial | Make 2K26 build detection exact, keep stock CAKs untouched, mount only `mods\*.cak`, and prove load order with two independent mod CAKs. |
+| CP-004 | Safe mod folder staging | Uses BakeMe / tool-generated content; exact staging varies by workflow. | Loads prepared game-side mods. | PWM guide uses `_mods` as source and creates baked CAK output. | Current rule is explicit: never overwrite stock game CAKs; stage modded CAKs only under game `mods`. | Partial | Add a hard guard in all staging paths that blocks writing over `bakedfile*.cak` outside `mods`. |
+| CP-005 | CAK extraction | Not Tribute's primary public pitch. | Not primary runtime job. | CakeTools/CakeView inspect/extract/bake CAK archives. | Aurora CAK Foundry extracts CAKs, reads catalogs, verifies coverage, supports raw extraction and protected payload handling. | Ready | Add one-click "inspect before bake" path in NT100 UI with checksum/export report. |
+| CP-006 | CAK bake / rebuild | Tribute Auto-Bake silently communicates with CakeView per public post. | Loads what the bake produces. | User selects `_mods` / BakeMe style folder and bakes a CAK. | Foundry builds CAKs from BakeMe folders, supports CLI, reopen verification, raw storage fallback, and current successful v1.5.1 bake proof. | Ready | Wire "BakeMe -> verified CAK -> stage to mods" into one guarded NT100 flow. |
+| CP-007 | Auto-Bake after edits | Public Tribute post lists Auto-Bake config support. | Runtime consumes the baked result. | CakeView is the bake backend in that flow. | Bake orchestrator and Foundry CLI exist; automatic watch/rebuild UX is not finished. | Planned | Add optional project watcher: changed BakeMe files trigger scan, collision check, bake, reopen verify, then prompt to stage. |
+| CP-008 | Bake validation / reopen proof | User-visible validation depends on tool behavior. | Runtime failure is often discovered at game launch. | CakeView reports successful bake, but our notes show false-success cases can happen with bad/expanded payloads. | Foundry has verification scripts, payload verification, catalog coverage, raw hash roundtrip, and bad-bake detection work. | Ready | Require verified/reopened=true before any stage button enables. |
+| CP-009 | CAK collision detection | Not clearly public as a standalone Tribute feature. | Runtime can crash/conflict if duplicate paths collide. | Multiple baked archives can conflict if they contain the same virtual assets. | Loader and Foundry have `cak_collision` / collision-service code and tests. | Partial | Surface conflicts in the UI before stage, especially duplicate `_textures.tdb` and duplicate registry/table payloads. |
+| CP-010 | `_textures.tdb` strategy | Texture workflows rely on the existing ecosystem. | Runtime may load whichever CAK wins by order. | Bake tools may generate or include texture DBs depending on input. | We deliberately skipped baking `_textures.tdb` for the v1.5.1 test because multiple modded copies can conflict; texture replacement can work without it. | Research | Define one policy: omit per-mod `_textures.tdb` by default, allow advanced single-aggregate mode only with explicit warning. |
+| CP-011 | Texture / DDS replacement | Supports modded content workflows indirectly. | Loads resulting archives. | CakeTool/CakeView bakes DDS-containing folders. | DDS converter, texture helpers, texture DB awareness, texconv, and Foundry texture bake support are tracked. | Partial | Prove 2K26 texture replacement in-game from `mods\AuroraTestTexture.cak` without `_textures.tdb` conflicts. |
+| CP-012 | Character slot creation | Public Tribute 26 post claims 732 new character slots. | Loads archives needed by character mods. | Bakes the generated files. | Character/CAW studio pages, table probes, character mapping research, and BakeMe writer pieces exist. | Research | Build a tested NT100 "new character slot" writer with file diff proof and one in-game slot proof. |
+| CP-013 | Attire slot expansion | Public Tribute 26 post claims 25 attire slots per vanilla/new character. | Loads archive output. | Bakes attire model/texture payloads. | Gear/attire studio UI exists; low-level attire-slot writer is not finished as a supported flow. | Planned | Implement attire slot editor, collision checks, model/texture path validation, and rollback manifest. |
+| CP-014 | Custom music | Public Tribute 26 post lists custom music and 2,500 music slots. | Runtime can support music loader style plugins. | Not the main archive-only role, but music assets may be baked/managed separately. | Custom music loader projects, Wwise/BNK/WEM tooling, wwiser utilities, and bank builder tests are tracked; current 2K26 music loader was disabled during test because no custom music was needed. | Partial | Re-enable only when the project has music assets; add "off by default" plugin toggle and 2K26 smoke test. |
+| CP-015 | Ring announcer slots | Public Tribute 26 post lists 2,500 announcer slots. | Runtime may be required for audio serving. | Archive tooling can package needed assets. | Audio database/tooling exists, but announcer slot UX is not a complete supported flow. | Planned | Add announcer ID registry view, import workflow, and in-game proof on a clean 2K26 install. |
+| CP-016 | GFX / titantron / movie IDs | Tribute ecosystem tutorials commonly cover GFX/media assignment. | Runtime loads supporting CAKs. | Archive tooling packages media assets. | Knowledgebase/source includes movie/music/tag-team/titantron ID references via imported data and app handbook surfaces; no polished NT100 editor yet. | Planned | Build a media assignment editor with ID lookup, path verifier, and bake/stage proof. |
+| CP-017 | Arena / belt / prop mods | Tribute/community workflows cover these through IDs and baked payloads. | Loads resulting archives. | Bakes folder payloads. | Arena, belt, prop, and branding studio pages exist; low-level game table writers are uneven. | Planned | Make a first-class arena/belt package wizard using our own writers only, plus Blender/external art tools where needed. |
+| CP-018 | Entrance / victory list editing | Tribute workflows can add/edit entrance/victory records. | Loads resulting CAKs. | Bakes edited JSFB/SDB payloads. | EntranceListData, VictoryListData, CutsceneNoRegistry, and SDB readers/writers exist with tests and 14000 research. | Partial | Promote the proven writers into a supported NT100 screen and run one current 2K26 end-to-end test. |
+| CP-019 | True imported motion conversion | Tribute workflows observed often clone/reference existing motion entries; public feature claims do not prove true cross-game motion conversion. | Loads final assets. | Bakes `.clips` / animation payloads. | 2K19 -> 2K20/2K25/2K26 animation research, YANM/ACTS/EVD/FOP readers/writers, group90 encoding, `.clips` staging, and conversion prototypes are tracked. | Research | Finish one playable imported 2K19 motion in 2K26 with converter proof, archive proof, and user-run video proof. |
+| CP-020 | SDB string/name editing | Tribute-created packages include SDB changes in observed diffs. | Loads final package. | Bakes edited SDB. | SDB read/write/summary tooling exists; newer non-contiguous payload layouts were measured and patched in research paths. | Partial | Make SDB append/edit a reusable service with layout regression fixtures and NT100 UI integration. |
+| CP-021 | Cutscene registry append | Tribute-created packages can alter cutscene registry bindings. | Loads final package. | Bakes edited registry. | Pointer-based CutsceneNoRegistry finder/appender supports measured layouts and has validation work. | Partial | Add current 2K26 fixtures and a public "registry append proof" report before staging. |
+| CP-022 | BakeMe orchestration | Tribute produces BakeMe-style project trees. | Loads the final CAK. | CakeView bakes the tree. | `bakeme-orchestrator.js` copies full trees, applies allowlisted edits, and writes proof. | Ready | Connect orchestrator to project manager so every wizard emits a reproducible proof manifest. |
+| CP-023 | Mod manifest / rollback | Not clearly public as a Tribute core feature. | Runtime config and plugin state matter. | Archive output must be manually managed by users in many flows. | Mod manifest manager, operation journal, secure loader manager, release manager, and rollback docs exist. | Partial | Add "disable mod", "restore previous staged set", and "export support bundle" buttons. |
+| CP-024 | Plugin/addon runtime | Tribute depends on external runtime pieces. | CakeHook-like loader is the runtime reference point. | Not primarily plugin runtime. | DataCtrlLink plugin runtime, addon registry, plugin interface, music loader, mod loader, diagnostics, and status messages are tracked. | Partial | Standardize plugin discovery under `mods\plugins`, show enabled/disabled state, and block incompatible game versions. |
+| CP-025 | External model workflow | Tribute/PWM ecosystem often relies on Blender/3DSMax/model tooling outside the app. | Loads packaged result. | Bakes model/texture payloads. | Blender animation tools, maxscripts, creator studio UI, face/gear/lmask studios, and modeling references are tracked. | Partial | Keep Blender as allowed external tool, but make import/export handoff owned by NT100 with clear validation. |
+| CP-026 | Tutorials / onboarding | Existing external ecosystem tutorials are scattered and version-specific. | Loader setup docs vary by version. | PWM wiki covers basic CakeTools setup for older games. | Tutorial section was replaced/targeted for rebuild; app handbook and docs exist but need current NT100 flow. | Planned | Replace old tutorial content with "Rebuilding soon" graphic plus current minimal install/bake/stage guide. |
+| CP-027 | Diagnostics / logs | Users often diagnose by Discord screenshots and trial/error. | Runtime logs are critical. | Bake logs matter. | Loader diagnostics, operation journal, verifier tests, crash/session notes, and audit docs are tracked. | Partial | Add a single "Send support bundle" export with entitlement state redacted, loader log, bake proof, and staged mod list. |
+| CP-028 | Version profiles | Tribute has yearly versions; public post says 26 is for WWE 2K26. | Loader must match game version. | Cake archives differ by game/version. | Profiles exist for 2K25 and current 2K26 upgrade work; animation/converter tools cover 2K19/20/25/26 research. | Partial | Make game/version profile a hard project setting and refuse mismatched Tribute 25/26-style package assumptions. |
+| CP-029 | Release packaging / checksums | Public tool releases distributed through supporter/community channels. | Runtime releases must match game versions. | Tool binaries distributed separately. | Release docs, converter release assets, SHA256SUMS, package scripts, website/press materials, and private/public repo split plans exist. | Partial | Produce one NT100 Beta2 release manifest with build ID propagated through every section/tool. |
+| CP-030 | Source/provenance separation | Competitor source is not used. | CakeHook source not used. | Nenkai Bakery/CakeTool OSS is tracked with notices where used. | FAQ/provenance docs state no Tribute/PWM/CakeHook source copied; CakeTool/Bakery reference is isolated under MIT notices for archive compatibility. | Ready | Keep provenance notices in every release and mark owner-only/compiled-only areas clearly. |
+
+## Immediate Goal Stack
+
+| Priority | Checkpoint | Why it matters now | Done when |
+| --- | --- | --- | --- |
+| P0 | CP-003, CP-004, CP-009 | If load/stage/collision rules are wrong, every test lies. | Fresh 2K26 install loads two separate mod CAKs from `mods` without stock CAK changes or path conflicts. |
+| P0 | CP-006, CP-008, CP-022 | Our core advantage is a verified build, not a blind bake. | NT100 can scan, bake, reopen, verify, and write proof for the v1.5.1/v1.6.0 BakeMe cases. |
+| P1 | CP-018, CP-020, CP-021 | Entrance/victory/SDB/cutscene writers are the bridge between "archive works" and "game sees the content." | One current 2K26 package shows expected menu/list binding in-game. |
+| P1 | CP-010, CP-011 | Texture replacement broke/conflicted when `_textures.tdb` handling was wrong. | Texture replacement works from a separate mod CAK without baking a conflicting `_textures.tdb`. |
+| P1 | CP-002, CP-029 | Beta2 release must unlock correctly and identify itself everywhere. | Fresh release authenticates once, persists release entitlement, and every page/tool reports the same build ID. |
+| P2 | CP-012, CP-013, CP-014, CP-015, CP-016 | These are the visible "replace Tribute workflow" features users will judge immediately. | Each has a guided UI, bake proof, rollback path, and at least one clean 2K26 smoke test. |
+| P2 | CP-019 | This is the flagship "not just cloning templates" feature. | One real imported motion converts, bakes, loads, and plays in game with documented proof. |
+| P3 | CP-026, CP-027 | Support load drops when onboarding and diagnostics are not vague. | Current guides and support bundle export exist inside NT100. |
+
+## Working Rules For This Goal Map
+
+- Do not copy Tribute, PWM, or CakeHook source.
+- Do not overwrite stock game CAKs.
+- Do not ship a staged mod unless bake verification and reopen verification pass.
+- Treat CakeTool/Bakery code as third-party OSS reference/backend only where license/provenance is documented.
+- Anything marked Partial or Research needs a fresh WWE 2K26 clean-install proof before public release claims.

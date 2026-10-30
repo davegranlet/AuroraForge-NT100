@@ -20,6 +20,7 @@ function findPayloads(root, current = root, payloads = []) {
   for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
     const fullPath = path.join(current, entry.name);
     const relativePath = path.relative(root, fullPath).replace(/\\/g, '/');
+    if (relativePath.toLowerCase() === 'hide/hidectrldata.hidelink.jsfb') throw new Error('HideCtrlData.hidelink.jsfb is protected and must not be baked.');
     if (entry.isSymbolicLink()) throw new Error(`Cannot bake this folder: symbolic link “${relativePath}” is not allowed. Copy the real file into the BakeMe folder instead.`);
     if (entry.isDirectory()) findPayloads(root, fullPath, payloads);
     else if (entry.isFile() && !BOOKKEEPING_FILES.has(relativePath.toLowerCase())) payloads.push({ fullPath, relativePath, gamePath: normaliseGamePath(relativePath) });

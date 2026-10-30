@@ -12,6 +12,9 @@ files:
   - package.json
   - "!app/tools/sl/**/*"
   - "!app/tools/entry-studio/tools/**/*"
+  - "!app/tools/animation-converter/**/*"
+  - "!app/tools/source-library/**/*"
+  - "!**/HideCtrlData.hidelink.jsfb"
   - "!app/_md-search/**/*"
   - "!**/*.map"
 

@@ -20,7 +20,7 @@
 //   - SDB files stay as the template's decrypted copies (2K26 CAK SDBs are
 //     container-encrypted; the decrypted base is the proven working source).
 //   - Known modified files are kept: CAMMoveData (custom moves), RA lines,
-//     TeamsTable, Soundtracks, EtcDesignData, NameplateData, HideCtrlData.
+//     TeamsTable, Soundtracks, EtcDesignData, NameplateData.
 //
 // Output (stdout, JSON): { out, anchorId, refreshed: [...], kept: [...], skipped: [...] }
 
@@ -81,11 +81,12 @@ const KEEP = new Set([
   'audio/ra_lines_ps/directory_listing.adb2',
   'createshow/etcdesigndata.jsfb',
   'createshow/nameplatedata.jsfb',
-  'hide/hidectrldata.hidelink.jsfb',
   'movedata/cammovedata.jsfb',
   'msc/global/soundtracks.jsfb',
   'stable/teamstable.jsfb',
 ]);
+
+const FORBIDDEN = new Set(['hide/hidectrldata.hidelink.jsfb']);
 
 function arg(argv, name, fallback = undefined) {
   const i = argv.indexOf(name);
@@ -124,6 +125,10 @@ function main() {
 
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.cpSync(template, out, { recursive: true, preserveTimestamps: true });
+  for (const rel of FORBIDDEN) {
+    const protectedPath = path.join(out, rel);
+    if (fs.existsSync(protectedPath)) fs.rmSync(protectedPath, { force: true });
+  }
 
   const wanted = new Map(); // fnv hash -> relative path
   const kept = [];
@@ -131,6 +136,7 @@ function main() {
     const rel = file.slice(out.length + 1).replace(/\\/g, '/');
     if (/aurora-library-proof\.json$/i.test(rel)) continue;
     const lower = rel.toLowerCase();
+    if (FORBIDDEN.has(lower)) continue;
     if (/\.(sdb|dds|tex)$/i.test(lower) || lower.startsWith('animation/victory/')) { kept.push(rel); continue; }
     if (KEEP.has(lower)) { kept.push(rel); continue; }
     wanted.set(fnv1a64(lower), rel);
@@ -267,6 +273,9 @@ function main() {
   if (!candidates.length) throw new Error('no stock anchor id found in victory+entrance+cutscene tables');
   const anchorId = candidates[0];
   if (!findEntranceEntry(entranceBuffer, anchorId)) throw new Error('anchor entrance record missing after refresh');
+  for (const rel of FORBIDDEN) {
+    if (fs.existsSync(path.join(out, rel))) throw new Error(`refusing to produce skeleton containing protected asset: ${rel}`);
+  }
 
   const victoryDir = path.join(out, 'Animation', 'Victory');
   const clipFiles = fs.existsSync(victoryDir) ? fs.readdirSync(victoryDir).filter((n) => /^\d+\.clips$/i.test(n)) : [];

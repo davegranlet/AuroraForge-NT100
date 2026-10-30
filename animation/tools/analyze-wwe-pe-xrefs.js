@@ -26,6 +26,7 @@ function parsePe(buf) {
       rva: u32(buf, sectionOff + 12),
       rawSize: u32(buf, sectionOff + 16),
       raw: u32(buf, sectionOff + 20),
+      characteristics: u32(buf, sectionOff + 36),
     });
   }
   return { imageBase, sections };
@@ -141,6 +142,7 @@ function analyze(file) {
   }
 }
 
+module.exports = { parsePe, rvaToOffset, offsetToRva, findAll };
 if (require.main === module) {
   const file = process.argv[2];
   if (!file) {

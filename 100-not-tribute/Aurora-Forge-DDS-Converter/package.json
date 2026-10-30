@@ -1,0 +1,16 @@
+{
+  "name": "aurora-forge-dds-converter",
+  "version": "1.7.5",
+  "description": "Standalone WWE texture conversion workflow from Aurora Forge.",
+  "main": "electron/standalone-dds-main.js",
+  "author": "VikingStudios",
+  "license": "GPL-3.0-or-later",
+  "private": false,
+  "scripts": {
+    "verify": "node scripts/verify-dds-converter.js"
+  },
+  "devDependencies": {
+    "electron": "43.2.0"
+  }
+}
+

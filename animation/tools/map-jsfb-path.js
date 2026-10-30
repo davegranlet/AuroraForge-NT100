@@ -15,10 +15,14 @@ function i32(b, o) { return b.readInt32LE(o); }
 function tableAt(b, off) {
   if (off < 0 || off + 4 > b.length) return null;
   const vt = off - i32(b, off);
-  if (vt < 0 || vt >= b.length) return null;
+  if (vt < 0 || vt + 4 > b.length) return null;
   const vbs = u16(b, vt);
   const obs = u16(b, vt + 2);
-  if (vbs < 4 || vbs > 65535 || obs < 4 || obs > 65535) return null;
+  if (vbs < 4 || vbs % 2 || vt + vbs > b.length || obs < 4 || off + obs > b.length) return null;
+  for (let i = 0; i < (vbs - 4) / 2; i++) {
+    const rel = u16(b, vt + 4 + i * 2);
+    if (rel !== 0 && rel >= obs) return null;
+  }
   return { off, vt, vbs, obs };
 }
 function isTable(b, off) { return tableAt(b, off) !== null; }
@@ -39,7 +43,10 @@ function findPath(b, off, target, path, seen) {
     const rel = u16(b, vt + 4 + i * 2);
     if (!rel) continue;
     const fo = off + rel;
+    // A scalar field can be narrower than a FlatBuffer uoffset.
+    if (fo + 4 > off + t.obs) continue;
     const targetOff = fo + u32(b, fo);
+    if (targetOff < 0 || targetOff + 4 > b.length) continue;
     if (isTable(b, targetOff)) {
       const sub = findPath(b, targetOff, target, path.concat([{ kind: 'field', field: i, at: fo, target: targetOff }]), seen);
       if (sub) return sub;
@@ -54,7 +61,9 @@ function findPath(b, off, target, path, seen) {
         // maybe target is in a table pointed to by a slot
         for (let k = 0; k < len; k++) {
           const slot = targetOff + 4 + k * 4;
+          if (slot + 4 > b.length) break;
           const e = slot + u32(b, slot);
+          if (e < 0 || e + 4 > b.length) continue;
           if (isTable(b, e)) {
             const sub = findPath(b, e, target, path.concat([{ kind: 'field', field: i, at: fo, target: targetOff }, { kind: 'vector', off: targetOff, count: len, index: k }]), seen);
             if (sub) return sub;

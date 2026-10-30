@@ -1,0 +1,136 @@
+
+C:\SteamLibrary\steamapps\common\WWE 2K26\WWE2K26_x64.exe:	file format coff-x86-64
+
+Disassembly of section .arch:
+
+0000000140ed1dd0 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ>:
+14280afc0: 27                          	<unknown>
+14280afc1: 02 0f                       	addb	(%rdi), %cl
+14280afc3: 93                          	xchgl	%ebx, %eax
+14280afc4: e2 95                       	loop	0x14280af5b <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x193918b>
+14280afc6: 5f                          	popq	%rdi
+14280afc7: 78 6b                       	js	0x14280b034 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x1939264>
+14280afc9: 94                          	xchgl	%esp, %eax
+14280afca: e0 f3                       	loopne	0x14280afbf <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x19391ef>
+14280afcc: 0f 81 32 c7 27 01           	jno	0x143a87704
+14280afd2: d4                          	<unknown>
+14280afd3: 14 80                       	adcb	$-0x80, %al
+14280afd5: 55                          	pushq	%rbp
+14280afd6: 2a a2 0f 85 68 2e           	subb	0x2e68850f(%rdx), %ah
+14280afdc: cc                          	int3
+14280afdd: cc                          	int3
+14280afde: cc                          	int3
+14280afdf: cc                          	int3
+14280afe0: 48 89 5c 24 10              	movq	%rbx, 0x10(%rsp)
+14280afe5: 57                          	pushq	%rdi
+14280afe6: 48 83 ec 40                 	subq	$0x40, %rsp
+14280afea: 48 8b 05 4f f0 e6 01        	movq	0x1e6f04f(%rip), %rax   # 0x14467a040
+14280aff1: 48 33 c4                    	xorq	%rsp, %rax
+14280aff4: 48 89 44 24 30              	movq	%rax, 0x30(%rsp)
+14280aff9: 48 8b f9                    	movq	%rcx, %rdi
+14280affc: e8 0f ff ff ff              	callq	0x14280af10 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x1939140>
+14280b001: 65 48 8b 04 25 58 00 00 00  	movq	%gs:0x58, %rax
+14280b00a: 48 8d 54 24 20              	leaq	0x20(%rsp), %rdx
+14280b00f: bb c0 01 00 00              	movl	$0x1c0, %ebx            # imm = 0x1C0
+14280b014: 48 03 18                    	addq	(%rax), %rbx
+14280b017: 48 89 0b                    	movq	%rcx, (%rbx)
+14280b01a: 48 8d 4c 24 28              	leaq	0x28(%rsp), %rcx
+14280b01f: e8 35 fe 7f 1c              	callq	0x15f00ae59
+14280b024: 90                          	nop
+14280b025: 48 8b 44 24 20              	movq	0x20(%rsp), %rax
+14280b02a: 48 8b cf                    	movq	%rdi, %rcx
+14280b02d: 48 89 47 58                 	movq	%rax, 0x58(%rdi)
+14280b031: 48 8b 07                    	movq	(%rdi), %rax
+14280b034: ff 50 08                    	callq	*0x8(%rax)
+14280b037: 33 c0                       	xorl	%eax, %eax
+14280b039: 48 c7 03 00 00 00 00        	movq	$0x0, (%rbx)
+14280b040: 48 8b 4c 24 30              	movq	0x30(%rsp), %rcx
+14280b045: 48 33 cc                    	xorq	%rsp, %rcx
+14280b048: e8 23 a3 d2 00              	callq	0x143535370 <?SetFileLocationResolver@StreamMgr@AK@@YAXPEAVIAkFileLocationResolver@12@@Z+0x437d70>
+14280b04d: 48 8b 5c 24 58              	movq	0x58(%rsp), %rbx
+14280b052: 48 83 c4 40                 	addq	$0x40, %rsp
+14280b056: 5f                          	popq	%rdi
+14280b057: c3                          	retq
+14280b058: cc                          	int3
+14280b059: cc                          	int3
+14280b05a: cc                          	int3
+14280b05b: cc                          	int3
+14280b05c: cc                          	int3
+14280b05d: cc                          	int3
+14280b05e: cc                          	int3
+14280b05f: cc                          	int3
+14280b060: 65 48 8b 04 25 58 00 00 00  	movq	%gs:0x58, %rax
+14280b069: 41 b8 91 01 00 00           	movl	$0x191, %r8d            # imm = 0x191
+14280b06f: 48 8b 10                    	movq	(%rax), %rdx
+14280b072: 0f b6 01                    	movzbl	(%rcx), %eax
+14280b075: 41 88 04 10                 	movb	%al, (%r8,%rdx)
+14280b079: c3                          	retq
+14280b07a: cc                          	int3
+14280b07b: cc                          	int3
+14280b07c: cc                          	int3
+14280b07d: cc                          	int3
+14280b07e: cc                          	int3
+14280b07f: cc                          	int3
+14280b080: e9 bb a9 c2 0f              	jmp	0x152435a40
+14280b085: 0f 80 56 cb 74 00           	jo	0x142f57be1 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x2085e11>
+14280b08b: cc                          	int3
+14280b08c: ef                          	outl	%eax, %dx
+14280b08d: 20 cc                       	andb	%cl, %ah
+14280b08f: 39 59 35                    	cmpl	%ebx, 0x35(%rcx)
+14280b092: 76 fc                       	jbe	0x14280b090 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x19392c0>
+14280b094: 53                          	pushq	%rbx
+14280b095: e9 43 11 a9 00              	jmp	0x14329c1dd <?SetFileLocationResolver@StreamMgr@AK@@YAXPEAVIAkFileLocationResolver@12@@Z+0x19ebdd>
+14280b09a: e9 da a8 cb 01              	jmp	0x1444c5979 <D3D12SDKVersion+0x7d6499>
+14280b09f: 9f                          	lahf
+14280b0a0: 0c cc                       	orb	$-0x34, %al
+14280b0a2: e9 d2 b6 26 ff              	jmp	0x141a76779 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0xba49a9>
+14280b0a7: cc                          	int3
+14280b0a8: ac                          	lodsb	(%rsi), %al
+14280b0a9: e9 ea d6 08 01              	jmp	0x143898798
+14280b0ae: c0 05 e9 a5 4c e8 00        	rolb	$0x0, -0x17b35a17(%rip) # 0x12acd569e
+14280b0b5: ec                          	inb	%dx, %al
+14280b0b6: 45 cc                       	int3
+14280b0b8: eb 93                       	jmp	0x14280b04d <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x193927d>
+14280b0ba: e9 0b 69 4e 00              	jmp	0x142cf19ca <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x1e1fbfa>
+14280b0bf: ff 0f                       	decl	(%rdi)
+14280b0c1: 86 13                       	xchgb	%dl, (%rbx)
+14280b0c3: 67 df 00                    	filds	(%eax)
+14280b0c6: d0 c0                       	rolb	%al
+14280b0c8: 54                          	pushq	%rsp
+14280b0c9: f7 63 f0                    	mull	-0x10(%rbx)
+14280b0cc: c2 8a e3                    	retq	$-0x1c76                # imm = 0xE38A
+14280b0cf: 0f 8a 38 f0 30 02           	jp	0x144b1a10d <?m_pStreamMgr@IAkStreamMgr@AK@@1PEAV12@EA+0x31e7dd>
+14280b0d5: c2 fd 54                    	retq	$0x54fd                 # imm = 0x54FD
+14280b0d8: f3 50                       	rep		pushq	%rax
+14280b0da: 41 56                       	pushq	%r14
+14280b0dc: 5b                          	popq	%rbx
+14280b0dd: eb c4                       	jmp	0x14280b0a3 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x19392d3>
+14280b0df: e9 2f ce 7c ff              	jmp	0x141fd7f13 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x1106143>
+14280b0e4: 22 95 af 57 cc 82           	andb	-0x7d33a851(%rbp), %dl
+14280b0ea: e9 da 41 42 00              	jmp	0x142c2f2c9 <?Bytes@WriteBytesMem@AK@@UEBAPEAEXZ+0x1d5d4f9>
+14280b0ef: 53                          	pushq	%rbx
+14280b0f0: 24 bb                       	andb	$-0x45, %al
+14280b0f2: 0f 88 f2 1e fd 00           	js	0x1437dcfea <?SetFileLocationResolver@StreamMgr@AK@@YAXPEAVIAkFileLocationResolver@12@@Z+0x6df9ea>
+14280b0f8: 0f 8c 67 c3 05 cc           	jl	0x10e867465
+14280b0fe: cc                          	int3
+14280b0ff: cc                          	int3
+14280b100: cc                          	int3
+14280b101: cc                          	int3
+14280b102: cc                          	int3
+14280b103: cc                          	int3
+14280b104: cc                          	int3
+14280b105: cc                          	int3
+14280b106: cc                          	int3
+14280b107: cc                          	int3
+14280b108: cc                          	int3
+14280b109: cc                          	int3
+14280b10a: cc                          	int3
+14280b10b: cc                          	int3
+14280b10c: cc                          	int3
+14280b10d: cc                          	int3
+14280b10e: cc                          	int3
+14280b10f: cc                          	int3
+14280b110: 40 53                       	pushq	%rbx
+14280b112: 48 83 ec 60                 	subq	$0x60, %rsp
+14280b116: 48 8b 05 23 ef e6 01        	movq	0x1e6ef23(%rip), %rax   # 0x14467a040
+14280b11d: 48 33 c4                    	xorq	%rsp, %rax

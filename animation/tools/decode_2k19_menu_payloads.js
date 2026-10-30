@@ -8,7 +8,7 @@ const { execFileSync } = require('child_process');
 const root = process.env.AURORA_WWE2K19_DIR;
 if (!root) throw new Error('Set AURORA_WWE2K19_DIR to your local WWE 2K19 installation.');
 const projectRoot = path.resolve(__dirname, '..');
-const helper = path.resolve(__dirname, '../../AuroraForge_WWE_PC-Game_Modding_Tool/app/tools/pac19-helper/AuroraPac19Helper.exe');
+const helper = path.resolve(__dirname, '..', '..', 'umbrella-app', 'app', 'tools', 'pac19-helper', 'AuroraPac19Helper.exe');
 const oodle = path.join(root, 'oo2core_6_win64.dll');
 const outputRoot = path.join(projectRoot, 'analysis', '2k19-menu-payloads', 'decoded');
 

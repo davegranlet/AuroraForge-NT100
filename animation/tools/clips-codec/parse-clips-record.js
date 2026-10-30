@@ -2,19 +2,25 @@
 // Parses a full .clips record's group90 stream into per-track per-group
 // timing state (native bone walk order: slots 0-2 then 3-5, chunked in 3s).
 const fs = require('node:fs');
-const { parseFile } = require('../clips-layout');
+const { parse, parseFile } = require('../clips-layout');
 const { BitReader } = require('./bit-reader');
 const { parseTimingGroup } = require('./parse-timing-group');
 
-function parseClipsRecord(clipsPath, recordIndex) {
-  const parsed = parseFile(clipsPath);
+function parseClipsRecordBuffer(file, recordIndex) {
+  const parsed = parse(file);
   const rec = parsed.records[recordIndex];
+  if (!rec) throw new Error('clips record index is out of range');
   const group = rec.sections.find(s => s.name === 'group90');
-  const file = fs.readFileSync(clipsPath);
   const base = rec.offset + parseInt(group.relativeOffset, 16);
   const stream = file.subarray(base, base + group.bytes);
   const totalBits = group.bytes * 8;
-  const perTrack = rec.raw.group78.length / rec.trackIdentifiers.length;
+  // Six descriptors describe each bone's position/rotation. Facial extra
+  // descriptors follow that prefix and are separate scalar channels; dividing
+  // all descriptors by the bone count silently mixed the two layouts.
+  const perTrack = 6;
+  if (rec.raw.group78.length !== rec.trackIdentifiers.length * perTrack) {
+    throw new Error('Extra/non-bone descriptors require the facial-extra-layout reader; cannot divide them across bone tracks');
+  }
   const rd = new BitReader(stream);
   const bones = [];
   if (group.count > 0) {
@@ -35,6 +41,10 @@ function parseClipsRecord(clipsPath, recordIndex) {
   return { rec, group, totalBits, consumed: rd.pos, bones, file, base };
 }
 
+function parseClipsRecord(clipsPath, recordIndex) {
+  return parseClipsRecordBuffer(fs.readFileSync(clipsPath), recordIndex);
+}
+
 if (require.main === module) {
   try {
     if (!process.argv[2]) throw new Error('Usage: node tools/clips-codec/parse-clips-record.js <file.clips> [record]');
@@ -53,4 +63,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { parseClipsRecord };
+module.exports = { parseClipsRecord, parseClipsRecordBuffer };

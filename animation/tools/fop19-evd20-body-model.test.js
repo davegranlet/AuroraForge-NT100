@@ -22,11 +22,9 @@ const {
 } = require('./fop19-evd20-body-model');
 
 const pairs = [
-  ['6100', 'D:\\AuroraForge-Aug26\\_work\\2k19-victory-6100-event\\00_0CE8FE35827FD8DE.unpacked.0fop'],
-  ['6101', 'D:\\AuroraForge-Aug26\\_work\\2k19-victory-6101-event\\00_0232F66D779E61F2.unpacked.0fop'],
-  ['6102', 'D:\\AuroraForge-Aug26\\_work\\2k19-victory-6102-event\\00_80CEF2F0274B4343.unpacked.0fop'],
+  ...['6100', '6101', '6102'].map(id => [id, require('./resolve-2k19-extract-path').resolve2k19ExtractPath(`_work/${id}/${({6100:'00_0CE8FE35827FD8DE',6101:'00_0232F66D779E61F2',6102:'00_80CEF2F0274B4343'})[id]}.unpacked.0fop`)]),
 ];
-const evdRoot = 'D:\\AuroraForge-Aug26\\Extracted Files\\2k20\\Root\\Animation\\Victory';
+const evdRoot = 'D:\\forge-files\\Extracted Files\\2k20\\Root\\Animation\\Victory';
 
 function bodyAtIndex(fopBuffer, evdBuffer, index) {
   const fop = readFop19(fopBuffer);

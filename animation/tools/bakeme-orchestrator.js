@@ -234,12 +234,7 @@ function applyBakeMeConfig(config) {
   }
 
   if (config.hidemotion) {
-    const { relativePath, section, templateIndex, newMotionId } = config.hidemotion;
-    const { appendHideMotionEntry, locateSections } = require('./append-hide-ctrl-entry');
-    applyBufferTool(relativePath, 'hidemotion', (source) => appendHideMotionEntry(source, { section, templateIndex, newMotionId }));
-    const edited = fs.readFileSync(path.join(outputBakeMe, relativePath));
-    const sections = locateSections(edited).sections;
-    operations.push({ type: 'hidemotion-verify', relativePath, report: { count: sections[section].vecInfo.count } });
+    throw new Error('hidemotion is disabled: HideCtrlData.hidelink.jsfb is protected and must not be modified');
   }
 
   const after = inventory(outputBakeMe);

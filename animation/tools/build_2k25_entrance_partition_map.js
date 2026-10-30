@@ -4,7 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { analyzeClips } = require('../../AuroraForge_WWE_PC-Game_Modding_Tool/scripts/analyze-2k26-animation-pair');
+const { analyzeClips } = require('./analyze-2k26-animation-pair');
 
 const PHASES = [
   { pairId: '1000100', label: 'stage' },

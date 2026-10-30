@@ -7,6 +7,26 @@
 - One letter per shipped build. The version appears in the app (About / build chip / manifest), in every download filename, and in this file.
 - This file is the map: find the version on your download, find it here, see exactly what that build contains.
 
+## 2.1.3 — 2026-10-30
+
+Maintenance release for the 2.1.a / Beta 4 line.
+
+- **Animation source update:** new and revised 2K26 victory/entrance tooling, ADefs file and payload helpers, pair-asset builders, source body and camera clip builders, facial layout and dictionary readers, FOP19 readers/models, SDB 2K26 index handling, victory registration and fidelity checks, YAMM19 reading, and additional PE/Ghidra analysis utilities. Modified clips layout, conversion, cutscene F7, skeleton refresh, and SDB tools are included. The 2K26 victory framing issue remains an open research item; this release does not claim it is fixed.
+- **New and updated tool source:** WWE 2K19 PAC Tools, Custom Music Loader (2K25 and 2K26), DDS Converter, Entry Studio public/server split, and the latest CAK Foundry source.
+- **Loaders:** Secure DataCtrlLink 2K25, the Aurora CAK Mod Loader and its 2K25 variant, and additional Secure DataCtrlLink 2K26 tests/scripts.
+- **Licensing and protection:** CAK Foundry is now GPL-3.0-or-later, matching the main application. The BakeMe validator rejects protected HideCtrlData entitlement payloads.
+- **Packaging:** Windows NSIS installer via electron-builder with the existing GitHub auto-update path; Linux x64 tar.gz via the native packager fallback.
+- **Source downloads:** public source archives are regenerated for 2.1.3. Game data, binaries, private research, generated decompilation output, and website source remain excluded.
+
+Artifacts for 2.1.3:
+
+```
+AuroraForge-NT100-2.1.3-Windows-x64-Setup.exe
+AuroraForge-NT100-2.1.3-Linux-x64.tar.gz
+```
+
+Hashes are published in `SHA256SUMS.txt` alongside the downloads.
+
 ## 2.0 — 2026-10-01
 
 First build on the 2.0 line. Contains the entire Oct 1 work day:

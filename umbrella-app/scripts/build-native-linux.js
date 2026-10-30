@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const root = path.join(__dirname, '..');
 const appFolder = path.join(root, 'dist', 'AuroraForge NT100-linux-x64');
 const releaseDir = path.join(root, 'portable-release');
-const archiveName = 'AuroraForge-NT100-2.1.a-Linux-x64.tar.gz';
+const archiveName = 'AuroraForge-NT100-2.1.3-Linux-x64.tar.gz';
 const archivePath = path.join(releaseDir, archiveName);
 
 function run(command, args) {
@@ -23,10 +23,10 @@ function run(command, args) {
 
 run(process.execPath, ['scripts/prepare-runtime-staging.js']);
 const packager = path.join(root, 'node_modules', '.bin', process.platform === 'win32' ? 'electron-packager.cmd' : 'electron-packager');
-run(packager, ['build/runtime-staging', 'AuroraForge NT100', '--platform=linux', '--arch=x64', '--out=dist', '--overwrite', '--asar.unpackDir=app/tools', '--icon=app/assets/img/app-icon-256.png', '--app-version=2.0', '--build-version=2.0', '--extra-resource=build/library/sl']);
+run(packager, ['build/runtime-staging', 'AuroraForge NT100', '--platform=linux', '--arch=x64', '--out=dist', '--overwrite', '--asar.unpackDir=app/tools', '--icon=app/assets/img/app-icon-256.png', '--app-version=2.1.3', '--build-version=2.1.3', '--extra-resource=build/library/sl']);
 
 const readme = [
-  'AuroraForge NT100 2.1.a (Beta 4) - Native Linux x64', '',
+  'AuroraForge NT100 2.1.3 (Beta 4) - Native Linux x64', '',
   'Run:', '  ./AuroraForge\\ NT100', '',
   'If your file manager removed the executable permission:', '  chmod +x "AuroraForge NT100"', '',
   'VPS/headless hosts without a GPU: the app starts in software rendering automatically.',

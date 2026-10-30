@@ -19,8 +19,8 @@
 //          victoryMotionId: null to leave the stock victory id)
 //        - victory row: proven victory entry writer
 //        - cutscene entry (template 6100)
-//        - 8 extended writers (teams, charmapping, cammove, facetextures,
-//          charmoveset, charprofilepro, charprofiletable, hidemotion)
+//        - 7 extended writers (teams, charmapping, cammove, facetextures,
+//          charmoveset, charprofilepro, charprofiletable)
 //   4. returns a descriptor with every change (proof)
 //
 // CLI:
@@ -129,9 +129,9 @@ function buildVictoryAssets({ source19, entryId, extraction, outputRoot }) {
   const outClips = path.join(outputRoot, 'Animation', 'Victory', `${entryId}.clips`);
   const outAdefs = path.join(outputRoot, 'Animation', 'Victory', `${entryId}.adefs`);
   fs.mkdirSync(path.dirname(outClips), { recursive: true });
-  buildReplacement({ source19, template25: templateClips, recordIndex: 15, output: outClips });
+  const conversion = buildReplacement({ source19, template25: templateClips, recordIndex: 15, output: outClips });
   fs.copyFileSync(templateAdefs, outAdefs);
-  return { kind: 'victory', clips: outClips, adefs: outAdefs, phases: [] };
+  return { kind: 'victory', clips: outClips, adefs: outAdefs, phases: [], conversion };
 }
 
 // ---------- registration staging ----------
@@ -193,8 +193,24 @@ function stageEntranceRow(treeRoot, { entryId, nameId, motionId, victoryMotionId
   return { created: true, cloneId };
 }
 
-function stageVictoryRow(treeRoot, { entryId, nameId, motionId }) {
+function stageVictoryRow(treeRoot, { entryId, nameId, motionId, gameVersion = 25 }) {
   const victoryPath = path.join(treeRoot, 'Entrances', 'VictoryListData.jsfb');
+  if (String(gameVersion).toLowerCase() === '26' || String(gameVersion).toLowerCase() === '2k26') {
+    const { append2k26VictoryEntry } = require('./append_2k26_victory_entry');
+    const temporary = `${victoryPath}.aurora-${process.pid}.tmp`;
+    try {
+      // Custom 2K26 Victory catalog entries use the type-1 recipe present in
+      // Aurora's installed Tribute package. Clone template 100 for the other
+      // defaults, then set the custom-entry discriminator explicitly.
+      const proof = append2k26VictoryEntry({ input: victoryPath, output: temporary, entryId, nameString: nameId, motionId, type: 1 });
+      fs.copyFileSync(temporary, victoryPath);
+      fs.unlinkSync(temporary);
+      return { ...proof, cloneId: 100 };
+    } catch (error) {
+      try { fs.unlinkSync(temporary); } catch {}
+      throw error;
+    }
+  }
   const result = runTool([
     path.join('tools', 'append_2k25_victory_clone_graph.js'), victoryPath, victoryPath,
     '--entry-id', String(entryId), '--clone-id', '100', '--name-string', String(nameId),
@@ -203,12 +219,13 @@ function stageVictoryRow(treeRoot, { entryId, nameId, motionId }) {
   return result;
 }
 
-function stageCutsceneRow(treeRoot, { entryId, nameId }) {
-  const { appendCutsceneEntry } = require('./clips-codec/append-cutscene-entry');
+function stageCutsceneRow(treeRoot, { entryId, nameId, gameVersion = 25 }) {
+  const { appendCutsceneEntryForGame } = require('./clips-codec/append-cutscene-entry-for-game');
   const cutscenePath = path.join(treeRoot, 'Cutscene', 'CutsceneNoRegistry.jsfb');
-  const edited = appendCutsceneEntry(fs.readFileSync(cutscenePath), { templateId: 6100, newId: entryId, newNameStringId: nameId });
-  fs.writeFileSync(cutscenePath, edited);
-  return { bytes: edited.length };
+  const original = fs.readFileSync(cutscenePath);
+  const result = appendCutsceneEntryForGame(original, { templateId: 6100, newId: entryId, newNameStringId: nameId, gameVersion });
+  fs.writeFileSync(cutscenePath, result.output);
+  return { bytes: result.output.length, firstAppendedIndex: result.firstAppendedIndex, f7Repair: result.f7Repair };
 }
 
 // Extended writer blocks (all in-process; each clones a same-shape stock row).
@@ -253,15 +270,10 @@ function stageExtended(treeRoot, { entryId, nameId }) {
   fs.writeFileSync(p, appendCharProfileTableEntry(cptBuffer, { templateCharId: cptPick.templateCharId, newCharId: entryId }));
   blocks.charprofiletable = true;
 
-  const { appendHideMotionEntry } = require('./append-hide-ctrl-entry');
-  p = path.join(treeRoot, 'Hide', 'HideCtrlData.hidelink.jsfb');
-  fs.writeFileSync(p, appendHideMotionEntry(fs.readFileSync(p), { section: 0, templateIndex: 0, newMotionId: entryId }));
-  blocks.hidemotion = true;
-
   return blocks;
 }
 
-function stageRegistration(treeRoot, { entryId, name, nameId, motionId, kind, mode }) {
+function stageRegistration(treeRoot, { entryId, name, nameId, motionId, kind, mode, gameVersion = 25 }) {
   const full = mode !== 'minimal';
   const proof = { entryId, name, treeRoot, mode: full ? 'full' : 'minimal', steps: {} };
   proof.steps.sdb = stageSdbName(treeRoot, name);
@@ -270,10 +282,10 @@ function stageRegistration(treeRoot, { entryId, name, nameId, motionId, kind, mo
     proof.steps.entranceRow = stageEntranceRow(treeRoot, { entryId, nameId: actualNameId, motionId });
   }
   if (full) {
-    proof.steps.victoryRow = stageVictoryRow(treeRoot, { entryId, nameId: actualNameId, motionId });
+    proof.steps.victoryRow = stageVictoryRow(treeRoot, { entryId, nameId: actualNameId, motionId, gameVersion });
   }
-  proof.steps.cutscene = stageCutsceneRow(treeRoot, { entryId, nameId: actualNameId });
-  if (full) {
+  proof.steps.cutscene = stageCutsceneRow(treeRoot, { entryId, nameId: actualNameId, gameVersion });
+  if (full && kind !== 'victory') {
     proof.steps.extended = stageExtended(treeRoot, { entryId, nameId: actualNameId });
   }
   proof.nameId = actualNameId;
@@ -344,7 +356,7 @@ function convertAnimationToEntry(options) {
     : buildVictoryAssets({ source19, entryId, extraction, outputRoot: treeRoot });
   log('assets', assets.clips);
 
-  const registration = stageRegistration(treeRoot, { entryId, name, nameId: null, motionId: entryId, kind, mode: options.mode || 'full' });
+  const registration = stageRegistration(treeRoot, { entryId, name, nameId: null, motionId: entryId, kind, mode: options.mode || 'full', gameVersion: options.gameVersion ?? 25 });
   log('registration', JSON.stringify(registration.steps));
 
   const descriptor = {
@@ -375,6 +387,7 @@ if (require.main === module) {
       name: arg('--name'),
       kind: arg('--kind', 'auto'),
       mode: arg('--mode', 'full'),
+      gameVersion: arg('--game-version', 25),
       extraction: arg('--extraction'),
     });
     console.log(JSON.stringify(result, null, 2));

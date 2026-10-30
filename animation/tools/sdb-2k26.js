@@ -106,7 +106,24 @@ function transform(input, offset) {
   return s.output;
 }
 
-module.exports = { transform };
+// Index first, decode only requested strings. Native encrypted/non-SDB inputs
+// must be unpacked before use; never apply the historical rolling-XOR reader.
+function indexRecords(buffer) {
+  if (!Buffer.isBuffer(buffer) || buffer.length < 8) throw new Error('SDB header is truncated');
+  const version = buffer.readUInt32LE(0), count = buffer.readUInt32LE(4);
+  if (version !== 0 && version !== 256) throw new Error(`Unsupported raw 2K26 SDB version ${version}`);
+  const tableEnd = 8 + count * 12;
+  if (tableEnd > buffer.length) throw new Error('SDB table exceeds file');
+  const records = new Map();
+  for (let i = 0; i < count; i++) {
+    const at = 8 + i * 12, offset = buffer.readUInt32LE(at), length = buffer.readUInt32LE(at + 4), id = buffer.readUInt32LE(at + 8);
+    if (offset < tableEnd || length > buffer.length - offset) throw new Error(`SDB record ${i} exceeds pool`);
+    if (records.has(id)) throw new Error(`Duplicate SDB id ${id}`);
+    records.set(id,{id,offset,length});
+  }
+  return {version,count,get(id) {const r=records.get(id);return r?{...r,text:transform(buffer.subarray(r.offset,r.offset+r.length),r.offset).toString('utf8')}:null;}};
+}
+module.exports = { transform, indexRecords };
 
 if (require.main === module) {
   const fs = require('fs');

@@ -9,7 +9,6 @@
 // as a readable .clips container.
 
 const fs = require('node:fs');
-const os = require('node:os');
 const path = require('node:path');
 const { exportIr } = require('./export-yanm-ir');
 const { buildImportedClips } = require('./clips-codec/build-imported-clips');
@@ -48,7 +47,8 @@ function buildReplacement(options) {
   }
   if (!before.records[recordIndex]) throw new Error(`recordIndex ${recordIndex} is outside 0..${before.records.length - 1} (pass --record auto to pick the motion record automatically)`);
 
-  const tempIr = path.join(os.tmpdir(), `aurora-2k19-ir-${process.pid}-${Date.now()}.json`);
+  fs.mkdirSync(path.dirname(output), { recursive: true });
+  const tempIr = path.join(path.dirname(output), `.aurora-source-ir-${process.pid}-${Date.now()}.json`);
   try {
     const sourceSection = options.sectionIndex ?? null;
     fs.writeFileSync(tempIr, JSON.stringify(exportIr(source19, sourceSection), null, 2));
@@ -85,6 +85,14 @@ function buildReplacement(options) {
         fps: targetAfter.fps,
       },
       groupsReEncoded: built.groupsReEncoded,
+      diagnostics: built.diagnostics,
+      fidelity: {
+        sourceFrames: built.diagnostics.sourceFrames,
+        outputFrames: built.diagnostics.frames,
+        sourceFrameSpanPreserved: built.diagnostics.sourceFrames === built.diagnostics.frames,
+        companionRecords: 'template-preserved; source conversion not established',
+        verified: false,
+      },
       limits: [
         'Writes a separate .clips overwrite/replace candidate; it does not edit the source file in place.',
         'Does not create VictoryListData, EntranceListData, CutsceneNoRegistry, HideCtrlData, or roster entries.',

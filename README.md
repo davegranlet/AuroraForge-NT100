@@ -1,35 +1,27 @@
-# AuroraForge NT100 — Umbrella (2.0 / Beta 3)
+# Aurora Forge — current source and Main Workbench
 
-One repository for the whole AuroraForge NT100 bench.
+Current release: **2.1.3** (Beta 4 line).
 
-**Version scheme:** major releases are plain (1.8.0, 2.0, ...); every fix/update
-gets the next letter (2.0.a, 2.0.b, ...), one letter per shipped build. Versions
-appear in the app, every download filename, and `VERSION-HISTORY.md`.
+This repository contains the current Aurora Forge tool source, including shared
+libraries, native helper projects, animation workflow scripts and one-off
+utilities. The Windows application is distributed as one Main Workbench download.
 
-## Layout
+Start with [BUILD-CURRENT.md](BUILD-CURRENT.md) for the source map, build commands,
+runtime requirements and verification steps.
 
-| Section | Path | What lives here |
-|---|---|---|
-| Umbrella app | `umbrella-app/` | The AuroraForge NT100 desktop app: Electron shell, creator pages, bundled tools, bundled 2K26 skeleton, build + release scripts, docs, website, verifier source. |
-| 100% Not TRIBUTE | `100-not-tribute/` | Tribute-replacement editors and creation suites converging into one package: Entry Studio, PAC tools, DDS converter, custom music loaders, converter app, plus the in-app editor map. |
-| CAK Foundry | `cak-foundry/` | CAK manipulator tools and scripts: view, extract, bake, rebuild, reopen, verify - plus the Bakery/CakeTool engine and helper sources. |
-| Animation | `animation/` | The 2K19 to modern animation converter pipeline: Entrance Prototype, Clips Tools, 2K19-to-2K20 converter, animation probes, Blender tools - plus the 2K26 entrance conversion toolchain (IR export with sentinel decode + per-source adaptive wrap unwrap, clips codec, Csa/Cdef/assembly/SDB writers) proven by in-game playback (October 2026). |
-| Loaders | `loaders/` | Secure DataCtrlLink (2K25 + 2K26) and the CAK mod loader lines. |
-| Research | `research/` | Knowledgebase, animation research, sanitized research, ghidra tooling, legacy snapshots. |
-| Tutorials | `tutorials/` | Coming soon. |
+The current app entry is umbrella-app/electron/workbench-main.js. Its Tool
+Library exposes the included code and supports Node command tools, exported
+JavaScript functions and host-runtime launches for Python, PowerShell and .NET
+projects. Specialized CAK, PAC, animation, audio and texture pages use the shared
+desktop services. Generated copies are synchronized from canonical sources.
 
-## House rules
+CAK Foundry source is in cak-foundry. Current animation readers, writers,
+converters and validators are in animation/tools. Entrance and Victory one-offs
+are in animation/workflows. SOURCE-SNAPSHOT.json identifies exact released
+source files by SHA-256 when viewing a release snapshot.
 
-- **No duplicated trees.** Each asset has exactly one home. Example: the
-  converter's bundled skeleton lives in `umbrella-app/app/skeletons/`; the
-  animation pipeline references it from there instead of keeping a second copy.
-- **Source only.** Research dumps, build outputs (`dist/`, `build/`), package
-  caches, and rollback binaries stay out of this repository.
-- **Private until clearance.** Release artifacts are compiled-only and published
-  through the separate release repo (@AuroraForge-NT100), never from this source.
-
-## Verification + protection
-
-Builds verify in-app: active Patreon tier plus linked Discord VIP role, checked
-through the hardened hosted verifier. Every release embeds a fresh verification
-challenge bound through the whole sign-in flow.
+Research notes, logs, dumps, game inputs, secrets, private verifier backend and
+generated decompilation output are excluded. Authored analysis utilities are
+source code and are included. Runtime dependencies and synthetic or
+specimen-specific validation have their own requirements; source availability
+does not certify every game conversion or every historical script as complete.

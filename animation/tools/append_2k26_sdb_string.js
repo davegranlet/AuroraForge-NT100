@@ -46,11 +46,13 @@ for (let i = 0; i < count; i += 1) {
 }
 const existing = new Map(records.map((r) => [r.id, r]));
 
-// Decode every unique existing string once (aliased records share an offset).
+// Decode each unique payload span once. Empty SDB records can alias the same
+// pool offset as a non-empty record, so offset alone is not a payload identity.
 const decoded = new Map();
 for (const r of records) {
-  if (decoded.has(r.offset)) continue;
-  decoded.set(r.offset, transform(source.subarray(r.offset, r.offset + r.length), r.offset));
+  const payloadKey = `${r.offset}:${r.length}`;
+  if (decoded.has(payloadKey)) continue;
+  decoded.set(payloadKey, transform(source.subarray(r.offset, r.offset + r.length), r.offset));
 }
 
 const replaceMode = process.argv.includes('--replace');
@@ -93,7 +95,7 @@ function place(text) {
 const placed = sorted.map((r) => {
   if (r.text !== undefined) return { id: r.id, ...place(r.text) };
   if (replacement.has(r.id)) return { id: r.id, ...place(replacement.get(r.id)) };
-  const old = decoded.get(r.offset);
+  const old = decoded.get(`${r.offset}:${r.length}`);
   const text = old.toString('utf8');
   return { id: r.id, ...place(text) };
 });

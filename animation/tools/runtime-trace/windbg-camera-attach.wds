@@ -1,0 +1,5 @@
+.symfix
+.reload /f WWE2K26_x64.exe
+.logopen /t C:\nt100-codebasemain\animation\tools\runtime-trace\windbg-camera.log
+bp WWE2K26_x64.exe+0x15FE860 ".printf \\"CAMERA_POSE rip=%p rcx=%p rdx=%p r8=%p r9=%p\\\\n\\", @rip, @rcx, @rdx, @r8, @r9; r; .echo ---; gc"
+.echo TRACE_READY
