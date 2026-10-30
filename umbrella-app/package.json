@@ -1,12 +1,14 @@
 {
   "name": "auroraforge-nt100",
-  "version": "2.0.0",
-  "description": "AuroraForge NT100 Beta2: a portable WWE PC modding workspace with one main app access gate, bundled converter, verified WWE 2K25 loader, prompt builders, and archive tools.",
+  "version": "2.1.2",
+  "description": "Aurora Forge current-source workbench with archive, animation and one-off tools in one desktop app.",
   "main": "electron/main.js",
   "private": true,
   "author": "VikingStudios",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "scripts": {
+    "start": "electron .",
+    "build:workbench": "node scripts/build-current-workbench.js",
     "verify": "node scripts/verify-package.js",
     "verify:dds": "node scripts/verify-dds-converter.js",
     "verify:cak": "node scripts/verify-cak-extraction.js",
@@ -21,8 +23,12 @@
     "catalog:audit": "node scripts/audit-extracted-layouts.js",
     "prepare:runtime": "node scripts/prepare-runtime-staging.js",
     "clean:dist": "node scripts/clean-dist.js",
-    "pack:win": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon.ico --app-version=2.0.0 --build-version=2.0.0",
-    "pack:linux": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=linux --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon-256.png --app-version=2.0.0 --build-version=2.0.0",
+    "pack:win": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon.ico --app-version=2.1.2 --build-version=2.1.2 --extra-resource=build/library/sl",
+    "pack:linux": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=linux --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon-256.png --app-version=2.1.2 --build-version=2.1.2 --extra-resource=build/library/sl",
+    "dist:win": "npm run prepare:runtime && electron-builder --win nsis --x64 --publish never",
+    "release:win": "npm run prepare:runtime && electron-builder --win nsis --x64 --publish always",
+    "dist:linux": "npm run prepare:runtime && electron-builder --linux AppImage --x64 --publish never",
+    "release:linux": "npm run prepare:runtime && electron-builder --linux AppImage --x64 --publish always",
     "build:standalones": "node scripts/build-standalone-windows.js",
     "build:pac19-standalone": "node scripts/build-standalone-windows.js pac19",
     "build:cak20-standalone": "node scripts/build-standalone-windows.js cak20",
@@ -35,13 +41,15 @@
   },
   "devDependencies": {
     "@electron/packager": "20.0.4",
-    "electron": "43.2.0"
+    "electron": "43.2.0",
+    "electron-builder": "26.18.0"
   },
   "packageManager": "npm@11.16.0",
   "extraMetadata": {
-    "version": "2.0.0"
+    "version": "2.1.2"
   },
   "dependencies": {
+    "electron-updater": "6.8.11",
     "three": "0.185.1"
   },
   "overrides": {

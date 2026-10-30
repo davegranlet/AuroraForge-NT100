@@ -5,8 +5,8 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 const crypto = require('crypto');
-const { openArchive } = require('../Aurora-CAK-Foundry/electron/cak-reader');
-const { buildCak } = require('../Aurora-CAK-Foundry/electron/archive-repackager');
+const { openArchive } = require('../electron/cak-reader');
+const { buildCak } = require('../electron/archive-repackager');
 
 const root = path.resolve(__dirname, '..');
 const game = 'C:/SteamLibrary/steamapps/common/WWE 2K26';

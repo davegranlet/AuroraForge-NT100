@@ -2,8 +2,6 @@ const { app, BrowserWindow, Menu, shell, ipcMain, dialog, protocol, net } = requ
 const path = require('path');
 const fs = require('fs');
 const cp = require('child_process');
-const crypto = require('crypto');
-const http = require('http');
 const { pathToFileURL } = require('url');
 const cakReader = require('./cak-reader');
 const cak20Reader = require('./cak20-reader');
@@ -21,7 +19,8 @@ const { createModManifestManager } = require('./services/mod-manifest-manager');
 const { createEntryStudioService } = require('./services/entry-studio-service');
 const { createAudioStudioService } = require('./services/audio-studio-service');
 const { createAnimationConverterService } = require('./services/animation-converter-service');
-const { isOwnerBuild, ownerSession } = require('./owner-build');
+const { createUpdateService } = require('./services/update-service');
+const { createToolLibraryService } = require('./services/tool-library-service');
 
 // GPU-less hosts (VPS/Docker/headless): on Linux the app defaults to software
 // rendering. Set AURORA_FORGE_GPU=1 to force hardware acceleration back on; any
@@ -40,6 +39,18 @@ const secureDataCtrlLinkManifest = require('../app/data/compatibility/secure-dat
 
 
 const APP_ROOT = path.join(__dirname, '..', 'app');
+function toolLibraryService() {
+  return createToolLibraryService({ root: bundledToolPath('sl') });
+}
+ipcMain.handle('desktop:tool-library-list', () => toolLibraryService().list());
+ipcMain.handle('desktop:tool-library-source', (_event, id) => toolLibraryService().source(id));
+ipcMain.handle('desktop:tool-library-folder', async () => {
+  const result = await dialog.showOpenDialog({ properties: ['openDirectory'] });
+  return result.canceled ? '' : result.filePaths[0];
+});
+ipcMain.handle('desktop:tool-library-run', (_event, payload) => {
+  return toolLibraryService().run(payload);
+});
 const START_PAGE = process.env.AURORA_START_PAGE || 'index.html';
 const WINDOW_TITLE = process.env.AURORA_WINDOW_TITLE || 'AuroraForge NT100';
 const STANDALONE_TOOL = process.env.AURORA_STANDALONE_TOOL || '';
@@ -58,9 +69,6 @@ let currentPac19Archive = '';
 let lastPac19OutputDir = '';
 let lastCak20OutputDir = '';
 let selectedSecureLoaderSource = '';
-let verifiedAccessSession = null;
-let bannedAccessSession = null;
-const ACCESS_CALLBACK_PORT = 53702;
 
 let workshopServiceCache = null;
 const MOD_SUITE_BAKEME_ROOTS = Object.freeze([
@@ -218,6 +226,18 @@ function animationConverterService() {
   return animationConverterServiceCache;
 }
 
+let updateServiceCache = null;
+function updateService() {
+  if (updateServiceCache) return updateServiceCache;
+  updateServiceCache = createUpdateService({
+    app,
+    dialog,
+    getWindow: () => BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0] || null,
+    log: (text) => console.log(String(text))
+  });
+  return updateServiceCache;
+}
+
 
 function auditModSuiteFolder(selectedPath) {
   const selected = path.resolve(String(selectedPath || ''));
@@ -306,242 +326,12 @@ function resolveOodlePath(archivePath = '') {
 
 function bundledToolPath(...parts) {
   if (app.isPackaged) {
+    const direct = path.join(process.resourcesPath, ...parts);
+    if (fs.existsSync(direct)) return direct;
     const unpacked = path.join(process.resourcesPath, 'app.asar.unpacked', 'app', 'tools', ...parts);
     if (fs.existsSync(unpacked)) return unpacked;
   }
   return path.join(APP_ROOT, 'tools', ...parts);
-}
-
-function accessGate() {
-  return require(path.join(APP_ROOT, 'tools', 'access-gate', 'patreon-access.js'));
-}
-
-let ownerBuildCache = null;
-function ownerBuild() {
-  if (ownerBuildCache !== null) return ownerBuildCache;
-  try {
-    const trustedDirs = [];
-    try { trustedDirs.push(app.getAppPath()); } catch (_error) { /* ignore */ }
-    ownerBuildCache = isOwnerBuild(process.env, trustedDirs);
-  } catch (_error) {
-    ownerBuildCache = false;
-  }
-  return ownerBuildCache;
-}
-
-function releaseAccessId() {
-  return `AuroraForge NT100|Beta3|${app.getVersion()}`;
-}
-
-function accessSessionPath() {
-  return path.join(app.getPath('userData'), 'aurora-access-session.json');
-}
-
-function currentReleaseChallengeId() {
-  try {
-    const gate = accessGate();
-    return typeof gate.currentReleaseChallenge === 'function' ? gate.currentReleaseChallenge() : '';
-  } catch (_error) {
-    return '';
-  }
-}
-
-function validReleaseAccessSession(session) {
-  const challenge = currentReleaseChallengeId();
-  return Boolean(
-    session &&
-    session.ok === true &&
-    session.releasePermanent === true &&
-    session.releaseId === releaseAccessId() &&
-    session.entitlementMethod === 'patreon_discord_role' &&
-    (!challenge || session.releaseChallenge === challenge)
-  );
-}
-
-function readStoredAccessSession() {
-  try {
-    const raw = JSON.parse(fs.readFileSync(accessSessionPath(), 'utf8'));
-    if (!validReleaseAccessSession(raw)) return null;
-    return raw;
-  } catch (_error) {
-    return null;
-  }
-}
-
-function writeStoredAccessSession(result) {
-  const stored = {
-    ...result,
-    ok: true,
-    releasePermanent: true,
-    releaseId: releaseAccessId(),
-    app: 'AuroraForge NT100',
-    build: 'Beta3',
-    appVersion: app.getVersion(),
-    releaseChallenge: currentReleaseChallengeId() || null,
-    verifiedAt: result.verifiedAt || result.issuedAt || new Date().toISOString(),
-    storedAt: new Date().toISOString(),
-    verifierExpiresAt: result.expiresAt || null
-  };
-  delete stored.expiresAt;
-  ensureDir(path.dirname(accessSessionPath()));
-  fs.writeFileSync(accessSessionPath(), JSON.stringify(stored, null, 2) + '\n', 'utf8');
-  return stored;
-}
-
-function clearStoredAccessSession() {
-  try { fs.unlinkSync(accessSessionPath()); } catch (_error) { /* ignore */ }
-}
-
-function hasVerifiedAccess() {
-  if (ownerBuild()) return true;
-  if (bannedAccessSession) return false;
-  if (!verifiedAccessSession?.ok) {
-    verifiedAccessSession = readStoredAccessSession();
-  }
-  if (!verifiedAccessSession?.ok) return false;
-  if (validReleaseAccessSession(verifiedAccessSession)) return true;
-  if (verifiedAccessSession.expiresAt && Date.parse(verifiedAccessSession.expiresAt) <= Date.now()) {
-    verifiedAccessSession = null;
-    return false;
-  }
-  const verifiedAt = Date.parse(verifiedAccessSession.verifiedAt || verifiedAccessSession.issuedAt || '');
-  if (!Number.isNaN(verifiedAt) && Date.now() - verifiedAt > accessGate().REMOTE_SESSION_MAX_AGE_MS) {
-    verifiedAccessSession = null;
-    return false;
-  }
-  return true;
-}
-
-function requireVerifiedAccess() {
-  if (hasVerifiedAccess()) return;
-  if (bannedAccessSession) throw new Error('Access to AuroraForge NT100 has been revoked for this account.');
-  throw new Error('Verify access before using AuroraForge NT100.');
-}
-
-function accessStatus() {
-  if (ownerBuild()) {
-    return {
-      ok: true,
-      owner: true,
-      session: ownerSession(),
-      banned: false,
-      config: accessGate().configStatus()
-    };
-  }
-  return {
-    ok: hasVerifiedAccess(),
-    session: bannedAccessSession || verifiedAccessSession,
-    banned: Boolean(bannedAccessSession),
-    config: accessGate().configStatus()
-  };
-}
-
-function bundledToolAccessEnv() {
-  if (!ownerBuild()) requireVerifiedAccess();
-  const now = Date.now();
-  const session = {
-    ok: true,
-    method: 'main_app_session',
-    mainApp: true,
-    app: 'Aurora Forge',
-    build: 'Beta3',
-    owner: ownerBuild(),
-    verifiedAt: (verifiedAccessSession && (verifiedAccessSession.verifiedAt || verifiedAccessSession.issuedAt)) || new Date(now).toISOString(),
-    issuedAt: new Date(now).toISOString(),
-    expiresAt: new Date(now + (15 * 60 * 1000)).toISOString()
-  };
-  return {
-    AURORA_FORGE_MAIN_ACCESS: Buffer.from(JSON.stringify(session), 'utf8').toString('base64url')
-  };
-}
-
-async function startAccessOAuthLogin() {
-  const gate = accessGate();
-  const config = gate.readConfig();
-  const verifyUrl = config.verifyUrl || (process.env.AURORA_PATREON_DISABLE_DEFAULT_VERIFY_URL ? '' : gate.DEFAULT_VERIFY_URL);
-  if (!verifyUrl) throw new Error('Remote Patreon verifier is required for secure OAuth login.');
-  const state = crypto.randomBytes(24).toString('hex');
-  let markReady;
-  let rejectReady;
-  let callbackServer;
-  const callbackReady = new Promise((resolve, reject) => {
-    markReady = resolve;
-    rejectReady = reject;
-  });
-  const callbackPromise = new Promise((resolve, reject) => {
-    const server = http.createServer((req, res) => {
-      try {
-        const url = new URL(req.url, 'http://127.0.0.1');
-        if (url.pathname !== '/patreon-callback') {
-          res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
-          res.end('Not found.');
-          return;
-        }
-        const returnedState = url.searchParams.get('state');
-        const code = url.searchParams.get('code');
-        const error = url.searchParams.get('error');
-        if (returnedState !== state) {
-          res.writeHead(400, { 'content-type': 'text/plain; charset=utf-8' });
-          res.end('AuroraForge NT100 login failed: invalid state. You can close this tab.');
-          reject(new Error('Patreon OAuth state mismatch.'));
-          server.close();
-          return;
-        }
-        if (error) {
-          res.writeHead(400, { 'content-type': 'text/plain; charset=utf-8' });
-          res.end('AuroraForge NT100 login was cancelled or denied. You can close this tab.');
-          reject(new Error(`Patreon OAuth error: ${error}`));
-          server.close();
-          return;
-        }
-        if (!code) {
-          res.writeHead(400, { 'content-type': 'text/plain; charset=utf-8' });
-          res.end('AuroraForge NT100 login failed: missing code. You can close this tab.');
-          reject(new Error('Patreon OAuth callback did not include a code.'));
-          server.close();
-          return;
-        }
-        res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-        res.end('<!doctype html><title>AuroraForge NT100</title><body style="font-family:Segoe UI,Arial,sans-serif;background:#07131f;color:#e6f3ff"><h1>AuroraForge NT100 access verified</h1><p>You can close this tab and return to AuroraForge NT100.</p></body>');
-        resolve({ code });
-        server.close();
-      } catch (error) {
-        reject(error);
-        server.close();
-      }
-    });
-    callbackServer = server;
-    const timer = setTimeout(() => {
-      server.close();
-      reject(new Error('Patreon login timed out.'));
-    }, 120000);
-    server.on('close', () => clearTimeout(timer));
-    server.on('error', error => {
-      rejectReady(error);
-      reject(error);
-    });
-    server.listen(ACCESS_CALLBACK_PORT, '127.0.0.1', () => {
-      markReady({ redirectUri: `http://127.0.0.1:${ACCESS_CALLBACK_PORT}/patreon-callback` });
-    });
-  });
-  callbackPromise.catch(() => {});
-  const { redirectUri } = await callbackReady;
-  const loginUrl = gate.buildOAuthStartUrl({ verifyUrl, redirectUri, state, releaseChallenge: gate.currentReleaseChallenge ? gate.currentReleaseChallenge() : undefined });
-  try {
-    await shell.openExternal(loginUrl);
-  } catch (error) {
-    callbackServer?.close();
-    throw error;
-  }
-  const { code } = await callbackPromise;
-  return gate.remoteOAuthVerify({
-    verifyUrl,
-    code,
-    redirectUri,
-    state,
-    machineId: gate.computeMachineId(),
-    appVersion: app.getVersion()
-  });
 }
 
 function appPageUrl(page) {
@@ -549,7 +339,7 @@ function appPageUrl(page) {
 }
 
 function loadAppPage(window, page) {
-  window.loadURL(appPageUrl(hasVerifiedAccess() ? page : 'access-gate.html'));
+  window.loadURL(appPageUrl(page));
 }
 
 function cakHelperPath() {
@@ -921,9 +711,7 @@ function registerAppProtocol() {
     if (pathname === '/' || pathname === '') pathname = '/index.html';
     if (url.hostname && url.hostname !== 'app') pathname = '/' + url.hostname + pathname;
     const isHtmlPage = /\.html$/i.test(pathname);
-    const servedPathname = isHtmlPage && pathname !== '/access-gate.html' && !hasVerifiedAccess()
-      ? '/access-gate.html'
-      : pathname;
+    const servedPathname = pathname;
     const filePath = path.normalize(path.join(APP_ROOT, servedPathname));
     if (!isPathInside(filePath, APP_ROOT)) {
       return new Response('Forbidden', { status: 403 });
@@ -977,8 +765,8 @@ function createWindow() {
         { label: 'Setup', click: () => loadAppPage(mainWindow, 'setup.html') },
         { label: 'About', click: () => loadAppPage(mainWindow, 'about.html') },
         { type: 'separator' },
-        { label: 'Open Default Projects Folder', click: () => { if (!hasVerifiedAccess()) return loadAppPage(mainWindow, 'access-gate.html'); ensureDir(defaultProjectsPath()); shell.openPath(defaultProjectsPath()); } },
-        { label: 'Open Default Exports Folder', click: () => { if (!hasVerifiedAccess()) return loadAppPage(mainWindow, 'access-gate.html'); ensureDir(defaultExportsPath()); shell.openPath(defaultExportsPath()); } },
+        { label: 'Open Default Projects Folder', click: () => { ensureDir(defaultProjectsPath()); shell.openPath(defaultProjectsPath()); } },
+        { label: 'Open Default Exports Folder', click: () => { ensureDir(defaultExportsPath()); shell.openPath(defaultExportsPath()); } },
         { type: 'separator' },
         { role: 'quit' }
       ]
@@ -990,11 +778,14 @@ function createWindow() {
       submenu: [
         { label: 'Tutorials', click: () => loadAppPage(mainWindow, 'tutorials.html') },
         { type: 'separator' },
-        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 3', detail: 'Internal build 2.0.m\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta3 app experience.' }) }
+        { label: 'Check for Updates...', click: () => updateService().check({ manual: true }) },
+        { type: 'separator' },
+        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 4', detail: 'Internal build 2.1.2\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta 4 app experience.' }) }
       ]
     }
   ];
   Menu.setApplicationMenu(STANDALONE_TOOL ? null : Menu.buildFromTemplate(template));
+  return mainWindow;
 }
 
 app.whenReady().then(() => {
@@ -1002,6 +793,12 @@ app.whenReady().then(() => {
   ensureDir(defaultExportsPath());
   registerAppProtocol();
   createWindow();
+  updateService().init();
+  if (app.isPackaged) {
+    setTimeout(() => {
+      updateService().check().catch((error) => console.log('update check failed: ' + String(error.message || error)));
+    }, 8000);
+  }
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
@@ -1023,76 +820,26 @@ ipcMain.handle('desktop:get-app-info', async () => ({
   defaultExportsPath: defaultExportsPath()
 }));
 
-ipcMain.handle('desktop:access-status', async () => accessStatus());
-
-ipcMain.handle('desktop:verify-access', async (event) => {
-  try {
-    const result = await startAccessOAuthLogin();
-    if (result.code === 'banned' || result.terminal) {
-      bannedAccessSession = result;
-      verifiedAccessSession = null;
-      clearStoredAccessSession();
-      return result;
-    }
-    bannedAccessSession = null;
-    verifiedAccessSession = result.ok ? writeStoredAccessSession({ ...result, verifiedAt: new Date().toISOString() }) : null;
-    if (result.ok) {
-      const window = BrowserWindow.fromWebContents(event.sender);
-      if (window) loadAppPage(window, START_PAGE);
-    }
-    return result;
-  } catch (error) {
-    verifiedAccessSession = null;
-    return { ok: false, code: 'api_error', reason: error.message };
-  }
-});
+ipcMain.handle('desktop:update-check', async (_event, payload) => updateService().check(payload || {}));
+ipcMain.handle('desktop:update-download', async () => updateService().download());
+ipcMain.handle('desktop:update-install', async () => updateService().install());
+ipcMain.handle('desktop:update-status', async () => updateService().getStatus());
 
 ipcMain.handle('desktop:open-animation-converter', async () => {
-  const accessEnv = bundledToolAccessEnv();
-  const gatedBuilds = [
-    'Aurora-Forge-2.0.k-Preview.exe',
-    'Aurora-Forge-2.0.d-Preview.exe',
-    'Aurora-Forge-2.0.b-Preview.exe',
-    'Aurora-Forge-2.0.a-Preview.exe',
-    'Aurora-Forge-2.0-Preview.exe',
-    'Aurora-Forge-Beta3-Preview.exe',
-    'Aurora-Forge-Beta2-Preview.exe',
-    'Aurora-Forge-Beta1.0.0d-Preview.exe',
-    'Aurora-Forge-Beta1.0.0c-Preview.exe'
-  ];
-  for (const name of gatedBuilds) {
-    const executable = bundledToolPath('animation-converter', name);
-    if (fs.existsSync(executable)) {
-      try {
-        const child = cp.spawn(executable, [], {
-          cwd: path.dirname(executable),
-          detached: true,
-          stdio: 'ignore',
-          windowsHide: true,
-          env: { ...process.env, ...accessEnv }
-        });
-        child.unref();
-        return { ok: true, launched: name, access: 'main_app_session' };
-      } catch (error) {
-        return { ok: false, error: String(error && error.message ? error.message : error), launched: name };
-      }
-    }
-  }
-  return { ok: false, error: 'No gated animation converter build found in app/tools/animation-converter.' };
+  const window = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
+  if (!window) throw new Error('No app window is available');
+  loadAppPage(window, 'animation-converter.html');
+  return { ok: true, page: 'animation-converter.html', implementation: 'current-source' };
 });
-
 ipcMain.handle('desktop:entry-studio-defaults', () => {
-  requireVerifiedAccess();
   return entryStudioService().getDefaults();
 });
 
 ipcMain.handle('desktop:entry-studio-save-config', (_event, patch) => {
-  requireVerifiedAccess();
   return entryStudioService().saveConfig(patch);
 });
 
 ipcMain.handle('desktop:entry-studio-choose-folder', async () => {
-  requireVerifiedAccess();
   const result = await dialog.showOpenDialog({
     title: 'Choose Entry Studio folder',
     properties: ['openDirectory', 'createDirectory']
@@ -1102,12 +849,10 @@ ipcMain.handle('desktop:entry-studio-choose-folder', async () => {
 });
 
 ipcMain.handle('desktop:entry-studio-scan', (_event, folder) => {
-  requireVerifiedAccess();
   return entryStudioService().scanBins(folder);
 });
 
 ipcMain.handle('desktop:entry-studio-add-files', async () => {
-  requireVerifiedAccess();
   const result = await dialog.showOpenDialog({
     title: 'Add 2K19 animation .bin files',
     properties: ['openFile', 'multiSelections'],
@@ -1118,57 +863,46 @@ ipcMain.handle('desktop:entry-studio-add-files', async () => {
 });
 
 ipcMain.handle('desktop:entry-studio-convert', (_event, payload) => {
-  requireVerifiedAccess();
   return entryStudioService().convertFiles(payload || {});
 });
 
 ipcMain.handle('desktop:entry-studio-entries', () => {
-  requireVerifiedAccess();
   return entryStudioService().listEntries();
 });
 
 ipcMain.handle('desktop:entry-studio-create', (_event, payload) => {
-  requireVerifiedAccess();
   return entryStudioService().createEntry(payload || {});
 });
 
 ipcMain.handle('desktop:entry-studio-get-entry', (_event, entryId) => {
-  requireVerifiedAccess();
   return entryStudioService().getEntry(entryId);
 });
 
 ipcMain.handle('desktop:entry-studio-write-entry', (_event, payload) => {
-  requireVerifiedAccess();
   return entryStudioService().writeEntry(payload || {});
 });
 
 ipcMain.handle('desktop:entry-studio-music', () => {
-  requireVerifiedAccess();
   return entryStudioService().musicList();
 });
 
 ipcMain.handle('desktop:entry-studio-bake', (_event, payload) => {
-  requireVerifiedAccess();
   return entryStudioService().bake(payload || {});
 });
 
 ipcMain.handle('desktop:entry-studio-stage', (_event, payload) => {
-  requireVerifiedAccess();
   return entryStudioService().stage(payload || {});
 });
 
 ipcMain.handle('desktop:audio-studio-defaults', () => {
-  requireVerifiedAccess();
   return audioStudioService().getDefaults();
 });
 
 ipcMain.handle('desktop:audio-studio-save-config', (_event, patch) => {
-  requireVerifiedAccess();
   return audioStudioService().saveConfig(patch);
 });
 
 ipcMain.handle('desktop:audio-studio-choose-folder', async () => {
-  requireVerifiedAccess();
   const result = await dialog.showOpenDialog({
     title: 'Choose Audio Studio folder',
     properties: ['openDirectory', 'createDirectory']
@@ -1178,7 +912,6 @@ ipcMain.handle('desktop:audio-studio-choose-folder', async () => {
 });
 
 ipcMain.handle('desktop:audio-studio-choose-musiclist', async () => {
-  requireVerifiedAccess();
   const result = await dialog.showOpenDialog({
     title: 'Choose MusicList.jsfb',
     properties: ['openFile'],
@@ -1189,12 +922,10 @@ ipcMain.handle('desktop:audio-studio-choose-musiclist', async () => {
 });
 
 ipcMain.handle('desktop:audio-studio-list', () => {
-  requireVerifiedAccess();
   return audioStudioService().listMusic();
 });
 
 ipcMain.handle('desktop:audio-studio-add-files', async () => {
-  requireVerifiedAccess();
   const result = await dialog.showOpenDialog({
     title: 'Add custom music audio',
     properties: ['openFile', 'multiSelections'],
@@ -1205,17 +936,14 @@ ipcMain.handle('desktop:audio-studio-add-files', async () => {
 });
 
 ipcMain.handle('desktop:audio-studio-build', (_event, payload) => {
-  requireVerifiedAccess();
   return audioStudioService().build(payload || {});
 });
 
 ipcMain.handle('desktop:converter-defaults', () => {
-  requireVerifiedAccess();
   return animationConverterService().getDefaults();
 });
 
 ipcMain.handle('desktop:converter-save-config', (_event, patch) => {
-  requireVerifiedAccess();
   return animationConverterService().saveConfig(patch || {});
 });
 
@@ -1224,7 +952,6 @@ ipcMain.handle('desktop:converter-game-version', (_event, folder) => {
 });
 
 ipcMain.handle('desktop:converter-choose-folder', async () => {
-  requireVerifiedAccess();
   const result = await dialog.showOpenDialog({
     title: 'Choose game folder',
     properties: ['openDirectory', 'createDirectory']
@@ -1234,7 +961,6 @@ ipcMain.handle('desktop:converter-choose-folder', async () => {
 });
 
 ipcMain.handle('desktop:converter-choose-output', async () => {
-  requireVerifiedAccess();
   const result = await dialog.showSaveDialog({
     title: 'Save the new entry library CAK',
     defaultPath: 'aurora-2k26-library.cak',
@@ -1246,12 +972,10 @@ ipcMain.handle('desktop:converter-choose-output', async () => {
 });
 
 ipcMain.handle('desktop:converter-extract', (_event, payload) => {
-  requireVerifiedAccess();
   return animationConverterService().extract19(payload || {});
 });
 
 ipcMain.handle('desktop:converter-build', (_event, payload) => {
-  requireVerifiedAccess();
   return animationConverterService().buildLibrary(payload || {});
 });
 
@@ -1439,7 +1163,7 @@ ipcMain.handle('desktop:cak-explorer-open-all', async (_event, gameVersion) => {
     keyRecovered: sessions.some((session) => session.keyRecovered),
     warnings: [
       ...sessions.flatMap((session) => session.warnings.map((warning) => `${session.archiveName}: ${warning}`)),
-      ...rejectedArchives.map((item) => `${item.archive}: rejected safely — ${item.error}`)
+      ...rejectedArchives.map((item) => `${item.archive}: rejected safely â€” ${item.error}`)
     ]
   };
   return { ok: true, archiveCount: sessions.length, rejectedArchives, summary: cakReader.publicSummary(currentCakSession), results: cakReader.searchFiles(currentCakSession, { scope: 'all' }) };
@@ -1986,7 +1710,7 @@ ipcMain.handle('desktop:create-project-folder', async (_event, payload) => {
   folders.forEach((folder) => ensureDir(path.join(projectPath, folder)));
   const project = {
     app: 'AuroraForge NT100',
-    release: 'AuroraForge NT100 Beta 3',
+    release: 'AuroraForge NT100 Beta 4',
     name: projectName,
     type: projectType,
     notes: payload && payload.notes ? payload.notes : '',

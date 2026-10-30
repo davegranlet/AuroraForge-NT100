@@ -33,8 +33,9 @@ function createEntryStudioService(options) {
 
   function toolsDir() {
     return firstExisting([
-      bundledToolPath('entry-studio', 'tools'),
-      path.join(appRoot, '..', '..', 'animation', 'tools')
+      path.join(appRoot, '..', '..', 'animation', 'tools'),
+      bundledToolPath('sl', 'animation', 'tools'),
+      bundledToolPath('entry-studio', 'tools')
     ]);
   }
 

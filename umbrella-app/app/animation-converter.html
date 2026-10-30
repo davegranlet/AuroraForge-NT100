@@ -23,6 +23,9 @@
   .cv-task small { color: var(--text-mute); font-size: 12px; }
   .cv-log { font-family: Consolas, monospace; font-size: 12px; background: var(--code-bg); border: 1px solid var(--crystal-line); border-radius: 10px; padding: 9px; height: 260px; overflow: auto; white-space: pre-wrap; margin-top: 8px; color: var(--text-dim); }
   .cv-muted { color: var(--text-mute); font-size: 12px; }
+  .cv-field { margin: 10px 0; }
+  .cv-field-label { display: block; color: var(--text-mute); font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 4px; }
+  .cv-field-label .required { color: #e03131; }
   .cv-result { border: 1px solid var(--crystal-line); border-radius: 10px; padding: 10px 12px; background: var(--surface2); font-size: 13px; margin-top: 9px; display: none; }
   .cv-result.show { display: block; }
   .cv-result code { font-family: Consolas, monospace; font-size: 12px; word-break: break-all; color: #f0c96a; }
@@ -43,20 +46,28 @@
       <div class="app-nav-divider" aria-hidden="true"></div>
       <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
     </nav>
-    <div class="app-sidebar-card"><div class="mini-label">Animation Converter</div><strong>2K19 → 2K25/2K26</strong><span>Decode 2K19 motion and register it as new entrance and victory entries, baked into one CAK.</span></div>
+    <div class="app-sidebar-card"><div class="mini-label">Animation Converter</div><strong>2K19 → 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26</strong><span>Decode 2K19 motion and register it as new entrance and victory entries, baked into one CAK.</span></div>
   </aside>
   <main class="app-main">
-    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Tools</div><h1>Animation Converter — 2K19 to 2K25/2K26</h1><p class="sub">Runs inside the main app: pick your 2K19 folder and your target game folder, then convert the whole motion library into new entrance and victory entries and bake the CAK.</p></div></section>
+    <section class="app-topbar"><div><div class="eyebrow">AuroraForge NT100 · Tools</div><h1>Animation Converter — 2K19 to 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26</h1><p class="sub">Runs inside the main app: pick your source and target game folders, then convert the whole motion library into new entrance and victory entries and bake the CAK.</p></div></section>
     <div class="wrap app-wrap">
 
       <section class="ai-panel app-panel">
         <div class="section-label" style="margin-top:0;">Game folders</div>
-        <div class="cv-row"><label class="cv-muted" for="pipelineSelect">Pipeline</label><select id="pipelineSelect"><option value="2k19-2k25">WWE 2K19 → WWE 2K25</option><option value="2k19-2k26" selected>WWE 2K19 → WWE 2K26</option><option value="older" disabled>WWE 2K15–2K18 → 2K25/2K26 (coming soon)</option><option value="2k25-2k26" disabled>WWE 2K25 → WWE 2K26 (coming soon)</option></select><span class="cv-muted" id="pipelineNote"></span></div>
-        <div class="cv-folder-line"><span class="cv-dot" id="dotGame19"></span><input id="cfgGame19" readonly placeholder="Your WWE 2K19 game folder"><button class="ai-btn secondary" type="button" data-cfg="game19">Choose</button></div>
-        <div class="cv-folder-line"><span class="cv-dot" id="dotGame26"></span><input id="cfgGame26" readonly placeholder="Your WWE 2K25 or WWE 2K26 game folder"><button class="ai-btn secondary" type="button" data-cfg="game26">Choose</button></div>
-        <div class="cv-folder-line"><span class="cv-dot" id="dotOutput"></span><input id="cfgOutput" readonly placeholder="Output CAK (new entry library)"><button class="ai-btn secondary" type="button" id="chooseOutput">Choose</button></div>
-        <div class="cv-folder-line"><span class="cv-dot" id="dotExtract"></span><input id="cfgExtract" readonly placeholder="2K19 extraction folder (optional; used for extract-only)"><button class="ai-btn secondary" type="button" data-cfg="extractFolder">Choose</button></div>
-        <div class="cv-muted">The converter refreshes its registration skeleton from your own game CAKs first, so nothing 2K25-shaped is ever shipped into 2K26. This runs the same verified toolchain as the standalone converter, inside the app.</div>
+        <div class="cv-row"><label class="cv-muted" for="pipelineSelect">One-click bake target</label><select id="pipelineSelect">
+          <option value="2k19-2k20">WWE 2K19 → WWE 2K20</option>
+          <option value="2k19-2k22">WWE 2K19 → WWE 2K22</option>
+          <option value="2k19-2k23">WWE 2K19 → WWE 2K23</option>
+          <option value="2k19-2k24">WWE 2K19 → WWE 2K24</option>
+          <option value="2k19-2k25">WWE 2K19 → WWE 2K25</option>
+          <option value="2k19-2k26" selected>WWE 2K19 → WWE 2K26</option>
+        </select><span class="cv-muted" id="pipelineNote"></span></div>
+        <div class="cv-muted">Full conversion matrix: 2K19 to 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26, plus cross-generation combinations. The selector above is the one-click bake target.</div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgGame19">WWE 2K19 source folder <span class="required">required</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotGame19"></span><input id="cfgGame19" readonly placeholder="Your WWE 2K19 game folder"><button class="ai-btn secondary" type="button" data-cfg="game19">Choose</button></div></div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgGame26">Target game folder <span class="required">required</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotGame26"></span><input id="cfgGame26" readonly placeholder="Your WWE 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 game folder"><button class="ai-btn secondary" type="button" data-cfg="game26">Choose</button></div></div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgOutput">Output CAK <span class="required">required</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotOutput"></span><input id="cfgOutput" readonly placeholder="Output CAK (new entry library)"><button class="ai-btn secondary" type="button" id="chooseOutput">Choose</button></div></div>
+        <div class="cv-field"><label class="cv-field-label" for="cfgExtract">2K19 extraction folder <span>optional</span></label><div class="cv-folder-line"><span class="cv-dot" id="dotExtract"></span><input id="cfgExtract" readonly placeholder="2K19 extraction folder (optional; used for extract-only)"><button class="ai-btn secondary" type="button" data-cfg="extractFolder">Choose</button></div></div>
+        <div class="cv-muted">The converter refreshes its registration skeleton from your own game CAKs first, so no other game's data is shipped into the target. This runs the same verified toolchain as the standalone converter, inside the app.</div>
       </section>
 
       <div class="cv-grid">

@@ -1,6 +1,6 @@
 {
-  "release": "2.0.m",
-  "releaseTitle": "Beta 3",
+  "release": "2.1.a",
+  "releaseTitle": "Beta 4",
   "distributionGoal": "windows_x64_zip_and_linux_x64_tar_gz",
   "primaryNavigation": [
     {"id":"home","title":"Home","file":"index.html"},
@@ -27,7 +27,7 @@
     {"id":"faction_pack","title":"Faction Pack","file":"faction-pack-builder.html"}
   ],
   "tools": [
-    {"id":"animation_converter","title":"WWE 2K19 to WWE 2K25 Animation Converter","file":"animation-converter.html"},
+    {"id":"animation_converter","title":"WWE 2K19 to WWE 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 Animation Converter","file":"animation-converter.html"},
     {"id":"mod_suite","title":"WWE 2K26 Modding Hub","file":"mod-suite.html"},
     {"id":"character_viewer","title":"Character Viewer","file":"character-viewer.html"},
     {"id":"face_calibration","title":"Face Calibration","file":"face-calibration-workflow.html"},
@@ -38,7 +38,7 @@
     {"id":"cak20_workbench","title":"WWE 2K20 CAK Workbench","file":"cak20-explorer.html"}
   ],
   "capabilities": [
-    {"id":"animation_converter","status":"experimental","boundary":"Beta2 bundles the gated WWE 2K19 motion to WWE 2K25 clips replacement path and loader-ready CAK output. Additive menu entries, facial conversion, and generalized alignment remain test-gated."},
+    {"id":"animation_converter","status":"experimental","boundary":"Covers WWE 2K19 motion conversion into 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 clips replacements and loader-ready CAK output. Additive menu entries, facial conversion, and generalized alignment remain test-gated."},
     {"id":"mod_suite","status":"available","boundary":"Launches working AuroraForge NT100 workspace, folder inspection, CAK archive, file comparison, program setup, character preview, and texture conversion operations while keeping unimplemented Tribute-style editors clearly separated as Coming Soon."},
     {"id":"project_management","status":"available","boundary":"Local project folders and files selected by the user."},
     {"id":"prompt_builders","status":"available","boundary":"Builds prompts and handoff packs; the user chooses an external AI or image tool to generate the creative result."},

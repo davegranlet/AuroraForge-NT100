@@ -319,6 +319,8 @@ internal static class PacFormat
         return output;
     }
 
+    internal static List<ChildInfo> DirectChildren(byte[] bytes, string type) => ParseChildren(bytes, type);
+
     private static List<ChildInfo> ParseChildren(byte[] bytes, string type) => type switch
     {
         "HSPC" => ParseHspc(bytes),

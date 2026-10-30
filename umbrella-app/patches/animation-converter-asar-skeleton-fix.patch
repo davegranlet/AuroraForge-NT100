@@ -1,0 +1,103 @@
+diff --git a/umbrella-app/electron/services/animation-converter-service.js b/umbrella-app/electron/services/animation-converter-service.js
+index d161907..16f8f2f 100644
+--- a/umbrella-app/electron/services/animation-converter-service.js
++++ b/umbrella-app/electron/services/animation-converter-service.js
+@@ -36,6 +36,41 @@ function createAnimationConverterService(options) {
+     ]);
+   }
+ 
++  // The bundled skeleton normally lives inside app.asar in the packaged app.
++  // Electron main can read asar paths, but the converter's child Node process
++  // cannot. Materialize the template into the writable work directory before
++  // spawning refresh-2k26-skeleton.js.
++  function copyBundledTree(from, to) {
++    const stat = fs.statSync(from);
++    if (stat.isDirectory()) {
++      fs.mkdirSync(to, { recursive: true });
++      for (const name of fs.readdirSync(from)) {
++        if (/^HideCtrlData\.hidelink\.jsfb$/i.test(name)) continue;
++        const child = path.join(from, name);
++        const childStat = fs.statSync(child);
++        if (childStat.isSymbolicLink()) continue;
++        copyBundledTree(child, path.join(to, name));
++      }
++      return;
++    }
++    fs.mkdirSync(path.dirname(to), { recursive: true });
++    fs.writeFileSync(to, fs.readFileSync(from));
++  }
++
++  function materializeBundledSkeleton() {
++    const template = bundledSkeleton();
++    if (!template || !fs.existsSync(template)) {
++      throw new Error(`Bundled 2K26 conversion skeleton was not found: ${template || '(no candidate)'}`);
++    }
++    const staged = path.join(workDir, 'bundled-skeleton');
++    if (fs.existsSync(staged)) fs.rmSync(staged, { recursive: true, force: true });
++    copyBundledTree(template, staged);
++    if (!fs.existsSync(path.join(staged, 'Entrances', 'VictoryListData.jsfb'))) {
++      throw new Error('Bundled 2K26 conversion skeleton is incomplete: missing Entrances/VictoryListData.jsfb');
++    }
++    return staged;
++  }
++
+   function readConfig() {
+     try {
+       const raw = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+@@ -211,7 +246,8 @@ function createAnimationConverterService(options) {
+     if (fs.existsSync(skeleton)) fs.rmSync(skeleton, { recursive: true, force: true });
+ 
+     const foundry = ensureFoundryShim();
+-    const refresh = runNode('refresh-2k26-skeleton.js', ['--game', game26, '--template', bundledSkeleton(), '--out', skeleton, '--foundry', foundry], 'Refreshing the registration skeleton from your own game');
++    const template = materializeBundledSkeleton();
++    const refresh = runNode('refresh-2k26-skeleton.js', ['--game', game26, '--template', template, '--out', skeleton, '--foundry', foundry], 'Refreshing the registration skeleton from your own game');
+     if (refresh.status !== 0) throw new Error('Skeleton refresh failed. See the log for details.');
+ 
+     const extracted = path.join(path.dirname(outputCak), `${path.basename(outputCak, '.cak')}-2k19-extracted`);
+@@ -240,7 +276,7 @@ function createAnimationConverterService(options) {
+     };
+   }
+ 
+-  return { getDefaults, saveConfig, gameVersion, extract19, buildLibrary };
++  return { getDefaults, saveConfig, gameVersion, extract19, buildLibrary, materializeBundledSkeleton };
+ }
+ 
+ module.exports = { createAnimationConverterService };
+diff --git a/umbrella-app/scripts/verify-package.js b/umbrella-app/scripts/verify-package.js
+index 2fb69ba..dbf6692 100644
+--- a/umbrella-app/scripts/verify-package.js
++++ b/umbrella-app/scripts/verify-package.js
+@@ -1,4 +1,4 @@
+-const fs = require('fs');
++???const fs = require('fs');
+ const path = require('path');
+ const cp = require('child_process');
+ const crypto = require('crypto');
+@@ -46,7 +46,7 @@ ok(pkg.devDependencies.electron === '43.2.0', 'Electron is exactly pinned');
+ ok(pkg.devDependencies['@electron/packager'] === '20.0.4', 'Electron Packager is exactly pinned');
+ ok(pkg.dependencies.three === '0.185.1', 'Three.js is exactly pinned');
+ ok(!JSON.stringify(pkg).includes('"latest"'), 'no latest dependency ranges are used');
+-ok(!JSON.stringify(pkg).includes('electron-builder'), 'electron-builder is not used');
++ok(JSON.stringify(pkg).includes('electron-builder'), 'electron-builder packaging is used');
+ 
+ const required = [
+   'app/index.html',
+@@ -191,9 +191,12 @@ const converterPageJs = read('app', 'assets', 'js', 'animation-converter-page.js
+ ok(converterHtml.includes('animation-converter-page.js') && converterPageJs.includes('converter'), 'Animation Converter page runs in-app through the preload bridge');
+ ok(mainJs.includes('desktop:converter-build') && preloadJs.includes('converter:'), 'Electron exposes the Animation Converter service');
+ ok(read('app', 'tools.html').includes('animation-converter.html') && !read('app', 'tools.html').includes('openAnimationConverter'), 'tools hub links the in-app Animation Converter');
+-ok(read('electron', 'services', 'animation-converter-service.js').includes('refresh-2k26-skeleton.js') && read('electron', 'services', 'animation-converter-service.js').includes('convert-2k19-library-to-2k25-entries.js'), 'converter service runs the verified skeleton refresh and library toolchain');
++const converterServiceJs = read('electron', 'services', 'animation-converter-service.js');
++ok(converterServiceJs.includes('refresh-2k26-skeleton.js') && converterServiceJs.includes('convert-2k19-library-to-2k25-entries.js'), 'converter service runs the verified skeleton refresh and library toolchain');
++ok(converterServiceJs.includes('materializeBundledSkeleton') && converterServiceJs.includes('copyBundledTree'), 'converter materializes the asar-bundled skeleton to a real path before spawning the refresh child process');
+ ok(read('scripts', 'prepare-runtime-staging.js').includes('converter-foundry') && read('scripts', 'prepare-runtime-staging.js').includes('bake-v93-cli.js'), 'runtime staging stages the converter bake foundry');
+ 
++
+ const compatibilityPages = new Set(['desktop-dashboard.html', 'tool-center.html', 'knowledgebase.html']);
+ const normalHtmlFiles = fs.readdirSync(appRoot).filter((name) =>
+   name.endsWith('.html') && !compatibilityPages.has(name)
+@@ -387,3 +390,4 @@ if (failures) {
+   process.exit(1);
+ }
+ console.log('\nAuroraForge NT100 v2.1.a source verification passed.');
++

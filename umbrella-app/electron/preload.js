@@ -1,9 +1,19 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('WWE2K26Desktop', {
+  toolLibrary: {
+    list: () => ipcRenderer.invoke('desktop:tool-library-list'),
+    source: id => ipcRenderer.invoke('desktop:tool-library-source', id),
+    chooseFolder: () => ipcRenderer.invoke('desktop:tool-library-folder'),
+    run: payload => ipcRenderer.invoke('desktop:tool-library-run', payload)
+  },
+  updates: {
+    check: (payload) => ipcRenderer.invoke('desktop:update-check', payload),
+    download: () => ipcRenderer.invoke('desktop:update-download'),
+    install: () => ipcRenderer.invoke('desktop:update-install'),
+    status: () => ipcRenderer.invoke('desktop:update-status')
+  },
   getAppInfo: () => ipcRenderer.invoke('desktop:get-app-info'),
-  getAccessStatus: () => ipcRenderer.invoke('desktop:access-status'),
-  verifyAccess: () => ipcRenderer.invoke('desktop:verify-access'),
   openAnimationConverter: () => ipcRenderer.invoke('desktop:open-animation-converter'),
   chooseProjectFolder: () => ipcRenderer.invoke('desktop:choose-project-folder'),
   openDefaultProjectsFolder: () => ipcRenderer.invoke('desktop:open-default-projects-folder'),

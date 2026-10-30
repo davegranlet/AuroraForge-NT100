@@ -23,8 +23,9 @@ function createAnimationConverterService(options) {
 
   function toolsDir() {
     return firstExisting([
-      bundledToolPath('entry-studio', 'tools'),
-      path.join(appRoot, '..', '..', 'animation', 'tools')
+      path.join(appRoot, '..', '..', 'animation', 'tools'),
+      bundledToolPath('sl', 'animation', 'tools'),
+      bundledToolPath('entry-studio', 'tools')
     ]);
   }
 
@@ -33,6 +34,41 @@ function createAnimationConverterService(options) {
       path.join(appRoot, 'skeletons', '14000-base', 'BakeMe'),
       path.join(appRoot, '..', '..', 'umbrella-app', 'app', 'skeletons', '14000-base', 'BakeMe')
     ]);
+  }
+
+  // The bundled skeleton normally lives inside app.asar in the packaged app.
+  // Electron main can read asar paths, but the converter's child Node process
+  // cannot. Materialize the template into the writable work directory before
+  // spawning refresh-2k26-skeleton.js.
+  function copyBundledTree(from, to) {
+    const stat = fs.statSync(from);
+    if (stat.isDirectory()) {
+      fs.mkdirSync(to, { recursive: true });
+      for (const name of fs.readdirSync(from)) {
+        if (/^HideCtrlData\.hidelink\.jsfb$/i.test(name)) continue;
+        const child = path.join(from, name);
+        const childStat = fs.statSync(child);
+        if (childStat.isSymbolicLink()) continue;
+        copyBundledTree(child, path.join(to, name));
+      }
+      return;
+    }
+    fs.mkdirSync(path.dirname(to), { recursive: true });
+    fs.writeFileSync(to, fs.readFileSync(from));
+  }
+
+  function materializeBundledSkeleton() {
+    const template = bundledSkeleton();
+    if (!template || !fs.existsSync(template)) {
+      throw new Error(`Bundled 2K26 conversion skeleton was not found: ${template || '(no candidate)'}`);
+    }
+    const staged = path.join(workDir, 'bundled-skeleton');
+    if (fs.existsSync(staged)) fs.rmSync(staged, { recursive: true, force: true });
+    copyBundledTree(template, staged);
+    if (!fs.existsSync(path.join(staged, 'Entrances', 'VictoryListData.jsfb'))) {
+      throw new Error('Bundled 2K26 conversion skeleton is incomplete: missing Entrances/VictoryListData.jsfb');
+    }
+    return staged;
   }
 
   function readConfig() {
@@ -210,7 +246,8 @@ function createAnimationConverterService(options) {
     if (fs.existsSync(skeleton)) fs.rmSync(skeleton, { recursive: true, force: true });
 
     const foundry = ensureFoundryShim();
-    const refresh = runNode('refresh-2k26-skeleton.js', ['--game', game26, '--template', bundledSkeleton(), '--out', skeleton, '--foundry', foundry], 'Refreshing the registration skeleton from your own game');
+    const template = materializeBundledSkeleton();
+    const refresh = runNode('refresh-2k26-skeleton.js', ['--game', game26, '--template', template, '--out', skeleton, '--foundry', foundry], 'Refreshing the registration skeleton from your own game');
     if (refresh.status !== 0) throw new Error('Skeleton refresh failed. See the log for details.');
 
     const extracted = path.join(path.dirname(outputCak), `${path.basename(outputCak, '.cak')}-2k19-extracted`);
@@ -223,6 +260,7 @@ function createAnimationConverterService(options) {
       '--victory', path.join(extracted, 'victory'),
       '--entrance', path.join(extracted, 'entrance'),
       '--out-cak', outputCak,
+      '--game', '2k26',
       '--foundry', foundry
     ], 'Converting to new entries and baking the CAK');
     if (convert.status !== 0) throw new Error('Library conversion failed. See the log for details.');
@@ -238,7 +276,7 @@ function createAnimationConverterService(options) {
     };
   }
 
-  return { getDefaults, saveConfig, gameVersion, extract19, buildLibrary };
+  return { getDefaults, saveConfig, gameVersion, extract19, buildLibrary, materializeBundledSkeleton };
 }
 
 module.exports = { createAnimationConverterService };

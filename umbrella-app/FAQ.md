@@ -46,4 +46,4 @@ No. Aurora Forge and Secure DataCtrlLink are independent community projects and 
 
 ## Is Aurora Forge open source?
 
-Yes. Aurora Forge and its first-party helper source are released under the MIT License. Required third-party notices remain included.
+Yes. Aurora Forge and its first-party helper source are released under the GNU GPL v3.0 or later. Required third-party notices remain included.

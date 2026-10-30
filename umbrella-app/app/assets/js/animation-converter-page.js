@@ -47,8 +47,17 @@
     var a = api();
     var select = $('pipelineSelect');
     if (!a || !select || !$('pipelineNote')) return;
-    var target = select.value === '2k19-2k25' ? 'WWE2K25_x64.exe' : 'WWE2K26_x64.exe';
-    var label = select.value === '2k19-2k25' ? 'WWE 2K25' : 'WWE 2K26';
+    var targets = {
+      '2k19-2k20': ['WWE2K20_x64.exe', 'WWE 2K20'],
+      '2k19-2k22': ['WWE2K22_x64.exe', 'WWE 2K22'],
+      '2k19-2k23': ['WWE2K23_x64.exe', 'WWE 2K23'],
+      '2k19-2k24': ['WWE2K24_x64.exe', 'WWE 2K24'],
+      '2k19-2k25': ['WWE2K25_x64.exe', 'WWE 2K25'],
+      '2k19-2k26': ['WWE2K26_x64.exe', 'WWE 2K26']
+    };
+    var selected = targets[select.value] || targets['2k19-2k26'];
+    var target = selected[0];
+    var label = selected[1];
     var folder = state.defaults && state.defaults.game26 ? state.defaults.game26 : '';
     if (!folder) { $('pipelineNote').textContent = 'Choose your ' + label + ' folder to confirm the target.'; return; }
     var check = await a.gameVersion(folder);

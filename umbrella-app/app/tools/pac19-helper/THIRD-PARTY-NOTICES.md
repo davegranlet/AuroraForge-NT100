@@ -1,12 +1,12 @@
 # Third-Party Format Research
 
-AuroraForge NT100's WWE 2K19 PAC implementation was independently written using controlled inspection of user-owned game files and the public WrestleMINUS project as format research.
+Aurora Forge's WWE 2K19 PAC implementation was independently written using controlled inspection of user-owned game files and the public WrestleMINUS project as format research.
 
 WrestleMINUS is Copyright (c) 2019 Pozzum and distributed under the MIT License:
 
 https://github.com/pozzum/WrestleMINUS
 
-AuroraForge NT100 does not bundle WrestleMINUS, WWE game files, or RAD Game Tools' Oodle library. The PAC helper loads `oo2core_6_win64.dll` from the user's installed WWE 2K19 copy when Oodle decompression or compression is required.
+Aurora Forge does not bundle WrestleMINUS, WWE game files, or RAD Game Tools' Oodle library. The PAC helper loads `oo2core_6_win64.dll` from the user's installed WWE 2K19 copy when Oodle decompression or compression is required.
 
 ## WrestleMINUS MIT License
 

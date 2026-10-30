@@ -38,31 +38,24 @@ const knowledge = json('app', 'data', 'wwe2k26-modding-facts.json');
 const knowledge22 = json('app', 'data', 'wwe2k22-modding-facts.json');
 const projectCatalog = json('app', 'data', 'aurora-projects.json');
 
-ok(pkg.version === '2.0.0', 'standards-safe package version is 2.0');
-ok(lock.version === '2.0.0' && lock.packages[''].version === '2.0.0', 'package-lock root version matches');
-ok(manifest.release === '2.0.m' && manifest.releaseTitle === 'Beta 3', 'manifest identifies visible AuroraForge NT100 Beta3');
-ok(config.release === '2.0.m' && config.releaseTitle === 'Beta 3', 'app config identifies visible AuroraForge NT100 Beta3');
-const releaseChallenge = json('app', 'config', 'release-challenge.json');
-ok(releaseChallenge.release === '2.0.m' && releaseChallenge.releaseTitle === 'Beta 3' && /^[0-9a-f]{64}$/i.test(releaseChallenge.challenge || ''), 'per-release verification challenge is generated for Beta3');
+ok(pkg.version === '2.1.2', 'standards-safe package version is 2.1.2');
+ok(lock.version === '2.1.2' && lock.packages[''].version === '2.1.2', 'package-lock root version matches');
+ok(manifest.release === '2.1.a' && manifest.releaseTitle === 'Beta 4', 'manifest identifies the free release');
+ok(config.release === '2.1.a' && config.releaseTitle === 'Beta 4', 'app config identifies the free release');
 ok(pkg.devDependencies.electron === '43.2.0', 'Electron is exactly pinned');
 ok(pkg.devDependencies['@electron/packager'] === '20.0.4', 'Electron Packager is exactly pinned');
 ok(pkg.dependencies.three === '0.185.1', 'Three.js is exactly pinned');
 ok(!JSON.stringify(pkg).includes('"latest"'), 'no latest dependency ranges are used');
-ok(!JSON.stringify(pkg).includes('electron-builder'), 'electron-builder is not used');
+ok(JSON.stringify(pkg).includes('electron-builder'), 'electron-builder packaging is used');
 
 const required = [
   'app/index.html',
-  'app/access-gate.html',
   'app/project-manager.html',
   'app/creative-studios.html',
   'app/tools.html',
   'app/aurora-projects.html',
   'app/data/aurora-projects.json',
   'app/assets/js/aurora-projects.js',
-  'app/assets/js/access-gate.js',
-  'app/tools/access-gate/patreon-access.js',
-  'app/tools/animation-converter/Aurora-Forge-2.0.k-Preview.exe',
-  'app/tools/animation-converter/SHA256SUMS.txt',
   'app/tools/wwe2k25-loader/dinput8.dll',
   'app/tools/wwe2k25-loader/plugins/AuroraForge.CAKModLoader.ftrib',
   'app/tools/wwe2k25-loader/SHA256SUMS.txt',
@@ -135,9 +128,11 @@ function walk(directory) {
   }
 }
 walk(appRoot);
-ok(!allFiles.some((file) => file.toLowerCase().endsWith('.php')), 'no PHP files are present');
+ok(!allFiles.some((file) => file.toLowerCase().endsWith('.php') && !file.includes(path.join('tools', 'sl') + path.sep)), 'desktop app has no PHP runtime pages; website source is confined to the source library');
 const bundledBuildAsset = (file) => /[\\/]skeletons[\\/]/i.test(file) || /[\\/]tools[\\/]cak-v93[\\/]/i.test(file);
 ok(!allFiles.some((file) => /\.(dds|mcd|mtls|jmtl|ycl|cak)$/i.test(file) && !bundledBuildAsset(file)), 'no extracted game or proprietary character assets are bundled');
+const runtimeStager = fs.readFileSync(path.join(root, 'scripts', 'prepare-runtime-staging.js'), 'utf8');
+ok(runtimeStager.includes('HideCtrlData') && runtimeStager.includes('assertNoProtectedAssets(staging)'), 'runtime staging excludes protected entitlement assets and checks the finished tree');
 
 const expectedPrimary = [
   'index.html',
@@ -153,7 +148,7 @@ ok(JSON.stringify(manifest.primaryNavigation.map((item) => item.file)) === JSON.
 ok(manifest.creativeStudios.length === 13, 'manifest groups thirteen creative studios');
 ok(manifest.tools.length === 9, 'manifest groups nine built-in tools');
 ok(projectCatalog.schema === 'aurora-forge-project-catalog-v1', 'project catalog schema is recognized');
-ok(projectCatalog.release === 'Beta 3', 'project catalog identifies Beta3');
+ok(projectCatalog.release === 'Beta 4', 'project catalog identifies the free release');
 ok(projectCatalog.projects.length === 33, 'project catalog contains all 33 repositories');
 ok(read('README.md').includes('owner-only build'), 'README keeps project catalog as an owner-only candidate');
 const projectIds = projectCatalog.projects.map((project) => project.id);
@@ -166,16 +161,13 @@ projectCatalog.projects.forEach((project) => {
 });
 const animationProject = projectCatalog.projects.find((project) => project.id === 'animation-converter');
 ok(animationProject?.status === 'experimental' && animationProject?.featured === true, '2K19 to 2K25 converter is featured with an honest experimental status');
-const beta3ConverterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'animation-converter', 'Aurora-Forge-2.0.k-Preview.exe'))).digest('hex').toUpperCase();
-ok(beta3ConverterHash === '76D7D4ABFE6D44E5D3941AFDC86E2F64E62CB488A90AC84304B7095A685CE764', 'bundled 2.0.k converter matches its recorded SHA-256');
+ok(exists('electron/services/animation-converter-service.js'), 'current converter is built from the included source service');
 const loaderCoreHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'wwe2k25-loader', 'dinput8.dll'))).digest('hex').toUpperCase();
 const loaderAddonHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(appRoot, 'tools', 'wwe2k25-loader', 'plugins', 'AuroraForge.CAKModLoader.ftrib'))).digest('hex').toUpperCase();
 ok(loaderCoreHash === 'E600D04F2E1A9AF3C23A358462E8B5C25064D6C08411819377E278581EF0ED2F', 'bundled WWE2K25 loader core matches verified SHA-256');
 ok(loaderAddonHash === '8DF85F88EF117CAE07D9BA3788AB255C5986E3E460F905EDAB7C5972918E3E33', 'bundled WWE2K25 loader addon matches verified SHA-256');
-ok(mainJs.includes("desktop:open-animation-converter") && mainJs.includes('bundledToolAccessEnv') && preloadJs.includes('openAnimationConverter'), 'umbrella exposes a scoped bundled-converter launcher with main-app access handoff');
-ok(mainJs.includes("desktop:verify-access") && preloadJs.includes('verifyAccess'), 'umbrella owns the access verifier session');
-ok(mainJs.includes("access-gate.html") && mainJs.includes("hasVerifiedAccess"), 'umbrella routes unverified users to the access gate');
-ok(read('app', 'tools', 'access-gate', 'patreon-access.js').includes('aurora-patreon-verifier.rd741904.chatgpt.site'), 'main app access gate uses the established verifier host');
+ok(mainJs.includes("desktop:open-animation-converter") && mainJs.includes("implementation: 'current-source'") && preloadJs.includes('openAnimationConverter'), 'converter launcher opens the current source implementation');
+ok(!mainJs.includes('access-gate') && !mainJs.includes('verify-access') && !preloadJs.includes('verifyAccess'), 'free release has no access verifier');
 
 const entryStudioHtml = read('app', 'entry-studio.html');
 const entryStudioPageJs = read('app', 'assets', 'js', 'entry-studio-page.js');
@@ -199,10 +191,13 @@ const converterPageJs = read('app', 'assets', 'js', 'animation-converter-page.js
 ok(converterHtml.includes('animation-converter-page.js') && converterPageJs.includes('converter'), 'Animation Converter page runs in-app through the preload bridge');
 ok(mainJs.includes('desktop:converter-build') && preloadJs.includes('converter:'), 'Electron exposes the Animation Converter service');
 ok(read('app', 'tools.html').includes('animation-converter.html') && !read('app', 'tools.html').includes('openAnimationConverter'), 'tools hub links the in-app Animation Converter');
-ok(read('electron', 'services', 'animation-converter-service.js').includes('refresh-2k26-skeleton.js') && read('electron', 'services', 'animation-converter-service.js').includes('convert-2k19-library-to-2k25-entries.js'), 'converter service runs the verified skeleton refresh and library toolchain');
+const converterServiceJs = read('electron', 'services', 'animation-converter-service.js');
+ok(converterServiceJs.includes('refresh-2k26-skeleton.js') && converterServiceJs.includes('convert-2k19-library-to-2k25-entries.js'), 'converter service runs the verified skeleton refresh and library toolchain');
+ok(converterServiceJs.includes('materializeBundledSkeleton') && converterServiceJs.includes('copyBundledTree'), 'converter materializes the asar-bundled skeleton to a real path before spawning the refresh child process');
 ok(read('scripts', 'prepare-runtime-staging.js').includes('converter-foundry') && read('scripts', 'prepare-runtime-staging.js').includes('bake-v93-cli.js'), 'runtime staging stages the converter bake foundry');
+ok(fs.existsSync(path.join(root, 'electron-builder.yml')) && read('electron', 'services', 'update-service.js').includes('electron-updater') && mainJs.includes('desktop:update-check') && preloadJs.includes('updates:'), 'electron-builder packaging and the GitHub auto-update service are wired');
 
-const compatibilityPages = new Set(['access-gate.html', 'desktop-dashboard.html', 'tool-center.html', 'knowledgebase.html']);
+const compatibilityPages = new Set(['desktop-dashboard.html', 'tool-center.html', 'knowledgebase.html']);
 const normalHtmlFiles = fs.readdirSync(appRoot).filter((name) =>
   name.endsWith('.html') && !compatibilityPages.has(name)
 );
@@ -249,7 +244,7 @@ ok(mainJs.includes('projectsFolder') && mainJs.includes('exportsFolder'), 'Elect
 ok(mainJs.includes("desktop:check-aurora-loader") && preloadJs.includes('checkAuroraLoader'), 'Electron exposes Aurora loader setup check');
 ok(!/desktop:check-cakehook|cakeView:|tribute:/.test(mainJs + preloadJs), 'Electron setup allowlist excludes old third-party tool gates');
 ok(!/cakeView|tribute|texconv/.test(read('app', 'assets', 'js', 'tool-center.js')), 'Setup renderer only lists supported creative programs');
-ok(mainJs.includes('AuroraForge NT100 Beta 3') && mainJs.includes('Internal build 2.0.m'), 'Electron About uses visible Beta3 release identity');
+ok(mainJs.includes('AuroraForge NT100 Beta 4') && mainJs.includes('Internal build 2.1.2'), 'Electron About uses the free release identity');
 ok(!mainJs.includes('toggleDevTools'), 'normal Electron menu does not expose developer tools');
 
 const studiosHtml = read('app', 'creative-studios.html');
@@ -300,7 +295,7 @@ ok(normalizedCakNames.some((name) => name.startsWith('cas/')) && normalizedCakNa
 ok(cakReaderJs.includes('variantsFor') && cakReaderJs.includes("/^root\\//i"), 'developer catalog builder safely handles extraction trees wrapped in a Root folder');
 ok(cakHtml.includes('value="resolved"') && cakHtml.includes('Raw hashes / external references'), 'archive page separates ready files from raw hashes and external references');
 ok(cakReaderJs.includes("options.scope) ? options.scope : 'resolved'"), 'archive searches default to real-path files only');
-ok(cakReaderJs.includes("file.availability = file.extractable ? (file.nameResolved ? 'ready' : 'raw-hash') : 'external-reference'"), 'archive reader distinguishes ready files, raw-hash payloads, and external references');
+ok(['ready', 'raw-hash', 'external-payload', 'external-reference'].every(state => cakReaderJs.includes("'" + state + "'")), 'archive reader distinguishes ready files, raw-hash payloads, external payloads, and external references');
 ok(cakReaderJs.includes('Unresolved/${path.basename') && cakReaderJs.includes('safeGeneratedName(file)'), 'unnamed payloads receive safe archive-scoped generated paths');
 ok(!mainJs.includes('findExistingExtractRoots'), 'archive opening never auto-scans a large extracted-files tree');
 ok(mainJs.includes('cakReader.openArchive(selected, readCakDictionary())'), 'archive opening uses the bundled dictionary immediately');
@@ -313,8 +308,8 @@ ok(cakHtml.includes('id="cakDevDetails" hidden'), 'normal archive page keeps tec
 ok(cakJs.includes('box.disabled = item.extractable === false') && cakJs.includes('(raw hash name)'), 'archive interface permits raw-hash payloads and disables only zero-payload references');
 
 const faqHtml = read('app', 'faq.html');
-ok(faqHtml.includes('Is AuroraForge NT100 an AI chatbot?') && faqHtml.includes('Does AuroraForge NT100 generate the finished artwork?'), 'FAQ explains the prompt-generator boundary');
-ok(faqHtml.includes('does not send prompts automatically') && faqHtml.includes('user controls if, when, and where'), 'FAQ explains provider choice and local control');
+ok(faqHtml.includes('What are Prompt Builders?') && faqHtml.includes('does not generate the final artwork'), 'FAQ explains the prompt-generator boundary');
+ok(faqHtml.includes('does not send prompts to an AI provider') && faqHtml.includes('runs locally'), 'FAQ explains provider choice and local control');
 
 const tutorialsHtml = read('app', 'tutorials.html');
 ok(tutorialsHtml.includes('Rebuilding the tutorial section') && tutorialsHtml.includes('tutorial-rebuild-hero'), 'Tutorials is replaced by the Beta2 rebuilding screen');
@@ -325,10 +320,10 @@ ok(!tutorialsHtml.includes('complete-character-modding-guide.html') && !tutorial
 ok(read('app', 'knowledgebase.html').includes('url=tutorials.html'), 'old knowledgebase link redirects to Tutorials');
 
 const aboutHtml = read('app', 'about.html');
-ok(aboutHtml.includes('v2.0'), 'About displays visible version 2.0');
+ok(aboutHtml.includes('v2.1.2'), 'About displays visible version 2.1.a');
 ok(aboutHtml.includes('Microsoft DirectXTex') && aboutHtml.includes('MIT License'), 'About credits the bundled open-source converter');
-ok(aboutHtml.includes('compiled-only') && aboutHtml.includes('source is cleared'), 'About explains compiled-only source availability boundary');
-ok(faqHtml.includes('Not yet') && faqHtml.includes('compiled-only') && faqHtml.includes('source is cleared'), 'FAQ explains source will be posted when cleared');
+ok(aboutHtml.includes('Public source archives are available now') && aboutHtml.includes('Some extraction and encryption research remains private'), 'About explains the current public and private source boundary');
+ok(faqHtml.includes('public source archives are available now') && faqHtml.includes('Some extraction and encryption research remains private'), 'FAQ explains the current public and private source boundary');
 ok(!normalHtmlFiles.some((file) => /internal production notes/i.test(read('app', file))), 'public app contains no internal production notes');
 ok(cakHtml.includes('id="repackBuild"') && cakHtml.includes('Build Game-Ready CAK') && preloadJs.includes('verifyRepackPackage') && mainJs.includes('archiveRepackager.buildCak'), 'Aurora CAK Foundry includes the CAK baker and verification controls');
 const modSuiteHtml = read('app', 'mod-suite.html');
@@ -394,4 +389,4 @@ if (failures) {
   console.error(`\nAuroraForge NT100 verification failed with ${failures} problem(s).`);
   process.exit(1);
 }
-console.log('\nAuroraForge NT100 v2.0 source verification passed.');
+console.log('\nAuroraForge NT100 v2.1.a source verification passed.');

@@ -5,7 +5,7 @@ const crypto = require('crypto');
 
 const root = path.join(__dirname, '..');
 const appFolder = path.join(root, 'dist', 'AuroraForge NT100-win32-x64');
-const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.0.m-Windows-x64.zip');
+const zipPath = path.join(root, 'portable-release', 'AuroraForge-NT100-2.1.a-Windows-x64.zip');
 const asarPath = path.join(appFolder, 'resources', 'app.asar');
 const unpackedTools = path.join(appFolder, 'resources', 'app.asar.unpacked', 'app', 'tools');
 
@@ -31,7 +31,7 @@ assert(exists(appFolder, 'AuroraForge NT100.exe'), 'portable EXE exists');
 assert(exists(appFolder, 'resources'), 'resources folder exists');
 assert(exists(appFolder, 'locales'), 'locales folder exists');
 assert(exists(appFolder, 'README_RUN_PORTABLE_APP.txt'), 'portable runtime README exists');
-assert(exists(appFolder, 'AURORA-FORGE-LICENSE.txt'), 'AuroraForge NT100 MIT license exists');
+assert(exists(appFolder, 'AURORA-FORGE-LICENSE.txt'), 'AuroraForge NT100 GPL license exists');
 assert(exists(appFolder, 'FAQ.md'), 'canonical FAQ exists');
 assert(exists(appFolder, 'RELEASE_NOTES_2.0.md'), 'v2.0 release notes exist');
 assert(exists(appFolder, 'RELEASE_NOTES_1.7.5.md'), 'v1.7.5 release notes exist');
@@ -42,15 +42,13 @@ assert(exists(appFolder, 'THIRD-PARTY-NOTICES', 'DirectXTex-LICENSE.txt'), 'Dire
 const hasAsar = exists(appFolder, 'resources', 'app.asar');
 const hasUnpackedApp = exists(appFolder, 'resources', 'app');
 assert(hasAsar || hasUnpackedApp, 'packaged app runtime exists in resources');
+assert(exists(appFolder, 'resources', 'sl', 'tool-library.json'), 'short-path tool library is shipped as an extra resource');
 assert(exists(unpackedTools, 'cak-helper', 'AuroraCakHelper.exe'), 'CAK helper is physically unpacked for Windows execution');
 assert(exists(unpackedTools, 'texconv', 'texconv.exe'), 'DirectXTex converter is physically unpacked for Windows execution');
-const beta3ConverterExe = path.join(unpackedTools, 'animation-converter', 'Aurora-Forge-2.0.k-Preview.exe');
 const loaderCore = path.join(unpackedTools, 'wwe2k25-loader', 'dinput8.dll');
 const loaderAddon = path.join(unpackedTools, 'wwe2k25-loader', 'plugins', 'AuroraForge.CAKModLoader.ftrib');
-assert(exists(beta3ConverterExe), '2.0.k converter is physically unpacked for Windows execution');
 assert(exists(loaderCore), 'verified WWE 2K25 loader core is physically unpacked');
 assert(exists(loaderAddon), 'verified WWE 2K25 loader addon is physically unpacked');
-if (exists(beta3ConverterExe)) assert(sha256(beta3ConverterExe) === '76D7D4ABFE6D44E5D3941AFDC86E2F64E62CB488A90AC84304B7095A685CE764', 'packaged 2.0.d converter checksum matches release candidate');
 if (exists(loaderCore)) assert(sha256(loaderCore) === 'E600D04F2E1A9AF3C23A358462E8B5C25064D6C08411819377E278581EF0ED2F', 'packaged loader core checksum matches verified binary');
 if (exists(loaderAddon)) assert(sha256(loaderAddon) === '8DF85F88EF117CAE07D9BA3788AB255C5986E3E460F905EDAB7C5972918E3E33', 'packaged loader addon checksum matches verified binary');
 assert(exists(appFolder, 'chrome_100_percent.pak') || exists(appFolder, 'chrome_200_percent.pak'), 'Electron chrome pak runtime files exist');
@@ -78,7 +76,7 @@ try {
 
   assert(hasExact('AuroraForge NT100.exe'), 'portable ZIP contains EXE');
   assert(hasExact('README_RUN_PORTABLE_APP.txt'), 'portable ZIP contains runtime README');
-  assert(hasExact('AURORA-FORGE-LICENSE.txt'), 'portable ZIP contains AuroraForge NT100 MIT license');
+  assert(hasExact('AURORA-FORGE-LICENSE.txt'), 'portable ZIP contains AuroraForge NT100 GPL license');
   assert(hasExact('FAQ.md'), 'portable ZIP contains canonical FAQ');
   assert(hasExact('RELEASE_NOTES_2.0.md'), 'portable ZIP contains v2.0 release notes');
   assert(hasExact('RELEASE_NOTES_1.7.5.md'), 'portable ZIP contains release notes');
@@ -86,9 +84,9 @@ try {
   assert(hasExact('INSTALLATION_AND_ROLLBACK.md'), 'portable ZIP contains rollback instructions');
   assert(hasExact('THIRD-PARTY-NOTICES/DirectXTex-LICENSE.txt'), 'portable ZIP contains DirectXTex license');
   assert(hasPrefix('resources/'), 'portable ZIP contains required Electron resources runtime entries');
+  assert(hasExact('resources/sl/tool-library.json'), 'portable ZIP contains the short-path tool library');
   assert(hasExact('resources/app.asar.unpacked/app/tools/cak-helper/AuroraCakHelper.exe'), 'portable ZIP contains runnable unpacked CAK helper');
   assert(hasExact('resources/app.asar.unpacked/app/tools/texconv/texconv.exe'), 'portable ZIP contains runnable unpacked DirectXTex converter');
-assert(hasExact('resources/app.asar.unpacked/app/tools/animation-converter/Aurora-Forge-2.0.k-Preview.exe'), 'portable ZIP contains runnable unpacked 2.0.d converter');
   assert(hasExact('resources/app.asar.unpacked/app/tools/wwe2k25-loader/dinput8.dll'), 'portable ZIP contains verified WWE 2K25 loader core');
   assert(hasExact('resources/app.asar.unpacked/app/tools/wwe2k25-loader/plugins/AuroraForge.CAKModLoader.ftrib'), 'portable ZIP contains verified WWE 2K25 loader addon');
   assert(hasPrefix('locales/'), 'portable ZIP contains required Electron locales runtime entries');
@@ -123,9 +121,7 @@ try {
     return packagedEntries.some(function (entry) { return entry.endsWith(suffix); });
   };
   assert(containsSuffix('app/project-manager.html'), 'packaged runtime contains consolidated Projects');
-  assert(containsSuffix('app/access-gate.html'), 'packaged runtime contains the main app access gate');
-  assert(containsSuffix('app/assets/js/access-gate.js'), 'packaged runtime contains access gate logic');
-  assert(containsSuffix('app/tools/access-gate/patreon-access.js'), 'packaged runtime contains main app verifier helper');
+  assert(!containsSuffix('app/access-gate.html'), 'free release contains no access gate');
   assert(containsSuffix('app/creative-studios.html'), 'packaged runtime contains Prompt Builders hub');
   assert(containsSuffix('app/tools.html'), 'packaged runtime contains Tools hub');
   assert(containsSuffix('app/mod-suite.html'), 'packaged runtime contains Mod Suite');

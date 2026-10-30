@@ -1,6 +1,6 @@
 {
   "schema": "aurora-forge-project-catalog-v1",
-  "release": "Beta 3",
+  "release": "Beta 4",
   "projects": [
     {
       "id": "aurora-forge",
@@ -24,16 +24,20 @@
     },
     {
       "id": "animation-converter",
-      "title": "WWE 2K19 to WWE 2K25/2K26 Animation Converter",
+      "title": "WWE 2K19 to WWE 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 Animation Converter",
       "kind": "converter",
       "pillar": "Animation",
       "status": "experimental",
       "games": [
         "2K19",
+        "2K20",
+        "2K22",
+        "2K23",
+        "2K24",
         "2K25",
         "2K26"
       ],
-      "description": "AuroraForge NT100 converts decoded 2K19 motion into modern 2K25/2K26 clips output and can build a loader-ready CAK. Additive menu entries and final pose alignment remain test-gated.",
+      "description": "AuroraForge NT100 converts decoded 2K19 motion into modern 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 clips output and can build a loader-ready CAK. Additive menu entries and final pose alignment remain test-gated.",
       "repository": "https://github.com/davegranlet/Aurora-Forge-WWE2K19-Animation-Research",
       "workspaceRelativePath": "WWE2K19-to-2K26-Entrance-Prototype",
       "featured": true

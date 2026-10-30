@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'"><title>Aurora Tool Library</title><link rel="stylesheet" href="assets/css/style.css"></head>
+<body><nav class="app-side-nav" aria-label="Primary app navigation">
+      <a class="app-nav-link" href="index.html"><span class="nav-ico">⌂</span><span><strong>Forge Home</strong><small>Start and continue</small></span></a>
+      <a class="app-nav-link" href="project-manager.html"><span class="nav-ico">▣</span><span><strong>Projects</strong><small>Save and reopen work</small></span></a>
+      <a class="app-nav-link" href="creative-studios.html"><span class="nav-ico">◆</span><span><strong>Prompt Builders</strong><small>Build instructions</small></span></a>
+      <a class="app-nav-link active" href="tools.html"><span class="nav-ico">⚙︎</span><span><strong>Inspect &amp; Convert</strong><small>Check the files</small></span></a>
+      <a class="app-nav-link" href="mod-suite.html"><span class="nav-ico">↗</span><span><strong>Package &amp; Test</strong><small>Prepare the release</small></span></a>
+      <a class="app-nav-link" href="tutorials.html"><span class="nav-ico">▤</span><span><strong>Rebuilding</strong><small>Guides coming back</small></span></a>
+      <a class="app-nav-link" href="setup.html"><span class="nav-ico">☷</span><span><strong>Setup</strong><small>Games and folders</small></span></a>
+      <div class="app-nav-divider" aria-hidden="true"></div>
+      <a class="app-nav-link" href="about.html"><span class="nav-ico">ⓘ</span><span><strong>About</strong><small>Build and boundaries</small></span></a>
+    </nav><main style="max-width:1200px;margin:40px auto;padding:20px"><a href="tools.html">Back to tools</a><h1>Tool Library</h1><p>Browse the bundled readers, writers and utilities. Node command line tools run inside Aurora Forge. Other items expose their source and require their stated runtime.</p><label>Search <input id="search" type="search"></label><select id="tools" size="12" style="width:100%"></select><p id="details"></p><button id="source">View source</button><button id="folder">Choose working folder</button><span id="cwd"></span><p><label>Arguments as a JSON array <input id="args" value='["--help"]' style="width:100%"></label></p><p id="function-row" hidden><label>Exported function <input id="function" placeholder="parse"></label></p><button id="run">Run selected tool</button><pre id="output" style="white-space:pre-wrap;overflow:auto;max-height:600px"></pre></main><script src="assets/js/tool-library.js"></script></body></html>

@@ -12,7 +12,7 @@ AuroraForge NT100 is a local WWE PC modding workspace that folds the supporting 
 - **Cross-generation tools:** WWE 2K19 PAC Explorer and Rebuilder and WWE 2K20 CAK Workbench, with unsupported operations labeled honestly.
 - **DDS Converter:** button-driven DDS/PNG file and folder conversion using the included redistributable DirectXTex converter.
 - **Animation Converter Beta2:** controlled WWE 2K19 motion to WWE 2K25 replacement output, explicitly test-gated for in-game proof.
-- **Main app access gate:** the umbrella app verifies Beta2 access before opening the workspace, tools, or bundled converter.
+- **No access gate:** Beta 4 (2.1) opens directly with no Patreon, Discord, or in-app verification.
 - Guided prompt builders, project folders, handoff packs, reference workflows, and 48 in-app tutorials.
 
 ## Owner-only candidate

@@ -1,0 +1,54 @@
+appId: com.vikingstudios.auroraforgent100
+productName: AuroraForge NT100
+copyright: Copyright © 2026 VikingStudios
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - electron/**/*
+  - app/**/*
+  - package.json
+  - "!app/tools/sl/**/*"
+  - "!app/tools/entry-studio/tools/**/*"
+  - "!app/_md-search/**/*"
+  - "!**/*.map"
+
+extraResources:
+  - from: build/library/sl
+    to: sl
+
+asarUnpack:
+  - app/tools/**/*
+
+publish:
+  provider: github
+  owner: davegranlet
+  repo: AuroraForge-NT100
+  releaseType: release
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: app/assets/img/app-icon.ico
+  artifactName: ${productName}-${version}-Windows-x64-Setup.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: AuroraForge NT100
+
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  category: Utility
+  icon: app/assets/img/app-icon-256.png
+  artifactName: ${productName}-${version}-Linux-x64.${ext}
