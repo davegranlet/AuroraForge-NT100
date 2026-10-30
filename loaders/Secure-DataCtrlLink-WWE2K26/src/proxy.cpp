@@ -1,0 +1,261 @@
+#define WIN32_LEAN_AND_MEAN
+// Windows base types must be declared before the BCrypt header.
+// clang-format off
+#include <windows.h>
+#include <bcrypt.h>
+#include <objbase.h>
+// clang-format on
+
+#include "shared/logging.hpp"
+#include "shared/plugin_interface.hpp"
+#include "shared/runtime_config.hpp"
+#include "core/addon_registry.hpp"
+#include "core/addon_selection.hpp"
+#include "core/profiles.hpp"
+
+#include <array>
+#include <filesystem>
+#include <string>
+#include <vector>
+
+namespace {
+
+HMODULE g_self = nullptr;
+HMODULE g_real = nullptr;
+INIT_ONCE g_real_once = INIT_ONCE_STATIC_INIT;
+secure_dcl::RuntimeConfig g_config;
+const secure_dcl::GameProfile* g_current_profile = nullptr;
+
+using DirectInput8CreateFn = HRESULT(WINAPI *)(HINSTANCE, DWORD, REFIID, LPVOID *, LPUNKNOWN);
+
+std::filesystem::path module_directory() {
+    std::array<wchar_t, 32768> buffer{};
+    const DWORD length =
+        GetModuleFileNameW(g_self, buffer.data(), static_cast<DWORD>(buffer.size()));
+    if (!length || length == buffer.size())
+        return {};
+    return std::filesystem::path(buffer.data(), buffer.data() + length).parent_path();
+}
+
+void log_line(const std::string &message) {
+    secure_dcl::log_to_file(module_directory() / L"DataCtrlLink.log", message);
+}
+
+BOOL CALLBACK load_real_dinput8(PINIT_ONCE, PVOID, PVOID *) {
+    std::array<wchar_t, 32768> buffer{};
+    const UINT length = GetSystemDirectoryW(buffer.data(), static_cast<UINT>(buffer.size()));
+    if (!length || length >= buffer.size())
+        return FALSE;
+    const auto path = std::filesystem::path(buffer.data(), buffer.data() + length) / L"dinput8.dll";
+    g_real = LoadLibraryW(path.c_str());
+    return g_real != nullptr;
+}
+
+std::string sha256_hex(const std::filesystem::path &path) {
+    HANDLE file = CreateFileW(path.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
+                              FILE_ATTRIBUTE_NORMAL, nullptr);
+    if (file == INVALID_HANDLE_VALUE)
+        return {};
+    BCRYPT_ALG_HANDLE alg = nullptr;
+    if (BCryptOpenAlgorithmProvider(&alg, BCRYPT_SHA256_ALGORITHM, nullptr, 0) != 0) {
+        CloseHandle(file);
+        return {};
+    }
+    BCRYPT_HASH_HANDLE hash = nullptr;
+    if (BCryptCreateHash(alg, &hash, nullptr, 0, nullptr, 0, 0) != 0) {
+        BCryptCloseAlgorithmProvider(alg, 0);
+        CloseHandle(file);
+        return {};
+    }
+    std::array<std::byte, 65536> buffer{};
+    DWORD bytes = 0;
+    while (ReadFile(file, buffer.data(), static_cast<DWORD>(buffer.size()), &bytes, nullptr) &&
+           bytes > 0) {
+        BCryptHashData(hash, reinterpret_cast<PUCHAR>(buffer.data()), bytes, 0);
+    }
+    std::array<std::uint8_t, 32> digest{};
+    BCryptFinishHash(hash, digest.data(), static_cast<ULONG>(digest.size()), 0);
+    BCryptDestroyHash(hash);
+    BCryptCloseAlgorithmProvider(alg, 0);
+    CloseHandle(file);
+    std::string hex;
+    hex.reserve(64);
+    for (const auto byte : digest) {
+        static constexpr char kDigits[] = "0123456789abcdef";
+        hex.push_back(kDigits[(byte >> 4) & 0x0F]);
+        hex.push_back(kDigits[byte & 0x0F]);
+    }
+    return hex;
+}
+
+std::size_t mapped_image_size(HMODULE module) {
+    if (!module) return 0;
+    const auto *base = reinterpret_cast<const std::uint8_t *>(module);
+    const auto *dos = reinterpret_cast<const IMAGE_DOS_HEADER *>(base);
+    if (dos->e_magic != IMAGE_DOS_SIGNATURE || dos->e_lfanew <= 0 ||
+        static_cast<std::size_t>(dos->e_lfanew) > 0x100000)
+        return 0;
+    const auto *nt = reinterpret_cast<const IMAGE_NT_HEADERS64 *>(base + dos->e_lfanew);
+    if (nt->Signature != IMAGE_NT_SIGNATURE || nt->OptionalHeader.Magic != IMAGE_NT_OPTIONAL_HDR64_MAGIC)
+        return 0;
+    return nt->OptionalHeader.SizeOfImage;
+}
+
+void load_plugins(HMODULE game_module, const std::filesystem::path& game_dir) {
+    const auto plugins_dir = game_dir / L"plugins";
+    if (!std::filesystem::exists(plugins_dir)) return;
+
+    secure_dcl::PluginContext context{
+        game_module,
+        game_dir,
+        log_line,
+        g_current_profile
+    };
+
+    for (const auto& entry : std::filesystem::directory_iterator(plugins_dir)) {
+        if (!entry.is_regular_file() || entry.is_symlink() || entry.path().extension() != L".ftrib")
+            continue;
+        const auto filename = entry.path().filename().string();
+        if (!secure_dcl::approved_addon_for_filename(filename)) {
+            log_line("REJECTED addon " + filename + ": filename is not in this loader's approved addon registry");
+        }
+    }
+
+    const auto selection = secure_dcl::load_addon_selection(plugins_dir);
+    if (!selection.valid) {
+        log_line("REJECTED all addons: " + selection.error);
+        return;
+    }
+    std::vector<const secure_dcl::ApprovedAddon *> enabled;
+    if (selection.present) {
+        for (const auto &filename : selection.filenames)
+            enabled.push_back(secure_dcl::approved_addon_for_filename(filename));
+    } else {
+        for (const auto &addon : secure_dcl::kApprovedAddons) enabled.push_back(&addon);
+    }
+
+    for (const auto *approved : enabled) {
+        if (!approved) continue;
+        const auto &addon = *approved;
+        const auto addon_path = plugins_dir / std::filesystem::path(std::string(addon.filename));
+        const DWORD attributes = GetFileAttributesW(addon_path.c_str());
+        if (attributes == INVALID_FILE_ATTRIBUTES) continue;
+        if ((attributes & (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_REPARSE_POINT)) != 0) {
+            log_line("REJECTED addon " + std::string(addon.filename) + ": not a regular non-reparse file");
+            continue;
+        }
+        const auto actual_hash = sha256_hex(addon_path);
+        if (actual_hash != addon.sha256) {
+            log_line("REJECTED addon " + std::string(addon.filename) + ": SHA-256 does not match the approved " + std::string(addon.product) + " build");
+            continue;
+        }
+        HMODULE plugin = LoadLibraryW(addon_path.c_str());
+        if (!plugin) {
+            log_line("FAILED addon " + std::string(addon.filename) + ": LoadLibraryW error " + std::to_string(GetLastError()));
+            continue;
+        }
+        const auto init = reinterpret_cast<secure_dcl::PluginInitFn>(
+            GetProcAddress(plugin, "PluginInit"));
+        if (!init) {
+            log_line("REJECTED addon " + std::string(addon.filename) + ": PluginInit export is missing");
+            FreeLibrary(plugin);
+            continue;
+        }
+        if (init(context)) {
+            log_line("Loaded approved addon: " + std::string(addon.product) + " [" + std::string(addon.filename) + "]");
+        } else {
+            log_line("FAILED addon " + std::string(addon.filename) + ": initialization returned false");
+            FreeLibrary(plugin);
+        }
+    }
+}
+
+DWORD WINAPI main_worker(LPVOID) {
+    const auto game_dir = module_directory();
+    g_config = secure_dcl::load_runtime_config(game_dir);
+
+    log_line("Secure DataCtrlLink Orchestrator started");
+
+    const auto game_path = game_dir / L"WWE2K26_x64.exe";
+    if (!std::filesystem::exists(game_path)) {
+        log_line("ERROR: Game executable not found at " + game_path.string());
+        return 0;
+    }
+
+    const auto hash = sha256_hex(game_path);
+    g_current_profile = secure_dcl::get_profile(hash);
+
+    if (!g_current_profile) {
+        const auto *image = reinterpret_cast<const std::uint8_t *>(GetModuleHandleW(nullptr));
+        g_current_profile = secure_dcl::get_profile_by_signatures(
+            image, mapped_image_size(GetModuleHandleW(nullptr)), hash);
+        if (!g_current_profile) {
+            log_line("ERROR: profile hash lookup missed and hook signatures failed at mapped RVAs (Hash: " + hash + ")");
+            MessageBoxW(nullptr, L"Secure DataCtrlLink: Unsupported game build. Hook signatures did not match; mod loading disabled.",
+                        L"Secure DataCtrlLink", MB_OK | MB_ICONERROR);
+            return 0;
+        }
+        log_line("Profile hash lookup missed; mount and archive-phase signatures matched at mapped RVAs (Hash: " + hash + ")");
+    }
+
+    log_line("Identified game version: " + g_current_profile->name);
+
+    HMODULE game_module = GetModuleHandleW(nullptr);
+    load_plugins(game_module, game_dir);
+
+    return 0;
+}
+
+} // namespace
+
+extern "C" HRESULT WINAPI
+DirectInput8Create(HINSTANCE instance, DWORD version, REFIID iid, LPVOID *output, LPUNKNOWN outer) {
+    if (!InitOnceExecuteOnce(&g_real_once, load_real_dinput8, nullptr, nullptr))
+        return E_FAIL;
+    const auto create = reinterpret_cast<DirectInput8CreateFn>(GetProcAddress(g_real, "DirectInput8Create"));
+    if (!create)
+        return E_FAIL;
+    return create(instance, version, iid, output, outer);
+}
+
+extern "C" HRESULT WINAPI DllCanUnloadNow() {
+    return S_FALSE;
+}
+
+extern "C" HRESULT WINAPI DllGetClassObject(REFCLSID clsid, REFIID iid, LPVOID *output) {
+    if (!InitOnceExecuteOnce(&g_real_once, load_real_dinput8, nullptr, nullptr))
+        return E_FAIL;
+    const auto get_class_object = reinterpret_cast<HRESULT(WINAPI *)(REFCLSID, REFIID, LPVOID *)>(
+        GetProcAddress(g_real, "DllGetClassObject"));
+    if (!get_class_object)
+        return E_FAIL;
+    return get_class_object(clsid, iid, output);
+}
+
+extern "C" HRESULT WINAPI DllRegisterServer() {
+    return S_OK;
+}
+
+extern "C" HRESULT WINAPI DllUnregisterServer() {
+    return S_OK;
+}
+
+extern "C" LPVOID WINAPI GetdfDIJoystick() {
+    if (!InitOnceExecuteOnce(&g_real_once, load_real_dinput8, nullptr, nullptr))
+        return nullptr;
+    const auto get_df_di_joystick = reinterpret_cast<LPVOID(WINAPI *)()>(
+        GetProcAddress(g_real, "GetdfDIJoystick"));
+    if (!get_df_di_joystick)
+        return nullptr;
+    return get_df_di_joystick();
+}
+
+BOOL WINAPI DllMain(HMODULE module, DWORD reason, LPVOID) {
+    if (reason == DLL_PROCESS_ATTACH) {
+        g_self = module;
+        DisableThreadLibraryCalls(module);
+        HANDLE thread = CreateThread(nullptr, 0, main_worker, nullptr, 0, nullptr);
+        if (thread) CloseHandle(thread);
+    }
+    return TRUE;
+}

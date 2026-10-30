@@ -41,6 +41,7 @@ if (engine === 'js') {
   const result = repackager.buildCak(source, output, {
     oodlePath: fs.existsSync(oodle) ? oodle : undefined,
     helperPath: fs.existsSync(helper) ? helper : undefined,
+    storeRaw: process.argv.includes('--store-raw'),
   });
   console.log(JSON.stringify({ output, source, engine: 'js', version: '9.9', ...result }, null, 2));
 } else {

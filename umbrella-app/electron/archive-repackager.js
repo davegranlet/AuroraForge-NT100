@@ -132,6 +132,7 @@ function scanBakeFolder(sourceRoot) {
       if (!relative || relative.split('/').includes('..')) throw new Error('A BakeMe entry escapes the selected folder.');
       if (entry.isDirectory()) { const id = folders.length; folders.push({ relative, leaf: entry.name, parent: folderId, children: [], files: [], hash: fnv1a64(relative.toLowerCase()) }); folders[folderId].children.push(id); walk(target, id); }
       else if (entry.isFile()) {
+        if (relative.toLowerCase() === 'hide/hidectrldata.hidelink.jsfb') throw new Error('HideCtrlData.hidelink.jsfb is protected and must not be baked.');
         if (['.aurora-cak-manifest.json', '.aurora-cak-external-references.json', 'aurora_forge_extraction_report.txt'].includes(relative.toLowerCase())) continue;
         const size = fs.statSync(target).size; if (size > 0xffffffff) throw new Error(`${relative} exceeds the 4 GB per-file CAK limit.`);
         const preserved = preservedEntries.get(relative.toLowerCase());
@@ -167,6 +168,7 @@ function prepareScanPayloads(scan, options = {}) {
     file.compressed = false;
     file.storedContent = file.synthetic ? Buffer.from(file.content) : null;
   }
+  if (options.storeRaw === true) return scan;
   if (!options.oodlePath || !options.helperPath) return scan;
   if (!fs.existsSync(options.oodlePath) || !fs.existsSync(options.helperPath)) throw new Error('WWE 2K26 Oodle compression was requested, but the game library or Aurora helper is missing.');
   const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'aurora-cak-compress-'));

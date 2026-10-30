@@ -131,7 +131,14 @@ function extractFile(archivePath, relativePath, outputRoot, toolPath, oodlePath)
   return runBackend(toolPath, ['unpack-file', '-i', archivePath, '-f', relativePath, '-o', outputRoot, '--no-convert-dds'], oodlePath);
 }
 
+function assertNoProtectedBakeMe(root) {
+  for (const file of walk(root)) {
+    if (file.relative.toLowerCase() === 'hide/hidectrldata.hidelink.jsfb') throw new Error('HideCtrlData.hidelink.jsfb is protected and must not be baked.');
+  }
+}
+
 function buildCak(sourceRoot, outputPath, toolPath, oodlePath) {
+  assertNoProtectedBakeMe(sourceRoot);
   return runBackend(toolPath, ['pack', '-i', sourceRoot, '-v', '9.3', '-o', outputPath, '--encrypt-header'], oodlePath);
 }
 

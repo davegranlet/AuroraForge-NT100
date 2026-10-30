@@ -114,6 +114,46 @@ function decodePairs(input, initialKey) {
   return output;
 }
 
+function decodeStringTable(input) {
+  const output = Buffer.from(input);
+  const u64 = (value) => BigInt.asUintN(64, value);
+  const rol64 = (value, shiftValue) => {
+    const shift = BigInt(shiftValue & 63);
+    return shift === 0n ? u64(value) : u64((u64(value) << shift) | (u64(value) >> (64n - shift)));
+  };
+  let cursor = 0;
+  while (cursor < output.length) {
+    const recordOffset = cursor;
+    const length = output[cursor];
+    cursor += 1;
+    if (cursor + length >= output.length) throw new Error('The CAK string table contains an invalid name length.');
+    const recordPosition = BigInt(recordOffset);
+    for (let index = 0; index < length; index += 1) {
+      let state = u64(BigInt(index) * -0x61c8864680b583ebn);
+      state = u64(state ^ u64((recordPosition << 32n) ^ recordPosition));
+      let mask = u64((state ^ (state >> 33n)) * 0xc2b2ae3d27d4eb4fn);
+      mask = rol64(mask, index);
+      mask = u64((mask ^ (mask >> 29n)) * 0x165667b19e3779f9n);
+      mask = u64(mask ^ (mask >> 32n));
+      const shifted = (output[cursor] - Number((mask >> 24n) & 0xffn)) & 0xff;
+      output[cursor] = shifted ^ Number(mask & 0xffn);
+      cursor += 1;
+    }
+    if (output[cursor] !== 0) throw new Error('The CAK string table contains an unterminated name record.');
+    cursor += 1;
+  }
+  return output;
+}
+
+function readStringRecord(table, offset) {
+  if (!Number.isInteger(offset) || offset < 0 || offset >= table.length) return '';
+  const length = table[offset];
+  const end = offset + 1 + length;
+  if (end >= table.length || table[end] !== 0) return '';
+  const value = table.subarray(offset + 1, end).toString('utf8');
+  return value.includes('\0') ? '' : value.replace(/\\/g, '/').replace(/^\/+|\/+$/g, '');
+}
+
 function readAt(fd, offset, size) {
   const buffer = Buffer.alloc(size);
   const count = fs.readSync(fd, buffer, 0, size, Number(offset));
@@ -142,7 +182,7 @@ function recoverKey(rawHeader, archiveSize) {
     const words = decodeHeader(rawHeader, key);
     if (words[0] === count && headerLooksValid(words, archiveSize)) return { key, words, recovered: true };
   }
-  throw new Error('AuroraForge NT100 could not recognize this CAK catalog version.');
+  throw new Error('Aurora Forge could not recognize this CAK catalog version.');
 }
 
 function parseHashes(buffer, expected) {
@@ -166,8 +206,15 @@ function parseFiles(buffer, expected, stringSize, folderCount, archiveSize, payl
     const expandedSize = buffer.readUInt32LE(cursor + 24);
     const folderIndex = buffer.readUInt32LE(cursor + 4);
     const stringOffset = buffer.readUInt32LE(cursor);
-    const payloadInsideArchive = offset >= BigInt(payloadStart) && offset + BigInt(storedSize) <= BigInt(archiveSize);
-    const externalCatalogEntry = offset === 0n;
+    const payloadEnd = offset + BigInt(storedSize);
+    const payloadInsideArchive = offset >= BigInt(payloadStart) && payloadEnd <= BigInt(archiveSize);
+    // Current WWE 2K26 update archives can keep a valid catalog record for a
+    // payload supplied outside this physical CAK. Preserve it as unavailable
+    // instead of rejecting the complete archive. Extraction remains disabled
+    // until a matching physical payload source is known.
+    const zeroOffsetReference = offset === 0n;
+    const externalPayload = offset >= BigInt(payloadStart) && payloadEnd > BigInt(archiveSize);
+    const externalCatalogEntry = zeroOffsetReference || externalPayload;
     if (stringOffset >= stringSize || folderIndex >= Math.max(1, folderCount) || (!payloadInsideArchive && !externalCatalogEntry)) {
       throw new Error(`A CAK file record contains an unsafe offset or size (record ${files.length}, offset ${offset}, stored ${storedSize}, expanded ${expandedSize}, archive ${archiveSize}).`);
     }
@@ -175,7 +222,7 @@ function parseFiles(buffer, expected, stringSize, folderCount, archiveSize, payl
     for (let index = 0; index < chunkCount; index += 1) chunks.push({ end: buffer.readUInt32LE(cursor + 34 + index * 4), flag: buffer[cursor + 34 + chunkCount * 4 + index] });
     const typeBytes = buffer.subarray(cursor + 12, cursor + 16);
     const type = [...typeBytes].every((value) => value === 0 || (value >= 32 && value <= 126)) ? typeBytes.toString('ascii').replace(/\0/g, '').trim().toLowerCase() : '';
-    files.push({ id: files.length, stringOffset, folderIndex, storedSize, expandedSize, offset: offset.toString(), type, chunkCount, chunks, compressed: buffer[cursor + 30] === 1, protected: buffer[cursor + 31] === 1, flags: [...buffer.subarray(cursor + 30, cursor + 34)], extractable: payloadInsideArchive });
+    files.push({ id: files.length, stringOffset, folderIndex, storedSize, expandedSize, offset: offset.toString(), type, chunkCount, chunks, compressed: buffer[cursor + 30] === 1, protected: buffer[cursor + 31] === 1, flags: [...buffer.subarray(cursor + 30, cursor + 34)], extractable: payloadInsideArchive, externalPayload });
     cursor += recordSize;
   }
   return { files, bytesRead: cursor, trailingBytes: buffer.length - cursor };
@@ -209,6 +256,11 @@ function safeGeneratedName(file) {
   return `file_${String(file.id).padStart(6, '0')}_${file.hash || 'nohash'}${extensionFor(file)}`;
 }
 
+function safeGeneratedFolder(file, folders) {
+  const folder = folders[file.folderIndex];
+  return `folder_${String(file.folderIndex).padStart(6, '0')}_${folder && folder.hash || 'nohash'}`;
+}
+
 function fnv1a64(value) {
   let hash = 0xcbf29ce484222325n;
   for (const char of String(value)) {
@@ -216,6 +268,17 @@ function fnv1a64(value) {
     hash = BigInt.asUintN(64, hash * 0x100000001b3n);
   }
   return hash.toString(16).padStart(16, '0');
+}
+
+function hashVerifiedPath(value, expectedHash) {
+  return Boolean(value && expectedHash && expectedHash !== '0000000000000000' && fnv1a64(value.toLowerCase()) === expectedHash);
+}
+
+function extractionPath(value) {
+  let result = String(value || '').replace(/\\/g, '/');
+  if (/\.tex$/i.test(result)) result = result.slice(0, -4) + '.dds';
+  if (/^Root\//i.test(result)) result = result.slice(result.indexOf('/') + 1);
+  return result;
 }
 
 function buildNameCandidates(root, targetHashes) {
@@ -290,37 +353,58 @@ function openArchive(archivePath, dictionary = {}) {
     const fileHashes = parseHashes(readDecoded(w[8], w[6]), w[0]);
     const fileTable = parseFiles(readDecoded(w[11], w[9]), w[0], w[15], w[1], archiveSize, w[20]);
     const folderTable = parseFolders(readDecoded(w[14], w[12]), w[1]);
+    const stringTable = decodeStringTable(readDecoded(w[17], w[15]));
     for (const item of fileHashes) if (item.index >= 0 && item.index < fileTable.files.length) fileTable.files[item.index].hash = item.hash;
     for (const item of folderHashes) if (item.index >= 0 && item.index < folderTable.folders.length) folderTable.folders[item.index].hash = item.hash;
     for (const folder of folderTable.folders) {
+      folder.nativeName = readStringRecord(stringTable, folder.stringOffset);
+      folder.nativeNameVerified = hashVerifiedPath(folder.nativeName, folder.hash);
       const knownName = dictionary[folder.hash];
-      folder.name = knownName && !path.isAbsolute(knownName) && !knownName.split(/[\\/]/).includes('..') ? knownName.replace(/\\/g, '/') : '';
+      const selectedName = folder.nativeNameVerified ? folder.nativeName : knownName;
+      folder.name = selectedName && !path.isAbsolute(selectedName) && !selectedName.split(/[\\/]/).includes('..') ? selectedName.replace(/\\/g, '/') : '';
       folder.nameResolved = Boolean(folder.name);
     }
     for (const file of fileTable.files) {
+      file.nativeLeaf = readStringRecord(stringTable, file.stringOffset);
+      const nativeFolder = folderTable.folders[file.folderIndex] && folderTable.folders[file.folderIndex].name || '';
+      file.nativeName = [nativeFolder, file.nativeLeaf].filter(Boolean).join('/');
+      file.nativeNameVerified = hashVerifiedPath(file.nativeName, file.hash);
       const knownName = dictionary[file.hash];
-      file.name = knownName && !path.isAbsolute(knownName) && !knownName.split(/[\\/]/).includes('..') ? knownName.replace(/\\/g, '/') : `Unresolved/${path.basename(resolved, path.extname(resolved))}/${safeGeneratedName(file)}`;
-      file.nameResolved = Boolean(knownName);
-      file.folderName = folderTable.folders[file.folderIndex] && folderTable.folders[file.folderIndex].name || '';
-      file.availability = file.extractable ? (file.nameResolved ? 'ready' : 'raw-hash') : 'external-reference';
+      const selectedName = file.nativeNameVerified ? extractionPath(file.nativeName) : knownName;
+      file.name = selectedName && !path.isAbsolute(selectedName) && !selectedName.split(/[\\/]/).includes('..') ? selectedName.replace(/\\/g, '/') : `Unresolved/${path.basename(resolved, path.extname(resolved))}/${safeGeneratedFolder(file, folderTable.folders)}/${safeGeneratedName(file)}`;
+      file.nameResolved = Boolean(selectedName);
+      file.folderName = folderTable.folders[file.folderIndex] && folderTable.folders[file.folderIndex].name || (selectedName ? path.posix.dirname(extractionPath(selectedName)) : '');
+      file.availability = file.extractable ? (file.nameResolved ? 'ready' : 'raw-hash') : (file.externalPayload ? 'external-payload' : 'external-reference');
     }
     return {
       archivePath: resolved, archiveName: path.basename(resolved), archiveSize, magic, key: keyResult.key,
       keyRecovered: keyResult.recovered, payloadStart: w[20], header: w, files: fileTable.files,
       folders: folderTable.folders, fileHashes, folderHashes,
-      warnings: [fileTable.trailingBytes ? `${fileTable.trailingBytes} unused file-table bytes were preserved.` : '', folderTable.trailingBytes ? `${folderTable.trailingBytes} unused folder-table bytes were preserved.` : ''].filter(Boolean)
+      warnings: [fileTable.trailingBytes ? `${fileTable.trailingBytes} unused file-table bytes were preserved.` : '', folderTable.trailingBytes ? `${folderTable.trailingBytes} unused folder-table bytes were preserved.` : '', fileTable.files.some((file) => file.externalPayload) ? 'This archive lists payloads outside its local byte range. They need matching exact-size files from a separately extracted companion folder.' : ''].filter(Boolean)
     };
   } finally { fs.closeSync(fd); }
 }
 
+function buildNativeDictionary(archivePaths) {
+  const dictionary = {};
+  for (const archivePath of archivePaths) {
+    const session = openArchive(archivePath, {});
+    for (const folder of session.folders) if (folder.nativeNameVerified) dictionary[folder.hash] = folder.nativeName;
+    for (const file of session.files) if (file.nativeNameVerified) dictionary[file.hash] = extractionPath(file.nativeName);
+  }
+  return dictionary;
+}
+
 function publicSummary(session) {
-  const totalExpanded = session.files.reduce((sum, file) => sum + file.expandedSize, 0);
-  const resolvedNames = session.files.filter((file) => file.nameResolved).length;
+  const payloadFiles = session.files.filter((file) => file.extractable || file.externalPayload);
+  const totalExpanded = payloadFiles.reduce((sum, file) => sum + file.expandedSize, 0);
+  const resolvedNames = payloadFiles.filter((file) => file.nameResolved).length;
   const resolvedFolders = session.folders.filter((folder) => folder.nameResolved).length;
   const readyFiles = session.files.filter((file) => file.nameResolved && file.extractable).length;
   const rawHashPayloads = session.files.filter((file) => !file.nameResolved && file.extractable).length;
-  const externalReferences = session.files.filter((file) => !file.extractable).length;
-  return { archiveName: session.archiveName, archivePath: session.archivePath, archiveSize: session.archiveSize, fileCount: session.files.length, folderCount: session.folders.length, totalExpanded, resolvedNames, unresolvedNames: session.files.length - resolvedNames, resolvedFolders, readyFiles, rawHashPayloads, externalReferences, keyRecovered: session.keyRecovered, warnings: session.warnings };
+  const externalReferences = session.files.filter((file) => !file.extractable && !file.externalPayload).length;
+  const externalPayloads = session.files.filter((file) => file.externalPayload).length;
+  return { archiveName: session.archiveName, archivePath: session.archivePath, archiveSize: session.archiveSize, fileCount: payloadFiles.length, catalogEntryCount: session.files.length, folderCount: session.folders.length, totalExpanded, resolvedNames, unresolvedNames: payloadFiles.length - resolvedNames, resolvedFolders, readyFiles, rawHashPayloads, externalReferences, externalPayloads, keyRecovered: session.keyRecovered, warnings: session.warnings };
 }
 
 function searchFiles(session, options = {}) {
@@ -329,9 +413,12 @@ function searchFiles(session, options = {}) {
   const scope = ['resolved', 'unresolved', 'all'].includes(options.scope) ? options.scope : 'resolved';
   const pageSize = Math.min(250, Math.max(10, Number(options.pageSize) || 100));
   const page = Math.max(0, Number(options.page) || 0);
-  const filtered = session.files.filter((file) => (scope === 'all' || (scope === 'resolved' ? file.nameResolved : !file.nameResolved)) && (!query || file.name.toLowerCase().includes(query) || String(file.hash || '').includes(query) || file.type.includes(query)) && (!type || file.type === type));
+  const filtered = session.files.filter((file) => (file.extractable || file.externalPayload) && (scope === 'all' || (scope === 'resolved' ? file.nameResolved : !file.nameResolved)) && (!query || file.name.toLowerCase().includes(query) || String(file.hash || '').includes(query) || file.type.includes(query)) && (!type || file.type === type));
   const items = filtered.slice(page * pageSize, (page + 1) * pageSize).map(({ chunks, flags, ...file }) => file);
-  return { items, total: filtered.length, page, pageSize, pages: Math.max(1, Math.ceil(filtered.length / pageSize)), types: [...new Set(session.files.map((file) => file.type).filter(Boolean))].sort() };
+  const selectable = filtered.filter((file) => (file.extractable || file.externalPayload) && file.nameResolved);
+  const result = { items, total: filtered.length, selectableTotal: selectable.length, page, pageSize, pages: Math.max(1, Math.ceil(filtered.length / pageSize)), types: [...new Set(session.files.map((file) => file.type).filter(Boolean))].sort() };
+  if (options.includeSelectableIds === true) result.selectableIds = selectable.map((file) => file.id);
+  return result;
 }
 
-module.exports = { openArchive, publicSummary, searchFiles, buildNameCandidates, fnv1a64, decodePairs, keyFromFirstMask };
+module.exports = { openArchive, publicSummary, searchFiles, buildNameCandidates, buildNativeDictionary, fnv1a64, decodePairs, decodeStringTable, readStringRecord, keyFromFirstMask };

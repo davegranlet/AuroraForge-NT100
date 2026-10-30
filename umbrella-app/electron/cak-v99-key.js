@@ -161,7 +161,9 @@ function deriveArchiveKeyV99(fileName, trace) {
   const random = new Sfmt19937(Number(fnv & 0xffffffffn));
   const majorCrc = crc32cByteRaw(0xffffffff, 9);
   const minorCrc = crc32cByteRaw(0xffffffff, 9);
-  const seedText = u64(~fnv).toString(16) +
+  // The native routine hashes a fixed 32-byte ASCII seed. Hex conversion drops
+  // leading zeroes, so retain the full 16 characters of the inverted FNV lane.
+  const seedText = u64(~fnv).toString(16).padStart(16, '0') +
     u32(u32(~majorCrc) ^ u32(random.next() + 1)).toString(16).padStart(8, '0') +
     u32(u32(random.next() + 1) ^ minorCrc).toString(16).padStart(8, '0');
   note('seedText', seedText);
