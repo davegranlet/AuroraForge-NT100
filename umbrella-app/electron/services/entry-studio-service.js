@@ -110,6 +110,7 @@ function createEntryStudioService(options) {
   }
 
   function ensureTree() {
+    if (typeof options.ensureTree === 'function') return options.ensureTree(TREE);
     const config = readConfig();
     const { stageStockTree, ensureSdbWinner } = tool('convert-2k19-animation-to-2k25-entry.js');
     fs.mkdirSync(TREE, { recursive: true });
@@ -375,6 +376,37 @@ function createEntryStudioService(options) {
     return { converted, written, state: entryState(entryId) };
   }
 
+  function applyRosterAction(payload) {
+    ensureTree();
+    const action = String(payload && payload.action || '');
+    const relativePath = String(payload && payload.relativePath || '');
+    const target = path.resolve(TREE, relativePath);
+    const treePrefix = `${path.resolve(TREE)}${path.sep}`;
+    if (!relativePath || !target.startsWith(treePrefix)) throw new Error('Roster action path must stay inside the Entry Studio BakeMe tree');
+    if (!fs.existsSync(target)) throw new Error(`Roster action input does not exist: ${relativePath}`);
+    const actions = {
+      charmapping: ['append-2k25-character-mapping-entry', 'appendCharacterMappingEntry', { templateId: 'templateId', newId: 'newId' }],
+      charprofiletable: ['append-2k25-charprofiletable-entry', 'appendCharProfileTableEntry', { templateCharId: 'templateCharId', newCharId: 'newCharId' }],
+      charprofilepro: ['append-2k25-charprofilepro-entry', 'appendCharProfileProEntry', { templateCharId: 'templateCharId', newCharId: 'newCharId' }],
+      facetextures: ['append-2k25-face-textures-entry', 'appendFaceTexturesEntry', { templateId: 'templateId', newId: 'newId' }],
+      teams: ['append-2k25-teams-entry', 'appendTeamsEntry', { templateTeamId: 'templateTeamId', newTeamId: 'newTeamId' }],
+      cammove: ['append-2k25-cammove-entry', 'appendCAMMoveEntry', { templateMotionId: 'templateMotionId', newId: 'newId', vsize: 'vsize', osize: 'osize' }],
+      charmoveset: ['append-2k25-charmoveset-slot', 'appendCharMoveSetSlot', { wrestlerId: 'wrestlerId', templateSdbId: 'templateSdbId', newSdbId: 'newSdbId' }]
+    };
+    const spec = actions[action];
+    if (!spec) throw new Error(`Unsupported roster action: ${action}`);
+    const implementation = tool(spec[0]);
+    const optionsForTool = {};
+    for (const [key, source] of Object.entries(spec[2])) {
+      if (payload[key] === undefined) throw new Error(`Roster action ${action} requires ${key}`);
+      optionsForTool[key] = Number(payload[key]);
+    }
+    const before = fs.readFileSync(target);
+    const after = implementation[spec[1]](before, optionsForTool);
+    fs.writeFileSync(target, after);
+    return { action, relativePath, bytesBefore: before.length, bytesAfter: after.length, changed: !before.equals(after) };
+  }
+
   return {
     getDefaults,
     saveConfig,
@@ -384,6 +416,7 @@ function createEntryStudioService(options) {
     getEntry,
     createEntry,
     writeEntry: writeEntryFromPayload,
+    applyRosterAction,
     convertFiles,
     musicList,
     bake,

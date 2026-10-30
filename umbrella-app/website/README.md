@@ -8,7 +8,7 @@ Upload the **contents** of this folder directly into cPanel's `public_html` dire
 
 Everything is relative, so the site works from the web root:
 
-- App downloads: `downloads/AuroraForge-NT100-2.1.3-Windows-x64-Setup.exe`, `downloads/AuroraForge-NT100-2.1.3-Linux-x64.tar.gz`
+- App downloads: `downloads/AuroraForge-NT100-Setup-2.1.4-x64.exe`, `downloads/AuroraForge-NT100-2.1.4-Linux-x64.tar.gz`
 - App hashes: `downloads/SHA256SUMS.txt`
 - Source page: `source.html`
 - Source index: `downloads/source/README.md`

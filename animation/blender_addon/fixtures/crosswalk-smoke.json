@@ -1,0 +1,8 @@
+{
+  "schema": "aurora-forge-wwe2k19-to-wwe2k26-entrance-crosswalk/v1",
+  "warning": "Synthetic smoke fixture; research only.",
+  "phases": [
+    {"phase": 0, "phaseLabelCandidate": "Smoke Intro", "targetPairId": "smoke-14002", "mappings": [{"role": "body", "confidence": "synthetic", "source": [{"frameCount": 10}], "target": [{"frameCountCandidate": 12}]}]},
+    {"phase": 1, "phaseLabelCandidate": "Smoke Finish", "targetPairId": "smoke-14002", "mappings": [{"role": "facial", "confidence": "synthetic", "source": [{"frameCount": 8}], "target": [{"frameCountCandidate": 9}]}]}
+  ]
+}

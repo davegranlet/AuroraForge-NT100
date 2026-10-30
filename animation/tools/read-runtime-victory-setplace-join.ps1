@@ -15,6 +15,25 @@
 # points to FUN_1410BEF30); 0x15A806780 is a separate relocation/reference table, not the object vtable.
 # The old 0x144A44D30 / 0x143E348A8 values remain only as legacy comparisons/selftest fixtures.
 #
+# v1.4.0 takeover additions (2026-10-30, read-only):
+#   1. nodeRegistry section: manager+0x1200 -> registry; count at registry+0x2C (expected 11),
+#      array at registry+0x18, records of stride 0xA8 with 18 qword rig-node pointers at
+#      record+0x00..+0x88, aux +0x90, in-use +0x98, role key byte +0xA0
+#      (CURRENT-NODEMAP-OFFSET-ASSEMBLY-VERIFY-20261030.log; FUN_14109AB80 / FUN_14109A760).
+#   2. Slot-2 class-key classification on every actor/candidate class: vtable+0x10 method
+#      prologue cmp dword ptr [rdx],imm32 (81 3A) immediately resolves ringcomponent(0xAE780A89),
+#      actorcomponent(0x7B962D9E) or character(0xFC388D56) so a capture can no longer present a
+#      RingComponent as an unclassified "performer class" (05-DEVILS-ADVOCATE.md B1/B3 lead).
+#   3. Every matched GroupComponent child in a class/request container walk now records its own
+#      child-list node pointers (head=*(group+0x40), sentinel=group+0x38, child=link-8), the set
+#      FUN_1410C1690 sources per-observer rig nodes from.
+#   4. class+0x210 captures the TransformComponent 4x4 block at +0x90..+0xCF (row +0xC0 is the
+#      value FUN_140D5DAA0 feeds into entity+0x870, an AABB center input per
+#      05-DEVILS-ADVOCATE.md Finding 3).
+#   5. Resolve-Joins additionally compares each node-registry record's 18 node pointers with the
+#      collected class-side containers/rig-node pointers; intersections are the LANE-1 identity
+#      closure evidence (role-keyed record == performer rig) and are printed explicitly.
+#
 # Safety: OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION|PROCESS_VM_READ) + ReadProcessMemory only for
 # ordinary sections. The optional bounded heap scan uses VirtualQueryEx solely to enumerate readable
 # committed regions (a query; no target-memory writes). Never writes, never suspends, never attaches a
@@ -52,7 +71,7 @@ $ErrorActionPreference = 'Stop'
 $script:ProfileBase = [UInt64]0x140000000
 $script:Schema = 'aurora-forge/wwe2k26-victory-setplace-join-snapshot/v3'
 $script:ToolName = 'read-runtime-victory-setplace-join.ps1'
-$script:ToolVersion = '1.2.3-live-actor-vtable'
+$script:ToolVersion = '1.4.0-registry-classifier'
 $script:DefaultExpectedSha = '7F9C2461BDB4A662D8A25012BAEAEC73CE0C7F0429C6B77395BBE9232F63FDD5'
 
 $script:Rvas = [ordered]@{
@@ -84,6 +103,15 @@ $script:ImageVtables = [ordered]@{
 $script:Keys = [ordered]@{
   groupComponent  = [UInt32]0x38943282
   transformComponent = [UInt32]0xF02E11D4L
+}
+# CRC-32C (Castagnoli) keys of known component type names used by the vtable slot-2 identity
+# methods (cmp dword ptr [rdx], imm32 / 81 3A). Values verified in opencode-fix-pass-20261030:
+# ringcomponent 0xAE780A89 (03-crc32c-keys.log), actorcomponent 0x7B962D9E at vtable 0x14404EB60,
+# character 0xFC388D56 key-comparison loops at 0x141ADFC10/0x141ADFE01 (05-DEVILS-ADVOCATE.md B3).
+$script:ClassKeys = [ordered]@{
+  ringcomponent  = [UInt32]0xAE780A89L
+  actorcomponent = [UInt32]0x7B962D9EL
+  character      = [UInt32]0xFC388D56L
 }
 $script:Constants = [ordered]@{
   ringSelectorQword     = [Convert]::ToUInt64('DCEA4D2BFA11CEEB', 16)
@@ -999,6 +1027,9 @@ function Test-ClassCandidate {
   $expectedVt = $Ctx.base + ($script:ImageVtables.actorClass - $script:ProfileBase)
   $expectedVtLegacy = $Ctx.base + ($script:ImageVtables.actorClassLegacy - $script:ProfileBase)
   $r.vtableEqualsStaticExpected = (($vtable -eq $expectedVt) -or ($vtable -eq $expectedVtLegacy))
+  if (Test-PtrUsable $vtable) {
+    $r.classKey = Get-ClassKeyFromVtable -Ctx $Ctx -ObjectAddress $Address -Section 'classCandidate' -Label $Source
+  }
   $r.actorByte70 = ('0x{0:X2}' -f $raw[0x70])
   $r.container20 = if ($container -ne 0) { ('0x{0:X}' -f $container) } else { $null }
   $r.entity30 = if ($entity -ne 0) { ('0x{0:X}' -f $entity) } else { $null }
@@ -1034,11 +1065,22 @@ function Test-ClassCandidate {
 
   if (Test-PtrUsable $transform) {
     try {
-      $tb = Get-RawBytes $Ctx $transform 0x60
+      $tb = Get-RawBytes $Ctx $transform 0xD0
       $r.transform210Key048 = ('0x{0:X8}' -f [BitConverter]::ToUInt32($tb, 0x48))
       $r.transform210State04E = ('0x{0:X2}' -f $tb[0x4E])
       $r.transform210Translation30 = Get-Vec4FromBuffer -Buffer $tb -Offset 0x30 -Address ($transform + [UInt64]0x30)
       $r.transform210Resolves = (([BitConverter]::ToUInt32($tb, 0x48) -eq $script:Keys.transformComponent) -and (($tb[0x4E] -band 3) -eq 3))
+      $block = [System.Collections.Generic.List[object]]::new()
+      for ($i = 0; $i -lt 64; $i += 16) {
+        $off0 = (0x90 + $i)
+        [void]$block.Add([ordered]@{
+          offset = ('0x{0:X}' -f $off0)
+          lanes  = @([Convert]::ToUInt32($tb, $off0), [Convert]::ToUInt32($tb, ($off0 + 4)), [Convert]::ToUInt32($tb, ($off0 + 8)), [Convert]::ToUInt32($tb, ($off0 + 12)))
+          f32    = @([BitConverter]::ToSingle($tb, $off0), [BitConverter]::ToSingle($tb, ($off0 + 4)), [BitConverter]::ToSingle($tb, ($off0 + 8)), [BitConverter]::ToSingle($tb, ($off0 + 12)))
+        })
+      }
+      $r.transform210Block90toCF = $block.ToArray()
+      $r.transform210BlockNote = 'the 4x4 transform block: FUN_140D5DAA0 loads +0x90..+0xBF and row +0xC0..+0xCF; the row written from that load is what FUN_1410BDF00 stores to entity+0x870/class+0x200 (AABB center input per 05-DEVILS-ADVOCATE.md Finding 3, not an orientation mirror)'
     } catch { $r.reasons += ('class +0x210 read failed: ' + $_.Exception.Message) }
   } else {
     $r.reasons += 'class +0x210 is not a usable TransformComponent pointer'
@@ -1464,6 +1506,76 @@ function Get-TransformView {
   }
 }
 
+function Get-ClassKeyFromVtable {
+  param($Ctx, [UInt64]$ObjectAddress, [string]$Section = 'classKey', [string]$Label = 'classKey')
+  $out = [ordered]@{
+    vtable = $null
+    slot2Method = $null
+    imm32 = $null
+    keyName = $null
+    note = 'vtable+0x10 slot-2 key method identified by the prologue bytes 81 3A (cmp dword ptr [rdx],imm32); the immediate is a CRC-32C lowercase component-name key'
+  }
+  if (-not (Test-PtrUsable $ObjectAddress)) { $out.error = 'object address not usable'; return $out }
+  try {
+    $bytes = Get-RawBytes $Ctx $ObjectAddress 8
+    if (-not $bytes -or $bytes.Length -lt 8) { return $out }
+    [UInt64]$vtable = [BitConverter]::ToUInt64($bytes, 0)
+    if ($vtable -eq 0 -or -not (Test-PtrUsable $vtable)) { return $out }
+    $out.vtable = ('0x{0:X}' -f $vtable)
+    $slotBytes = Get-RawBytes $Ctx ($vtable + [UInt64]0x10) 8
+    if (-not $slotBytes -or $slotBytes.Length -lt 8) { return $out }
+    [UInt64]$slot2 = [BitConverter]::ToUInt64($slotBytes, 0)
+    if ($slot2 -eq 0 -or -not (Test-PtrUsable $slot2)) { return $out }
+    $out.slot2Method = ('0x{0:X}' -f $slot2)
+    $fn = Get-RawBytes $Ctx $slot2 8
+    if ($fn -and $fn.Length -ge 6 -and $fn[0] -eq 0x81 -and $fn[1] -eq 0x3A) {
+      $imm = [BitConverter]::ToUInt32($fn, 2)
+      $out.imm32 = ('0x{0:X8}' -f $imm)
+      foreach ($name in $script:ClassKeys.Keys) {
+        if ($imm -eq [UInt32]$script:ClassKeys[$name]) { $out.keyName = $name; break }
+      }
+    }
+  } catch { $out.error = $_.Exception.Message }
+  return $out
+}
+
+function Invoke-GroupChildPointers {
+  param($Ctx, [UInt64]$Group, [string]$Section, [string]$Label, [int]$Limit = 40)
+  $result = [ordered]@{
+    group     = ('0x{0:X}' -f $Group)
+    pointers  = [System.Collections.Generic.List[object]]::new()
+    count     = 0
+    truncated = $false
+    note      = 'walk mirrors FUN_14278F1E0 convention: head=*(group+0x40), sentinel=group+0x38, child object=link-8, next link=*(link+8); these are the rig-node candidates FUN_1410C1690 selects per observer slot'
+  }
+  try {
+    $headPtr = Get-PtrValue -Ctx $Ctx -Address ($Group + [UInt64]0x40) -Section $Section -Label ($Label + '.groupChildListHead')
+    if (-not $headPtr) { $result.readError = 'group child list head unreadable'; return $result }
+    [UInt64]$x = [Convert]::ToUInt64($headPtr.raw, 16)
+    [UInt64]$sentinelRaw = $Group + [UInt64]0x38
+    $visited = [System.Collections.Generic.HashSet[UInt64]]::new()
+    while ($x -ne 0 -and $x -ne $sentinelRaw) {
+      if (-not $visited.Add($x)) { break }
+      if ($result.count -ge $Limit) { $result.truncated = $true; break }
+      if ($Ctx.visitBudget -le 0) { $result.truncated = $true; break }
+      $Ctx.visitBudget--
+      [UInt64]$child = $x - 8
+      if (-not (Test-PtrUsable $child)) { break }
+      [void]$result.pointers.Add(('0x{0:X}' -f $child))
+      $result.count++
+      try {
+        [UInt64]$next = Get-U64Raw $Ctx ($x + [UInt64]8)
+        $x = $next
+      } catch {
+        Add-ReadError -Ctx $Ctx -Section $Section -Label ($Label + '.groupChildNext') -Address ($x + [UInt64]8) -Message 'group child link advance failed' -Exception $_
+        $result.truncated = $true
+        break
+      }
+    }
+  } catch { $result.readError = $_.Exception.Message }
+  return $result
+}
+
 function Invoke-ChildWalk {
   param($Ctx, [UInt64]$Container, [string]$Section, [string]$Label)
   $result = [ordered]@{
@@ -1500,6 +1612,7 @@ function Invoke-ChildWalk {
       [void]$result.matchedGroupComponent.Add([ordered]@{
         child     = $view
         transform = (Get-TransformView -Ctx $Ctx -Address $child -Section $keySection -Label ($Label + '.groupChild'))
+        groupChildPointers = (Invoke-GroupChildPointers -Ctx $Ctx -Group $child -Section $keySection -Label $Label)
       })
     }
     if ($keyRaw -eq [UInt64]($script:Keys.transformComponent)) {
@@ -1941,6 +2054,106 @@ function Get-Type1SetPlaceRecords {
   return $result
 }
 
+function Get-NodeRegistry {
+  param($Ctx)
+  $section = 'nodeRegistry'
+  $result = [ordered]@{
+    registryPointerAddress = $null
+    registry               = $null
+    count                  = $null
+    expectedCount          = 11
+    arrayPointer           = $null
+    recordStride           = '0xA8'
+    records                = [System.Collections.Generic.List[object]]::new()
+    truncated              = $false
+    rootStatus             = 'unknown'
+    provenance = ('registry pointer = *(manager+0x1200) (CURRENT-NODEMAP-OFFSET-ASSEMBLY-VERIFY-20261030.log:76 MOV RAX,[RAX+0x1200]); count u32 at registry+0x2C (expected 11, constructor FUN_14109A760 allocates 11*0xA8); array pointer at registry+0x18; record stride 0xA8; 18 qword rig-node pointers at record+0x00..+0x88; aux qword +0x90; in-use byte +0x98; role key byte +0xA0 fixed to 0,1,10,21,22,23,24,25,26,11,16 by FUN_14109A760')
+    note = 'FUN_14109AB80 matches the event actor/slot byte ((char)piVar17[1]) against record+0xA0 and refreshes the 18 node pointers from a dispatched request GroupComponent (FUN_1410C1690). The registry manager is set by the actor-table capture (Ctx.manager); with no manager the section reports explicit failure.'
+    expectedRoles = @(0, 1, 10, 21, 22, 23, 24, 25, 26, 11, 16)
+    readError = $null
+  }
+  if (-not $Ctx.manager -or $Ctx.manager -eq 0) {
+    $result.readError = 'actor manager not established; node registry not read'
+    $result.rootStatus = 'invalid-or-absent'
+    return $result
+  }
+  $regPtrAddress = $Ctx.manager + [UInt64]0x1200
+  $result.registryPointerAddress = ('0x{0:X}' -f $regPtrAddress)
+  $regView = $null
+  try { $regView = Get-PtrValue -Ctx $Ctx -Address $regPtrAddress -Section $section -Label 'manager+0x1200' } catch {
+    Add-ReadError -Ctx $Ctx -Section $section -Label 'manager+0x1200' -Address $regPtrAddress -Message 'node registry pointer read failed' -Exception $_
+    $result.readError = 'node registry pointer read failed'
+    $result.rootStatus = 'invalid'
+    return $result
+  }
+  if (-not $regView) { $result.readError = 'node registry pointer unreadable'; $result.rootStatus = 'invalid'; return $result }
+  [UInt64]$reg = [Convert]::ToUInt64($regView.raw, 16)
+  $result.registry = if ($reg -ne 0) { ('0x{0:X}' -f $reg) } else { $null }
+  if (-not (Test-PtrUsable $reg)) {
+    Add-ReadError -Ctx $Ctx -Section $section -Label 'manager+0x1200' -Address $regPtrAddress -Message 'node registry pointer is not usable'
+    $result.readError = 'node registry pointer is not usable'
+    $result.rootStatus = 'invalid'
+    return $result
+  }
+  $result.rootStatus = 'pointer-plausible'
+  try { $result.count = Get-U32Raw $Ctx ($reg + [UInt64]0x2C) } catch {
+    Add-ReadError -Ctx $Ctx -Section $section -Label 'registry+0x2C' -Address ($reg + [UInt64]0x2C) -Message 'registry record count read failed' -Exception $_
+    $result.readError = 'registry record count read failed'
+    return $result
+  }
+  try { $arrView = Get-PtrValue -Ctx $Ctx -Address ($reg + [UInt64]0x18) -Section $section -Label 'registry+0x18' } catch {
+    Add-ReadError -Ctx $Ctx -Section $section -Label 'registry+0x18' -Address ($reg + [UInt64]0x18) -Message 'registry array pointer read failed' -Exception $_
+    $result.readError = 'registry array pointer read failed'
+    return $result
+  }
+  if (-not $arrView) { $result.readError = 'registry array pointer unreadable'; return $result }
+  [UInt64]$arrayBase = [Convert]::ToUInt64($arrView.raw, 16)
+  $result.arrayPointer = if ($arrayBase -ne 0) { ('0x{0:X}' -f $arrayBase) } else { $null }
+  if (-not (Test-PtrUsable $arrayBase)) {
+    Add-ReadError -Ctx $Ctx -Section $section -Label 'registry+0x18' -Address ($reg + [UInt64]0x18) -Message 'registry array pointer is not usable'
+    $result.readError = 'registry array pointer is not usable'
+    return $result
+  }
+  $requested = if ($result.count -is [UInt32] -or ($result.count -gt 0 -and $result.count -le 64)) { [int]$result.count } else { 0 }
+  if ($requested -le 0) { $result.note += '; live record count was not plausible, records not enumerated'; return $result }
+  $toRead = [Math]::Min([int]$requested, 16)
+  $result.truncated = ($requested -gt 16)
+  for ($i = 0; $i -lt $toRead; $i++) {
+    if ($Ctx.visitBudget -le 0) { $result.truncated = $true; break }
+    $Ctx.visitBudget--
+    [UInt64]$base = $arrayBase + ([UInt64]0xA8 * [UInt64]$i)
+    $label = ('records[{0}]' -f $i)
+    $rec = [ordered]@{
+      index   = $i
+      address = ('0x{0:X}' -f $base)
+    }
+    try { $rec.roleKeyA0 = (Get-ByteValue $Ctx ($base + [UInt64]0xA0) $section ($label + '+0xA0')) } catch { $rec.roleKeyA0 = $null }
+    try { $rec.inUse98 = (Get-ByteValue $Ctx ($base + [UInt64]0x98) $section ($label + '+0x98')) } catch { $rec.inUse98 = $null }
+    try { $rec.auxPointer90 = (Get-PtrValue $Ctx ($base + [UInt64]0x90) $section ($label + '+0x90')) } catch { $rec.auxPointer90 = $null }
+    $nodes = [System.Collections.Generic.List[object]]::new()
+    try {
+      $rawNodes = Get-RawBytes $Ctx $base 0x90
+      if ($rawNodes -and $rawNodes.Length -ge 0x90) {
+        for ($n = 0; $n -lt 18; $n++) {
+          [UInt64]$ptr = [BitConverter]::ToUInt64($rawNodes, $n * 8)
+          [void]$nodes.Add([ordered]@{
+            slot = $n
+            pointer = if ($ptr -ne 0) { ('0x{0:X}' -f $ptr) } else { $null }
+            usable = (Test-PtrUsable $ptr)
+          })
+        }
+        $rec.nodePointerHex = (Get-BytesHex $Ctx $base 0x90 $section ($label + '.nodes0x90'))
+      }
+    } catch {
+      Add-ReadError -Ctx $Ctx -Section $section -Label ($label + '.nodes') -Address $base -Message 'registry node pointers read failed' -Exception $_
+      $rec.nodesError = $_.Exception.Message
+    }
+    $rec.nodes = $nodes.ToArray()
+    [void]$result.records.Add($rec)
+  }
+  return $result
+}
+
 function Get-RequestCapture {
   param($Ctx, [UInt64]$RequestAddress, [string]$Section, [string]$Label)
   $request = [ordered]@{
@@ -2155,7 +2368,7 @@ function Resolve-SelectorMatches {
 }
 
 function Resolve-Joins {
-  param($ActorTableResult, $RequestsResult)
+  param($ActorTableResult, $RequestsResult, $RegistryResult = $null)
   $joins = [System.Collections.Generic.List[object]]::new()
   if (-not $ActorTableResult) { return [ordered]@{ entries = $joins; note = 'actor table unavailable' } }
   # Lane-1 closure is request+0x40 container == actor class+0x20 container.
@@ -2164,6 +2377,7 @@ function Resolve-Joins {
     if (-not $e -or -not $e.entry) { continue }
     $j = [ordered]@{ actorEntryIndex = $e.index; entry = $e.entry }
     $j.classVtableMatchesActorClass = $e.classMatch
+    if ($e.classKey) { $j.classKey = $e.classKey }
     [UInt64]$storedTc = 0
     if ($e.transform210 -and $e.transform210.value) { $storedTc = [Convert]::ToUInt64($e.transform210.value, 16) }
     $j.storedTransformComponent210 = if ($storedTc -ne 0) { ('0x{0:X}' -f $storedTc) } else { $null }
@@ -2171,6 +2385,7 @@ function Resolve-Joins {
     if ($e.container20 -and $e.container20.value) { $storedContainer = [Convert]::ToUInt64($e.container20.value, 16) }
     $walkGroups = [System.Collections.Generic.HashSet[UInt64]]::new()
     $walkTransforms = [System.Collections.Generic.HashSet[UInt64]]::new()
+    $walkGroupNodeSet = [System.Collections.Generic.HashSet[UInt64]]::new()
     if ($e.classContainer) {
       $stack = [System.Collections.Generic.Stack[object]]::new()
       [void]$stack.Push($e.classContainer)
@@ -2178,7 +2393,12 @@ function Resolve-Joins {
         $node = $stack.Pop()
         if (-not $node) { continue }
         if ($node.matchedGroupComponent) {
-          foreach ($g in $node.matchedGroupComponent) { [void]$walkGroups.Add([Convert]::ToUInt64($g.child.pointer, 16)) }
+          foreach ($g in $node.matchedGroupComponent) {
+            [void]$walkGroups.Add([Convert]::ToUInt64($g.child.pointer, 16))
+            if ($g.groupChildPointers) {
+              foreach ($p in $g.groupChildPointers.pointers) { [void]$walkGroupNodeSet.Add([Convert]::ToUInt64($p, 16)) }
+            }
+          }
         }
         if ($node.matchedTransformComponent) {
           foreach ($t in $node.matchedTransformComponent) { [void]$walkTransforms.Add([Convert]::ToUInt64($t.child.pointer, 16)) }
@@ -2190,6 +2410,7 @@ function Resolve-Joins {
     }
     $j.classContainerGroupChildren_0x38943282 = @($walkGroups | ForEach-Object { ('0x{0:X}' -f $_) })
     $j.classContainerTransformChildren_0xF02E11D4 = @($walkTransforms | ForEach-Object { ('0x{0:X}' -f $_) })
+    $j.classContainerGroupNodePointers = @($walkGroupNodeSet | ForEach-Object { ('0x{0:X}' -f $_) })
     $j.groupChildEqualsStoredTransformComponent210 = ($storedTc -ne 0 -and $walkGroups.Contains($storedTc))
     $j.transformChildEqualsStoredTransformComponent210 = ($storedTc -ne 0 -and $walkTransforms.Contains($storedTc))
     $requestMatches = [System.Collections.Generic.List[object]]::new()
@@ -2245,10 +2466,41 @@ function Resolve-Joins {
         $j.entityWorldVector870MatchesClassMirror200 = ($a -eq $b)
       }
     }
+    $registryRecordMatches = @()
+    if ($RegistryResult -and $RegistryResult.records) {
+      foreach ($rec in $RegistryResult.records) {
+        if (-not $rec -or -not $rec.nodes) { continue }
+        $hitNodeSet = 0
+        $hitPointers = @()
+        foreach ($n in $rec.nodes) {
+          if (-not $n -or -not $n.pointer) { continue }
+          [UInt64]$np = [Convert]::ToUInt64($n.pointer, 16)
+          if ($np -eq 0) { continue }
+          $hit = $false
+          if ($walkGroupNodeSet.Contains($np)) { $hit = $true; $hitPointers += $n.pointer }
+          elseif ($walkTransforms.Contains($np)) { $hit = $true; $hitPointers += $n.pointer }
+          elseif ($walkGroups.Contains($np)) { $hit = $true; $hitPointers += $n.pointer }
+          if ($hit) { $hitNodeSet++ }
+        }
+        [UInt64]$roleVal = 0
+        if ($rec.roleKeyA0 -and $rec.roleKeyA0.value) { [UInt64]$roleVal = [Convert]::ToUInt64($rec.roleKeyA0.value, 16) }
+        [void]$registryRecordMatches.Add([ordered]@{
+          recordIndex        = $rec.index
+          roleKeyA0          = $rec.roleKeyA0
+          nodePointerCount   = @($rec.nodes).Count
+          pointerIntersections = $hitNodeSet
+          intersectingPointers = $hitPointers
+          identityBasis      = 'node-registry record rig-node pointers intersect the actor class container rig-node set (class container groups/transforms/group child lists)'
+        })
+      }
+    }
+    $j.registryRecordMatches = $registryRecordMatches
+    $j.registryRecordIntersectionBest = if ($registryRecordMatches.Count -gt 0) { ($registryRecordMatches | Sort-Object -Property pointerIntersections -Descending | Select-Object -First 1) } else { $null }
+    $j.registryPerformerRigJoinCandidate = ($registryRecordMatches.Count -gt 0 -and ($registryRecordMatches | Where-Object { $_.pointerIntersections -ge 6 }).Count -gt 0)
     [void]$joins.Add($j)
   }
   return [ordered]@{
-    note    = 'Lane-1 request/actor identity closure uses direct pointer equality: request+0x40 container == actor class+0x20 container; all request origins are retained. Controller+0x12D0 equality is separate supporting evidence. Type-1 record base is never compared to a controller pointer.'
+    note    = 'Lane-1 request/actor identity closure uses direct pointer equality: request+0x40 container == actor class+0x20 container; all request origins are retained. Controller+0x12D0 equality is separate supporting evidence. Type-1 record base is never compared to a controller pointer. The v1.4.0 registry checks compare each node-registry record''s 18 rig-node pointers against the class-side rig-node sets captured in this snapshot; 6+ intersections are a role-keyed rig identity candidate, not a proof by themselves.'
     entries = $joins
   }
 }
@@ -2282,6 +2534,7 @@ function Get-DynamicReadPlan {
     'actorTable: deref base+0x04A4BDA8 -> manager; deref manager+0x848 -> record array; read count u32 at manager+0x85C; for each record pointer read vtable, +0x70, +0x20, +0x30, +0x38, +0x40, +0x200, +0x50, +0x60, +0x210; per entity read +0x800/+0x804/+0x870/+0x880; per controller read +0x12D0/+0x12D9/+0x12E0/+0x12F0/+0x14B4/+0x14B6/+0x14B8/+0x14B9/+0x870',
     'classContainer per record: walk container at class+0x20 (head=*(c+0x40), sentinel=c+0x38, child=link-8, next=*(link+8)) up to depth limit; compare child+0x48 against 0x38943282 and 0xF02E11D4; matched children additionally read transform fields +0x30/+0x40/+0x50/+0x60/+0x70/+0xD0',
     'setPlaceRecords: deref manager+0x54330 -> base; scan base+i*0x14D0 for i<scanLimit reading +0x12D0/+0x12D9/+0x12E0/+0x12F0/+0x14B0/+0x14B4/+0x14B6/+0x14B8/+0x14B9; read task queue count u32 at base+0x1A0F0 and up to 32 pointers at base+0x1A050 (+0x30 raw bytes each)',
+    'nodeRegistry: deref manager+0x1200 -> registry; read record count u32 at registry+0x2C and array pointer at registry+0x18; per record (stride 0xA8) read 18 qword rig-node pointers at +0x00..+0x88, aux +0x90, in-use byte +0x98 and role key byte +0xA0; Resolve-Joins intersects these pointer sets with captured class-side rig-node pointers',
     'requests: for each distinct request handle found, read +0x48 completion byte and +0x40 container pointer; walk the container component tree with the same intrusive-list convention, comparing child+0x48 keys and capturing transform fields',
     'category4Table: deref base+0x04A37028 -> FlatBuffer root; root vtable = root - i32(root); slot3 offset -> vector header table; its field0 offset -> element array; iterate u32 element offsets to each row record; record vtable = record - i32(record); read category byte (slot2), selector i32 (slot3), keyField2 u32 (slot4) and the field4 qword via the u16 offset stored at vtable+0xC',
     'globalTree: deref manager+0x1210 -> tree base; sentinel=base+0x48; root=*(base+0x20); walk nodes (left +8 / right +0x10) capturing key i32 at +0x18 and target pointer at +0x20 (+ first 0x20 raw bytes of each target)',
@@ -2419,6 +2672,32 @@ if ($SelfTest) {
   Set-FakeU8 -Fake $fake -Address ($requestWrong + [UInt64]0x48) -Value ([Byte]1)
   Set-FakeU32 -Fake $fake -Address ($containerWrong + [UInt64]0x30) -Value ([UInt32]0)
   Set-FakeU8 -Fake $fake -Address ($containerWrong + [UInt64]0x4E) -Value ([Byte]3)
+  # v1.4.0 node-registry fixture: registry at 0x1000D000, records array at 0x1000D100;
+  # record 0 lives AT the array base (arrayBase + i*0xA8 with i=0), record 1 at +0xA8.
+  $registry = [UInt64]0x1000D000
+  $regArray = [UInt64]0x1000D100
+  $regRec0  = $regArray
+  Set-FakeBytes -Fake $fake -Address $registry -Bytes (New-Object byte[] 0x40)
+  # Zero all 11 records (11*0xA8 bytes) so every record read finds initialized bytes.
+  Set-FakeBytes -Fake $fake -Address $regArray -Bytes (New-Object byte[] (11 * 0xA8))
+  Set-FakeU64 -Fake $fake -Address ($manager + [UInt64]0x1200) -Value $registry
+  Set-FakeU32 -Fake $fake -Address ($registry + [UInt64]0x2C) -Value ([UInt32]11)
+  Set-FakeU64 -Fake $fake -Address ($registry + [UInt64]0x18) -Value $regArray
+  # Record 0: role byte 1 (main-performer slot), in-use 1, node pointers 0 = group child, 1 = transform, 2 = container-group.
+  Set-FakeU8  -Fake $fake -Address ($regRec0 + [UInt64]0x98) -Value ([Byte]1)
+  Set-FakeU8  -Fake $fake -Address ($regRec0 + [UInt64]0xA0) -Value ([Byte]1)
+  Set-FakeU64 -Fake $fake -Address ($regRec0 + [UInt64]0x00) -Value $child
+  Set-FakeU64 -Fake $fake -Address ($regRec0 + [UInt64]0x08) -Value $transform
+  Set-FakeU64 -Fake $fake -Address ($regRec0 + [UInt64]0x10) -Value $container
+  # v1.4.0 slot-2 class-key fixture: an object whose vtable slot 2 method compares 0x7B962D9E (actorcomponent).
+  $classKeyObj = [UInt64]0x1000A800
+  $classKeyVt  = [UInt64]0x1000AE00
+  $classKeyFn  = [UInt64]0x1000AF00
+  Set-FakeBytes -Fake $fake -Address $classKeyObj -Bytes (New-Object byte[] 0x20)
+  Set-FakeBytes -Fake $fake -Address $classKeyVt  -Bytes (New-Object byte[] 0x20)
+  Set-FakeU64 -Fake $fake -Address $classKeyObj -Value $classKeyVt
+  Set-FakeU64 -Fake $fake -Address ($classKeyVt + [UInt64]0x10) -Value $classKeyFn
+  Set-FakeBytes -Fake $fake -Address $classKeyFn -Bytes ([byte[]](0x81, 0x3A, 0x9E, 0x2D, 0x96, 0x7B, 0xC3, 0x90))
   $ctx = New-Context -Handle ([IntPtr]::Zero) -Base $base -ImageEnd ($base + [UInt64]0x50000000) -FakeMemory $fake
   $roots = Get-RootStatus -Ctx $ctx
   Add-SelfCheck 'pointer-scan-type-loaded' ([bool]('AuroraPointerScan' -as [type])) 'C# bounded scanner type compiled and loadable'
@@ -2475,6 +2754,16 @@ if ($SelfTest) {
   [Array]::Copy([BitConverter]::GetBytes($container), 0, $buf, 0x10, 8)
   $hits = Find-QwordHitsInBuffer -Buffer $buf -Base ([UInt64]0x20000000) -Targets ([UInt64[]]@($container))
   Add-SelfCheck 'qword-pointer-hit' (($hits.Count -eq 1) -and ($hits[0] -eq [UInt64]0x20000010)) ('hits=' + (($hits | ForEach-Object { '0x{0:X}' -f $_ }) -join ','))
+  $ctxReg = New-Context -Handle ([IntPtr]::Zero) -Base $base -ImageEnd ($base + [UInt64]0x50000000) -FakeMemory $fake
+  $ctxReg.manager = $manager
+  $regResult = Get-NodeRegistry -Ctx $ctxReg
+  Add-SelfCheck 'registry-capture-fixtures' (($regResult.rootStatus -eq 'pointer-plausible') -and ($regResult.count -eq 11)) ('rootStatus=' + $regResult.rootStatus + ' count=' + $regResult.count)
+  $regRec0 = if ($regResult.records -and $regResult.records.Count -gt 0) { $regResult.records[0] } else { $null }
+  Add-SelfCheck 'registry-role-byte-captured' ($regRec0 -and $regRec0.roleKeyA0 -eq '0x01') ('roleKeyA0=' + $(if ($regRec0) { $regRec0.roleKeyA0 } else { 'missing' }))
+  $node0 = if ($regRec0 -and $regRec0.nodes) { $regRec0.nodes[0] } else { $null }
+  Add-SelfCheck 'registry-node-pointers-captured' ($node0 -and $node0.pointer -eq ('0x{0:X}' -f $child)) ('node0=' + $(if ($node0) { $node0.pointer } else { 'missing' }))
+  $classKeyResult = Get-ClassKeyFromVtable -Ctx $ctx -ObjectAddress $classKeyObj -Section 'selftest' -Label 'classKeyFix'
+  Add-SelfCheck 'classkey-classifier-actorcomponent' ($classKeyResult.keyName -eq 'actorcomponent' -and $classKeyResult.imm32 -eq '0x7B962D9E') ('keyName=' + $classKeyResult.keyName + ' imm=' + $classKeyResult.imm32)
   $failed = @($script:SelfChecks | Where-Object { -not $_.ok })
   $selfResult = [ordered]@{
     schema = 'aurora-forge/wwe2k26-victory-placement-selftest/v1'
@@ -2608,13 +2897,22 @@ try {
     $rootStatus = Get-RootStatus -Ctx $ctx -SelectedManager $selectedManager
     $actorTable = Get-ActorTable -Ctx $ctx -ManagerAddress $selectedManager -ManagerSource $selectedManagerSource -RootStatus $rootStatus
     $setPlaceRecords = Get-Type1SetPlaceRecords -Ctx $ctx
+    $nodeRegistry = Get-NodeRegistry -Ctx $ctx
     $category4 = Get-Category4Table -Ctx $ctx
     $componentsArray = Get-ComponentsArray -Ctx $ctx -RootStatus $rootStatus
     $requests = Resolve-CaptureRequests -Ctx $ctx
     $globalTree = Get-GlobalTree -Ctx $ctx
     $sceneObjectContext = Get-SceneObjectContext -Ctx $ctx
     $selectorMatches = Resolve-SelectorMatches -Category4 $category4 -ActorTableResult $actorTable -Type1Result $setPlaceRecords
-    $joins = Resolve-Joins -ActorTableResult $actorTable -RequestsResult $requests
+    $joins = Resolve-Joins -ActorTableResult $actorTable -RequestsResult $requests -RegistryResult $nodeRegistry
+    $nodeRegistryAnswer = [ordered]@{
+      registryAccessible = ($nodeRegistry -and $nodeRegistry.registry)
+      recordCount        = if ($nodeRegistry) { $nodeRegistry.count } else { $null }
+      capturedRecords    = if ($nodeRegistry -and $nodeRegistry.records) { $nodeRegistry.records.Count } else { 0 }
+      role1RecordCaptured = if ($nodeRegistry -and $nodeRegistry.records) { (@($nodeRegistry.records | Where-Object { $_.roleKeyA0 -and $_.roleKeyA0.value -eq '0x01' })).Count -gt 0 } else { $false }
+      registryJoinCandidates = if ($joins -and $joins.entries) { (@($joins.entries | Where-Object { $_.registryPerformerRigJoinCandidate })).Count } else { 0 }
+      note = 'records carry per-role rig-node pointer sets; role 1 is the presumed main-performer slot (fixed constructor constants, not proven by a captured identity yet)'
+    }
     $classMatchKeyRaw = 0
     try { $classMatchKeyRaw = Get-U32Raw $ctx ($base + $script:Rvas.classMatchKey) } catch { }
     $answers = [ordered]@{
@@ -2626,6 +2924,7 @@ try {
       performerClasses                    = @($locator.classCandidates | Where-Object { $_.valid })
       classCandidates                     = @($locator.classCandidates)
       requestCandidates                   = @($locator.requestCandidates)
+      nodeRegistry                        = $nodeRegistryAnswer
       staticRootsUsable                   = [ordered]@{
         actorManager    = ($rootStatus.actorManager.verdict -eq 'validated-by-locator' -or $rootStatus.actorManager.verdict -eq 'validated-by-shape' -or $rootStatus.actorManager.verdict -eq 'pointer-plausible')
         category4       = ($rootStatus.category4Root.verdict -eq 'pointer-plausible')
@@ -2715,6 +3014,7 @@ try {
     locator          = $locator
     actorTable      = $actorTable
     setPlaceRecords = $setPlaceRecords
+    nodeRegistry    = $nodeRegistry
     componentsArray = $componentsArray
     category4Table  = $category4
     requests        = $requests
@@ -2728,6 +3028,7 @@ try {
       distinctRequestCaptures    = $requestCount
       requestTreeGroupChildren_0x38943282 = $groupChildCount
       requestTreeTransformChildren_0xF02E11D4 = $transformChildCount
+      nodeRegistryRecords        = if ($nodeRegistry -and $nodeRegistry.records) { $nodeRegistry.records.Count } else { 0 }
       category4Rows              = if ($category4 -and $category4.rows) { $category4.rows.Count } else { 0 }
       selectorMatchedRows        = if ($selectorMatches -and $selectorMatches.matchingRows) { $selectorMatches.matchingRows.Count } else { 0 }
       globalTreeNodes            = $treeNodeCount
@@ -2769,6 +3070,9 @@ try {
   if ($rootStatus.actorManager.raw) { $out.WriteLine(('actorManagerRaw={0} ({1})' -f $rootStatus.actorManager.raw, $rootStatus.actorManager.verdict)) }
   if ($rootStatus.componentsArray.raw) { $out.WriteLine(('componentsArrayRaw={0} ({1})' -f $rootStatus.componentsArray.raw, $rootStatus.componentsArray.verdict)) }
   $out.WriteLine(('actorEntries={0} entities={1} category4Rows={2} selectorMatchedRows={3} requests={4} globalTreeNodes={5}' -f $actorEntriesCount, $entityCount, $result.captureSetCoverage.category4Rows, $result.captureSetCoverage.selectorMatchedRows, $requestCount, $treeNodeCount))
+  $out.WriteLine(('nodeRegistry=accessible:{0} count:{1} records:{2}' -f ($nodeRegistry -and $nodeRegistry.registry), $(if ($nodeRegistry) { $nodeRegistry.count } else { 'n/a' }), $result.captureSetCoverage.nodeRegistryRecords))
+  $joinCandidates = if ($joins -and $joins.entries) { @($joins.entries | Where-Object { $_.registryPerformerRigJoinCandidate }).Count } else { 0 }
+  $out.WriteLine(('registryPerformerRigJoinCandidates={0} classKeys={1}' -f $joinCandidates, (($actorTable.entries | Where-Object { $_.classKey -and $_.classKey.keyName } | Select-Object -First 4 -ExpandProperty classKey | Select-Object -ExpandProperty keyName) -join ',')))
   $out.WriteLine(('requestGroupChildren0x38943282={0} requestTransformChildren0xF02E11D4={1}' -f $groupChildCount, $transformChildCount))
   $out.WriteLine(('readErrors={0} errorsTruncated={1} visitBudgetLeft={2}' -f $ctx.errors.Count, $script:ErrorsTruncated, $ctx.visitBudget))
   if ($ctx.errors.Count -gt 0) {

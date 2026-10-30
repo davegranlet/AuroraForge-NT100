@@ -38,10 +38,10 @@ const knowledge = json('app', 'data', 'wwe2k26-modding-facts.json');
 const knowledge22 = json('app', 'data', 'wwe2k22-modding-facts.json');
 const projectCatalog = json('app', 'data', 'aurora-projects.json');
 
-ok(pkg.version === '2.1.3', 'standards-safe package version is 2.1.3');
-ok(lock.version === '2.1.3' && lock.packages[''].version === '2.1.3', 'package-lock root version matches');
-ok(manifest.release === '2.1.3' && manifest.releaseTitle === 'Beta 4', 'manifest identifies the free release');
-ok(config.release === '2.1.3' && config.releaseTitle === 'Beta 4', 'app config identifies the free release');
+ok(pkg.version === '2.1.4', 'standards-safe package version is 2.1.4');
+ok(lock.version === '2.1.4' && lock.packages[''].version === '2.1.4', 'package-lock root version matches');
+ok(manifest.release === '2.1.4' && manifest.releaseTitle === 'Beta 4', 'manifest identifies the free release');
+ok(config.release === '2.1.4' && config.releaseTitle === 'Beta 4', 'app config identifies the free release');
 ok(pkg.devDependencies.electron === '43.2.0', 'Electron is exactly pinned');
 ok(pkg.devDependencies['@electron/packager'] === '20.0.4', 'Electron Packager is exactly pinned');
 ok(pkg.dependencies.three === '0.185.1', 'Three.js is exactly pinned');
@@ -146,7 +146,7 @@ const expectedPrimary = [
 ok(manifest.primaryNavigation.length === 7, 'manifest contains seven primary navigation items');
 ok(JSON.stringify(manifest.primaryNavigation.map((item) => item.file)) === JSON.stringify(expectedPrimary), 'manifest primary navigation order is correct');
 ok(manifest.creativeStudios.length === 13, 'manifest groups thirteen creative studios');
-ok(manifest.tools.length === 9, 'manifest groups nine built-in tools');
+ok(manifest.tools.length === 10, 'manifest groups ten built-in tools');
 ok(projectCatalog.schema === 'aurora-forge-project-catalog-v1', 'project catalog schema is recognized');
 ok(projectCatalog.release === 'Beta 4', 'project catalog identifies the free release');
 ok(projectCatalog.projects.length === 33, 'project catalog contains all 33 repositories');
@@ -192,9 +192,12 @@ ok(converterHtml.includes('animation-converter-page.js') && converterPageJs.incl
 ok(mainJs.includes('desktop:converter-build') && preloadJs.includes('converter:'), 'Electron exposes the Animation Converter service');
 ok(read('app', 'tools.html').includes('animation-converter.html') && !read('app', 'tools.html').includes('openAnimationConverter'), 'tools hub links the in-app Animation Converter');
 const converterServiceJs = read('electron', 'services', 'animation-converter-service.js');
+ok(converterServiceJs.includes("bundledToolPath('sl', 'cak-foundry', 'electron', 'game-versions.js')") && converterServiceJs.includes("bundledToolPath('sl', 'cak-foundry', 'scripts', 'bake-v93-cli.js')"), 'packaged converter can use the shipped CAK Foundry resource fallback');
 ok(converterServiceJs.includes('refresh-2k26-skeleton.js') && converterServiceJs.includes('convert-2k19-library-to-2k25-entries.js'), 'converter service runs the verified skeleton refresh and library toolchain');
 ok(converterServiceJs.includes('materializeBundledSkeleton') && converterServiceJs.includes('copyBundledTree'), 'converter materializes the asar-bundled skeleton to a real path before spawning the refresh child process');
 ok(read('scripts', 'prepare-runtime-staging.js').includes('converter-foundry') && read('scripts', 'prepare-runtime-staging.js').includes('bake-v93-cli.js'), 'runtime staging stages the converter bake foundry');
+const universeServiceJs = read('electron', 'services', 'universe-profile-service.js');
+ok(!/require\(\s*['"]\.\.\/\.\.\/\.\.\/animation\/tools\/aurora-formats\/universe-profile/.test(universeServiceJs) && mainJs.includes("bundledToolPath('entry-studio', 'tools', 'aurora-formats', 'universe-profile.js')"), 'Universe profile service resolves its packaged module without a repository-relative startup import');
 ok(fs.existsSync(path.join(root, 'electron-builder.yml')) && read('electron', 'services', 'update-service.js').includes('electron-updater') && mainJs.includes('desktop:update-check') && preloadJs.includes('updates:'), 'electron-builder packaging and the GitHub auto-update service are wired');
 
 const compatibilityPages = new Set(['desktop-dashboard.html', 'tool-center.html', 'knowledgebase.html']);
@@ -244,7 +247,7 @@ ok(mainJs.includes('projectsFolder') && mainJs.includes('exportsFolder'), 'Elect
 ok(mainJs.includes("desktop:check-aurora-loader") && preloadJs.includes('checkAuroraLoader'), 'Electron exposes Aurora loader setup check');
 ok(!/desktop:check-cakehook|cakeView:|tribute:/.test(mainJs + preloadJs), 'Electron setup allowlist excludes old third-party tool gates');
 ok(!/cakeView|tribute|texconv/.test(read('app', 'assets', 'js', 'tool-center.js')), 'Setup renderer only lists supported creative programs');
-ok(mainJs.includes('AuroraForge NT100 Beta 4') && mainJs.includes('Internal build 2.1.3'), 'Electron About uses the free release identity');
+ok(mainJs.includes('AuroraForge NT100 Beta 4') && mainJs.includes('Internal build 2.1.4'), 'Electron About uses the free release identity');
 ok(!mainJs.includes('toggleDevTools'), 'normal Electron menu does not expose developer tools');
 
 const studiosHtml = read('app', 'creative-studios.html');
@@ -320,7 +323,7 @@ ok(!tutorialsHtml.includes('complete-character-modding-guide.html') && !tutorial
 ok(read('app', 'knowledgebase.html').includes('url=tutorials.html'), 'old knowledgebase link redirects to Tutorials');
 
 const aboutHtml = read('app', 'about.html');
-ok(aboutHtml.includes('v2.1.3'), 'About displays visible version 2.1.3');
+ok(aboutHtml.includes('v2.1.4'), 'About displays visible version 2.1.4');
 ok(aboutHtml.includes('Microsoft DirectXTex') && aboutHtml.includes('MIT License'), 'About credits the bundled open-source converter');
 ok(aboutHtml.includes('Public source archives are available now') && aboutHtml.includes('Some extraction and encryption research remains private'), 'About explains the current public and private source boundary');
 ok(faqHtml.includes('public source archives are available now') && faqHtml.includes('Some extraction and encryption research remains private'), 'FAQ explains the current public and private source boundary');
@@ -389,4 +392,4 @@ if (failures) {
   console.error(`\nAuroraForge NT100 verification failed with ${failures} problem(s).`);
   process.exit(1);
 }
-console.log('\nAuroraForge NT100 v2.1.3 source verification passed.');
+console.log('\nAuroraForge NT100 v2.1.4 source verification passed.');

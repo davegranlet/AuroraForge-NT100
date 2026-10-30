@@ -1,10 +1,10 @@
 {
   "schema": "aurora-forge-secure-datacrtllink-compatibility-v1",
-  "loaderVersion": "1.0.0",
+  "loaderVersion": "1.7.7 (Steam 2026-10-28 profile)",
   "hostExecutable": "WWE2K26_x64.exe",
-  "gameExeSha256": "7F558607BD6881C4547D752EA107FB03282A2980E47EF19ADE597E096DE4A0E9",
-  "testedSteamBuildId": "24193653",
-  "dllSha256": "7816CB3312EE3F826638F9E17135A4BA85163D6A51E876F7128BADAA2E5C4870",
+  "gameExeSha256": "7F9C2461BDB4A662D8A25012BAEAEC73CE0C7F0429C6B77395BBE9232F63FDD5",
+  "testedSteamBuildId": "Steam 2026-10-28",
+  "dllSha256": "685DAEB9062D8EE2E974F2D1325DACFDC4BF365A1A3928AFE4BCB1F5CC1F86E8",
   "releaseZipSha256": "60614287559A9FAE8E9A9F07309FB5D6115DC1DCF65FB34DF10BBE0AF93AB9F6",
   "releaseUrl": "https://github.com/davegranlet/Secure-DataCtrlLink-WWE2K26/releases/tag/v1.0.0",
   "directDownloadUrl": "https://github.com/davegranlet/Secure-DataCtrlLink-WWE2K26/releases/download/v1.0.0/Secure-DataCtrlLink-WWE2K26-1.0.0.zip"

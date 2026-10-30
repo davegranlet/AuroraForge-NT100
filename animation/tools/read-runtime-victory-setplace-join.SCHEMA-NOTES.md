@@ -1,5 +1,69 @@
 # read-runtime-victory-setplace-join.ps1 — schema and usage notes
 
+## v1.4.0 takeover additions (2026-10-30)
+
+Current tool file SHA-256:
+`42F4F6431EB5498F6CE0312181A1574EF9F18B50AE614A583631E9A38F610418`
+(toolVersion `1.4.0-registry-classifier`, 3,081 lines). Offline validation this
+session: PowerShell AST parse 0 errors; `-SelfTest` 34/34 PASS
+(`claude-takeover-20261030/evidence/reader-v140-selftest.json`); `-DryRun`
+against the installed executable returned `exeSha256Matches=True`
+(`reader-v140-dryrun.json`); no-process refusal produced exit 4 with no memory
+read. The v1.2.2 abort cause ("A parameter cannot be found that matches
+parameter name 'Stable'") was a caller-supplied invalid parameter, not a script
+defect; the v1.4.0 test card passes only declared parameters.
+
+Additive changes only; no previously captured field was renamed or removed:
+
+1. `nodeRegistry` section (schema v3 additive fields): `manager+0x1200`
+   registry pointer, `count` (registry+0x2C, expected 11), `arrayPointer`
+   (registry+0x18), records of stride `0xA8` with 18 qword rig-node pointers at
+   record `+0x00..+0x88`, aux `+0x90`, in-use `+0x98`, role key byte `+0xA0`,
+   plus a 0x90 byte node-index dump per record. Rooted through the same
+   validated actor manager; with no manager the section reports an explicit
+   failure instead of following nothing.
+2. `classKey` classification on every class candidate and actor-table entry
+   (`Test-ClassCandidate` / `Get-ActorTable`): the vtable slot-2 method
+   prologue (`81 3A` = `cmp dword ptr [rdx],imm32`) is read and the immediate
+   is matched against known CRC-32C component-name keys — `ringcomponent`
+   0xAE780A89, `actorcomponent` 0x7B962D9E, `character` 0xFC388D56
+   (05-DEVILS-ADVOCATE.md B1/B3). A RingComponent can therefore no longer be
+   presented as an unclassified performer class.
+   `Resolve-Joins.entries[].classKey` carries the classification.
+3. `matchedGroupComponent.groupChildPointers` in every container walk
+   (`Invoke-GroupChildPointers`): head=`*(group+0x40)`, sentinel=`group+0x38`,
+   child=`link-8`, next=`*(link+8)`, up to 40 pointers — the rig-node set that
+   `FUN_1410C1690` selects per observer slot from a GroupComponent.
+4. `transform210Block90toCF` on classes with a +0x210 TransformComponent: the
+   4x4 block at +0x90..+0xCF whose +0xC0 row feeds `entity+0x870`
+   (05-DEVILS-ADVOCATE.md Finding 3 reclassified entity+0x870 as a world
+   center, not an orientation mirror).
+5. `Resolve-Joins` (new optional `-RegistryResult` parameter) intersects each
+   node-registry record's 18 node pointers with the class-side rig-node sets
+   (class container groups/transforms/group child lists) captured in the same
+   snapshot; per-actor `registryRecordMatches` include `pointerIntersections`
+   counts, and `registryPerformerRigJoinCandidate` flags any record with >= 6
+   intersections. Console summary prints `nodeRegistry=` and
+   `registryPerformerRigJoinCandidates=` lines.
+6. `answers.nodeRegistry` (registryAccessible/recordCount/capturedRecords/
+   role1RecordCaptured/registryJoinCandidates) and
+   `captureSetCoverage.nodeRegistryRecords`.
+7. SelfTest additions (all pass): registry count/role/node-pointer fixtures and
+   the actorcomponent slot-2 classifier fixture.
+
+Expected discriminators in the next capture set (custom early/mid + stock
+control in one launch): (a) any non-ring `classKey` (actorcomponent/character)
+class candidate inside the resolved actor table/scan; (b) role-1 registry
+record node-pointer intersections with the type-1 request group children
+(rig identity from the SetPlace side); (c) the same for actor-class containers
+(rig identity from the performer side); (d) type-1 rows +0x12D0 request
+pointer + request+0x40 container == class+0x20 (existing Lane-1 closure) with
+valid pointer validation this time.
+
+---
+
+# read-runtime-victory-setplace-join.ps1 — schema and usage notes
+
 Schema: `aurora-forge/wwe2k26-victory-setplace-join-snapshot/v3` (live snapshot),
 `.../v3/plan` (dry-run plan), and `aurora-forge/wwe2k26-victory-placement-status/v1`
 (inside `captureStatus`). Tool owner: Lane B (runtime diagnostic), 2026-10-29.
@@ -7,10 +71,9 @@ Read-only diagnostic for the Victory 14004 / motion 14003 SetPlace -> performer
 pointer/identity join in WWE 2K26 (build SHA-256
 `7F9C2461BDB4A662D8A25012BAEAEC73CE0C7F0429C6B77395BBE9232F63FDD5`).
 
-Current tool file SHA-256:
-`DC8925AAA1E1FD0BE6D2B687A423CEEACEDCF89FAB2C04F84A84C3C571FC9122`
-(2,633 lines / 149,180 bytes). The pre-edit v1.1.0 baseline was
-`9868CFF1AEB13525631807E8FE2784A98AA48E45AE2B7E2486949D91586E8E1C`.
+Current tool file SHA-256 (v1.4.0, this session):
+`42F4F6431EB5498F6CE0312181A1574EF9F18B50AE614A583631E9A38F610418`.
+The historical v1.2.x/v1.1.0 hashes below are retained for lineage:
 
 ## Why v3 exists (2026-10-29 live-root correction)
 

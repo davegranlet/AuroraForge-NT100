@@ -179,7 +179,7 @@
     {
       "source": "animation/tools/append-2k25-cammove-entry.test.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/append-2k25-cammove-entry.test.js",
-      "sha256": "7f05e14683f97963e6e18922dc643773fbf02fb8a08371fc573f67629e07fcb3"
+      "sha256": "0587cabe99149e0b06e3ffe4cbd6d4124b3705c09581fe63f4617f8279b1adca"
     },
     {
       "source": "animation/tools/append-2k25-character-mapping-entry.js",
@@ -189,7 +189,7 @@
     {
       "source": "animation/tools/append-2k25-character-mapping-entry.test.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/append-2k25-character-mapping-entry.test.js",
-      "sha256": "06b3d96ccf776767479e3bf64bc9eb70e411459d3b120a443602265ee2dea43b"
+      "sha256": "0238313042146dc838246c8575645bf1fe453a50fe1256209d19f8e5957ef72b"
     },
     {
       "source": "animation/tools/append-2k25-charmoveset-slot.js",
@@ -199,7 +199,7 @@
     {
       "source": "animation/tools/append-2k25-charmoveset-slot.test.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/append-2k25-charmoveset-slot.test.js",
-      "sha256": "f37df705042067c4e9e06900310abefad049d1f5195fcb505264702c7ae15f37"
+      "sha256": "e27ce5ee2e20e87c33a766d68ff14c98ab3fae004fdd49ab57d56d03e984527d"
     },
     {
       "source": "animation/tools/append-2k25-charprofilepro-entry.js",
@@ -209,7 +209,7 @@
     {
       "source": "animation/tools/append-2k25-charprofilepro-entry.test.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/append-2k25-charprofilepro-entry.test.js",
-      "sha256": "e183979d6df66642cec492c14dfe649729c3467f1ec4708d340fef230250c3dd"
+      "sha256": "f0376cde5c043b1d3eb4aee12cd43fe0be08cc9d34dacb1d19fb09ce72eb78d3"
     },
     {
       "source": "animation/tools/append-2k25-charprofiletable-entry.js",
@@ -219,7 +219,7 @@
     {
       "source": "animation/tools/append-2k25-charprofiletable-entry.test.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/append-2k25-charprofiletable-entry.test.js",
-      "sha256": "28d6f6aa76965effe979247807dd9c2b032534da7ad700f6d1a286a6e5f9177a"
+      "sha256": "0e52322962943f41aa443eb295cd343ed381d49c83de6c8742f8ea17eaf44073"
     },
     {
       "source": "animation/tools/append-2k25-face-textures-entry.js",
@@ -229,7 +229,7 @@
     {
       "source": "animation/tools/append-2k25-face-textures-entry.test.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/append-2k25-face-textures-entry.test.js",
-      "sha256": "fca2b85c9c18ad9fe2acf3ada781a1864bdbc43671204d37c317f8be12df18e3"
+      "sha256": "bce9ec83a2443cb96bd38206e84e9ca91dedf0c136c47203dfa8dde197f095e1"
     },
     {
       "source": "animation/tools/append-2k25-teams-entry.js",
@@ -239,7 +239,7 @@
     {
       "source": "animation/tools/append-2k25-teams-entry.test.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/append-2k25-teams-entry.test.js",
-      "sha256": "fcd55e6838be57d49a2972628b2fc8037a4f24d66a315381ce798b4a80f1aaee"
+      "sha256": "f0d560758a22477ebf4c23b673986b6f1ad3cbc7072bc2bcb387be0feafe1750"
     },
     {
       "source": "animation/tools/append_2k25_entrance_clone_graph.js",
@@ -340,6 +340,141 @@
       "source": "animation/tools/aurora-converter.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-converter.js",
       "sha256": "46460255811b960083ca41ad3c8ae4d9e9071624a69741e3d3a83eb59296cdff"
+    },
+    {
+      "source": "animation/tools/aurora-formats/adefs.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/adefs.js",
+      "sha256": "51e346b18aafeebf3ac69348a5fe2fb6e3c4f9110b3b48c63d34b3c0cbce03a5"
+    },
+    {
+      "source": "animation/tools/aurora-formats/audio.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/audio.js",
+      "sha256": "cf0c7845ee5148442ae0d07a241902d0abc20c135a9bbe874e5b442e65309fb1"
+    },
+    {
+      "source": "animation/tools/aurora-formats/audio.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/audio.test.js",
+      "sha256": "c5e7874f5a7a217026cc8be21dca891f9747cf3da67f02b7efb291cff1d7d723"
+    },
+    {
+      "source": "animation/tools/aurora-formats/aurora-format-tool.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/aurora-format-tool.js",
+      "sha256": "ba8fa3cd0bc6efedc3339cc3e64b6d28d609be18a8332c80d56f9610dc7e2a42"
+    },
+    {
+      "source": "animation/tools/aurora-formats/cak.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/cak.js",
+      "sha256": "5aa24bb78d1944f02c8a0cba8eab06e6b2eb3bfa07055b4cbcb14629729aa02c"
+    },
+    {
+      "source": "animation/tools/aurora-formats/clips.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/clips.js",
+      "sha256": "40a00d7fe3dc58182e19347e62d0e6d028372a583ee3195afaf9442c182c3cc8"
+    },
+    {
+      "source": "animation/tools/aurora-formats/dds-meta.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/dds-meta.js",
+      "sha256": "4beee8e2992adccd3cf7c74c0a5d4d6560a8f35b922470ca9c7b4af9a4e77a1a"
+    },
+    {
+      "source": "animation/tools/aurora-formats/dds-meta.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/dds-meta.test.js",
+      "sha256": "10e4a076b4976d0bfc3599b15d738bf9d900e07515c53088b3e54b213804deac"
+    },
+    {
+      "source": "animation/tools/aurora-formats/detect.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/detect.js",
+      "sha256": "75bfde2be0fb47ca46b150fd6fc61bdb19b212ab93cabc0a4b70ba3362d396d5"
+    },
+    {
+      "source": "animation/tools/aurora-formats/index.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/index.js",
+      "sha256": "0be8ebd7be0f5014cdb47deeb0e1b30b6b93f6e90a227c328a59d29b764a7446"
+    },
+    {
+      "source": "animation/tools/aurora-formats/inspect.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/inspect.js",
+      "sha256": "7d1b83aabf1dc1ee27bed630e1bdd7abe353172e10acb23639af63041f986ee7"
+    },
+    {
+      "source": "animation/tools/aurora-formats/inspect.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/inspect.test.js",
+      "sha256": "44eb28f9b80899c1c3d5bbe5b43ad401330c851a75059bd7deeeb417b4c07b8d"
+    },
+    {
+      "source": "animation/tools/aurora-formats/jsfb.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/jsfb.js",
+      "sha256": "9defd0c78335ba30763b7555f0ae250f5d8fc85410831fc882643c48dd2fbd3c"
+    },
+    {
+      "source": "animation/tools/aurora-formats/mtls.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/mtls.js",
+      "sha256": "5f27e5b179039b9b72ab07ed5b773e206bcce13db11f246406c1936d6c218fc1"
+    },
+    {
+      "source": "animation/tools/aurora-formats/mtls.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/mtls.test.js",
+      "sha256": "d7557862bead9308943164709be0678af735a1dd2f6afb5b07f2777c9ce16641"
+    },
+    {
+      "source": "animation/tools/aurora-formats/profile-text.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/profile-text.js",
+      "sha256": "1d17fcfd5fbc55146a3f135cd8ce9a6de9f64ee5e54fbb0571f77a03c23abb94"
+    },
+    {
+      "source": "animation/tools/aurora-formats/profile-text.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/profile-text.test.js",
+      "sha256": "5b2254e1ebd3d58ad96b68e294ba22130656eee7b14c0b5d8b8587feebf73645"
+    },
+    {
+      "source": "animation/tools/aurora-formats/sdb.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/sdb.js",
+      "sha256": "2384af8d4232b3913cb8210f50be82c64dc346b79a505d5e7a33988f30ead9d6"
+    },
+    {
+      "source": "animation/tools/aurora-formats/tcaw.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/tcaw.js",
+      "sha256": "9de0f6e3d8a50c324ac966b848512a76d51fd6c510d47bbec4887506601d92a0"
+    },
+    {
+      "source": "animation/tools/aurora-formats/tcaw.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/tcaw.test.js",
+      "sha256": "9c4f918d92bd88dc8ca211331d2565620f60685dda1dfdd5295fc93f76184348"
+    },
+    {
+      "source": "animation/tools/aurora-formats/tdb.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/tdb.js",
+      "sha256": "26fbab83c684160fd4a00ada709a4f4daf4b1fdd9a3a20dab7b286ef2f8d1ead"
+    },
+    {
+      "source": "animation/tools/aurora-formats/tdb.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/tdb.test.js",
+      "sha256": "5789cfd8ad04d07f002939746c808816146e24eeba3004b1744182618abbd732"
+    },
+    {
+      "source": "animation/tools/aurora-formats/universe-profile.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/universe-profile.js",
+      "sha256": "deeaddc139ec6feb98344de42a13815f8d37c85829e1bb6b0acc14a6d8526bb2"
+    },
+    {
+      "source": "animation/tools/aurora-formats/universe-profile.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/universe-profile.test.js",
+      "sha256": "46120b1d4c4f3ed1b61e0ad57a5ab536d7087a660563f5840e53cafb5daf461f"
+    },
+    {
+      "source": "animation/tools/aurora-formats/wrappers.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/wrappers.test.js",
+      "sha256": "84402d06da83bd92406fc791d0f16f9e18db569a9cde08e756779247a10084c8"
+    },
+    {
+      "source": "animation/tools/aurora-formats/ycl.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/ycl.js",
+      "sha256": "c991608a8f46e8232adab33a3f4756495dcb81f88da4a39ada5246becf52c8a0"
+    },
+    {
+      "source": "animation/tools/aurora-formats/ycl.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/aurora-formats/ycl.test.js",
+      "sha256": "833c23d1d5af5ea49ed0c660a361ae7a8f305b53f4168fa30365b4863731bb00"
     },
     {
       "source": "animation/tools/bake-2k20-textures.js",
@@ -749,7 +884,7 @@
     {
       "source": "animation/tools/compare-cak-payloads.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/compare-cak-payloads.js",
-      "sha256": "b84abbc3f38d21991ee54428f7431f6bafabd9e81ade5e16f5f05885c99f6619"
+      "sha256": "e1c943e77ed80e5cfa786ad7b86dd3af68776e7ddfc9c10530376d38654861e7"
     },
     {
       "source": "animation/tools/compare-cak-payloads.test.js",
@@ -890,6 +1025,46 @@
       "source": "animation/tools/decode_adefs_wrapper.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/decode_adefs_wrapper.js",
       "sha256": "845da16aa2ff3a89b5c9fe4e2e4056bddcd2282d2eb7f0a0bfa0c1d092267b6d"
+    },
+    {
+      "source": "animation/tools/decompilation-evidence-audit.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-evidence-audit.js",
+      "sha256": "09a3f236e856aa489e6c820d3a762160bfa2dc442a051562846ef8ae5560305f"
+    },
+    {
+      "source": "animation/tools/decompilation-evidence-audit.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-evidence-audit.test.js",
+      "sha256": "fe200f9b265cf5d1100b125f5f6315a8d7dcdb8fb567e8e6302bfc4d93a268b2"
+    },
+    {
+      "source": "animation/tools/decompilation-function-adapter.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-function-adapter.js",
+      "sha256": "307dff59f85bddfe0023d609e605748c8152e67393764bcb199df8bac27ec48e"
+    },
+    {
+      "source": "animation/tools/decompilation-function-adapter.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-function-adapter.test.js",
+      "sha256": "4ca8a169d4738fbf72c1698685663327ef92b46c07c9d713a92c04c5f176b08d"
+    },
+    {
+      "source": "animation/tools/decompilation-function-coverage.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-function-coverage.js",
+      "sha256": "8ea58f26232d7efe7a960915b3778b373f83e93b50dbb1ae19654b6c439089d5"
+    },
+    {
+      "source": "animation/tools/decompilation-function-coverage.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-function-coverage.test.js",
+      "sha256": "f345f294256dac51037e9267f97a3b17978f14d941ff71ce48a001b8e11524f9"
+    },
+    {
+      "source": "animation/tools/decompilation-source-inspector.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-source-inspector.js",
+      "sha256": "5043baf3a5ff775127cff9cf85751e53505b25b3390ba08e51a420d225c0041c"
+    },
+    {
+      "source": "animation/tools/decompilation-source-inspector.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/decompilation-source-inspector.test.js",
+      "sha256": "f9a26f96db4dbb846c0ecc7318824ab9fd0ad15c262889013352e0e0df0138c5"
     },
     {
       "source": "animation/tools/descriptor-full-analysis.js",
@@ -1034,7 +1209,7 @@
     {
       "source": "animation/tools/extract-verify-cak.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/extract-verify-cak.js",
-      "sha256": "8eb2b0e7534fc75204d882ebf6ce8ff9fc25acb0207ee05a0096a827584e024e"
+      "sha256": "0e8aec5ee22e9d4cdb4649ad8aa7250bb6ef2fd1f25ba960ce58f09bfad50c04"
     },
     {
       "source": "animation/tools/extract_2k19_archive_entries.js",
@@ -1810,6 +1985,21 @@
       "source": "animation/tools/translate-camera-target-by-root-placement.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/translate-camera-target-by-root-placement.js",
       "sha256": "823a2619f4e841d0e6de1e5468caa556ff31e48ba8637fa0db749bd8e152341d"
+    },
+    {
+      "source": "animation/tools/tribute-current-1.7.0.integration.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/tribute-current-1.7.0.integration.test.js",
+      "sha256": "3de5820abb59a6bd22622f003bfe94937440badcf09d57d8c2cedc9cc6a09d1a"
+    },
+    {
+      "source": "animation/tools/tribute-fixture-audit.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/tribute-fixture-audit.js",
+      "sha256": "b39e3a7f1b025f45f061e6ec845f62c9f588084aec52bc94f20cc67f0a1310ea"
+    },
+    {
+      "source": "animation/tools/tribute-fixture-audit.test.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/tribute-fixture-audit.test.js",
+      "sha256": "f882bdcf37df857b8c21ecac87faf3728b0ab3b6b67ce2ee6b242c23dd144b4f"
     },
     {
       "source": "animation/tools/verify-clip-group-diff.js",

@@ -21,6 +21,7 @@ const { createAudioStudioService } = require('./services/audio-studio-service');
 const { createAnimationConverterService } = require('./services/animation-converter-service');
 const { createUpdateService } = require('./services/update-service');
 const { createToolLibraryService } = require('./services/tool-library-service');
+const { createUniverseProfileService } = require('./services/universe-profile-service');
 
 // GPU-less hosts (VPS/Docker/headless): on Linux the app defaults to software
 // rendering. Set AURORA_FORGE_GPU=1 to force hardware acceleration back on; any
@@ -42,6 +43,18 @@ const APP_ROOT = path.join(__dirname, '..', 'app');
 function toolLibraryService() {
   return createToolLibraryService({ root: bundledToolPath('sl') });
 }
+function universeProfileService() {
+  return createUniverseProfileService({
+    universeModulePath: bundledToolPath('entry-studio', 'tools', 'aurora-formats', 'universe-profile.js')
+  });
+}
+ipcMain.handle('desktop:universe-choose-file', async () => {
+  const result = await dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'Universe profile', extensions: ['json'] }, { name: 'All files', extensions: ['*'] }] });
+  return result.canceled || !result.filePaths[0] ? { canceled: true } : { canceled: false, path: result.filePaths[0] };
+});
+ipcMain.handle('desktop:universe-inspect', (_event, file) => universeProfileService().inspect(file));
+ipcMain.handle('desktop:universe-merge-preview', (_event, baseFile, overlayFile) => universeProfileService().mergePreview(baseFile, overlayFile));
+ipcMain.handle('desktop:universe-save-copy', (_event, payload) => universeProfileService().saveCopy(payload.sourceFile, payload.outputFile, payload.overlay));
 ipcMain.handle('desktop:tool-library-list', () => toolLibraryService().list());
 ipcMain.handle('desktop:tool-library-source', (_event, id) => toolLibraryService().source(id));
 ipcMain.handle('desktop:tool-library-folder', async () => {
@@ -780,7 +793,7 @@ function createWindow() {
         { type: 'separator' },
         { label: 'Check for Updates...', click: () => updateService().check({ manual: true }) },
         { type: 'separator' },
-        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 4', detail: 'Internal build 2.1.3\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta 4 app experience.' }) }
+        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 4', detail: 'Internal build 2.1.4\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta 4 app experience.' }) }
       ]
     }
   ];
@@ -880,6 +893,9 @@ ipcMain.handle('desktop:entry-studio-get-entry', (_event, entryId) => {
 
 ipcMain.handle('desktop:entry-studio-write-entry', (_event, payload) => {
   return entryStudioService().writeEntry(payload || {});
+});
+ipcMain.handle('desktop:entry-studio-roster-action', (_event, payload) => {
+  return entryStudioService().applyRosterAction(payload || {});
 });
 
 ipcMain.handle('desktop:entry-studio-music', () => {
@@ -1163,7 +1179,7 @@ ipcMain.handle('desktop:cak-explorer-open-all', async (_event, gameVersion) => {
     keyRecovered: sessions.some((session) => session.keyRecovered),
     warnings: [
       ...sessions.flatMap((session) => session.warnings.map((warning) => `${session.archiveName}: ${warning}`)),
-      ...rejectedArchives.map((item) => `${item.archive}: rejected safely â€” ${item.error}`)
+      ...rejectedArchives.map((item) => `${item.archive}: rejected safely Ã¢â‚¬â€ ${item.error}`)
     ]
   };
   return { ok: true, archiveCount: sessions.length, rejectedArchives, summary: cakReader.publicSummary(currentCakSession), results: cakReader.searchFiles(currentCakSession, { scope: 'all' }) };

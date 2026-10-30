@@ -10,7 +10,7 @@ const { spawnSync } = require('node:child_process');
 const { appendCharacterMappingEntry, locateRecords, findById } = require('./append-2k25-character-mapping-entry');
 
 const ORACLE = path.join(
-  __dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root',
+  process.env.AURORA_TRIBUTE_FIXTURE_ROOT || path.join(__dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root'),
   'Characters', 'CharacterMapping.jsfb',
 );
 

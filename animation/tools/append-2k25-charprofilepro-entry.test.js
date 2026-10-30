@@ -10,7 +10,7 @@ const { spawnSync } = require('node:child_process');
 const { appendCharProfileProEntry, locateRecords, findByCharId } = require('./append-2k25-charprofilepro-entry');
 
 const ORACLE = path.join(
-  __dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root',
+  process.env.AURORA_TRIBUTE_FIXTURE_ROOT || path.join(__dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root'),
   'Roster', 'CharProfilePro.jsfb',
 );
 

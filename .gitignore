@@ -66,7 +66,13 @@ _md-search/index.json
 /DEEPSEEK.md
 /CONSOLIDATION-STATUS.md
 /AURORA-FORGE-CONTINUATION-PROMPT-*.md
+/CONTINUE-WORK-*.md
+/CONTINUE-WORK-STATUS-*.md
+/HANDOFF-*.md
 /umbrella-app/app/tools/sl/
+/umbrella-app/app/tools/.local/
+/umbrella-app/installer/loader-bundle/
+/umbrella-app/INSTALLER-STATE.md
 /umbrella-app/website/downloads/
 /umbrella-app/website/*.zip
 /umbrella-app/website.zip
@@ -118,6 +124,7 @@ _md-search/index.json
 /animation/workflows/**/tribute-*/
 /animation/workflows/**/victory-textures-*/
 /animation/workflows/**/offline-2k20-bridge-*/
+/animation/workflows/**/claude-takeover-*/
 /animation/workflows/**/*.csv
 /animation/workflows/**/*.hkt
 /animation/workflows/**/*.0fop

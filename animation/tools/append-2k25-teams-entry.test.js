@@ -9,7 +9,7 @@ const path = require('node:path');
 const { appendTeamsEntry, locateRecords, findRecordByTeamId } = require('./append-2k25-teams-entry');
 
 const ORACLE = path.join(
-  __dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root',
+  process.env.AURORA_TRIBUTE_FIXTURE_ROOT || path.join(__dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root'),
   'Stable', 'TeamsTable.jsfb',
 );
 

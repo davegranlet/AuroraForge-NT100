@@ -187,10 +187,12 @@ function createAnimationConverterService(options) {
     const stagedFoundry = bundledToolPath('converter-foundry');
     const gameVersions = firstExisting([
       path.join(stagedFoundry, 'electron', 'game-versions.js'),
+      bundledToolPath('sl', 'cak-foundry', 'electron', 'game-versions.js'),
       path.join(appRoot, '..', '..', 'cak-foundry', 'electron', 'game-versions.js')
     ]);
     const bakeCli = firstExisting([
       path.join(stagedFoundry, 'scripts', 'bake-v93-cli.js'),
+      bundledToolPath('sl', 'cak-foundry', 'scripts', 'bake-v93-cli.js'),
       path.join(appRoot, '..', '..', 'cak-foundry', 'scripts', 'bake-v93-cli.js')
     ]);
     const helper = bundledToolPath('cak-helper', 'AuroraCakHelper.exe');
@@ -276,7 +278,7 @@ function createAnimationConverterService(options) {
     };
   }
 
-  return { getDefaults, saveConfig, gameVersion, extract19, buildLibrary, materializeBundledSkeleton };
+  return { getDefaults, saveConfig, gameVersion, extract19, buildLibrary, materializeBundledSkeleton, _ensureFoundryShim: ensureFoundryShim };
 }
 
 module.exports = { createAnimationConverterService };

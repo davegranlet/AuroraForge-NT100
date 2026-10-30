@@ -1,6 +1,6 @@
 {
   "name": "auroraforge-nt100",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Aurora Forge current-source workbench with archive, animation and one-off tools in one desktop app.",
   "main": "electron/main.js",
   "private": true,
@@ -23,10 +23,12 @@
     "catalog:audit": "node scripts/audit-extracted-layouts.js",
     "prepare:runtime": "node scripts/prepare-runtime-staging.js",
     "clean:dist": "node scripts/clean-dist.js",
-    "pack:win": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon.ico --app-version=2.1.3 --build-version=2.1.3 --extra-resource=build/library/sl",
-    "pack:linux": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=linux --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon-256.png --app-version=2.1.3 --build-version=2.1.3 --extra-resource=build/library/sl",
-    "dist:win": "npm run prepare:runtime && electron-builder --win nsis --x64 --publish never",
-    "release:win": "npm run prepare:runtime && electron-builder --win nsis --x64 --publish always",
+    "pack:win": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon.ico --app-version=2.1.4 --build-version=2.1.4 --extra-resource=build/library/sl",
+    "pack:linux": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=linux --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon-256.png --app-version=2.1.4 --build-version=2.1.4 --extra-resource=build/library/sl",
+    "prepare:installer": "node scripts/prepare-installer-assets.js",
+    "verify:installer": "node scripts/verify-installer.js",
+    "dist:win": "npm run prepare:runtime && npm run prepare:installer && electron-builder --config electron-builder.config.cjs --win nsis --x64 --publish never",
+    "release:win": "npm run prepare:runtime && npm run prepare:installer && npm run verify:installer && electron-builder --config electron-builder.config.cjs --win nsis --x64 --publish always",
     "dist:linux": "npm run prepare:runtime && electron-builder --linux AppImage --x64 --publish never",
     "release:linux": "npm run build:linux",
     "build:standalones": "node scripts/build-standalone-windows.js",
@@ -46,7 +48,7 @@
   },
   "packageManager": "npm@11.16.0",
   "extraMetadata": {
-    "version": "2.1.3"
+    "version": "2.1.4"
   },
   "dependencies": {
     "electron-updater": "6.8.11",

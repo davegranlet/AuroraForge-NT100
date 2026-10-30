@@ -89,9 +89,16 @@ contextBridge.exposeInMainWorld('WWE2K26Desktop', {
     createEntry: (payload) => ipcRenderer.invoke('desktop:entry-studio-create', payload),
     getEntry: (entryId) => ipcRenderer.invoke('desktop:entry-studio-get-entry', entryId),
     writeEntry: (payload) => ipcRenderer.invoke('desktop:entry-studio-write-entry', payload),
+    applyRosterAction: (payload) => ipcRenderer.invoke('desktop:entry-studio-roster-action', payload),
     music: () => ipcRenderer.invoke('desktop:entry-studio-music'),
     bake: (payload) => ipcRenderer.invoke('desktop:entry-studio-bake', payload),
     stage: (payload) => ipcRenderer.invoke('desktop:entry-studio-stage', payload)
+  }
+  ,universeProfile: {
+    chooseFile: () => ipcRenderer.invoke('desktop:universe-choose-file'),
+    inspect: (file) => ipcRenderer.invoke('desktop:universe-inspect', file),
+    mergePreview: (baseFile, overlayFile) => ipcRenderer.invoke('desktop:universe-merge-preview', baseFile, overlayFile),
+    saveCopy: (payload) => ipcRenderer.invoke('desktop:universe-save-copy', payload)
   }
   ,audioStudio: {
     getDefaults: () => ipcRenderer.invoke('desktop:audio-studio-defaults'),

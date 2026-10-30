@@ -10,7 +10,7 @@ const { spawnSync } = require('node:child_process');
 const { appendCharMoveSetSlot, locateTopVector, findWrestler } = require('./append-2k25-charmoveset-slot');
 
 const ORACLE = path.join(
-  __dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root',
+  process.env.AURORA_TRIBUTE_FIXTURE_ROOT || path.join(__dirname, '..', 'analysis', 'this-is-the-test-cak', 'extracted-root'),
   'Roster', 'CharMoveSetDataTable.jsfb',
 );
 

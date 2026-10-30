@@ -7,6 +7,26 @@
 - One letter per shipped build. The version appears in the app (About / build chip / manifest), in every download filename, and in this file.
 - This file is the map: find the version on your download, find it here, see exactly what that build contains.
 
+## 2.1.4 — 2026-10-30
+
+Patch release for the 2.1.a / Beta 4 line.
+
+- **Installed-app startup fixed:** the packaged app now resolves the universe profile module from the staged `entry-studio/tools/aurora-formats` runtime path instead of a repository-relative path that does not exist in the installed app.
+- **Installer runtime refreshed:** the installer now packages the current runtime staging tree, including the entry-studio tools, and writes GitHub updater metadata.
+- **New Universe Profile editor:** preload bridge, IPC handlers, validation, merge preview, and save-as-copy support.
+- **New format and analysis tools:** ADefs, DDS metadata, JSFB, MTLS, profile text, SDB, TCAW, TDB, and YCL readers/inspectors; decompilation function inspection, coverage, evidence audit, Ghidra export helpers, Tribute corpus audits, Entry Studio roster actions, and Blender smoke tooling.
+- **Installer work:** loader bundle preparation, game-folder detection, transactional loader install, checksum verification, uninstall rollback, and owner-file preservation.
+- **Source downloads:** public source archives are regenerated for 2.1.4. Game data, binaries, private research, generated decompilation output, and website source remain excluded.
+
+Artifacts for 2.1.4:
+
+```
+AuroraForge-NT100-Setup-2.1.4-x64.exe
+AuroraForge-NT100-2.1.4-Linux-x64.tar.gz
+```
+
+The GitHub Release carries the Windows updater files. Public app and source downloads are hosted on auroraforge.live.
+
 ## 2.1.3 — 2026-10-30
 
 Maintenance release for the 2.1.a / Beta 4 line.

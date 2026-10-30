@@ -1,4 +1,4 @@
-// Search the Ghidra program memory image for byte patterns and print hit addresses.
+// Search the Ghidra program memory image for byte patterns and print labeled hit addresses.
 // Usage (headless -postScript): SearchMemoryBytes.java <hex|ascii:STRING> [hex2|ascii2:STRING2]
 //@category AuroraForge
 import ghidra.app.script.GhidraScript;
@@ -21,6 +21,12 @@ public class SearchMemoryBytes extends GhidraScript {
         return -1;
     }
 
+    private String toHex(byte[] bytes) {
+        StringBuilder s = new StringBuilder();
+        for (byte b : bytes) s.append(String.format("%02x", b & 0xff));
+        return s.toString();
+    }
+
     @Override
     public void run() throws Exception {
         List<byte[]> pats = new ArrayList<byte[]>();
@@ -38,11 +44,13 @@ public class SearchMemoryBytes extends GhidraScript {
         }
         Memory mem = currentProgram.getMemory();
         java.io.PrintStream out = new java.io.PrintStream(new java.io.FileOutputStream("search-hits.log"), true, "UTF-8");
+        int maxPatternLength = 0;
+        for (byte[] pat : pats) maxPatternLength = Math.max(maxPatternLength, pat.length);
         for (MemoryBlock block : mem.getBlocks()) {
             long size = block.getSize();
             long pos = 0;
             int CHUNK = 1 << 20;
-            java.util.TreeSet<Long> seen = new java.util.TreeSet<Long>();
+            java.util.HashSet<String> seen = new java.util.HashSet<String>();
             while (pos < size) {
                 int want = (int) Math.min(CHUNK, size - pos);
                 Address start = block.getStart().add(pos);
@@ -53,14 +61,15 @@ public class SearchMemoryBytes extends GhidraScript {
                     int from = 0;
                     while ((from = indexOf(read, pat, from)) != -1) {
                         Address hit = start.add(from);
-                        if (seen.add(hit.getOffset())) {
-                            String line = String.format("%s HIT %s %s", block.getName(), hit.toString(), new String(pat, "US-ASCII").replace("\u0000", "\\0"));
+                        String key = hit.toString() + ":" + toHex(pat);
+                        if (seen.add(key)) {
+                            String line = String.format("%s HIT address=%s pattern=%s", block.getName(), hit.toString(), toHex(pat));
                             println(line); out.println(line);
                         }
                         from += 1;
                     }
                 }
-                pos += Math.max(1, want - (8)); // 8-byte safety overlap for short patterns
+                pos += Math.max(1, want - Math.max(0, maxPatternLength - 1));
             }
         }
         out.println("scan-complete blocks=" + mem.getBlocks().length);

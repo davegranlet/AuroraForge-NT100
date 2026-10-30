@@ -8,7 +8,15 @@ const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const cp = require('node:child_process');
-const { openArchive } = require('../../cak-foundry/electron/cak-reader');
+function repoRoot(start) {
+  let current = path.resolve(start);
+  while (current !== path.dirname(current)) {
+    if (fs.existsSync(path.join(current, 'AGENTS.md'))) return current;
+    current = path.dirname(current);
+  }
+  throw new Error('Aurora Forge repository root was not found');
+}
+const { openArchive } = require(path.join(repoRoot(__dirname), 'cak-foundry', 'electron', 'cak-reader.js'));
 
 function arg(name) {
   const index = process.argv.indexOf(name);
