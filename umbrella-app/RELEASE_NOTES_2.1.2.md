@@ -10,8 +10,8 @@ Patch release for the 2.1.a / Beta 4 line.
 ## Updates
 
 - Packaging switched from `electron-packager` portable ZIPs to **electron-builder**:
-  - Windows: NSIS installer (`AuroraForge NT100-2.1.2-Windows-x64-Setup.exe`)
-  - Linux: AppImage (`AuroraForge NT100-2.1.2-Linux-x64.AppImage`)
+  - Windows: NSIS installer (`AuroraForge-NT100-2.1.2-Windows-x64-Setup.exe`)
+  - Linux: AppImage (`AuroraForge-NT100-2.1.2-Linux-x64.AppImage`)
 - Added **electron-updater** with GitHub Releases as the update source.
   - Checks for updates shortly after launch.
   - Downloads only after user confirmation.

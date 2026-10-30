@@ -34,7 +34,7 @@ win:
       arch:
         - x64
   icon: app/assets/img/app-icon.ico
-  artifactName: ${productName}-${version}-Windows-x64-Setup.${ext}
+  artifactName: AuroraForge-NT100-${version}-Windows-x64-Setup.${ext}
 
 nsis:
   oneClick: false
@@ -51,4 +51,4 @@ linux:
         - x64
   category: Utility
   icon: app/assets/img/app-icon-256.png
-  artifactName: ${productName}-${version}-Linux-x64.${ext}
+  artifactName: AuroraForge-NT100-${version}-Linux-x64.${ext}
