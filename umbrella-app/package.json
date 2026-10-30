@@ -28,7 +28,7 @@
     "dist:win": "npm run prepare:runtime && electron-builder --win nsis --x64 --publish never",
     "release:win": "npm run prepare:runtime && electron-builder --win nsis --x64 --publish always",
     "dist:linux": "npm run prepare:runtime && electron-builder --linux AppImage --x64 --publish never",
-    "release:linux": "npm run prepare:runtime && electron-builder --linux AppImage --x64 --publish always",
+    "release:linux": "npm run build:linux",
     "build:standalones": "node scripts/build-standalone-windows.js",
     "build:pac19-standalone": "node scripts/build-standalone-windows.js pac19",
     "build:cak20-standalone": "node scripts/build-standalone-windows.js cak20",
