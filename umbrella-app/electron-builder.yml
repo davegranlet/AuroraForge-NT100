@@ -25,6 +25,8 @@ extraResources:
 asarUnpack:
   - app/tools/**/*
 
+# Canonical release channel: GitHub Releases. Do not replace with a generic or
+# self-hosted updater feed. See PUBLISHING.md.
 publish:
   provider: github
   owner: davegranlet

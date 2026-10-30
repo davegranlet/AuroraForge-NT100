@@ -2,6 +2,8 @@
 
 Current release: **2.1.3** (Beta 4 line).
 
+Publishing rules: GitHub is the canonical source and release channel. Source code stays in this repository; installers, archives, source ZIPs, update metadata, and checksums are attached to GitHub Releases. The website may mirror or link those assets but is not the release authority. See [PUBLISHING.md](PUBLISHING.md).
+
 This repository contains the current Aurora Forge tool source, including shared
 libraries, native helper projects, animation workflow scripts and one-off
 utilities. The Windows application is distributed as one Main Workbench download.

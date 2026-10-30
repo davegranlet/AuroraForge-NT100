@@ -17,7 +17,7 @@ The 2K26 victory framing issue remains an open research item. This release does 
 
 - Windows x64: `AuroraForge-NT100-2.1.3-Windows-x64-Setup.exe`
 - Linux x64: `AuroraForge-NT100-2.1.3-Linux-x64.tar.gz`
-- Source: `downloads/source/` on the website
+- Source: source ZIPs attached to this GitHub Release, also mirrored under `downloads/source/` on the website
 
 SHA-256 hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
@@ -25,7 +25,7 @@ SHA-256 hashes are published in `SHA256SUMS.txt` alongside the downloads.
 
 - No sign-in, Patreon gate, Discord role check, or in-app verifier.
 - Windows binaries are not code-signed; SmartScreen may warn on first run.
-- The GitHub release includes the Windows installer, update metadata, and the Linux x64 archive. The website also hosts both builds and the source archives.
+- GitHub Releases are canonical: this release carries the Windows installer, update metadata, Linux x64 archive, source ZIPs, and checksums. The website mirrors the same files.
 - Aurora Forge source is GPL-3.0-or-later. Third-party components keep their own licenses.
 
 Optional support: https://www.patreon.com/c/dgranletmwo
