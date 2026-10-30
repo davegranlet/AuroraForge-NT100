@@ -2,7 +2,7 @@
 
 Current release: **2.1.3** (Beta 4 line).
 
-Publishing rules: GitHub is the canonical source and release channel. Source code stays in this repository; installers, archives, source ZIPs, update metadata, and checksums are attached to GitHub Releases. The website may mirror or link those assets but is not the release authority. See [PUBLISHING.md](PUBLISHING.md).
+Publishing rules: all source stays on GitHub. Public downloads, including the Windows installer, Linux archive, zipped source releases, and checksums, are hosted on [auroraforge.live](https://auroraforge.live/#downloads). GitHub Release pages link to the website. The Windows auto-updater stays on GitHub Releases. See [PUBLISHING.md](PUBLISHING.md).
 
 This repository contains the current Aurora Forge tool source, including shared
 libraries, native helper projects, animation workflow scripts and one-off

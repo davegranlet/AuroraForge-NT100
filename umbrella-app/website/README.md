@@ -17,9 +17,10 @@ Everything is relative, so the site works from the web root:
 
 Big binaries and source archives are gitignored so the site source stays text-only.
 
-GitHub Releases are the canonical download and update source. Website files in
-`downloads/` are mirrors; keep them byte-identical to the GitHub Release assets
-and update the SHA-256 files with every release. Do not make the website the
+The website hosts the public app downloads, Linux archive, and source ZIPs.
+GitHub holds all source and the Windows auto-updater feed. GitHub Release pages
+link here for full downloads. Keep `downloads/` byte-identical to the tested
+build, update the SHA-256 files every release, and do not make the website the
 updater feed.
 
 Optional support: https://www.patreon.com/c/dgranletmwo. Major releases are free; patch updates and fixes after a major release are Patreon-only until the next major release. No website source is included in the published source archives.

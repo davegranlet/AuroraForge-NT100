@@ -1,10 +1,11 @@
 # Current source export
 
-GitHub is the canonical source and release channel. Keep source in this repository;
-attach installers, archives, source ZIPs, update metadata, and checksums to GitHub
-Releases. The website may mirror or link those assets but is not the release
-authority. Do not switch the updater to a website or generic feed. See
-[PUBLISHING.md](../../PUBLISHING.md).
+All source stays in this GitHub repository. Public downloads, including the
+Windows installer, Linux archive, source ZIPs, and checksums, are hosted on
+`auroraforge.live`; GitHub Release pages link to the website. The Windows
+auto-updater stays on GitHub Releases and must keep the GitHub provider. Attach
+only the updater files (Windows installer, `.blockmap`, `latest.yml`) to GitHub.
+See [PUBLISHING.md](../../PUBLISHING.md).
 
 Run from the repository root:
 
