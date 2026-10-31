@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple step-by-step guide to install and update AuroraForge NT100 on Windows, with screenshots.">
+  <meta name="theme-color" content="#06090f">
+  <title>Install and Update | AuroraForge NT100</title>
+  <link rel="icon" href="assets/aurora-forge-crest.png?v=4">
+  <link rel="stylesheet" href="styles.css?v=20261029">
+  <style>
+    .guide-hero { padding: clamp(48px, 7vw, 92px) 0 30px; }
+    .guide-hero h1 { max-width: 980px; margin: 12px 0 18px; font-family: var(--display); font-size: clamp(42px, 7vw, 84px); line-height: 0.92; letter-spacing: -0.03em; text-transform: uppercase; }
+    .guide-hero h1 span { color: var(--red-soft); }
+    .guide-lede { max-width: 760px; color: var(--muted); font-size: clamp(16px, 1.6vw, 19px); line-height: 1.75; }
+    .guide-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .guide-mini { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 26px; color: var(--muted); font-size: 12px; }
+    .guide-mini span { padding-left: 12px; border-left: 2px solid var(--red); }
+    .guide-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .guide-toc a { padding: 7px 12px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--muted); text-decoration: none; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+    .guide-toc a:hover { border-color: var(--red-soft); color: var(--white); }
+    .guide-section { padding: 24px 0 34px; }
+    .guide-section > h2 { margin: 8px 0 6px; font-family: var(--display); font-size: clamp(34px, 4.5vw, 58px); line-height: 0.96; text-transform: uppercase; }
+    .guide-intro { max-width: 760px; color: var(--muted); font-size: 15.5px; line-height: 1.7; }
+    .guide-step { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 46px); align-items: center; margin: 18px 0; padding: clamp(18px, 2.6vw, 30px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(17, 25, 38, 0.92), rgba(7, 12, 20, 0.98)); }
+    .guide-step:nth-child(even) .guide-shot { order: 2; }
+    .guide-copy { min-width: 0; }
+    .guide-number { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--red); color: var(--white); font-family: var(--display); font-size: 15px; }
+    .guide-copy h3 { margin: 12px 0 8px; font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px); line-height: 1.05; }
+    .guide-copy p { margin: 0 0 10px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .guide-copy ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); font-size: 14.5px; line-height: 1.7; }
+    .guide-copy li { margin: 5px 0; }
+    .guide-copy strong { color: var(--text); }
+    .guide-shot { margin: 0; }
+    .guide-shot img { display: block; width: 100%; height: auto; border: 1px solid var(--line-strong); border-radius: 12px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42); background: #0b1220; }
+    .guide-shot figcaption { margin-top: 8px; color: var(--muted-2); font-size: 11.5px; line-height: 1.5; }
+    .guide-callout { margin: 18px 0; padding: 16px 18px; border-left: 3px solid var(--gold); background: rgba(242, 193, 78, 0.07); color: var(--muted); font-size: 14.5px; line-height: 1.7; border-radius: 0 10px 10px 0; }
+    .guide-callout strong { color: var(--text); }
+    .guide-last { margin-top: 18px; padding: clamp(22px, 3vw, 34px); border: 1px solid rgba(226, 29, 53, 0.4); border-radius: var(--radius); background: radial-gradient(circle at 100% 0%, rgba(226, 29, 53, 0.16), transparent 45%), linear-gradient(140deg, rgba(17, 25, 38, 0.98), rgba(7, 12, 20, 0.99)); }
+    .guide-last h2 { margin: 8px 0 10px; font-family: var(--display); font-size: clamp(30px, 4vw, 48px); line-height: 0.98; text-transform: uppercase; }
+    .guide-last p { max-width: 760px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .guide-faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+    .guide-faq details { padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,0.025); color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .guide-faq summary { cursor: pointer; color: var(--text); font-weight: 700; }
+    .guide-faq details p { margin: 9px 0 0; }
+    @media (max-width: 900px) {
+      .guide-step { grid-template-columns: 1fr; }
+      .guide-step:nth-child(even) .guide-shot { order: 0; }
+      .guide-faq { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora-bg" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <div class="announcement">
+    <span class="announcement-leaf" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 4l4.6 10.2 9.8-4.4-3.1 10.6 12.9-1.1-8.3 9.5 9.6 4.8-11 4.4 4.6 10.2-11.5-2.2.9 11.8-6.5-8.3-6.5 8.3.9-11.8-11.5 2.2 4.6-10.2-11-4.4 9.6-4.8-8.3-9.5 12.9 1.1-3.1-10.6 9.8 4.4z"/></svg></span>
+    INSTALL GUIDE &middot; 2.1.6 BETA 4 &middot; WINDOWS X64 &middot; SIMPLE STEPS
+    <span class="announcement-leaf" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 4l4.6 10.2 9.8-4.4-3.1 10.6 12.9-1.1-8.3 9.5 9.6 4.8-11 4.4 4.6 10.2-11.5-2.2.9 11.8-6.5-8.3-6.5 8.3.9-11.8-11.5 2.2 4.6-10.2-11-4.4 9.6-4.8-8.3-9.5 12.9 1.1-3.1-10.6 9.8 4.4z"/></svg></span>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="AuroraForge NT100 home">
+      <span class="brand-mark brand-mark-logo" aria-hidden="true"><img src="assets/aurora-forge-crest.png?v=4" alt=""></span>
+      <span class="brand-copy"><strong>AURORA FORGE</strong><small>NT100</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+      <a href="index.html#features">Tools</a>
+      <a href="index.html#downloads">Downloads</a>
+      <a href="source.html">Source</a>
+      <a href="install.html">Install</a>
+      <a href="index.html#support">Support</a>
+      <a href="beta4.html">Beta 4</a>
+      <a href="index.html#faq">FAQ</a>
+      <a class="nav-cta" href="index.html#downloads">Download free</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero section-wrap">
+      <p class="eyebrow">INSTALL AND UPDATE / THE VERY SIMPLE VERSION</p>
+      <h1>Five minutes.<br><span>No guesswork.</span></h1>
+      <p class="guide-lede">This page is the whole thing. Read it once, follow the pictures, and you are done. You do not need Node, npm, a developer command window, or any account.</p>
+      <div class="guide-actions">
+        <a class="button button-primary" href="downloads/AuroraForge-NT100-Setup-2.1.6-x64.exe">Download Windows x64</a>
+        <a class="button button-ghost" href="#update">Jump to updating</a>
+        <a class="button button-quiet" href="downloads/SHA256SUMS.txt">Verify SHA-256</a>
+      </div>
+      <div class="guide-mini"><span><b>Windows 10 or 11</b> / x64</span><span><b>No sign-in</b> / no Patreon gate</span><span><b>Close WWE 2K26</b> before loader updates</span></div>
+      <div class="guide-toc"><a href="#install">Install</a><a href="#update">Update</a><a href="#trouble">If something goes wrong</a><a href="source.html">Source code</a></div>
+    </section>
+
+    <section id="install" class="guide-section section-wrap">
+      <p class="eyebrow">PART ONE / FIRST INSTALL</p>
+      <h2>Put the app on your PC.</h2>
+      <p class="guide-intro">The Windows download is one installer file. It installs the app and, if you leave the box checked, the loader files. It does not install anything into your game without asking which game folder to use.</p>
+
+      <article class="guide-step">
+        <div class="guide-copy">
+          <span class="guide-number">1</span>
+          <h3>Get the installer from the website.</h3>
+          <p>Open <strong>auroraforge.live</strong>. Click the red <strong>Windows x64 .exe</strong> button. The current file is named <strong>AuroraForge-NT100-Setup-2.1.6-x64.exe</strong>.</p>
+          <ul><li>Use the website, not a random file-sharing link.</li><li>If you want to check it, the SHA-256 link is next to the download.</li></ul>
+        </div>
+        <figure class="guide-shot"><img src="assets/install-guide/01-download.png" alt="The AuroraForge website download panel with the Windows x64 button"><figcaption>Click the red Windows x64 button. The Linux archive is below it.</figcaption></figure>
+      </article>
+
+      <article class="guide-step">
+        <div class="guide-copy">
+          <span class="guide-number">2</span>
+          <h3>Open the file and choose your game folder.</h3>
+          <p>In your browser, open the download when it finishes. If you use File Explorer, go to <strong>Downloads</strong> and double-click <strong>AuroraForge-NT100-Setup-2.1.6-x64.exe</strong>.</p>
+          <p>Windows may ask for permission. Choose <strong>Yes</strong>. If you see a blue SmartScreen warning, click <strong>More info</strong>, then <strong>Run anyway</strong>. The installer is not code-signed yet, so Windows does not know the publisher.</p>
+          <p>The installer then asks for the folder containing <strong>WWE2K26_x64.exe</strong>. Click <strong>Browse...</strong> and choose that folder. It is usually under <strong>SteamLibrary\steamapps\common\WWE 2K26</strong>.</p>
+          <div class="guide-callout"><strong>Do not use “Extract” on the .exe.</strong> Double-click it. It is an installer, not a ZIP file.</div>
+        </div>
+        <figure class="guide-shot"><img src="assets/install-guide/03-game-folder.png" alt="The AuroraForge installer asking for the WWE 2K26 folder and loader option"><figcaption>The installer asks for the folder containing WWE2K26_x64.exe. Your version number may be newer than the screenshot.</figcaption></figure>
+      </article>
+
+      <article class="guide-step">
+        <div class="guide-copy">
+          <span class="guide-number">3</span>
+          <h3>Choose the loader option, then finish.</h3>
+          <p>Leave <strong>Install Secure DataCtrlLink, CAK Mod Loader, and Custom Music Loader</strong> checked if you want the loader package. Clear it if you only want the app.</p>
+          <p>The installer backs up the files it replaces. It does not delete mods, CAKs, manifests, or sound packages. Leave <strong>Run AuroraForge NT100</strong> checked and click <strong>Finish</strong>.</p>
+          <p>The app opens in one window. Click <strong>Start a project</strong> or use the sidebar. Your projects and settings stay on your PC when you close it.</p>
+        </div>
+        <figure class="guide-shot"><img src="assets/install-guide/04-install-finish.png" alt="The AuroraForge installer finish screen with Run AuroraForge checked"><figcaption>Leave “Run AuroraForge NT100” checked, then click Finish.</figcaption></figure>
+      </article>
+      <div class="guide-callout"><strong>On Linux:</strong> download the <strong>Linux x64 .tar.gz</strong>, extract it, and run the <strong>AuroraForge NT100</strong> executable. The Linux build starts in software rendering on machines without a GPU. There is no Windows-style installer.</div>
+    </section>
+
+    <section id="update" class="guide-section section-wrap">
+      <p class="eyebrow">PART TWO / UPDATING THE APP</p>
+      <h2>Let the app update itself.</h2>
+      <p class="guide-intro">The installed app checks GitHub Releases for a newer build. You do not need to delete the old app first. Projects, settings, and the loader stay where they are.</p>
+
+      <div class="guide-callout"><strong>Close WWE 2K26 first if the update installs loader files.</strong> The installer refuses loader changes while the game is running. The app can still download the update while the game is closed.</div>
+
+      <article class="guide-step">
+        <div class="guide-copy">
+          <span class="guide-number">5</span>
+          <h3>Click Help, then Check for Updates.</h3>
+          <p>Open AuroraForge NT100. At the top of the window, click <strong>Help</strong>. Click <strong>Check for Updates...</strong>. The app asks GitHub whether a newer version exists.</p>
+          <p>If you are already current, it says so. If a newer version exists, a box like the picture appears.</p>
+        </div>
+        <figure class="guide-shot"><img src="assets/install-guide/05-update-available.png" alt="AuroraForge update available dialog with Download update and Later buttons"><figcaption>Click Download update. “Later” does nothing and keeps your current version.</figcaption></figure>
+      </article>
+
+      <article class="guide-step">
+        <div class="guide-copy">
+          <span class="guide-number">6</span>
+          <h3>Download, then restart.</h3>
+          <p>Click <strong>Download update</strong>. When the download finishes, the app asks you to restart. Click <strong>Restart and install</strong>.</p>
+          <p>The app closes for a moment. The installer runs, then the app opens again on the new version.</p>
+        </div>
+        <figure class="guide-shot"><img src="assets/install-guide/06-update-ready.png" alt="AuroraForge update ready dialog with Restart and install"><figcaption>Click “Restart and install.” The update installs on the restart.</figcaption></figure>
+      </article>
+
+      <article class="guide-step">
+        <div class="guide-copy">
+          <span class="guide-number">7</span>
+          <h3>Close the update installer.</h3>
+          <p>The update installer may ask for the game folder again. It should remember the path. Check it, leave the loader box set the way you want, then click <strong>Close</strong> or <strong>Finish</strong>.</p>
+          <p>Open the app and check the build number in the About page or the build chip. This guide is written for <strong>2.1.6 Beta 4</strong>.</p>
+        </div>
+        <figure class="guide-shot"><img src="assets/install-guide/07-update-finish.png" alt="AuroraForge update installer complete screen showing loader option"><figcaption>The update uses the same installer. Your existing projects are not removed.</figcaption></figure>
+      </article>
+
+      <div class="guide-callout"><strong>If Check for Updates says you are current:</strong> you already have the newest version. If you want to reinstall or move to another PC, use the website download. Installing over the old app is safe for projects and settings.</div>
+    </section>
+
+    <section id="trouble" class="guide-section section-wrap">
+      <div class="guide-last">
+        <p class="eyebrow">IF SOMETHING GOES WRONG</p>
+        <h2>Small problems,<br>simple answers.</h2>
+        <p>Most install problems are Windows trust prompts, a missing game folder, or WWE 2K26 still running. The app does not need Node, npm, Python, or a command window.</p>
+        <div class="guide-faq">
+          <details><summary>Windows says “unrecognized app”</summary><p>Click <strong>More info</strong>, then <strong>Run anyway</strong>. The installer is currently unsigned. Verify the SHA-256 from the website if you want to check the file first.</p></details>
+          <details><summary>It says WWE 2K26 is running</summary><p>Close the game completely, then try the loader install or update again. The app can be open while you download the update, but the game should be closed when loader files are replaced.</p></details>
+          <details><summary>I cannot find WWE2K26_x64.exe</summary><p>Open Steam, right-click WWE 2K26, choose Manage, then Browse local files. Use that folder. Do not choose the folder above it.</p></details>
+          <details><summary>I do not want the loader</summary><p>Clear the loader checkbox before closing the installer. The app still installs normally. You can add the loader later by running the installer again.</p></details>
+          <details><summary>I need to update but the app says it is current</summary><p>You are already on the latest build. If you need to repair the install, run the current installer from the website over the old one. Projects and settings are kept.</p></details>
+          <details><summary>Where are the source and older builds?</summary><p>Source is on the <a href="source.html">Source page</a>. Public builds are on the <a href="index.html#downloads">Downloads page</a>. The GitHub Releases page carries the updater files and release notes.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-wrap">
+    <div class="footer-brand">
+      <span class="brand-mark brand-mark-logo" aria-hidden="true"><img src="assets/aurora-forge-crest.png?v=4" alt=""></span>
+      <div><strong>AURORA FORGE NT100</strong><span>Independent modding software. Made in Canada.</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#downloads">Downloads</a>
+      <a href="source.html">Source</a>
+      <a href="install.html">Install guide</a>
+      <a href="index.html#support">Support</a>
+      <a href="beta4.html">Beta 4</a>
+      <a href="https://www.patreon.com/c/dgranletmwo" target="_blank" rel="noreferrer">Patreon</a>
+      <a href="https://discord.gg/pBuHF4mugQ" target="_blank" rel="noreferrer">Discord</a>
+      <a href="https://github.com/davegranlet/AuroraForge-NT100/releases" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+    <small>Beta 4 / free release / Independent modding software / &copy; AuroraForge NT100</small>
+  </footer>
+
+  <script src="app.js?v=20261028"></script>
+</body>
+</html>
