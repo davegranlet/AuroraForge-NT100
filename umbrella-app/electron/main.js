@@ -793,7 +793,7 @@ function createWindow() {
         { type: 'separator' },
         { label: 'Check for Updates...', click: () => updateService().check({ manual: true }) },
         { type: 'separator' },
-        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 4', detail: 'Internal build 2.1.8\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta 4 app experience.' }) }
+        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 4', detail: 'Internal build 2.1.9\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta 4 app experience.' }) }
       ]
     }
   ];

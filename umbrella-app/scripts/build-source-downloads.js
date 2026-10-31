@@ -11,7 +11,7 @@ const { exportCurrentSource } = require('../../scripts/release/export-current-so
 
 const root = path.resolve(__dirname, '..');
 const repo = path.resolve(root, '..');
-const release = '2.1.8';
+const release = '2.1.9';
 const releaseTitle = 'Beta 4';
 const outRoot = path.join(root, 'website', 'downloads', 'source');
 const stagingRoot = path.join(root, 'build', 'source-downloads');
@@ -52,25 +52,25 @@ const loaders = {
   'secure-datactrllink-wwe2k25': {
     title: 'Secure DataCtrlLink (WWE 2K25)',
     description: 'WWE 2K25 Secure DataCtrlLink mod loader source.',
-    zip: 'AuroraForge-NT100-Loader-Secure-DataCtrlLink-WWE2K25-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Loader-Secure-DataCtrlLink-WWE2K25-source-2.1.9.zip',
     specs: ['loaders/Secure-DataCtrlLink-WWE2K25/']
   },
   'secure-datactrllink-wwe2k26': {
     title: 'Secure DataCtrlLink (WWE 2K26)',
     description: 'WWE 2K26 Secure DataCtrlLink mod loader source.',
-    zip: 'AuroraForge-NT100-Loader-Secure-DataCtrlLink-WWE2K26-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Loader-Secure-DataCtrlLink-WWE2K26-source-2.1.9.zip',
     specs: ['loaders/Secure-DataCtrlLink-WWE2K26/']
   },
   'cak-mod-loader': {
     title: 'Aurora CAK Mod Loader',
     description: 'Aurora CAK mod loader source.',
-    zip: 'AuroraForge-NT100-Loader-CAK-Mod-Loader-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Loader-CAK-Mod-Loader-source-2.1.9.zip',
     specs: ['loaders/Aurora-Forge-CAK-Mod-Loader/']
   },
   'cak-mod-loader-wwe2k25': {
     title: 'Aurora CAK Mod Loader (WWE 2K25)',
     description: 'WWE 2K25 Aurora CAK mod loader source.',
-    zip: 'AuroraForge-NT100-Loader-CAK-Mod-Loader-WWE2K25-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Loader-CAK-Mod-Loader-WWE2K25-source-2.1.9.zip',
     specs: ['loaders/Aurora-Forge-CAK-Mod-Loader-WWE2K25/']
   }
 };
@@ -79,7 +79,7 @@ const tools = {
   'cak-foundry': {
     title: 'Aurora CAK Foundry',
     description: 'CAK tools source: packager and unpackager for WWE 2K22 through 2K26.',
-    zip: 'AuroraForge-NT100-CAK-Foundry-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-CAK-Foundry-source-2.1.9.zip',
     specs: [
       'cak-foundry/',
       'umbrella-app/electron/cak-reader.js',
@@ -102,7 +102,7 @@ const tools = {
   'entry-studio': {
     title: 'Entry Studio',
     description: 'Entrance Creation Suite early alpha.',
-    zip: 'AuroraForge-NT100-Entry-Studio-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Entry-Studio-source-2.1.9.zip',
     specs: [
       '100-not-tribute/entry-studio/',
       'umbrella-app/app/entry-studio.html',
@@ -116,7 +116,7 @@ const tools = {
   'animation-converter': {
     title: 'Animation Converter',
     description: 'Full animation converter source through 2026-10-27: WWE 2K19 to 2K20 / 2K22 / 2K23 / 2K24 / 2K25 / 2K26 and cross-generation combinations.',
-    zip: 'AuroraForge-NT100-Animation-Converter-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Animation-Converter-source-2.1.9.zip',
     specs: [
       'umbrella-app/app/animation-converter.html',
       'umbrella-app/app/assets/js/animation-converter-page.js',
@@ -130,7 +130,7 @@ const tools = {
   'audio-studio': {
     title: 'Audio Studio',
     description: 'Music editor source.',
-    zip: 'AuroraForge-NT100-Audio-Studio-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Audio-Studio-source-2.1.9.zip',
     specs: [
       'umbrella-app/app/audio-studio.html',
       'umbrella-app/app/assets/js/audio-studio-page.js',
@@ -146,7 +146,7 @@ const tools = {
   'pac19-tools': {
     title: 'WWE 2K19 PAC Tools',
     description: 'WWE 2K19 uses PAC files; this source opens them.',
-    zip: 'AuroraForge-NT100-PAC19-Tools-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-PAC19-Tools-source-2.1.9.zip',
     specs: [
       'umbrella-app/app/pac19-explorer.html',
       'umbrella-app/app/assets/js/pac19-explorer.js',
@@ -158,7 +158,7 @@ const tools = {
   'cak20-workbench': {
     title: 'WWE 2K20 CAK Workbench',
     description: 'WWE 2K20 switched to a different format; this source opens it.',
-    zip: 'AuroraForge-NT100-CAK20-Workbench-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-CAK20-Workbench-source-2.1.9.zip',
     specs: [
       'umbrella-app/app/cak20-explorer.html',
       'umbrella-app/app/assets/js/cak20-explorer.js',
@@ -170,7 +170,7 @@ const tools = {
   'dds-texture-tools': {
     title: 'DDS and Texture Tools',
     description: 'Basic DDS converter tools.',
-    zip: 'AuroraForge-NT100-DDS-Texture-Tools-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-DDS-Texture-Tools-source-2.1.9.zip',
     specs: [
       'umbrella-app/app/dds-converter.html',
       'umbrella-app/app/assets/js/dds-converter.js',
@@ -182,7 +182,7 @@ const tools = {
   'character-viewer': {
     title: 'Character Viewer',
     description: 'Under development; basic model viewer.',
-    zip: 'AuroraForge-NT100-Character-Viewer-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Character-Viewer-source-2.1.9.zip',
     specs: [
       'umbrella-app/app/character-viewer.html',
       'umbrella-app/app/assets/js/character-viewer.js',
@@ -192,7 +192,7 @@ const tools = {
   'mod-suite': {
     title: 'Mod Suite and Workshop',
     description: 'The original AI prompt makers for building a full character.',
-    zip: 'AuroraForge-NT100-Mod-Suite-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Mod-Suite-source-2.1.9.zip',
     specs: [
       'umbrella-app/app/mod-suite.html',
       'umbrella-app/app/mod-workshop.html',
@@ -215,7 +215,7 @@ const tools = {
   'animation-toolchain': {
     title: 'Animation Toolchain',
     description: 'Animation file reading/writing and related tools.',
-    zip: 'AuroraForge-NT100-Animation-Toolchain-source-2.1.8.zip',
+    zip: 'AuroraForge-NT100-Animation-Toolchain-source-2.1.9.zip',
     specs: [
       'animation/tools/',
       'animation/config/'
@@ -229,7 +229,7 @@ sections.push({
   id: 'main-app',
   title: 'AuroraForge NT100 Main App',
   description: 'AuroraForge NT100 main application source.',
-  zip: 'AuroraForge-NT100-Main-App-source-2.1.8.zip',
+  zip: 'AuroraForge-NT100-Main-App-source-2.1.9.zip',
   match: file => has(file, 'umbrella-app/')
 });
 for (const [id, meta] of Object.entries(tools)) {
@@ -260,15 +260,15 @@ sections.push({
   id: 'other-tools',
   title: 'Other Tools and One-Offs',
   description: 'All the one-off scripts and other one-function tools.',
-  zip: 'AuroraForge-NT100-Other-Tools-source-2.1.8.zip',
+  zip: 'AuroraForge-NT100-Other-Tools-source-2.1.9.zip',
   match: file => !covered(file)
 });
 sections.push({
   category: 'all',
   id: 'all-source',
   title: 'All Public Source',
-  description: 'Complete public source bundle for AuroraForge NT100 2.1.8.',
-  zip: 'AuroraForge-NT100-All-Source-2.1.8.zip',
+  description: 'Complete public source bundle for AuroraForge NT100 2.1.9.',
+  zip: 'AuroraForge-NT100-All-Source-2.1.9.zip',
   match: () => true
 });
 

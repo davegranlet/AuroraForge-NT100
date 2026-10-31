@@ -1,6 +1,6 @@
 # Aurora Forge — current source and Main Workbench
 
-Current release: **2.1.8** (Beta 4 line).
+Current release: **2.1.9** (Beta 4 line).
 
 Publishing rules: all source stays on GitHub. Public downloads, including the Windows installer, Linux archive, zipped source releases, and checksums, are hosted on [auroraforge.live](https://auroraforge.live/#downloads). GitHub Release pages link to the website. The Windows auto-updater stays on GitHub Releases. See [PUBLISHING.md](PUBLISHING.md).
 

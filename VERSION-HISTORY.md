@@ -2,6 +2,12 @@
 
 > This file records shipped/versioned product changes. The â€œNextâ€ section is a dated release backlog, not the active project task list; use `AGENTS.md` and `docs/private/AURORA-FORGE-CURRENT-REFERENCE-2026-10-21.md` for current scope and status.
 
+## 2.1.9 — 2026-10-31
+
+- Published the runtime-validated WWE 2K19-to-2K26 Victory native-layout reconstruction.
+- Preserves converted choreography bit-exact while restoring native 2K26 tracking and rig tracks.
+- Updated app, website, package, portable, Linux, and source-download metadata to 2.1.9.
+
 ## Scheme (locked)
 
 - The current release line starts at **2.0**.

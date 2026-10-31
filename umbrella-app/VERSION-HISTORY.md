@@ -1,5 +1,11 @@
 # AuroraForge NT100 — Version History
 
+## 2.1.9 — 2026-10-31
+
+- Added the runtime-validated native-layout Victory reconstruction tool.
+- Converted choreography remains bit-exact; native 2K26 tracking and rig channels are restored in native order.
+- Added strict structural and decoded readback validation.
+
 ## Scheme (locked)
 
 - The current release line starts at **2.0**.
