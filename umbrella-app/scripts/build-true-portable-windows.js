@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 
-const release = '2.1.5';
+const release = '2.1.6';
 const root = path.join(__dirname, '..');
 process.chdir(root);
 

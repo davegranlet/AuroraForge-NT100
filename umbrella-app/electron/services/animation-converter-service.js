@@ -12,7 +12,6 @@ function createAnimationConverterService(options) {
 
   const workDir = path.join(userDataDir, 'animation-converter');
   const configPath = path.join(userDataDir, 'animation-converter-config.json');
-  const foundryShim = path.join(workDir, 'foundry');
 
   function firstExisting(candidates) {
     for (const candidate of candidates) {
@@ -202,7 +201,8 @@ function createAnimationConverterService(options) {
     if (!fs.existsSync(helper)) throw new Error('AuroraCakHelper.exe for the converter was not found.');
     if (!fs.existsSync(cakV93)) throw new Error('The CAK v9.3 baker for the converter was not found.');
 
-    if (fs.existsSync(foundryShim)) fs.rmSync(foundryShim, { recursive: true, force: true });
+    fs.mkdirSync(workDir, { recursive: true });
+    const foundryShim = fs.mkdtempSync(path.join(workDir, 'foundry-'));
     fs.mkdirSync(path.join(foundryShim, 'electron'), { recursive: true });
     fs.mkdirSync(path.join(foundryShim, 'scripts'), { recursive: true });
     fs.mkdirSync(path.join(foundryShim, 'app', 'tools', 'cak-helper'), { recursive: true });

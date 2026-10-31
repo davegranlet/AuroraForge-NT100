@@ -7,6 +7,25 @@
 - One letter per shipped build. The version appears in the app (About / build chip / manifest), in every download filename, and in this file.
 - This file is the map: find the version on your download, find it here, see exactly what that build contains.
 
+## 2.1.6 — 2026-10-30
+
+Patch release for the 2.1.a / Beta 4 line.
+
+- **Animation Converter foundry EPERM fixed:** each build now uses a fresh unique `foundry-*` shim directory instead of deleting and recreating the old `foundry` directory containing a Windows junction.
+- **Menu encoding repair retained:** the 2.1.5 UTF-8 navigation icon and punctuation fix remains.
+- **Installed-app startup fix retained:** the packaged universe profile module fix from 2.1.4 remains.
+- **Installer and updater retained:** the Windows installer packages the refreshed runtime staging tree and writes GitHub updater metadata.
+- **Source downloads:** public source archives are regenerated for 2.1.6.
+
+Artifacts for 2.1.6:
+
+```
+AuroraForge-NT100-Setup-2.1.6-x64.exe
+AuroraForge-NT100-2.1.6-Linux-x64.tar.gz
+```
+
+The GitHub Release carries the Windows updater files. Public app and source downloads are hosted on auroraforge.live.
+
 ## 2.1.5 — 2026-10-30
 
 Patch release for the 2.1.a / Beta 4 line.

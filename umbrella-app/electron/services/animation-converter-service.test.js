@@ -35,9 +35,13 @@ test('converter foundry shim falls back to the shipped sl/cak-foundry resources'
     return path.join(tools, ...parts);
   };
   const service = createAnimationConverterService({ appRoot, userDataDir, bundledToolPath });
+  const staleShim = path.join(userDataDir, 'animation-converter', 'foundry');
+  write(path.join(staleShim, 'stale.txt'), 'stale');
   const shim = service._ensureFoundryShim();
 
-  assert.strictEqual(shim, path.join(userDataDir, 'animation-converter', 'foundry'));
+  assert.ok(shim.startsWith(path.join(userDataDir, 'animation-converter', 'foundry-')));
+  assert.notStrictEqual(shim, staleShim);
+  assert.ok(fs.existsSync(path.join(staleShim, 'stale.txt')));
   assert.strictEqual(fs.readFileSync(path.join(shim, 'electron', 'game-versions.js'), 'utf8'), 'module.exports = {};\n');
   assert.strictEqual(fs.readFileSync(path.join(shim, 'scripts', 'bake-v93-cli.js'), 'utf8'), '// bake\n');
   assert.ok(fs.existsSync(path.join(shim, 'app', 'tools', 'cak-helper', 'AuroraCakHelper.exe')));
