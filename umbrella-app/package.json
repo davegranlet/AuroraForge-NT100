@@ -1,6 +1,6 @@
 {
   "name": "auroraforge-nt100",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Aurora Forge current-source workbench with archive, animation and one-off tools in one desktop app.",
   "main": "electron/main.js",
   "private": true,
@@ -23,8 +23,8 @@
     "catalog:audit": "node scripts/audit-extracted-layouts.js",
     "prepare:runtime": "node scripts/prepare-runtime-staging.js",
     "clean:dist": "node scripts/clean-dist.js",
-    "pack:win": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon.ico --app-version=2.1.6 --build-version=2.1.6 --extra-resource=build/library/sl",
-    "pack:linux": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=linux --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon-256.png --app-version=2.1.6 --build-version=2.1.6 --extra-resource=build/library/sl",
+    "pack:win": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon.ico --app-version=2.1.7 --build-version=2.1.7 --extra-resource=build/library/sl",
+    "pack:linux": "electron-packager build/runtime-staging \"AuroraForge NT100\" --platform=linux --arch=x64 --out=dist --overwrite --asar.unpackDir=app/tools --icon=app/assets/img/app-icon-256.png --app-version=2.1.7 --build-version=2.1.7 --extra-resource=build/library/sl",
     "prepare:installer": "node scripts/prepare-installer-assets.js",
     "verify:installer": "node scripts/verify-installer.js",
     "dist:win": "npm run prepare:runtime && npm run prepare:installer && electron-builder --config electron-builder.config.cjs --win nsis --x64 --publish never",
@@ -48,7 +48,7 @@
   },
   "packageManager": "npm@11.16.0",
   "extraMetadata": {
-    "version": "2.1.6"
+    "version": "2.1.7"
   },
   "dependencies": {
     "electron-updater": "6.8.11",

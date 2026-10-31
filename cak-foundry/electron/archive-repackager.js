@@ -181,7 +181,11 @@ function prepareScanPayloads(scan, options = {}) {
       const requestPath = path.join(temporaryRoot, `${file.id}.json`);
       fs.writeFileSync(requestPath, JSON.stringify({ action: 'compress', inputPath: file.full, outputPath, oodlePath: options.oodlePath }), 'utf8');
       const run = cp.spawnSync(options.helperPath, [requestPath], { encoding: 'utf8', windowsHide: true, maxBuffer: 16 * 1024 * 1024 });
-      if (run.error || run.status !== 0) throw new Error(`Oodle compression failed for ${file.relative}: ${String(run.stderr || run.stdout || run.error && run.error.message || '').trim()}`);
+      if (run.error || run.status !== 0) {
+        scan.compressionWarnings = scan.compressionWarnings || [];
+        scan.compressionWarnings.push(`Oodle compression skipped for ${file.relative}; storing the payload without compression. ${String(run.stderr || run.stdout || run.error && run.error.message || '').trim()}`.trim());
+        continue;
+      }
       const report = JSON.parse(String(run.stdout || '').trim());
       if (!report.Ok || !report.RoundTripVerified) throw new Error(`Oodle round-trip verification failed for ${file.relative}.`);
       const compressed = fs.readFileSync(outputPath);
@@ -268,7 +272,7 @@ function buildCak(sourceRoot, outputPath, options = {}) {
   } finally { fs.closeSync(fd); }
   if (fs.existsSync(output)) fs.rmSync(output); fs.renameSync(temporary, output); const verification = verifyCak(output, scan);
   const texturePayloads = scan.files.filter((file) => /\.(?:dds|tex)$/i.test(file.relative)).length;
-  const warnings = [];
+  const warnings = [...(scan.compressionWarnings || [])];
   if (texturePayloads && !scan.suppliedTextureDatabase) warnings.push('An empty _textures.tdb was added. This is correct for replacements of existing texture hashes; entirely new texture hashes need a populated _textures.tdb supplied in the BakeMe root.');
   return { outputPath: output, sourceRoot: scan.root, fileCount: scan.files.length, folderCount: scan.folders.length, bytes: fs.statSync(output).size, texturePayloads, textureDatabase: scan.suppliedTextureDatabase ? 'supplied' : 'generated-empty-v6', warnings, ...verification };
 }

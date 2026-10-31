@@ -1632,6 +1632,11 @@
       "sha256": "064a7df866fa0966190d9d1e021843a0b068f14b0577121066a53a34874cae24"
     },
     {
+      "source": "animation/tools/rebase-root-per-frame.js",
+      "destination": "umbrella-app/app/tools/entry-studio/tools/rebase-root-per-frame.js",
+      "sha256": "d57153c61ff1861e5a97f6dc4d471e04982e867ebfde63ed60ac784b67a0e52b"
+    },
+    {
       "source": "animation/tools/rebuild_2k26_victory_pair_from_payload.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/rebuild_2k26_victory_pair_from_payload.js",
       "sha256": "5b1097e8f57691319475b40d986b97ec699e951e7fecf3d852b7d89b21cb605a"
@@ -2264,7 +2269,7 @@
     {
       "source": "cak-foundry/electron/archive-repackager.js",
       "destination": "umbrella-app/electron/archive-repackager.js",
-      "sha256": "f99cec92d0f2eb38cabdb0615bd1294b21839be562480d5e87ec05809e22b927"
+      "sha256": "d2f0d8c719b2914afad3e13ae1cce626c3df60baa19110b930c1855ae8244224"
     },
     {
       "source": "cak-foundry/electron/cak-v99-key.js",

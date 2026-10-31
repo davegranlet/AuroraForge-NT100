@@ -1,9 +1,9 @@
-AuroraForge NT100 2.1.6 (Beta 4) - downloads folder
+AuroraForge NT100 2.1.7 (Beta 4) - downloads folder
 
 Upload the website contents to cPanel public_html. All links are relative:
 
-  downloads/AuroraForge-NT100-Setup-2.1.6-x64.exe    287 MB  Windows x64 installer
-  downloads/AuroraForge-NT100-2.1.6-Linux-x64.tar.gz 339 MB  Linux x64 (GPU-less OK)
+  downloads/AuroraForge-NT100-Setup-2.1.7-x64.exe    287 MB  Windows x64 installer
+  downloads/AuroraForge-NT100-2.1.7-Linux-x64.tar.gz 339 MB  Linux x64 (GPU-less OK)
 
 Source downloads:
 
@@ -21,14 +21,14 @@ Source downloads:
 
 No website source is included in any source archive.
 
-2.1.6 supersedes 2.1, 2.1.a, and 2.1.3. Delete older app files from the server when uploading.
+2.1.7 supersedes 2.1, 2.1.a, and 2.1.3. Delete older app files from the server when uploading.
 
 Verify the app uploads against these hashes (also in SHA256SUMS.txt):
 
-  68474302EB099AB56F69C90E3DB7E9CE378D7822410C2C8768FAD12CE3FF92AE  AuroraForge-NT100-Setup-2.1.6-x64.exe
-  544C6C22EFE4CB58E415D77FF8C7C9D0935BA7B0E188E2DFCC3969314F3471CD  AuroraForge-NT100-2.1.6-Linux-x64.tar.gz
+  39A8A48E36AD6120472FDA4A9C5795927D3E2A5EE5CE1BFD990C9846533E55F3  AuroraForge-NT100-Setup-2.1.7-x64.exe
+  979AE8E4EFA36B90DB5987BB8D5386427DFEABF16BFE1BB4A01D5B98BC56A484  AuroraForge-NT100-2.1.7-Linux-x64.tar.gz
 
-What changed in 2.1.6:
+What changed in 2.1.7:
 - Fixed the installed app failing to load the universe profile module from the
   packaged runtime.
 - The installer now packages the refreshed runtime staging tree, including the
@@ -37,7 +37,7 @@ What changed in 2.1.6:
   utilities, Tribute audits, Entry Studio roster actions, and Blender smoke tools.
 - Added transactional loader installation with checksum verification, rollback,
   and owner-file preservation in the Windows installer.
-- Windows installer and Linux x64 archive rebuilt for 2.1.6.
+- Windows installer and Linux x64 archive rebuilt for 2.1.7.
 
 Source stays on GitHub. The Windows auto-updater uses GitHub Releases. Public app
 and source downloads are hosted on auroraforge.live.

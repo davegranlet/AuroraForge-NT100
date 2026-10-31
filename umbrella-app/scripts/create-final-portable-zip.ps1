@@ -1,6 +1,6 @@
 param(
   [string]$AppFolder = "dist\AuroraForge NT100-win32-x64",
-  [string]$ZipName = "AuroraForge-NT100-2.1.6-Windows-x64.zip"
+  [string]$ZipName = "AuroraForge-NT100-2.1.7-Windows-x64.zip"
 )
 
 $ErrorActionPreference = "Stop"
@@ -44,7 +44,7 @@ Recommended workflow:
 5. Use Tutorials for short lessons, animated videos, troubleshooting, and advanced reference downloads.
 6. Take the exported prompt to your chosen compatible AI, then validate the resulting files in CakeView and in game.
 
-Version: 2.1.6 (Beta 4)
+Version: 2.1.7 (Beta 4)
 Edition: Umbrella Beta
 
 AuroraForge NT100 prepares instructions and supporting files. It is not an AI chatbot
@@ -62,7 +62,7 @@ Copy-Item -LiteralPath "LICENSE" -Destination (Join-Path $AppFolder "AURORA-FORG
 Copy-Item -LiteralPath "FAQ.md" -Destination (Join-Path $AppFolder "FAQ.md") -Force
 Copy-Item -LiteralPath "RELEASE_NOTES_2.0.md" -Destination (Join-Path $AppFolder "RELEASE_NOTES_2.0.md") -Force
 Copy-Item -LiteralPath "RELEASE_NOTES_2.1.md" -Destination (Join-Path $AppFolder "RELEASE_NOTES_2.1.md") -Force
-Copy-Item -LiteralPath "RELEASE_NOTES_2.1.6.md" -Destination (Join-Path $AppFolder "RELEASE_NOTES_2.1.6.md") -Force
+Copy-Item -LiteralPath "RELEASE_NOTES_2.1.7.md" -Destination (Join-Path $AppFolder "RELEASE_NOTES_2.1.7.md") -Force
 Copy-Item -LiteralPath "RELEASE_NOTES_1.7.5.md" -Destination (Join-Path $AppFolder "RELEASE_NOTES_1.7.5.md") -Force
 Copy-Item -LiteralPath "CAK_FOUNDRY_RELEASE_NOTES_1.7.5.md" -Destination (Join-Path $AppFolder "CAK_FOUNDRY_RELEASE_NOTES_1.7.5.md") -Force
 Copy-Item -LiteralPath "INSTALLATION_AND_ROLLBACK.md" -Destination (Join-Path $AppFolder "INSTALLATION_AND_ROLLBACK.md") -Force
