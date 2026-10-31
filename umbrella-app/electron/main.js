@@ -793,7 +793,7 @@ function createWindow() {
         { type: 'separator' },
         { label: 'Check for Updates...', click: () => updateService().check({ manual: true }) },
         { type: 'separator' },
-        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 4', detail: 'Internal build 2.1.4\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta 4 app experience.' }) }
+        { label: 'About', click: () => dialog.showMessageBox(mainWindow, { type: 'info', title: 'About AuroraForge NT100', message: 'AuroraForge NT100 Beta 4', detail: 'Internal build 2.1.5\nA WWE PC modding workspace folding the supporting converter, loader, archive, texture, tutorial, and prompt-builder work into one Beta 4 app experience.' }) }
       ]
     }
   ];
@@ -1179,7 +1179,7 @@ ipcMain.handle('desktop:cak-explorer-open-all', async (_event, gameVersion) => {
     keyRecovered: sessions.some((session) => session.keyRecovered),
     warnings: [
       ...sessions.flatMap((session) => session.warnings.map((warning) => `${session.archiveName}: ${warning}`)),
-      ...rejectedArchives.map((item) => `${item.archive}: rejected safely Ã¢â‚¬â€ ${item.error}`)
+      ...rejectedArchives.map((item) => `${item.archive}: rejected safely — ${item.error}`)
     ]
   };
   return { ok: true, archiveCount: sessions.length, rejectedArchives, summary: cakReader.publicSummary(currentCakSession), results: cakReader.searchFiles(currentCakSession, { scope: 'all' }) };

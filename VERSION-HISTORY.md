@@ -9,6 +9,24 @@
 - One letter per shipped build. The version appears in the app (About / build chip / manifest), in every download filename, and in this file.
 - This file is the map: find the version on your download, find it here, see exactly what that build contains.
 
+## 2.1.5 — 2026-10-30
+
+Patch release for the 2.1.a / Beta 4 line.
+
+- **UTF-8 menu repair:** restored the navigation icons, arrows, punctuation, and separators in the app pages that were re-encoded as Windows text in the 2.1.4 build.
+- **Installed-app startup fix retained:** the packaged universe profile module fix from 2.1.4 remains.
+- **Installer and updater retained:** the Windows installer packages the refreshed runtime staging tree and writes GitHub updater metadata.
+- **Source downloads:** public source archives are regenerated for 2.1.5.
+
+Artifacts for 2.1.5:
+
+```
+AuroraForge-NT100-Setup-2.1.5-x64.exe
+AuroraForge-NT100-2.1.5-Linux-x64.tar.gz
+```
+
+The GitHub Release carries the Windows updater files. Public app and source downloads are hosted on auroraforge.live.
+
 ## 2.1.4 — 2026-10-30
 
 Patch release for the 2.1.a / Beta 4 line.

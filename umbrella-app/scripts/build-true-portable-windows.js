@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 
-const release = '2.1.4';
+const release = '2.1.5';
 const root = path.join(__dirname, '..');
 process.chdir(root);
 
@@ -105,7 +105,7 @@ function remove(target) {
   if (fs.existsSync(full)) fs.rmSync(full, { recursive: true, force: true });
 }
 
-log(`AuroraForge NT100 â€” ${release} True Portable Windows Builder`);
+log(`AuroraForge NT100 — ${release} True Portable Windows Builder`);
 log('Building the finished portable Windows ZIP with Electron included.');
 log('The finished app will run without Node.js, npm, PHP, or a web server.');
 

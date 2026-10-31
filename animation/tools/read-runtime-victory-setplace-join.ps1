@@ -128,9 +128,11 @@ $script:Keys = [ordered]@{
 # ringcomponent 0xAE780A89 (03-crc32c-keys.log), actorcomponent 0x7B962D9E at vtable 0x14404EB60,
 # character 0xFC388D56 key-comparison loops at 0x141ADFC10/0x141ADFE01 (05-DEVILS-ADVOCATE.md B3).
 $script:ClassKeys = [ordered]@{
-  ringcomponent  = [UInt32]0xAE780A89L
-  actorcomponent = [UInt32]0x7B962D9EL
-  character      = [UInt32]0xFC388D56L
+  ringcomponent      = [UInt32]0xAE780A89L
+  actorcomponent     = [UInt32]0x7B962D9EL
+  character          = [UInt32]0xFC388D56L
+  groupcomponent     = [UInt32]0x38943282L
+  transformcomponent = [UInt32]0xF02E11D4L
 }
 $script:Constants = [ordered]@{
   ringSelectorQword     = [Convert]::ToUInt64('DCEA4D2BFA11CEEB', 16)
@@ -1625,16 +1627,27 @@ function Invoke-ChildWalk {
     if (-not (Test-PtrUsable $child)) { break }
     $keySection = ('{0}/children[{1}]' -f $Section, $count)
     $view = Get-ComponentKeyView -Ctx $Ctx -Address $child -Section $keySection -Label $Label
+    # v1.6.0: classify each child by its vtable slot-2 key method first (the raw +0x48 field is
+    # zero on the current build for parsed components; the actual selection used by current-build
+    # consumers is the vtable+0x10 method, e.g. 0x141875E30 comparing 0x38943282).
+    $childClass = Get-ClassKeyFromVtable -Ctx $Ctx -ObjectAddress $child -Section $keySection -Label ($Label + '.childClass')
+    $view.classKey = $childClass
     [UInt64]$keyRaw = 0
+    $isGroup = $false
+    $isTransform = $false
+    if ($childClass.keyName -eq 'groupcomponent') { $isGroup = $true }
+    if ($childClass.keyName -eq 'transformcomponent') { $isTransform = $true }
     if ($view.nameKeyU32_048) { [UInt64]$keyRaw = [Convert]::ToUInt64($view.nameKeyU32_048, 16) }
-    if ($keyRaw -eq [UInt64]($script:Keys.groupComponent)) {
+    if (-not $isGroup -and $keyRaw -eq [UInt64]($script:Keys.groupComponent)) { $isGroup = $true; $view.rawKeyFallbackMatched = 'groupcomponent' }
+    if (-not $isTransform -and $keyRaw -eq [UInt64]($script:Keys.transformComponent)) { $isTransform = $true; $view.rawKeyFallbackMatched = 'transformcomponent' }
+    if ($isGroup) {
       [void]$result.matchedGroupComponent.Add([ordered]@{
         child     = $view
         transform = (Get-TransformView -Ctx $Ctx -Address $child -Section $keySection -Label ($Label + '.groupChild'))
         groupChildPointers = (Invoke-GroupChildPointers -Ctx $Ctx -Group $child -Section $keySection -Label $Label)
       })
     }
-    if ($keyRaw -eq [UInt64]($script:Keys.transformComponent)) {
+    if ($isTransform) {
       [void]$result.matchedTransformComponent.Add([ordered]@{
         child     = $view
         transform = (Get-TransformView -Ctx $Ctx -Address $child -Section $keySection -Label ($Label + '.transformChild'))
@@ -2181,7 +2194,12 @@ function Get-NodeRegistry {
     # Bounded shape-scan fallback: hunt the registry object around the manager (the +0x1200 offset
     # is the statically verified site; if it is not yet initialized or points elsewhere, find a
     # shape-matching candidate near the manager before reporting failure).
-    $fallback = Find-RegistryByShape -Ctx $Ctx -ManagerAddress $Ctx.manager
+    $fallback = $null
+    try { $fallback = Find-RegistryByShape -Ctx $Ctx -ManagerAddress $Ctx.manager } catch {
+      $result.foundVia = 'fallback-error'
+      $result.fallbackNote = ('fallback scan failed safely: {0}' -f $_.Exception.Message)
+      return $result
+    }
     if ($fallback.found) {
       $result.registry = $fallback.registry
       $result.foundVia = ('fallback@{0}' -f $fallback.foundOffsetHex)
@@ -2871,6 +2889,25 @@ if ($SelfTest) {
   Add-SelfCheck 'registry-node-pointers-captured' ($node0 -and $node0.pointer -eq ('0x{0:X}' -f $child)) ('node0=' + $(if ($node0) { $node0.pointer } else { 'missing' }))
   $classKeyResult = Get-ClassKeyFromVtable -Ctx $ctx -ObjectAddress $classKeyObj -Section 'selftest' -Label 'classKeyFix'
   Add-SelfCheck 'classkey-classifier-actorcomponent' ($classKeyResult.keyName -eq 'actorcomponent' -and $classKeyResult.imm32 -eq '0x7B962D9E') ('keyName=' + $classKeyResult.keyName + ' imm=' + $classKeyResult.imm32)
+  # v1.6.0: a child with a ZERO raw +0x48 key must still match as a GroupComponent through its
+  # vtable slot-2 key method (the current-build consumer behavior).
+  $childSlot2    = [UInt64]0x1000A880
+  $childSlot2Vt  = [UInt64]0x1000A900
+  $childSlot2Fn  = [UInt64]0x1000A940
+  $boxSlot2      = [UInt64]0x1000A980
+  Set-FakeBytes -Fake $fake -Address $childSlot2   -Bytes (New-Object byte[] 0x50)
+  Set-FakeBytes -Fake $fake -Address $childSlot2Vt -Bytes (New-Object byte[] 0x20)
+  Set-FakeBytes -Fake $fake -Address $childSlot2Fn -Bytes ([byte[]](0x81, 0x3A, 0x82, 0x32, 0x94, 0x38, 0xC3, 0x90))
+  Set-FakeBytes -Fake $fake -Address $boxSlot2     -Bytes (New-Object byte[] 0x50)
+  Set-FakeU64 -Fake $fake -Address $childSlot2 -Value $childSlot2Vt
+  Set-FakeU64 -Fake $fake -Address ($childSlot2Vt + [UInt64]0x10) -Value $childSlot2Fn
+  # child list inside boxSlot2: head at box+0x40 = link childSlot2+8, sentinel = boxSlot2+0x38,
+  # child object = link-8 = childSlot2, child's next link at childSlot2+0x10 = sentinel.
+  Set-FakeU64 -Fake $fake -Address ($boxSlot2 + [UInt64]0x40) -Value ($childSlot2 + [UInt64]8)
+  Set-FakeU64 -Fake $fake -Address ($boxSlot2 + [UInt64]0x38) -Value ($boxSlot2 + [UInt64]0x38)
+  Set-FakeU64 -Fake $fake -Address ($childSlot2 + [UInt64]0x10) -Value ($boxSlot2 + [UInt64]0x38)
+  $walkSlot2 = Invoke-ChildWalk -Ctx $ctx -Container $boxSlot2 -Section 'selftest' -Label 'slot2Walk'
+  Add-SelfCheck 'childwalk-slot2-group-matched' (@($walkSlot2.matchedGroupComponent).Count -eq 1 -and $walkSlot2.matchedGroupComponent[0].child.classKey.keyName -eq 'groupcomponent') ('matched=' + @($walkSlot2.matchedGroupComponent).Count + ' keyName=' + $(if ($walkSlot2.matchedGroupComponent.Count) { $walkSlot2.matchedGroupComponent[0].child.classKey.keyName } else { 'none' }))
   $failed = @($script:SelfChecks | Where-Object { -not $_.ok })
   $selfResult = [ordered]@{
     schema = 'aurora-forge/wwe2k26-victory-placement-selftest/v1'

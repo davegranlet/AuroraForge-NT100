@@ -89,7 +89,7 @@
       'Project: ' + data.project.name,
       'Type: ' + data.project.type,
       'Status: ' + data.project.status,
-      'Output size: ' + data.project.output_size + ' Ã— ' + data.project.output_size,
+      'Output size: ' + data.project.output_size + ' × ' + data.project.output_size,
       'Reference image: ' + data.project.approved_image_note,
       'Design idea: ' + data.project.design_idea,
       'Mapping profile: ' + data.project.mapping_profile,

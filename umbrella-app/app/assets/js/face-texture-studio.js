@@ -123,9 +123,9 @@
   function hardSizeGuidance() {
     var size = value('faceOutputSize') || '2048';
     return [
-      'Hard output size requirement: final PNG must be exactly ' + size + ' Ã— ' + size + ' pixels.',
-      'Do not output 1254 Ã— 1254, 1024 Ã— 1024, 1536 Ã— 1536, a preview screenshot, or any canvas size other than the selected output size.',
-      'If the image generator returns a different pixel size, resize/resample the final working image in Photoshop to exactly ' + size + ' Ã— ' + size + ' before DDS conversion and in-game testing.'
+      'Hard output size requirement: final PNG must be exactly ' + size + ' × ' + size + ' pixels.',
+      'Do not output 1254 × 1254, 1024 × 1024, 1536 × 1536, a preview screenshot, or any canvas size other than the selected output size.',
+      'If the image generator returns a different pixel size, resize/resample the final working image in Photoshop to exactly ' + size + ' × ' + size + ' before DDS conversion and in-game testing.'
     ].join('\n');
   }
   function profileAnchorSummary(profile) {
@@ -138,10 +138,10 @@
   function characterName(profile) { return profile && (profile.character_name || profile.display_name || profileId(profile)) ? (profile.character_name || profile.display_name || profileId(profile)) : 'selected character'; }
   function gridColumns(profile) { return profile && profile.logic_grid && profile.logic_grid.columns ? Number(profile.logic_grid.columns) : 100; }
   function gridRows(profile) { return profile && profile.logic_grid && profile.logic_grid.rows ? Number(profile.logic_grid.rows) : 100; }
-  function gridSummary(profile) { return gridColumns(profile) + 'Ã—' + gridRows(profile) + ' normalized layout grid'; }
+  function gridSummary(profile) { return gridColumns(profile) + '×' + gridRows(profile) + ' normalized layout grid'; }
   function zoneText(z) {
     var profile = selectedProfile();
-    return z ? (gridSummary(profile) + ' columns ' + z.columns.join('-') + ', rows ' + z.rows.join('-') + (z.purpose ? ' â€” ' + z.purpose : '')) : 'not defined';
+    return z ? (gridSummary(profile) + ' columns ' + z.columns.join('-') + ', rows ' + z.rows.join('-') + (z.purpose ? ' — ' + z.purpose : '')) : 'not defined';
   }
   function pxRange(z, size) {
     if (!z) return 'n/a';
@@ -154,7 +154,7 @@
     var x2 = Math.min(width - 1, Math.floor(z.columns[1] / columns * width) - 1);
     var y1 = Math.floor((z.rows[0] - 1) / rows * height);
     var y2 = Math.min(height - 1, Math.floor(z.rows[1] / rows * height) - 1);
-    return 'x ' + x1 + 'â€“' + x2 + ', y ' + y1 + 'â€“' + y2;
+    return 'x ' + x1 + '–' + x2 + ', y ' + y1 + '–' + y2;
   }
   function isOriginalFaceMode() {
     var type = value('faceTextureType');
@@ -197,7 +197,7 @@
     if (target === 'Original base face texture') {
       return [
         'Target: Original base face texture',
-        'Canvas: ' + size + ' Ã— ' + size,
+        'Canvas: ' + size + ' × ' + size,
         hardSizeGuidance(),
         'Use for: a full original wrestler face texture, including skin tone, brows, eye-area detail, nose, cheeks, mouth/lips, chin, jaw shading, blemishes, pores, aging, and facial hair shadow if requested.',
         lipColorGuidance(),
@@ -209,7 +209,7 @@
     if (target === 'Full face texture review image') {
       return [
         'Target: Full face texture review image',
-        'Canvas: ' + size + ' Ã— ' + size,
+        'Canvas: ' + size + ' × ' + size,
         hardSizeGuidance(),
         'Use for: a complete full-face texture image that can be reviewed before final file naming or item-specific conversion.',
         'Avoid: debug labels, grids, body renders, or cropped portrait-only outputs.'
@@ -218,7 +218,7 @@
     if (target === 'Scar / makeup overlay') {
       return [
         'Target: Scar / makeup overlay',
-        'Canvas: ' + size + ' Ã— ' + size,
+        'Canvas: ' + size + ' × ' + size,
         'Use for: scars, healed wounds, makeup, dirt, subtle redness, and skin-level overlays placed on top of a face.',
         'Avoid: replacing the entire base face unless the project type is changed to full face texture.'
       ].join('\n');
@@ -226,7 +226,7 @@
     if (target === 'Bruising / damage overlay') {
       return [
         'Target: Bruising / damage overlay',
-        'Canvas: ' + size + ' Ã— ' + size,
+        'Canvas: ' + size + ' × ' + size,
         'Use for: fight-night bruising, swelling, redness, small cuts, lip damage, and believable damage passes.',
         'Avoid: extreme gore, random damage everywhere, or covering the full face without a reason.'
       ].join('\n');
@@ -234,7 +234,7 @@
     if (target === 'Skin detail / aging overlay') {
       return [
         'Target: Skin detail / aging overlay',
-        'Canvas: ' + size + ' Ã— ' + size,
+        'Canvas: ' + size + ' × ' + size,
         'Use for: pores, wrinkles, sun damage, under-eye detail, blemishes, and subtle skin tone correction.',
         'Avoid: face paint shapes, hard sticker edges, and over-sharpened micro detail.'
       ].join('\n');
@@ -248,7 +248,7 @@
     }
     return [
       'Target: Face paint overlay',
-      'Canvas: ' + size + ' Ã— ' + size,
+      'Canvas: ' + size + ' × ' + size,
       'Use for: face paint, eye black, war paint, theatrical makeup, and readable facial markings placed on top of the base face.',
       'Avoid: changing the full identity of the base face unless the project type is Original CAW Face or Full face texture.'
     ].join('\n');
@@ -365,7 +365,7 @@
     return [
       {
         id: 'game-ready-slade-style',
-        name: 'Default â€” Game-Ready Face Map Style',
+        name: 'Default — Game-Ready Face Map Style',
         data: {
           faceTextureType: 'Original CAW Face', faceMappingProfile: 'Slade.json', faceOutputSize: '2048', faceOutputTarget: 'Original base face texture', faceTextureOrientation: 'WWE 2K face-map vertical flip', faceHandoffMode: 'prompt_plus_profile',
           faceTheme: 'Create a clean game-ready custom wrestler face texture in the Slade-tested style: front-face priority, realistic but softened skin detail, neutral body-matched skin tone, controlled brows, controlled stubble, readable eyes, smooth jaw/chin blend, and reduced noisy side-wrap content.',
@@ -413,7 +413,7 @@
       },
       {
         id: 'original-babyface',
-        name: 'Original Face â€” Young Babyface',
+        name: 'Original Face — Young Babyface',
         data: {
           faceTextureType: 'Original CAW Face', faceMappingProfile: 'Slade.json', faceOutputSize: '2048', faceOutputTarget: 'Original base face texture', faceTextureOrientation: 'WWE 2K face-map vertical flip', faceHandoffMode: 'prompt_plus_profile',
           faceTheme: 'Create an original clean wrestler face texture with confident features, healthy skin detail, and a modern babyface presentation.',
@@ -425,7 +425,7 @@
       },
       {
         id: 'original-veteran-brawler',
-        name: 'Original Face â€” Veteran Brawler',
+        name: 'Original Face — Veteran Brawler',
         data: {
           faceTextureType: 'Original CAW Face', faceMappingProfile: 'Slade.json', faceOutputSize: '2048', faceOutputTarget: 'Original base face texture', faceTextureOrientation: 'WWE 2K face-map vertical flip', faceHandoffMode: 'prompt_plus_profile',
           faceTheme: 'Create an original veteran wrestler face texture with a tougher lived-in look, believable skin wear, and an intimidating ring presence.',
@@ -437,7 +437,7 @@
       },
       {
         id: 'original-cold-heel',
-        name: 'Original Face â€” Cold Heel',
+        name: 'Original Face — Cold Heel',
         data: {
           faceTextureType: 'Original CAW Face', faceMappingProfile: 'Slade.json', faceOutputSize: '2048', faceOutputTarget: 'Original base face texture', faceTextureOrientation: 'WWE 2K face-map vertical flip', faceHandoffMode: 'prompt_plus_profile',
           faceTheme: 'Create an original heel wrestler face texture with a colder, sharper facial presence and controlled intimidating detail.',
@@ -524,14 +524,14 @@
         'Selected profile JSON: ' + profileFilename(),
         'Required reference image:', profileRequiredReferenceGuidance(profile) || 'Upload the selected character stock face texture when exact layout matching is required.',
       'Layout reference PNG:', profileLayoutReferenceFilename(),
-      'Technical 128Ã—128 grid PNG:', profileGridReferenceFilename(),
+      'Technical 128×128 grid PNG:', profileGridReferenceFilename(),
       'Layout legend TXT:', profileLayoutLegendFilename(),
         'Layout reference PNG:', profileLayoutReferenceFilename(),
-        'Technical 128Ã—128 grid PNG:', profileGridReferenceFilename(),
+        'Technical 128×128 grid PNG:', profileGridReferenceFilename(),
         'Layout legend TXT:', profileLayoutLegendFilename(),
         'Character profile layout summary:', profileLayoutSummary(profile) || 'Use the selected character profile as the placement guide.',
         'Character profile orientation:', profileOrientationSummary(profile) || 'Use the raw face-map orientation defined by the selected profile.',
-        'Output size: ' + size + ' Ã— ' + size,
+        'Output size: ' + size + ' × ' + size,
         hardSizeGuidance(), '',
         'Project type:', faceType,
         'Face output target:', outputTarget(),
@@ -549,7 +549,7 @@
         '',
         'Character profile layout summary:', profileLayoutSummary(profile) || 'Match the selected character face-map layout carefully.',
         'Character profile orientation:', profileOrientationSummary(profile) || 'Use the visible working orientation for the selected profile.',
-        'Layout grid:', gridSummary(profile) + '. Each 128Ã—128 cell is exactly 16 px on a 2048Ã—2048 texture. Use the uploaded layout reference PNG for visual placement and the 128Ã—128 grid PNG for exact correction references.',
+        'Layout grid:', gridSummary(profile) + '. Each 128×128 cell is exactly 16 px on a 2048×2048 texture. Use the uploaded layout reference PNG for visual placement and the 128×128 grid PNG for exact correction references.',
         'Eye rendering guidance:', profileEyeGuidance(profile) || 'Keep the eye treatment compatible with the in-game eye system.',
         'Anchor points:', profileAnchorSummary(profile) || '- No extra anchor points recorded.',
         '',
@@ -596,19 +596,19 @@
       'Selected profile JSON: ' + profileFilename(),
       'Required reference image:', profileRequiredReferenceGuidance(profile) || 'Upload the selected character stock face texture when exact layout matching is required.',
       'Layout reference PNG:', profileLayoutReferenceFilename(),
-      'Technical 128Ã—128 grid PNG:', profileGridReferenceFilename(),
+      'Technical 128×128 grid PNG:', profileGridReferenceFilename(),
       'Layout legend TXT:', profileLayoutLegendFilename(),
         'Layout reference PNG:', profileLayoutReferenceFilename(),
-        'Technical 128Ã—128 grid PNG:', profileGridReferenceFilename(),
+        'Technical 128×128 grid PNG:', profileGridReferenceFilename(),
         'Layout legend TXT:', profileLayoutLegendFilename(),
       'Character profile layout summary:', profileLayoutSummary(profile) || 'Match the selected character face-map layout carefully.',
       'Character profile orientation:', profileOrientationSummary(profile) || 'Use the visible working orientation for the selected profile.',
-      'Layout grid:', gridSummary(profile) + '. Each 128Ã—128 cell is exactly 16 px on a 2048Ã—2048 texture. Use the uploaded layout reference PNG for visual placement and the 128Ã—128 grid PNG for exact correction references.',
+      'Layout grid:', gridSummary(profile) + '. Each 128×128 cell is exactly 16 px on a 2048×2048 texture. Use the uploaded layout reference PNG for visual placement and the 128×128 grid PNG for exact correction references.',
       'Eye rendering guidance:', profileEyeGuidance(profile) || 'Keep the eye treatment compatible with the in-game eye system.',
       'Anchor points:', profileAnchorSummary(profile) || '- No extra anchor points recorded.',
       'Stock texture footprint / edge padding guidance:',
       profileFootprintGuidance(profile) || 'Match the selected character stock face texture footprint, including the lower neck / UV padding transition area.',
-      'Output size: ' + size + ' Ã— ' + size,
+      'Output size: ' + size + ' × ' + size,
       hardSizeGuidance(), '',
       'Project type:', value('faceTextureType') || 'Face paint',
       'Face output target:', outputTarget(),
@@ -663,8 +663,8 @@
     lines.push('WWE 2K26 FACE TEXTURE NEW-CHAT UPLOAD CHECKLIST');
     lines.push('Project: ' + safeProjectName());
     lines.push('Texture type: ' + (value('faceTextureType') || 'Face paint'));
-    lines.push('Output size: ' + size + ' Ã— ' + size);
-    lines.push('Hard size rule: final PNG/DDS must be exactly ' + size + ' Ã— ' + size + ' pixels. Resize in Photoshop before DDS conversion if the generator returns any other pixel size.');
+    lines.push('Output size: ' + size + ' × ' + size);
+    lines.push('Hard size rule: final PNG/DDS must be exactly ' + size + ' × ' + size + ' pixels. Resize in Photoshop before DDS conversion if the generator returns any other pixel size.');
     lines.push('Texture orientation: ' + textureOrientation());
     lines.push('Selected profile: ' + (profile ? profileId(profile) : 'not loaded yet'));
     lines.push('Selected profile JSON: ' + profileFilename());
@@ -677,7 +677,7 @@
     lines.push('In the final chat, upload:');
     lines.push('1. The selected character stock face texture image, such as the stock Slade or Cole Quinn head_color texture.');
     lines.push('2. The layout reference PNG: ' + profileLayoutReferenceFilename() + ' (already included in the Final Handoff Pack).');
-    lines.push('3. The technical 128Ã—128 grid PNG: ' + profileGridReferenceFilename() + ' (already included in the Final Handoff Pack; recommended for exact placement).');
+    lines.push('3. The technical 128×128 grid PNG: ' + profileGridReferenceFilename() + ' (already included in the Final Handoff Pack; recommended for exact placement).');
     if (mode !== 'embedded_prompt_only') lines.push('4. The selected face profile JSON: ' + profileFilename() + ' (already included in the Final Handoff Pack).');
     else lines.push('4. The generated Face Texture Prompt TXT that already includes the profile guidance.');
     lines.push('5. The single Face Texture Prompt TXT (already included in the Final Handoff Pack).');
@@ -704,9 +704,9 @@
       'Selected profile:', profile ? ((profile.display_name || profileId(profile)) + ' / ' + profileId(profile)) : 'not loaded yet', '',
       'Selected profile JSON:', profileFilename(), '',
       'Layout reference PNG:', profileLayoutReferenceFilename(), '',
-      'Technical 128Ã—128 grid PNG:', profileGridReferenceFilename(), '',
+      'Technical 128×128 grid PNG:', profileGridReferenceFilename(), '',
       'Layout legend TXT:', profileLayoutLegendFilename(), '',
-      'Output size:', (value('faceOutputSize') || '2048') + ' Ã— ' + (value('faceOutputSize') || '2048'), '',
+      'Output size:', (value('faceOutputSize') || '2048') + ' × ' + (value('faceOutputSize') || '2048'), '',
       'Hard size rule:', hardSizeGuidance(), '',
       'Theme / concept:', value('faceTheme'), '',
       'Keep:', value('faceKeep'), '',
@@ -994,7 +994,7 @@
 
     updateFaceTexturePrompt();
     renderExportPreview();
-    status('Building complete handoff packâ€¦', 'faceExportStatus');
+    status('Building complete handoff pack…', 'faceExportStatus');
 
     try {
       var layoutBytes = await fetchBinaryFile(profileReferencePath(layoutName));
