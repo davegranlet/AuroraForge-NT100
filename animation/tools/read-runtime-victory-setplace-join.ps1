@@ -2115,9 +2115,9 @@ function Find-RegistryByShape {
   $offsetPlan = [System.Collections.Generic.List[int]]::new()
   for ($o = 0x1000; $o -le 0x1400; $o += 8) { [void]$offsetPlan.Add($o) }
   for ($o = 0x0; $o -lt 0x8000; $o += 8) { if ($o -lt 0x1000 -or $o -gt 0x1400) { [void]$offsetPlan.Add($o) } }
-  $visited = @{}
+  $visited = [System.Collections.Generic.HashSet[int]]::new()
   foreach ($o in $offsetPlan) {
-    if ($o + 8 -gt $bytes.Length -or $visited.ContainsKey($o)) { continue }
+    if ($o + 8 -gt $bytes.Length -or $visited.Contains($o)) { continue }
     [void]$visited.Add($o)
     if ($out.scannedQwords -ge $MaxScanQwords -or $budget -le 0) { break }
     [UInt64]$v = [BitConverter]::ToUInt64($bytes, $o)
