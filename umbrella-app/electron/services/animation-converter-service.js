@@ -237,9 +237,14 @@ function createAnimationConverterService(options) {
     const config = readConfig();
     const game19 = (payload && payload.game19Folder) || config.game19;
     const game26 = (payload && payload.game26Folder) || config.game26;
+    const sourceGame = String((payload && payload.sourceGame) || '2k19').toLowerCase();
+    const targetGame = String((payload && payload.targetGame) || '2k26').toLowerCase();
     const outputCak = (payload && payload.outputCak) || config.output;
     if (!game19 || !fs.existsSync(game19)) throw new Error('Choose your WWE 2K19 game folder first.');
-    if (!game26 || !fs.existsSync(game26)) throw new Error('Choose your WWE 2K25/2K26 game folder first.');
+    if (!game26 || !fs.existsSync(game26)) throw new Error('Choose your WWE 2K26 game folder first.');
+    if (sourceGame !== '2k19' || targetGame !== '2k26') throw new Error('Only WWE 2K19 -> WWE 2K26 is implemented. All other source/target combinations are disabled.');
+    const target = gameVersion(game26);
+    if (!target.ok || target.version !== '2k26') throw new Error('The one-click converter supports WWE 2K26 only. Choose the folder containing WWE2K26_x64.exe.');
     if (!outputCak) throw new Error('Choose an output CAK path first.');
     if (fs.existsSync(outputCak)) fs.rmSync(outputCak, { force: true });
 
@@ -262,7 +267,7 @@ function createAnimationConverterService(options) {
       '--victory', path.join(extracted, 'victory'),
       '--entrance', path.join(extracted, 'entrance'),
       '--out-cak', outputCak,
-      '--game', '2k26',
+      '--game', targetGame,
       '--foundry', foundry
     ], 'Converting to new entries and baking the CAK');
     if (convert.status !== 0) throw new Error('Library conversion failed. See the log for details.');

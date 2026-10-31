@@ -271,7 +271,8 @@ if (require.main === module) {
     });
     console.log(JSON.stringify(result, null, 2));
   } catch (error) {
-    console.error(`2K25 library build failed: ${error.message}\n\n${usage()}`);
+    const requestedGame = String(arg(process.argv, '--game', '2k26')).toUpperCase();
+    console.error(`${requestedGame} library build failed: ${error.message}\n\n${usage()}`);
     process.exitCode = 1;
   }
 }

@@ -45,25 +45,19 @@
 
   async function updatePipelineNote() {
     var a = api();
-    var select = $('pipelineSelect');
-    if (!a || !select || !$('pipelineNote')) return;
-    var targets = {
-      '2k19-2k20': ['WWE2K20_x64.exe', 'WWE 2K20'],
-      '2k19-2k22': ['WWE2K22_x64.exe', 'WWE 2K22'],
-      '2k19-2k23': ['WWE2K23_x64.exe', 'WWE 2K23'],
-      '2k19-2k24': ['WWE2K24_x64.exe', 'WWE 2K24'],
-      '2k19-2k25': ['WWE2K25_x64.exe', 'WWE 2K25'],
-      '2k19-2k26': ['WWE2K26_x64.exe', 'WWE 2K26']
-    };
-    var selected = targets[select.value] || targets['2k19-2k26'];
-    var target = selected[0];
-    var label = selected[1];
+    var source = $('cfgSourceGame');
+    var targetSelect = $('cfgTargetGame');
+    if (!a || !source || !targetSelect || !$('pipelineNote')) return;
+    if (source.value !== '2k19' || targetSelect.value !== '2k26') {
+      $('pipelineNote').textContent = 'Not implemented. Only WWE 2K19 -> WWE 2K26 is enabled.';
+      return;
+    }
     var folder = state.defaults && state.defaults.game26 ? state.defaults.game26 : '';
-    if (!folder) { $('pipelineNote').textContent = 'Choose your ' + label + ' folder to confirm the target.'; return; }
+    if (!folder) { $('pipelineNote').textContent = 'Choose your WWE 2K26 folder to confirm the target.'; return; }
     var check = await a.gameVersion(folder);
-    $('pipelineNote').textContent = check && check.ok
-      ? (check.exe === target ? 'Target verified: ' + label + '.' : 'That folder looks like ' + check.version.toUpperCase() + ' — choose the ' + label + ' folder.')
-      : 'Could not confirm the target game in that folder.';
+    $('pipelineNote').textContent = check && check.ok && check.exe === 'WWE2K26_x64.exe'
+      ? 'Target verified: WWE 2K26. Source: WWE 2K19. Only supported pair.'
+      : 'That folder does not look like WWE 2K26. Choose the folder containing WWE2K26_x64.exe.';
   }
 
   function setTask(value) {
@@ -82,8 +76,8 @@
   function setBusy(busy) {
     state.busy = busy;
     var button = $('runBtn');
-    if (button) { button.disabled = busy; button.textContent = busy ? 'Working…' : (currentTask() === 'convert' ? 'Convert & Bake' : 'Extract'); }
-    if ($('runHint')) $('runHint').textContent = busy ? 'Running — leave the app open.' : '';
+    if (button) { button.disabled = busy; button.textContent = busy ? 'Working...' : (currentTask() === 'convert' ? 'Convert & Bake' : 'Extract'); }
+    if ($('runHint')) $('runHint').textContent = busy ? 'Running - leave the app open.' : '';
   }
 
   function showResult(result) {
@@ -108,7 +102,9 @@
       game19Folder: $('cfgGame19') ? $('cfgGame19').value : '',
       game26Folder: $('cfgGame26') ? $('cfgGame26').value : '',
       outputCak: $('cfgOutput') ? $('cfgOutput').value : '',
-      outFolder: $('cfgExtract') ? $('cfgExtract').value : ''
+      outFolder: $('cfgExtract') ? $('cfgExtract').value : '',
+      sourceGame: $('cfgSourceGame') ? $('cfgSourceGame').value : '2k19',
+      targetGame: $('cfgTargetGame') ? $('cfgTargetGame').value : '2k26'
     };
     if (task === 'convert' && (!payload.game19Folder || !payload.game26Folder || !payload.outputCak)) {
       log('Choose the 2K19 folder, the target game folder, and an output CAK first.');
@@ -120,7 +116,7 @@
     }
     setBusy(true);
     showResult(null);
-    log(task === 'convert' ? 'Starting the full library conversion…' : 'Starting the 2K19 extraction…');
+    log(task === 'convert' ? 'Starting the full library conversion...' : 'Starting the 2K19 extraction...');
     try {
       var result = task === 'convert' ? await a.build(payload) : await a.extract(payload);
       showResult(result);
@@ -156,7 +152,8 @@
     });
     if ($('runBtn')) $('runBtn').addEventListener('click', run);
     if ($('clearLog')) $('clearLog').addEventListener('click', function () { if ($('log')) $('log').textContent = ''; });
-    if ($('pipelineSelect')) $('pipelineSelect').addEventListener('change', updatePipelineNote);
+    if ($('cfgSourceGame')) $('cfgSourceGame').addEventListener('change', updatePipelineNote);
+    if ($('cfgTargetGame')) $('cfgTargetGame').addEventListener('change', updatePipelineNote);
     document.querySelectorAll('input[name="cvTask"]').forEach(function (radio) {
       radio.addEventListener('change', function () { setTask(currentTask()); });
     });

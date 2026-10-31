@@ -934,7 +934,7 @@
     {
       "source": "animation/tools/convert-2k19-library-to-2k25-entries.js",
       "destination": "umbrella-app/app/tools/entry-studio/tools/convert-2k19-library-to-2k25-entries.js",
-      "sha256": "7cbebaba4d2a5e6d2c620afb0d09edc7bfb26179e9f647d47afd44fe7f483cff"
+      "sha256": "8f01fc77dcdbdaa8f46a3b35d320e1b884ee7def38222ddde425ce33b7fb3d11"
     },
     {
       "source": "animation/tools/convert-acts22-to-anims23.js",
