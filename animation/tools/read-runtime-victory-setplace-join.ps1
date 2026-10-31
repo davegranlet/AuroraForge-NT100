@@ -34,6 +34,22 @@
 #      collected class-side containers/rig-node pointers; intersections are the LANE-1 identity
 #      closure evidence (role-keyed record == performer rig) and are printed explicitly.
 #
+# v1.5.0 capture-fix corrections (2026-10-30 evening, after the first three owner runs):
+#   a. Actor-table entries now carry the same vtable slot-2 classKey classification as class
+#      candidates (the console classKeys= line was empty because only candidates were classified).
+#   b. Every matched GroupComponent's child rig-node lists were captured but the locator's
+#      reverse-scan request candidates (6 per run, all with componentContainer == class container)
+#      were never routed into Resolve-CaptureRequests, so requests=0 and no container tree was
+#      walked. v1.5.0 seeds RequestCandidates from the locator's valid request candidates with
+#      origin.via='locator.reverseScan' (after type-1/controller priorities).
+#   c. nodeRegistry: the manager+0x1200 pointer value is recorded raw even when unusable, and the
+#      section gains a bounded shape-scan fallback over the manager object's first 0x8000 bytes
+#      (count at candidate+0x2C == 11, plausible array at +0x18, record roles 0/1 at +0xA0), which
+#      reports foundVia='direct'|'fallback@<offset>' and scan provenance.
+#   d. Two new context roots: gameStateGate = _DAT_144A4D790+0x3FC8 (u32; ==9 is the branch that
+#      reaches FUN_14109AB80) and animContextGlobal = _DAT_144A4D7A0 value (+0x38B40 object used by
+#      FUN_1410A3510). Context only; never dereferenced into the identity chain.
+#
 # Safety: OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION|PROCESS_VM_READ) + ReadProcessMemory only for
 # ordinary sections. The optional bounded heap scan uses VirtualQueryEx solely to enumerate readable
 # committed regions (a query; no target-memory writes). Never writes, never suspends, never attaches a
@@ -71,7 +87,7 @@ $ErrorActionPreference = 'Stop'
 $script:ProfileBase = [UInt64]0x140000000
 $script:Schema = 'aurora-forge/wwe2k26-victory-setplace-join-snapshot/v3'
 $script:ToolName = 'read-runtime-victory-setplace-join.ps1'
-$script:ToolVersion = '1.4.0-registry-classifier'
+$script:ToolVersion = '1.5.0-registry-fallback-routing'
 $script:DefaultExpectedSha = '7F9C2461BDB4A662D8A25012BAEAEC73CE0C7F0429C6B77395BBE9232F63FDD5'
 
 $script:Rvas = [ordered]@{
@@ -81,6 +97,8 @@ $script:Rvas = [ordered]@{
   cameraChannelTable         = [UInt64]0x04A37D80
   sceneRegistryPointer       = [UInt64]0x04A44DF8
   classMatchKey              = [UInt64]0x04DB5C3C
+  gameStateGatePointer       = [UInt64]0x04A4D790
+  animContextGlobal          = [UInt64]0x04A4D7A0
 }
 
 $script:RootGlobals = [ordered]@{
@@ -91,6 +109,7 @@ $script:RootGlobals = [ordered]@{
   sceneRegistry      = @{ rva = [UInt64]0x04A44DF8; label = '_DAT_144A44DF8'; expected = 'pointer-to-scene-registry-manager'; kind = 'context-pointer' }
   classMatchKey      = @{ rva = [UInt64]0x04DB5C3C; label = '_DAT_144db5c3c'; expected = 'u32 class child-match key'; kind = 'scalar-u32' }
   loaderRegistryPointer = @{ rva = [UInt64]0x04D7A920; label = 'loader_registry_pointer'; expected = 'loader live-verified CAK registry pointer (leaf 0x0000000BE7000010 range)'; kind = 'context-pointer' }
+  animContextGlobal  = @{ rva = [UInt64]0x04A4D7A0; label = '_DAT_144A4D7A0'; expected = 'value used as base for lVar12 = value + 0x38B40 in FUN_1410A3510 resource lookup; context only'; kind = 'context-pointer' }
 }
 $script:ImageVtables = [ordered]@{
   # Current 7F9C live actor object vtable observed in the actor-manager record at 0x143E3B4E0.
@@ -1921,6 +1940,9 @@ function Get-ActorTable {
     if ($entry.vtable) {
       try { $vt = [Convert]::ToUInt64($entry.vtable, 16); $entry.classMatch = (($vt -eq $expectedVt) -or ($vt -eq $expectedVtLegacy)) } catch { $entry.classMatch = $false }
     }
+    if (Test-PtrUsable $next) {
+      $entry.classKey = Get-ClassKeyFromVtable -Ctx $Ctx -ObjectAddress $next -Section $section -Label $entryLabel
+    }
     if ($entry.transform210 -and $entry.transform210.value) {
       [UInt64]$tc = [Convert]::ToUInt64($entry.transform210.value, 16)
       $entry.transform210Key048         = (Get-U32Value  $Ctx ($tc + [UInt64]0x48) $section ($entryLabel + '+0x210.key048'))
@@ -2054,12 +2076,74 @@ function Get-Type1SetPlaceRecords {
   return $result
 }
 
+function Test-RegistryCandidateByShape {
+  param($Ctx, [UInt64]$Candidate)
+  # Validate the constructor-fixed registry shape: count 11 at +0x2C, array pointer at +0x18,
+  # record role keys 0 and 1 at record+0xA0 (FUN_14109A760 constants).
+  if (-not (Test-PtrUsable $Candidate)) { return $false }
+  try {
+    $head = Get-RawBytes $Ctx $Candidate 0x30
+    [UInt64]$arrayBase = [BitConverter]::ToUInt64($head, 0x18)
+    $count = [BitConverter]::ToUInt32($head, 0x2C)
+    if ($count -ne 11) { return $false }
+    if (-not (Test-PtrUsable $arrayBase)) { return $false }
+    $r0 = Get-RawBytes $Ctx ($arrayBase + [UInt64]0xA0) 2
+    $r1 = Get-RawBytes $Ctx ($arrayBase + [UInt64]0xA8 + [UInt64]0xA0) 2
+    return (($r0[0] -eq 0) -and ($r1[0] -eq 1))
+  } catch { return $false }
+}
+
+function Find-RegistryByShape {
+  param($Ctx, [UInt64]$ManagerAddress, [int]$MaxScanQwords = 512, [int]$MaxCandidateTests = 64)
+  $out = [ordered]@{
+    found         = $false
+    registry      = $null
+    foundOffsetHex = $null
+    scannedQwords = 0
+    testedCandidates = 0
+    note          = 'scans pointer-shaped qwords inside the manager object''s first 0x8000 bytes, prioritizing the 0x1000..0x1400 neighborhood of the statically verified +0x1200 site; each candidate is validated with the constructor registry shape (count==11, plausible array pointer, record role bytes 0/1)'
+  }
+  if (-not (Test-PtrUsable $ManagerAddress)) { $out.note = 'manager not usable; shape scan skipped'; return $out }
+  $budget = [Math]::Min([int]$MaxCandidateTests, 64)
+  try {
+    $bytes = Get-RawBytes $Ctx $ManagerAddress 0x8000
+  } catch {
+    $out.note = ('manager block read failed: {0}' -f $_.Exception.Message)
+    return $out
+  }
+  # Priority pass: the neighborhood of the static +0x1200 site, then the full block.
+  $offsetPlan = [System.Collections.Generic.List[int]]::new()
+  for ($o = 0x1000; $o -le 0x1400; $o += 8) { [void]$offsetPlan.Add($o) }
+  for ($o = 0x0; $o -lt 0x8000; $o += 8) { if ($o -lt 0x1000 -or $o -gt 0x1400) { [void]$offsetPlan.Add($o) } }
+  $visited = @{}
+  foreach ($o in $offsetPlan) {
+    if ($o + 8 -gt $bytes.Length -or $visited.ContainsKey($o)) { continue }
+    [void]$visited.Add($o)
+    if ($out.scannedQwords -ge $MaxScanQwords -or $budget -le 0) { break }
+    [UInt64]$v = [BitConverter]::ToUInt64($bytes, $o)
+    $out.scannedQwords++
+    if (-not (Test-PtrUsable $v)) { continue }
+    if (Test-RegistryCandidateByShape -Ctx $Ctx -Candidate $v) {
+      $out.found = $true
+      $out.registry = ('0x{0:X}' -f $v)
+      $out.foundOffsetHex = ('0x{0:X}' -f $o)
+      break
+    }
+    $budget--
+    $out.testedCandidates++
+  }
+  return $out
+}
+
 function Get-NodeRegistry {
   param($Ctx)
   $section = 'nodeRegistry'
   $result = [ordered]@{
     registryPointerAddress = $null
     registry               = $null
+    rawRegistryPointer     = $null
+    foundVia               = $null
+    fallbackNote           = $null
     count                  = $null
     expectedCount          = 11
     arrayPointer           = $null
@@ -2080,6 +2164,7 @@ function Get-NodeRegistry {
   $regPtrAddress = $Ctx.manager + [UInt64]0x1200
   $result.registryPointerAddress = ('0x{0:X}' -f $regPtrAddress)
   $regView = $null
+  $rawRegistryPointer = 0
   try { $regView = Get-PtrValue -Ctx $Ctx -Address $regPtrAddress -Section $section -Label 'manager+0x1200' } catch {
     Add-ReadError -Ctx $Ctx -Section $section -Label 'manager+0x1200' -Address $regPtrAddress -Message 'node registry pointer read failed' -Exception $_
     $result.readError = 'node registry pointer read failed'
@@ -2087,15 +2172,33 @@ function Get-NodeRegistry {
     return $result
   }
   if (-not $regView) { $result.readError = 'node registry pointer unreadable'; $result.rootStatus = 'invalid'; return $result }
+  $result.rawRegistryPointer = $regView.raw
   [UInt64]$reg = [Convert]::ToUInt64($regView.raw, 16)
+  $rawRegistryPointer = $reg
   $result.registry = if ($reg -ne 0) { ('0x{0:X}' -f $reg) } else { $null }
   if (-not (Test-PtrUsable $reg)) {
-    Add-ReadError -Ctx $Ctx -Section $section -Label 'manager+0x1200' -Address $regPtrAddress -Message 'node registry pointer is not usable'
-    $result.readError = 'node registry pointer is not usable'
-    $result.rootStatus = 'invalid'
-    return $result
+    Add-ReadError -Ctx $Ctx -Section $section -Label 'manager+0x1200' -Address $regPtrAddress -Message ('node registry pointer is not usable (raw {0})' -f $regView.raw)
+    # Bounded shape-scan fallback: hunt the registry object around the manager (the +0x1200 offset
+    # is the statically verified site; if it is not yet initialized or points elsewhere, find a
+    # shape-matching candidate near the manager before reporting failure).
+    $fallback = Find-RegistryByShape -Ctx $Ctx -ManagerAddress $Ctx.manager
+    if ($fallback.found) {
+      $result.registry = $fallback.registry
+      $result.foundVia = ('fallback@{0}' -f $fallback.foundOffsetHex)
+      $result.fallbackNote = 'registry found by the v1.5.0 shape scan (count==11, plausible array, record roles 0/1 at +0xA0); the manager+0x1200 slot itself was unusable in this snapshot'
+      $reg = [Convert]::ToUInt64($fallback.registry, 16)
+      $result.rootStatus = 'fallback-validated'
+      $result.readError = $null
+      $result.registryPointerAddress = ('0x{0:X}' -f ($Ctx.manager + [Convert]::ToUInt64($fallback.foundOffsetHex.Replace('0x',''), 16)))
+    } else {
+      $result.foundVia = 'none'
+      $result.fallbackNote = ('shape scan over the first 0x8000 bytes of the manager found no count==11 registry candidate; scannedQwords={0}' -f $fallback.scannedQwords)
+      return $result
+    }
+  } else {
+    $result.foundVia = 'direct'
+    $result.rootStatus = 'pointer-plausible'
   }
-  $result.rootStatus = 'pointer-plausible'
   try { $result.count = Get-U32Raw $Ctx ($reg + [UInt64]0x2C) } catch {
     Add-ReadError -Ctx $Ctx -Section $section -Label 'registry+0x2C' -Address ($reg + [UInt64]0x2C) -Message 'registry record count read failed' -Exception $_
     $result.readError = 'registry record count read failed'
@@ -2512,6 +2615,8 @@ function Get-StaticReadPlan {
     $reads = 'u64 read and root classification before any offset arithmetic; only a plausible/validated pointer is followed'
     if ($k -eq 'cameraChannelTable') { $reads = 'static array base; u64 entries read only as scene-object context, never as an actor/class anchor' }
     if ($k -eq 'classMatchKey') { $reads = 'u32 scalar read; compared with 0x38943282, never dereferenced' }
+    if ($k -eq 'gameStateGatePointer') { $reads = 'u32 read at static address +0x3FC8 (the e29e0 branch gate value); compared with 9, never dereferenced' }
+    if ($k -eq 'animContextGlobal') { $reads = 'u64 value read as context; the value+0x38B40 offset is reported, never chained into identity joins' }
     [void]$plan.Add([ordered]@{
       label           = $k
       rva             = ('0x{0:X}' -f $script:Rvas[$k])
@@ -2534,7 +2639,9 @@ function Get-DynamicReadPlan {
     'actorTable: deref base+0x04A4BDA8 -> manager; deref manager+0x848 -> record array; read count u32 at manager+0x85C; for each record pointer read vtable, +0x70, +0x20, +0x30, +0x38, +0x40, +0x200, +0x50, +0x60, +0x210; per entity read +0x800/+0x804/+0x870/+0x880; per controller read +0x12D0/+0x12D9/+0x12E0/+0x12F0/+0x14B4/+0x14B6/+0x14B8/+0x14B9/+0x870',
     'classContainer per record: walk container at class+0x20 (head=*(c+0x40), sentinel=c+0x38, child=link-8, next=*(link+8)) up to depth limit; compare child+0x48 against 0x38943282 and 0xF02E11D4; matched children additionally read transform fields +0x30/+0x40/+0x50/+0x60/+0x70/+0xD0',
     'setPlaceRecords: deref manager+0x54330 -> base; scan base+i*0x14D0 for i<scanLimit reading +0x12D0/+0x12D9/+0x12E0/+0x12F0/+0x14B0/+0x14B4/+0x14B6/+0x14B8/+0x14B9; read task queue count u32 at base+0x1A0F0 and up to 32 pointers at base+0x1A050 (+0x30 raw bytes each)',
-    'nodeRegistry: deref manager+0x1200 -> registry; read record count u32 at registry+0x2C and array pointer at registry+0x18; per record (stride 0xA8) read 18 qword rig-node pointers at +0x00..+0x88, aux +0x90, in-use byte +0x98 and role key byte +0xA0; Resolve-Joins intersects these pointer sets with captured class-side rig-node pointers',
+    'nodeRegistry: deref manager+0x1200 -> registry; read record count u32 at registry+0x2C and array pointer at registry+0x18; per record (stride 0xA8) read 18 qword rig-node pointers at +0x00..+0x88, aux +0x90, in-use byte +0x98 and role key byte +0xA0; if that pointer is unusable the v1.5.0 shape-scan fallback validates candidates inside the manager block and the found offset is recorded; Resolve-Joins intersects these pointer sets with captured class-side rig-node pointers',
+    'locator reverse-scan requests are routed into the request walk (origin via locator.reverseScan, after type-1/controller priorities) so their container trees, including matched GroupComponent child rig-node lists, are captured in the same snapshot',
+    'animContext: read u64 at base+0x04A4D7A0 (value plus 0x38B40 recorded as context) and u32 gate at base+0x04A4D790+0x3FC8 (==9 is the branch reaching FUN_14109AB80); context only, never chained into identity joins',
     'requests: for each distinct request handle found, read +0x48 completion byte and +0x40 container pointer; walk the container component tree with the same intrusive-list convention, comparing child+0x48 keys and capturing transform fields',
     'category4Table: deref base+0x04A37028 -> FlatBuffer root; root vtable = root - i32(root); slot3 offset -> vector header table; its field0 offset -> element array; iterate u32 element offsets to each row record; record vtable = record - i32(record); read category byte (slot2), selector i32 (slot3), keyField2 u32 (slot4) and the field4 qword via the u16 offset stored at vtable+0xC',
     'globalTree: deref manager+0x1210 -> tree base; sentinel=base+0x48; root=*(base+0x20); walk nodes (left +8 / right +0x10) capturing key i32 at +0x18 and target pointer at +0x20 (+ first 0x20 raw bytes of each target)',
@@ -2895,9 +3002,38 @@ try {
       }
     }
     $rootStatus = Get-RootStatus -Ctx $ctx -SelectedManager $selectedManager
+    # v1.5.0: route the locator's valid reverse-scan request candidates into the request walk so
+    # their container trees (with matched GroupComponent children/rig-node lists) are captured;
+    # they are added after type-1/controller origins by the ordered priority in Resolve-CaptureRequests.
+    $locatorRequestSeedCount = 0
+    foreach ($lr in @($locator.requestCandidates)) {
+      if (-not $lr -or -not $lr.address -or (-not $lr.requestExists)) { continue }
+      $seedOrigin = [ordered]@{
+        via          = 'locator.reverseScan'
+        classAddress = $lr.reversedFromClassAddress
+        requestAddressInLocator = $lr.address
+      }
+      [void]$script:RequestCandidates.Add([ordered]@{
+        origin        = $seedOrigin
+        requestHandle = $lr.address
+        selector14B4  = $null
+      })
+      $locatorRequestSeedCount++
+    }
     $actorTable = Get-ActorTable -Ctx $ctx -ManagerAddress $selectedManager -ManagerSource $selectedManagerSource -RootStatus $rootStatus
     $setPlaceRecords = Get-Type1SetPlaceRecords -Ctx $ctx
     $nodeRegistry = Get-NodeRegistry -Ctx $ctx
+    $animContextAnswer = [ordered]@{}
+    try {
+      $animCtxView = Get-PtrValue -Ctx $ctx ($base + $script:Rvas.animContextGlobal) 'animContext' '_DAT_144A4D7A0'
+      $animContextAnswer.raw = if ($animCtxView) { $animCtxView.raw } else { $null }
+      if ($animCtxView -and $animCtxView.raw) {
+        [UInt64]$acv = [Convert]::ToUInt64($animCtxView.raw, 16)
+        $animContextAnswer.plus38b40 = if (Test-PtrUsable ($acv + [UInt64]0x38B40)) { ('0x{0:X}' -f ($acv + [UInt64]0x38B40)) } else { $null }
+      }
+      $animContextAnswer.gateU32 = (Get-U32Value $Ctx ($base + $script:Rvas.gameStateGatePointer + [UInt64]0x3FC8) 'animContext' 'gameStateGateU32@+0x3FC8')
+      $animContextAnswer.gateNote = 'u32 at (_DAT_144A4D790+0x3FC8): ==9 is the verified branch that reaches FUN_14109AB80/the node-registry refresh (EVENT-TRACE decomp, FUN_1410E29E0); any other value means the event role-byte dispatch is inactive in this game state'
+    } catch { $animContextAnswer.error = $_.Exception.Message }
     $category4 = Get-Category4Table -Ctx $ctx
     $componentsArray = Get-ComponentsArray -Ctx $ctx -RootStatus $rootStatus
     $requests = Resolve-CaptureRequests -Ctx $ctx
@@ -2925,6 +3061,7 @@ try {
       classCandidates                     = @($locator.classCandidates)
       requestCandidates                   = @($locator.requestCandidates)
       nodeRegistry                        = $nodeRegistryAnswer
+      animContext                         = $animContextAnswer
       staticRootsUsable                   = [ordered]@{
         actorManager    = ($rootStatus.actorManager.verdict -eq 'validated-by-locator' -or $rootStatus.actorManager.verdict -eq 'validated-by-shape' -or $rootStatus.actorManager.verdict -eq 'pointer-plausible')
         category4       = ($rootStatus.category4Root.verdict -eq 'pointer-plausible')
@@ -3070,9 +3207,20 @@ try {
   if ($rootStatus.actorManager.raw) { $out.WriteLine(('actorManagerRaw={0} ({1})' -f $rootStatus.actorManager.raw, $rootStatus.actorManager.verdict)) }
   if ($rootStatus.componentsArray.raw) { $out.WriteLine(('componentsArrayRaw={0} ({1})' -f $rootStatus.componentsArray.raw, $rootStatus.componentsArray.verdict)) }
   $out.WriteLine(('actorEntries={0} entities={1} category4Rows={2} selectorMatchedRows={3} requests={4} globalTreeNodes={5}' -f $actorEntriesCount, $entityCount, $result.captureSetCoverage.category4Rows, $result.captureSetCoverage.selectorMatchedRows, $requestCount, $treeNodeCount))
-  $out.WriteLine(('nodeRegistry=accessible:{0} count:{1} records:{2}' -f ($nodeRegistry -and $nodeRegistry.registry), $(if ($nodeRegistry) { $nodeRegistry.count } else { 'n/a' }), $result.captureSetCoverage.nodeRegistryRecords))
+  $out.WriteLine(('nodeRegistry=accessible:{0} count:{1} records:{2} foundVia:{3}' -f ($nodeRegistry -and $nodeRegistry.registry), $(if ($nodeRegistry) { $nodeRegistry.count } else { 'n/a' }), $result.captureSetCoverage.nodeRegistryRecords, $(if ($nodeRegistry) { $nodeRegistry.foundVia } else { 'n/a' })))
+  if ($animContextAnswer -and $animContextAnswer.Count -gt 0) {
+    $out.WriteLine(('animContext=raw:{0} gateU32:{1}' -f $animContextAnswer.raw, $animContextAnswer.gateU32))
+  }
   $joinCandidates = if ($joins -and $joins.entries) { @($joins.entries | Where-Object { $_.registryPerformerRigJoinCandidate }).Count } else { 0 }
-  $out.WriteLine(('registryPerformerRigJoinCandidates={0} classKeys={1}' -f $joinCandidates, (($actorTable.entries | Where-Object { $_.classKey -and $_.classKey.keyName } | Select-Object -First 4 -ExpandProperty classKey | Select-Object -ExpandProperty keyName) -join ',')))
+  $entryKeyNames = [System.Collections.Generic.List[string]]::new()
+  foreach ($ae in @($actorTable.entries)) {
+    if (-not $ae) { continue }
+    $ck = $null
+    if ($ae.PSObject -and $ae.PSObject.Properties['classKey']) { $ck = $ae.classKey }
+    elseif ($ae -is [System.Collections.Specialized.OrderedDictionary] -and $ae.Contains('classKey')) { $ck = $ae['classKey'] }
+    if ($ck -and $ck.Contains('keyName') -and $ck['keyName']) { [void]$entryKeyNames.Add([string]$ck['keyName']) }
+  }
+  $out.WriteLine(('registryPerformerRigJoinCandidates={0} classKeys={1}' -f $joinCandidates, (($entryKeyNames | Select-Object -First 4) -join ',')))
   $out.WriteLine(('requestGroupChildren0x38943282={0} requestTransformChildren0xF02E11D4={1}' -f $groupChildCount, $transformChildCount))
   $out.WriteLine(('readErrors={0} errorsTruncated={1} visitBudgetLeft={2}' -f $ctx.errors.Count, $script:ErrorsTruncated, $ctx.visitBudget))
   if ($ctx.errors.Count -gt 0) {
